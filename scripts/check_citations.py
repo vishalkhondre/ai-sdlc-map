@@ -25,6 +25,15 @@ Fails (exit 1) when:
  13. any tracked file, except the historical review reports, links to or names the series site or its
      repository (D-019)
 
+Reference pages (content/pages/<band>/<id>.md) are checked like chapters (checks 1, 3, 4, 6 and
+10 to 13), with these differences: a page cites references.yml keys directly (check_pages.py
+refuses local notes); a footnote whose key is not lower-case letters, digits and hyphens fails,
+because it would be published as literal text; a page uses every adopted or adapted term whose name
+or match phrase appears in its prose or labels, whether or not it lists it under key_terms (check 3);
+the keep-out list covers the title, summary and map box too; and a page may not name a product
+(GR-3.3). check_pages.py checks key_terms against the glossary. Citations inside code fences do
+not count.
+
 Run:  python scripts/check_citations.py
 """
 from __future__ import annotations
@@ -71,6 +80,11 @@ def diagram_text(svg: ET.Element) -> tuple[str, str, set[str]]:
         else:
             body.append("".join(el.itertext()))
     return "\n".join(body), "\n".join(credits), credited
+
+
+def strip_code(text: str) -> str:
+    """Text without fenced code blocks: a [^key] inside a fence is an example, not a citation."""
+    return re.sub(r"^```.*?^```[ \t]*$", "", text, flags=re.M | re.S)
 
 
 def check_diagrams(refs: dict, glossary: list, embedded: set[str]) -> tuple[list[str], set[str]]:
@@ -202,17 +216,33 @@ def main() -> int:
                 for ch in toc.get("chapters") or []]
     # Reference pages (content/pages/<band>/<id>.md) are checked like chapters. A page that lists an
     # adopted or adapted term under key_terms must cite that term's source (check 3).
+    # A page also uses every adopted or adapted glossary term whose name or match phrase appears in
+    # its prose, declared or not (the generator links those phrases). Its title, summary and map box
+    # are prose too: they become the heading, the lede, the meta description and the search entry.
     page_terms: dict[str, list[str]] = {}
+    problems: list[str] = []
     for path in sorted((CONTENT / "pages").rglob("*.md")):
         m = re.match(r"^---\n(.*?)\n---\n(.*)$", path.read_text(encoding="utf-8"), re.S)
         meta = (yaml.safe_load(m.group(1)) or {}) if m else {}
-        chapters.append({"id": meta.get("id") or path.stem, "text": m.group(2) if m else ""})
-        page_terms[meta.get("id") or path.stem] = list(meta.get("key_terms") or [])
+        pid = meta.get("id") or path.stem
+        if pid in page_terms:
+            problems.append(f"{pid}: more than one page uses this id")
+        labels = "\n".join(str(meta.get(k) or "") for k in ("title", "summary", "map_box"))
+        chapters.append({"id": pid, "text": m.group(2) if m else "", "labels": labels, "page": True})
+        page_terms[pid] = list(meta.get("key_terms") or [])
+        prose = strip_code(re.sub(r"^\[\^.*$", "", m.group(2) if m else "", flags=re.M)) + "\n" + labels
+        for g in glossary:
+            if g.get("attribution") in ("adopted", "adapted") and g["id"] not in page_terms[pid]:
+                if any(re.search(rf"(?<![\w-]){re.escape(name)}(?![\w-])", prose, flags=re.I)
+                       for name in [g["term"]] + list(g.get("match") or [])):
+                    page_terms[pid].append(g["id"])
 
-    problems: list[str] = []
     cited_by_chapter: dict[str, set[str]] = {}
     for ch in chapters:
-        text = ch["text"]
+        text = strip_code(ch["text"])
+        for key in sorted(set(re.findall(r"\[\^([^\]\s]+)\]", text)) - set(re.findall(r"\[\^([a-z0-9\-]+)\]", text))):
+            problems.append(f"{ch['id']}: footnote [^{key}] is not a reference key (lower-case letters, digits and hyphens); "
+                            "it would be published as literal text")
         used = set(re.findall(r"\[\^([a-z0-9\-]+)\](?!:)", text))
         defined = set(re.findall(r"^\[\^([a-z0-9\-]+)\]:", text, flags=re.M))
         for key in sorted(defined & refs.keys()):
@@ -243,6 +273,15 @@ def main() -> int:
             for m in re.finditer(pat, prose):
                 line = prose[: m.start()].count("\n") + 1
                 problems.append(f"{ch['id']}: line {line}: '{m.group(0)}' is on the keep-out list for chapter prose")
+        if ch.get("page"):
+            for pat in BANNED_IN_PROSE:
+                for m in re.finditer(pat, ch["labels"]):
+                    problems.append(f"{ch['id']}: title, summary or map box: '{m.group(0)}' is on the keep-out list")
+            # No page type is a category page yet, so no page may name a product (GR-3.3).
+            for pat in PRODUCT_NAMES:
+                for m in re.finditer(pat, prose + "\n" + ch["labels"]):
+                    problems.append(f"{ch['id']}: '{m.group(0)}' is a product name; a product is named only on a page "
+                                    "about its category (GR-3.3), and no page type is one yet")
 
     used_refs: set[str] = set().union(*cited_by_chapter.values()) if cited_by_chapter else set()
     embedded = set()

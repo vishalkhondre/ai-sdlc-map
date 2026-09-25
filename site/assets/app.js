@@ -262,11 +262,14 @@
       let s = 0; for (const w of terms) { if (t.includes(w)) s += 10; const n = b.split(w).length - 1; s += Math.min(n, 8); }
       return [s, it];
     }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, 12);
+    // index text is plain text: escape it, then mark the matches (terms are escaped the same way)
+    const escHtml = str => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const marks = new RegExp('(' + terms.map(t => escHtml(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
     sRes.innerHTML = scored.map(([, it]) => {
       const b = (it.b || ''); const i = b.toLowerCase().indexOf(terms[0]);
       const snip = i >= 0 ? b.slice(Math.max(0, i - 60), i + 90) : it.s;
-      const hl = snip.replace(new RegExp('(' + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi'), '<mark>$1</mark>');
-      return `<a href="${/^https?:/.test(it.u) ? it.u : base + it.u}"><span class="rk">${it.k}</span>${it.t}<span class="rs">…${hl}…</span></a>`;
+      const hl = escHtml(snip).replace(marks, '<mark>$1</mark>');
+      return `<a href="${escHtml(/^https?:/.test(it.u) ? it.u : base + it.u)}"><span class="rk">${escHtml(it.k)}</span>${escHtml(it.t)}<span class="rs">…${hl}…</span></a>`;
     }).join('') || '<div class="search-hint">Nothing found.</div>';
   });
 })();

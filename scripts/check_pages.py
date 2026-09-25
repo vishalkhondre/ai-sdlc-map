@@ -15,7 +15,11 @@ templates/pages/<type>.md. Fails (exit 1) when a page:
   6. cites a key that is not in content/references.yml or not in its `sources`, lists a
      key_term that is not in content/glossary.yml, a related id that is not a page, or a
      review_record that does not exist (the site-builder creates the record, with its scope,
-     before the first check; the release gate requires its ACCEPT)
+     before the first check; the release gate requires its ACCEPT), or a footnote whose key is not
+     lower-case letters, digits and hyphens (it would be published as literal text)
+  7. has an id that is not lower-case words joined by hyphens, or one a built page already uses
+  8. is missing from content/toc.yml `pages.<band>`, which sets the reading order (D-020), or
+     that list names a page that does not exist
 
 The templates themselves are checked too: each has the front-matter fields and a type that
 matches its file name. The tests check the templates against the table in project/APPROACH.md.
@@ -43,6 +47,10 @@ PROVISIONAL = [
     r"\bv0\.(?:\d+|x)\b", r"\bunder construction\b", r"\blorem ipsum\b",
     r"\bthis (?:page|section|entry) is (?:a |still )?(?:draft|incomplete)\b", r"\(draft\)", r"\[draft\]",
 ]
+
+
+# Built pages a reference page may not overwrite (GR-4.3).
+RESERVED_IDS = {"index", "glossary", "references", "workflow-catalog", "404", "sitemap", "robots", "llms", "llms-full", "search-index"}
 
 
 # In a title, summary, heading or link text, "draft" always labels the page itself (GR-3.2).
@@ -115,6 +123,10 @@ def check_page(path: Path, meta: dict, body: str, templates: dict, refs: dict, g
         problems.append(f"{where}: band is {band!r} but the page sits in {path.parent.name}/")
     if meta.get("id") != path.stem:
         problems.append(f"{where}: id {meta.get('id')!r} does not match the file name {path.stem!r}")
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", str(meta.get("id") or "")):
+        problems.append(f"{where}: id {meta.get('id')!r} must be lower-case words joined by hyphens")
+    elif meta.get("id") in RESERVED_IDS:
+        problems.append(f"{where}: id {meta.get('id')!r} is taken by a built page ({meta.get('id')}.html)")
 
     found = sections(body)
     if kind in templates:
@@ -150,7 +162,10 @@ def check_page(path: Path, meta: dict, body: str, templates: dict, refs: dict, g
     listed = set(meta.get("sources") or [])
     for key in sorted(listed - refs.keys()):
         problems.append(f"{where}: source '{key}' is not in content/references.yml")
-    for key in sorted(set(re.findall(r"\[\^([a-z0-9\-]+)\]", body))):
+    code_free = without_code(body)
+    for key in sorted(set(re.findall(r"\[\^([^\]\s]+)\]", code_free)) - set(re.findall(r"\[\^([a-z0-9\-]+)\]", code_free))):
+        problems.append(f"{where}: [^{key}] is not a reference key (lower-case letters, digits and hyphens)")
+    for key in sorted(set(re.findall(r"\[\^([a-z0-9\-]+)\]", code_free))):
         if key not in refs:
             problems.append(f"{where}: cites [^{key}], which is not in content/references.yml")
         elif key not in listed:
@@ -184,6 +199,19 @@ def check(root: Path = ROOT) -> tuple[list[str], int]:
         problems.append(f"content/pages: id '{dup}' is used by more than one page")
     for path, meta, body in pages:
         problems += check_page(path, meta, body, templates, refs, glossary_ids, set(ids), root)
+    # toc.yml `pages` gives the reading order per band (D-020): every page listed, nothing else
+    toc_path = root / "content/toc.yml"
+    toc = (yaml.safe_load(toc_path.read_text(encoding="utf-8")) or {}) if toc_path.is_file() else None
+    order = (toc or {}).get("pages") or {}
+    for band in BANDS if toc is not None else []:
+        listed = list(order.get(band) or [])
+        present = [meta.get("id") for _, meta, _ in pages if meta.get("band") == band]
+        for pid in sorted(set(present) - set(listed)):
+            problems.append(f"content/toc.yml: page '{pid}' is missing from pages.{band}, which sets the reading order")
+        for pid in sorted(set(listed) - set(present)):
+            problems.append(f"content/toc.yml: pages.{band} lists '{pid}', which is not a {band} page")
+    for band in sorted(set(order) - set(BANDS)):
+        problems.append(f"content/toc.yml: pages.{band} is not a band")
     return problems, len(pages)
 
 

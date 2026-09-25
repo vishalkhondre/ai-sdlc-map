@@ -707,11 +707,12 @@ def render_page(pg: dict) -> str:
     body, _ = autolink_terms(body, pg["id"])
     band_title = dict(BANDS)[pg["band"]]
     first = PAGES[pg["band"]][0]["href"]
+    section = (esc(band_title) if first == pg["href"] else f'<a href="{rel(first)}">{esc(band_title)}</a>')
     page = head(f"{pg['title']} · {TITLE}", pg["summary"], pg["href"])
     page += "<body>" + nav(pg["href"])
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="{first}">{esc(band_title)}</a> <span aria-hidden="true">/</span> <span aria-current="page">{esc(pg['title'])}</span></nav><h1>{esc(pg['title'])}</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="{rel("index.html")}">{esc(TITLE)}</a> <span aria-hidden="true">/</span> {section} <span aria-hidden="true">/</span> <span aria-current="page">{esc(pg['title'])}</span></nav><h1>{esc(pg['title'])}</h1>
 <p class="lede">{esc(pg['summary'])}</p></div></div>
 <div class="section-inner narrow"><article class="prose" id="article" data-page="{esc(pg['id'])}">{body}</article></div>
 </main>
@@ -758,7 +759,8 @@ def write_discovery() -> None:
     # search index
     idx = []
     for pg in all_pages:
-        text = re.sub(r"\[\^[a-z0-9\-]+\]|<!--.*?-->|[#*_`>]", " ", pg["body"], flags=re.S)
+        # identifiers such as could_not_run keep their underscores; app.js escapes the text it shows
+        text = re.sub(r"\[\^[a-z0-9\-]+\]|<!--.*?-->|[#*`>]|(?<!\w)_|_(?!\w)", " ", pg["body"], flags=re.S)
         idx.append({"t": pg["title"], "u": pg["href"], "k": "page", "s": pg["summary"], "b": " ".join(text.split())})
     for g in GLOSSARY:
         idx.append({"t": g["term"], "u": f"glossary.html#{g['id']}", "k": "term", "s": g["definition"].strip()[:200], "b": g["definition"].strip()})
