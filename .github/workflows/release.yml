@@ -42,9 +42,9 @@ jobs:
           fi
           if [[ "$EVENT" == "workflow_dispatch" ]]; then
             [[ "$REF" == "refs/heads/main" ]] || { echo "Run the release from main"; exit 1; }
-            if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null; then
-              echo "Tag $TAG already exists; push it or pick the next edition"; exit 1
-            fi
+            status=0; git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null || status=$?
+            if [[ $status -eq 0 ]]; then echo "Tag $TAG already exists; push it or pick the next edition"; exit 1; fi
+            if [[ $status -ne 2 ]]; then echo "Could not list remote tags (exit $status)"; exit 1; fi
           fi
           git fetch --no-tags origin main
           git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "Tagged commit is not on main"; exit 1; }
