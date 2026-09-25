@@ -15,20 +15,19 @@ Update at the end of every session (see `CLAUDE.md`).
 - **Review record:** `content/reviews/1.1.0-clickable-map.md` (ACCEPT) is bound in
   `content/release-review.json`, pointing to `1.0.0-seed-confirmation.md`, which points to the
   series' 1.1.0 reviews (D-011).
-- **Current wave:** 0 Foundations — first item (clickable map) done; Q1 settled; diagram text
-  gated (D-009); hashed deny-list (D-012).
+- **Current wave:** 0 Foundations — first item (clickable map) done, with its links exposed to
+  assistive technology (`role="group"` for diagrams that contain links); Q1 settled; diagram
+  text gated (D-009); hashed deny-list (D-012).
 
 ## Next (in order)
 
-1. Follow-up (tooling): links inside the map sit under `role="img"`, which can hide them from
-   screen readers; emit `role="group"` for diagrams with links, and add an automated check.
-2. Author answers the open questions Q2–Q4 in `ASSUMPTIONS.md`.
-3. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, and whether to
+1. Author answers the open questions Q2–Q4 in `ASSUMPTIONS.md`.
+2. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, and whether to
    rewrite history there. This repository already uses one (D-012).
-4. Wave 0: page templates, `.claude/agents` and skills (folding in `.github/agents`), new checks
+3. Wave 0: page templates, `.claude/agents` and skills (folding in `.github/agents`), new checks
    (banned phrases, template structure, link check, review-record gate, GR-2.5 access dates,
    outdated terms).
-5. Wave 0: source inventory — every library document mapped to map boxes, gaps listed.
+4. Wave 0: source inventory — every library document mapped to map boxes, gaps listed.
 
 ## Wave 0 retrospective items
 
@@ -76,4 +75,4 @@ retrospective (GR-5.3).
 |---|---|---|---|
 | 1 | 2026-09-25 | *(in `ai-sdlc`)* Built and released 1.0.0; drew the five-band map and adoption path; reviewed the Hopsworks landing pattern; agreed the goal, ground rules and approach; wrote these project files | Two map commits and this commit need pushing; session could not push (repo not selected at start) |
 | 2 | 2026-09-25 | *(in `ai-sdlc`)* Pushed 1.0.0 to GitHub and applied the publishing-and-review-gates patch; removed the Jekyll workflow; merged the map bundle; released 1.1.0 after four citation reviews (REVISE ×3, ACCEPT) plus a confirmation review of the author's reference URLs; diagram text checks and credit lines added (D-009) | Branch `claude/hopeful-pasteur-7og55e` deleted after merge; retrospective items above |
-| 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from `ai-sdlc` at `4a997c8` without the chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; `ai-sdlc` handed over with `MAINTENANCE.md` and a whole-picture link (ACCEPT); clickable map and routing row released as 1.1.0 (ACCEPT) | Merged branches may still need deleting in GitHub (branch deletion is blocked from the session); next: the `role="group"` follow-up |
+| 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from `ai-sdlc` at `4a997c8` without the chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; `ai-sdlc` handed over with `MAINTENANCE.md` and a whole-picture link (ACCEPT); clickable map and routing row released as 1.1.0 (ACCEPT) | `role="group"` follow-up merged (PR #4). Author: delete the merged branches `claude/seed-site`, `claude/fix-search-race`, `claude/clickable-map`, `claude/map-links-a11y` and `claude/status-session-3` in GitHub (branch deletion is blocked from the session) |
