@@ -59,7 +59,7 @@ Then, for the section as a whole:
 
 ```
 every page ACCEPT ─► merge ─► deploy live ─► author reviews live ─► follow-up PRs
-                  ─► author approves ─► tag vX.Y.0 ─► GitHub Release (notes + PDF snapshot)
+                  ─► author approves ─► tag vX.Y.Z ─► GitHub Release (notes + PDF snapshot)
 ```
 
 1. **Brief.** The architect agent opens a page brief: box, type, scope, key terms, related pages.

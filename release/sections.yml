@@ -1,7 +1,7 @@
 # The section each release covers, and the pages its PDF snapshot prints (D-016).
-# Key: the edition in content/VERSION. The tag is "v" + that edition.
+# Key: major.minor of content/VERSION (follow-ups bump the patch). The tag is "v" + the full edition.
 # scripts/release_snapshot.py and .github/workflows/release.yml read this file.
 
-"1.2.0":
+"1.2":
   section: "Rename, home page and terminology"
   pages: [index.html, glossary.html]

@@ -92,9 +92,10 @@ accessed 2026-09-25). Released as edition 1.2.0 and tag `v1.2.0`. Rules out: "AI
 page" as the site name, "AI-SDLC", and following any single vendor's methodology.
 
 ## D-014 · Build and approve one section at a time
-Decided 2026-09-25 by the author (Q2); replaces the per-page approval in GR-6.1 (ground rules
-v1.1). A section is one band of the map (context, lifecycle, core, enablement, assurance) or the
-adoption path. The flow for a section: the architect plans it and the author approves the plan;
+Decided 2026-09-25 by the author (Q2); replaces the per-page approval in GR-6.1 and removes the
+human approver from the GR-5.2 review record (ground rules v1.1). A section is one band of the map (context, lifecycle, core, enablement, assurance) or the
+adoption path. The flow for a section: the architect plans it and the author approves the plan (carried over from the approval of
+each wave plan);
 agents research, write and review every page of it; when every required reviewer returns ACCEPT
 it merges to `main` and deploys; the author reviews it on the live site; changes come as
 follow-up pull requests, reviewed the same way; the author approves the section; its release is
@@ -104,11 +105,12 @@ author approval of each page before it merges, and publishing part of a section'
 incomplete.
 
 ## D-015 · SAFe: generic labels on the map, plus one reference model
-Decided 2026-09-25 by the author (Q3). The map keeps generic portfolio / train / team labels for
-the lifecycle levels, with SAFe cited as one framework that uses them. The lifecycle section adds
-a worked **SAFe reference model** page that maps the AI SDLC onto SAFe levels and events. It is
-informed by the author's delivery framework and delivery package in the source library, which
-makes it the page with the highest confidentiality risk: it is presented only as "a reference
+Decided 2026-09-25 by the author (Q3). The map's lifecycle levels are labelled generically
+(portfolio / train / team), with SAFe cited as one framework that uses them; the map today says
+"SAFe levels" and "Agile Release Train", so it is relabelled in a content edition of its own. The
+lifecycle section adds a worked **SAFe reference model** page that maps the AI SDLC onto SAFe
+levels and events. It is informed by the source library (A3), which makes it the page with the
+highest confidentiality risk: it is presented only as "a reference
 model", its origin is not named, it is de-identified in full, the confidentiality reviewer checks
 it against GR-1, and the author confirms it is not recognisable before its section is released
 (GR-1.2). Rules out: SAFe-specific labels as the only lifecycle vocabulary, and any wording that
@@ -117,8 +119,11 @@ lets a reader identify where the model came from.
 ## D-016 · A tag and a GitHub Release for each approved section
 Decided 2026-09-25 by the author (Q4). `main` deploys continuously; a tag marks the author's
 approval. Each approved section gets a semver tag and a GitHub Release, one minor version per
-section; the rename to The AI SDLC Map is v1.2.0 (D-013). The tag is `v` plus `content/VERSION`.
-`release/sections.yml` names the section and the pages each release covers.
+section; the rename to The AI SDLC Map is v1.2.0 (D-013). A section merges as a new minor
+edition; follow-up changes before approval bump the patch, so the tag is `v` plus
+`content/VERSION` at approval (for example v1.3.2). `release/sections.yml`, keyed by
+major.minor, names the section and the pages each release covers. An agent creates a `v*` tag
+only on the author's explicit instruction; the workflow refuses a tag that is not on `main`.
 `.github/workflows/release.yml` runs on `v*` tags: it re-runs validation, then creates the
 release with the version's changelog entry as notes and attaches a PDF snapshot of the section's
 pages (`scripts/release_snapshot.py`). v2.0.0 is released when every box on the map links to a

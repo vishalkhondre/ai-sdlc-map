@@ -3,8 +3,8 @@
     python scripts/release_snapshot.py notes v1.3.0            # changelog entry for 1.3.0, as Markdown
     python scripts/release_snapshot.py pdf v1.3.0 out.pdf      # PDF of the section's pages (build the site first)
 
-The tag must be `v` + content/VERSION, and release/sections.yml must list the pages the
-release covers. Both commands fail otherwise, so a tag cannot publish a release the
+The tag must be `v` + content/VERSION, and release/sections.yml must list, under the
+edition's major.minor, the section and the pages the release covers. Both commands fail otherwise, so a tag cannot publish a release the
 repository does not describe.
 """
 from __future__ import annotations
@@ -41,14 +41,15 @@ def notes(tag: str, root: Path = ROOT) -> str:
     section = release_section(version, root)
     return (f"**{section['section']}**\n\n{entry.group(1).strip()}\n\n"
             f"This tag marks the author's approval of the section (D-014, D-016). "
-            f"The attached PDF is a snapshot of its pages as published.\n")
+            f"The attached PDF is a snapshot of its pages, built from the tagged commit.\n")
 
 
 def release_section(version: str, root: Path = ROOT) -> dict:
     sections = yaml.safe_load((root / "release/sections.yml").read_text(encoding="utf-8")) or {}
-    section = sections.get(version)
+    key = ".".join(version.split(".")[:2])
+    section = sections.get(key)
     if not section or not section.get("section") or not section.get("pages"):
-        raise ValueError(f"release/sections.yml needs a section name and pages for {version}.")
+        raise ValueError(f"release/sections.yml needs a section name and pages under \"{key}\" for {version}.")
     return section
 
 
@@ -57,7 +58,8 @@ def pdf(tag: str, out: Path, root: Path = ROOT) -> list[str]:
     from pypdf import PdfWriter
 
     version = version_for(tag, root)
-    pages = release_section(version, root)["pages"]
+    section = release_section(version, root)
+    pages = section["pages"]
     site = root / "site"
     for page in pages:
         if not (site / page).exists():
@@ -80,13 +82,12 @@ def pdf(tag: str, out: Path, root: Path = ROOT) -> list[str]:
                 tab = browser.new_page()
                 for page in pages:
                     tab.goto(f"http://127.0.0.1:{server.server_port}/{page}")
-                    tab.emulate_media(media="print")
                     writer.append(io.BytesIO(tab.pdf(format="A4", print_background=True,
                                                      margin={"top": "12mm", "bottom": "12mm", "left": "10mm", "right": "10mm"})))
                 browser.close()
         finally:
             server.shutdown()
-    writer.add_metadata({"/Title": f"The AI SDLC Map {version}: {release_section(version, root)['section']}"})
+    writer.add_metadata({"/Title": f"The AI SDLC Map {version}: {section['section']}"})
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("wb") as fh:
         writer.write(fh)
@@ -109,7 +110,7 @@ def main() -> int:
             pages = pdf(args.tag, args.out)
             print(f"Wrote {args.out} from {len(pages)} pages: {', '.join(pages)}")
         return 0
-    except (ValueError, OSError) as exc:
+    except Exception as exc:  # noqa: BLE001 - a tidy one-line failure for the release job, browser errors included
         parser.exit(1, f"Release snapshot failed: {exc}\n")
 
 

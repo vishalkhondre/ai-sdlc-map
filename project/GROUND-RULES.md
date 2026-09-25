@@ -1,7 +1,8 @@
 # Ground rules
 
 Version 1.1 · approved by the author · changes only with the author's approval (§6).
-Version 1.1 (2026-09-25) replaced the per-page approval in GR-6.1 with section approval (D-014).
+Version 1.1 (2026-09-25) replaced the per-page approval in GR-6.1 with section approval, and
+removed the human approver from the GR-5.2 review record, since the release tag records it (D-014).
 
 Every automated check and every reviewer finding cites a rule number from this file, for
 example `GR-2.3`. A rule that nothing enforces is marked *(review)*; the aim over time is to

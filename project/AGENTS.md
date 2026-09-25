@@ -11,7 +11,7 @@ Drive connector in Claude sessions (see `DECISIONS.md`, D-004).
 
 | Agent | Job | Reads | Writes |
 |---|---|---|---|
-| `architect` | Owns the map, the page inventory and wave plans; opens page briefs | Map, `STATUS.md`, inventory | `briefs/<page>.md`, inventory, wave plan |
+| `architect` | Owns the map, the page inventory and section plans; opens page briefs | Map, `STATUS.md`, inventory | `briefs/<page>.md`, inventory, section plan |
 | `source-researcher` | Reads the private library for a brief; extracts practice; de-identifies | Brief, Drive library | Practice brief **outside the repo** (session scratch only) |
 | `external-researcher` | Finds and verifies public sources for every claim | Brief, web | `content/references.yml` entries, evidence notes in the brief |
 | `author` | Writes the page to its template in the site voice | Brief, both research outputs, template | `content/pages/<band>/<page>.md` |
@@ -46,8 +46,7 @@ reviews:
   - reviewer: editorial-reviewer
     verdict: ACCEPT
     findings: []
-approved_by: <author | agent>
-approved_on: <date>
+section: <band or adoption>   # the author's approval is the section's release tag (D-014, D-016)
 ```
 
 CI fails if a published page has no record, if any verdict is not ACCEPT, or if `page_hash`

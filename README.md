@@ -51,9 +51,9 @@ scripts/
   tests/                site, citation and release regression tests
 .github/
   workflows/            validate on every PR; deploy to GitHub Pages from main; release on v* tags
+  instructions/, agents/, prompts/   content rules and roles for people and agents
 release/
   sections.yml          the section and pages each tagged release covers
-  instructions/, agents/, prompts/   content rules and roles for people and agents
 ```
 
 ## Run locally
