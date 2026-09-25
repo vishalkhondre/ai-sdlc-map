@@ -1,12 +1,18 @@
 name: Release
 
-# A tag marks the author's approval of a section (D-014, D-016). Pushing tag vX.Y.Z re-runs
-# validation on the tagged commit, then creates the GitHub Release with the changelog entry
+# A tag marks the author's approval of a section (D-014, D-016). Either push tag vX.Y.Z on
+# main, or run this workflow by hand on main with the tag as input, and it creates the tag.
+# It re-runs validation, then creates the GitHub Release with the section's changelog entries
 # as notes and a PDF snapshot of the section's pages.
 
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to create on main: v followed by content/VERSION, for example v1.3.0"
+        required: true
 
 permissions:
   contents: read
@@ -26,7 +32,13 @@ jobs:
         with:
           fetch-depth: 0
       - name: Tag must be on main
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
         run: |
+          if [[ "$EVENT" == "workflow_dispatch" && "$REF" != "refs/heads/main" ]]; then
+            echo "Run the release from main"; exit 1
+          fi
           git fetch --no-tags origin main
           git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "Tagged commit is not on main"; exit 1; }
       - uses: actions/setup-python@v5
@@ -44,14 +56,17 @@ jobs:
           python scripts/render_diagrams.py
       - name: Release notes and PDF snapshot
         env:
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           python scripts/release_snapshot.py notes "$TAG" > release-notes.md
           python scripts/release_snapshot.py pdf "$TAG" "ai-sdlc-map-$TAG.pdf"
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+          EVENT: ${{ github.event_name }}
         run: |
-          gh release create "$TAG" "ai-sdlc-map-$TAG.pdf" \
-            --verify-tag --title "The AI SDLC Map $TAG" --notes-file release-notes.md
+          # A pushed tag must already exist; a manual run creates it on the validated main commit.
+          if [[ "$EVENT" == "push" ]]; then TARGET=(--verify-tag); else TARGET=(--target "$GITHUB_SHA"); fi
+          gh release create "$TAG" "ai-sdlc-map-$TAG.pdf" "${TARGET[@]}" \
+            --title "The AI SDLC Map $TAG" --notes-file release-notes.md
