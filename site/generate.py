@@ -479,13 +479,16 @@ def routes() -> str:
     """The purpose routing row under the map (project/APPROACH.md): only destinations that exist."""
     rows = [
         ("Understand", "What changes when agents do more of the delivery work, and the words for it.",
-         [("glossary.html#ai-sdlc", "What the AI SDLC is", False), ("glossary.html", "Terminology and sources", False)]),
+         [("glossary.html#ai-sdlc", "What the AI SDLC is", False), ("harness-engineering.html", "Harness engineering", False),
+          ("glossary.html", "Terminology and sources", False)]),
         ("Build the kit", "The engineering environment the agent works in: rules, checks, skills and evidence.",
-         [("glossary.html#harness-engineering", "Harness engineering", False), ("glossary.html#engineering-kit", "The Engineering Kit", False)]),
+         [("engineering-kit.html", "The Engineering Kit", False), ("rule-registry.html", "Rule registry", False),
+          ("validators.html", "Validators", False), ("skills-and-evals.html", "Skills with evals", False),
+          ("evidence-schema.html", "Evidence schema", False), ("adapters.html", "Adapters", False)]),
         ("Run a workflow", "One delivery decision end to end, with a trigger, checks, a human decision and evidence.",
-         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), ("glossary.html#workflow", "What a workflow is", False)]),
+         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), ("workflows.html", "What a workflow is", False)]),
         ("Lead adoption", "What to build first, what to measure, and when to move on.",
-         [("#adoption", "The adoption path", False), ("glossary.html#software-factory", "The software factory", False)]),
+         [("#adoption", "The adoption path", False), ("software-factory.html", "The software factory", False)]),
         ("Look it up", "Definitions, sources and the catalog as data.",
          [("glossary.html", "Terminology", False), ("references.html", "References", False), ("data/workflow-catalog.csv", "Catalog as CSV", False)]),
     ]

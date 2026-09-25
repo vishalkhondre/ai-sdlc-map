@@ -96,13 +96,21 @@ class DiagramText(unittest.TestCase):
             self.assertIn("data-references key 'no-such-key' is not in references.yml", output)
 
     def test_reference_cited_only_by_a_diagram_is_dead_without_it(self):
+        # Pages cite the map's own references too, so the test adds a reference that only the map cites.
         with tempfile.TemporaryDirectory() as temporary:
             gate = load_gate(temporary)
+            refs = gate.CONTENT / "references.yml"
+            refs.write_text(refs.read_text(encoding="utf-8") + '\nzz-diagram-only:\n  title: "T"\n  org: "O"\n'
+                            '  url: "https://example.org/"\n  accessed: "2026-01-01"\n', encoding="utf-8")
             svg = gate.CONTENT / "diagrams/svg/ai-sdlc-map.svg"
-            svg.write_text(svg.read_text(encoding="utf-8").replace(" dora-metrics", ""), encoding="utf-8")
+            cited = svg.read_text(encoding="utf-8")
+            self.assertIn(' dora-metrics"', cited)
+            svg.write_text(cited.replace(' dora-metrics"', ' dora-metrics zz-diagram-only"', 1), encoding="utf-8")
+            self.assertEqual(run(gate)[0], 0)
+            svg.write_text(cited, encoding="utf-8")
             result, output = run(gate)
             self.assertEqual(result, 1)
-            self.assertIn("'dora-metrics' is never cited", output)
+            self.assertIn("'zz-diagram-only' is never cited", output)
 
     def test_credit_line_may_name_a_source_but_not_a_keep_out_name(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -2,6 +2,20 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.4.0 — 2026-09-25
+
+- A new Core section with nine reference pages, in reading order: Harness engineering, the Engineering Kit, the kit's five parts (Rule registry, Validators, Skills with evals, Evidence schema, Adapters), Workflows and the Software factory. Each page defines one part of the core band of the map, uses the customer-record export as its example, and names its sources. The Core section appears in the header tabs, the left navigation, search, the sitemap and the llms files.
+- On the map, the Harness engineering, Engineering Kit, Workflows and Software factory labels open their Core pages. The Engineering Kit box now shows its five parts as separate labels, and each opens its own page; the box's title opens the kit overview.
+- The routing row under the map leads to the new pages: Understand gains Harness engineering; Build the kit leads to the Engineering Kit and its five parts; Run a workflow and Lead adoption lead to the Workflows and Software factory pages.
+- New terminology entries: Technology profile, Project configuration, Golden path, Architecture decision record, Fitness function (architectural), LLM-as-a-judge, Ports and adapters, Anticorruption layer, Contract test and Consumer-driven contract, each with its origin.
+- Revised terminology entries: Requisite variety no longer says the law favours fewer controls; the Engineering Kit entry names the kit's three commands; could_not_run, Evidence record, Adapter, Validator, Gate, Risk tier, Spec-driven development, Workflow and Software factory are made more precise; Software factory is called an operating state and names the earlier senses of the phrase it does not mean; the Harness engineering entry calls the factory an operating state too. Skill, Harness evaluation and Risk tier point to public descriptions of the practice.
+- 94 new references, from standards bodies (OASIS, NIST, OWASP, SLSA, in-toto, ISO), research (DORA, peer-reviewed studies) and practitioners, each with its title, author or organisation, address and date accessed.
+- Corrections to three existing references: the fitness-function article is published on thoughtworks.com; the Spec Kit note lists clarification as optional, not as a fixed command; the harness-engineering note names Böckeler's three regulation categories and says the article discusses ambient affordances rather than introducing them.
+- The map's credit line names Nygard as the source of architecture decision records and Cockburn as the source of adapters; the Adapter entry is now credited as adapted from Cockburn's ports and adapters pattern.
+- On the adoption path, the "Feedback path proven" label opens the Harness engineering page's section on the steering loop and the feedback path.
+- Wording in the adoption path, the workflow catalog and the Deterministic gate and Deterministic floor entries now names the kit's verify command and says new validators run report-only before they become required; the floor's first validators are described as a few, for rules the team has broken before.
+- Two Technology Radar references are labelled as archived entries, with their volume.
+
 ## 1.3.0 — 2026-09-25
 
 - Every link now stays on this site: the navigation, footer, home page, routing row, terminology, references, workflow catalog, search, the not-found page and the downloadable map.
