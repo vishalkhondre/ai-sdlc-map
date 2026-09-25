@@ -15,8 +15,9 @@ Update at the end of every session (see `CLAUDE.md`).
   purpose routing row and the adoption path; also the workflow catalog, terminology (with the AI
   SDLC entry) and references, each showing its access date. Released: `v1.2.0` (tag and GitHub
   Release with its PDF snapshot).
-- **Review record:** `content/reviews/1.2.1-wave0.md` (confidentiality, accuracy and editorial
-  ACCEPT) is bound in `content/release-review.json`, pointing to `1.2.0-rename.md`.
+- **Review record:** `content/reviews/1.3.0-brand.md` (confidentiality, accuracy and editorial
+  ACCEPT) is bound in `content/release-review.json`, pointing to `1.3.0-layout.md`. The
+  confidentiality reviewer found the brand resembles no employer's design system (D-021).
 - **Decisions:** Q2–Q4 settled as D-014 (one section at a time; ground rules v1.1), D-015 (SAFe:
   generic labels plus a reference model) and D-016 (a tag and GitHub Release per approved
   section, `.github/workflows/release.yml`). Session 5 recorded D-018 to D-024: Core plan
