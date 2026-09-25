@@ -26,11 +26,13 @@ Update at the end of every session (see `CLAUDE.md`).
   (`.claude/`); the deny-list now case-folded, with word pairs and the inventory's identifiers
   (D-017); the source coverage table (`project/COVERAGE.md`; the inventory itself stays outside
   the repository). Edition 1.2.1 backfilled access dates and corrected seven references.
-- **Current wave:** 0 Foundations; next is the first section plan.
+- **Current wave:** 0 Foundations; the Core section plan waits for the author's approval.
 
 ## Next (in order)
 
-1. Architect: propose the first section plan (Core) for the author's approval (D-014).
+1. **Author: approve, change or cut the Core section plan** (`project/plans/core.md`), the first
+   section under D-014. It asks three questions (the page list, linking the kit's sub-elements on
+   the map, and where the evidence schema lives). Work on the section starts only after approval.
 2. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, no history rewrite.
    Session 4's attempt was stopped by the session's permission classifier; it needs the author's
    go-ahead in the session.
@@ -91,7 +93,7 @@ retrospective (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | in progress | — | — |
-| 1 Core and lifecycle | not started | set by inventory | 0 |
+| 1 Core and lifecycle | Core plan proposed (9 pages) | 9 (core) | 0 |
 | 2 Assurance and enablement | not started | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
@@ -102,4 +104,4 @@ retrospective (GR-5.3).
 | 1 | 2026-09-25 | *(in `ai-sdlc`)* Built and released 1.0.0; drew the five-band map and adoption path; reviewed the Hopsworks landing pattern; agreed the goal, ground rules and approach; wrote these project files | Two map commits and this commit need pushing; session could not push (repo not selected at start) |
 | 2 | 2026-09-25 | *(in `ai-sdlc`)* Pushed 1.0.0 to GitHub and applied the publishing-and-review-gates patch; removed the Jekyll workflow; merged the map bundle; released 1.1.0 after four citation reviews (REVISE ×3, ACCEPT) plus a confirmation review of the author's reference URLs; diagram text checks and credit lines added (D-009) | Branch `claude/hopeful-pasteur-7og55e` deleted after merge; retrospective items above |
 | 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from `ai-sdlc` at `4a997c8` without the chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; `ai-sdlc` handed over with `MAINTENANCE.md` and a whole-picture link (ACCEPT); clickable map and routing row released as 1.1.0 (ACCEPT) | `role="group"` follow-up merged (PR #4). Author: delete the merged branches `claude/seed-site`, `claude/fix-search-race`, `claude/clickable-map`, `claude/map-links-a11y` and `claude/status-session-3` in GitHub (branch deletion is blocked from the session) |
-| 4 | 2026-09-25 | Renamed the site The AI SDLC Map (D-013) and released edition 1.2.0 (PR #6; three reviewers ACCEPT after one editorial REVISE); renamed the whole-picture link in `ai-sdlc` (its PR #3); recorded D-014 to D-016 with ground rules v1.1 and the release workflow; read the source library for the inventory (kept outside the repository) | Wave 0 remainder (edition 1.2.1): access-date and outdated-terms checks, page templates and `check_pages.py`, nine agents and ten skills, deny-list D-017, `project/COVERAGE.md`; release workflow run by hand when tag pushes failed (PR #8). Step 2 (`ai-sdlc` deny-list) blocked by the permission classifier | See Next and For the author |
+| 4 | 2026-09-25 | Renamed the site The AI SDLC Map (D-013) and released edition 1.2.0 (PR #6; three reviewers ACCEPT after one editorial REVISE); renamed the whole-picture link in `ai-sdlc` (its PR #3); recorded D-014 to D-016 with ground rules v1.1 and the release workflow; read the source library for the inventory (kept outside the repository) | Wave 0 remainder (edition 1.2.1): access-date and outdated-terms checks, page templates and `check_pages.py`, nine agents and ten skills, deny-list D-017, `project/COVERAGE.md`; release workflow run by hand when tag pushes failed (PR #8); v1.2.0 released; 1.2.1 merged (PR #9); Core section plan proposed (`project/plans/core.md`). Step 2 (`ai-sdlc` deny-list) blocked by the permission classifier | See Next and For the author |
