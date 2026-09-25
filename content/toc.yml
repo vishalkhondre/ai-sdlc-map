@@ -5,8 +5,10 @@
 # workflow catalog can link to them. `cites` records the references each part cites, so the
 # citation gate and the References page stay complete without copying the text.
 
-title: "AI SDLC on one page"
-tagline: "A vendor-neutral reference for running software delivery with AI agents, organised as one five-band map: context, lifecycle, core, enablement and assurance."
+title: "The AI SDLC Map"
+tagline: "The AI-assisted software lifecycle, from spec to software factory, on one page."
+# `about` spells out the term at its first use on the home page (D-013).
+about: "A vendor-neutral reference for the AI SDLC: the software development lifecycle (SDLC) with AI agents doing part of the work in every phase. One map in five bands (context, lifecycle, core, enablement and assurance) and an adoption path, with every source named."
 author: "Vishal Khondre"
 author_url: "https://www.linkedin.com/in/vishalkhondre/"
 repo_url: "https://github.com/vishalkhondre/ai-sdlc-map"

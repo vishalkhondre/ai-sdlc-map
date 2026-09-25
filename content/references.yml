@@ -83,3 +83,27 @@ aicpa-soc2:
   url: "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022"
   accessed: "2026-09-25"
   note: "The control criteria used in SOC 2 examinations, including the change-management criteria behind the map's SOC 2 change controls."
+
+ibm-ai-lifecycle:
+  title: "What Is the AI Lifecycle?"
+  author: "IBM"
+  org: "IBM Think"
+  url: "https://www.ibm.com/think/topics/ai-lifecycle"
+  accessed: "2026-09-25"
+  note: "Describes the lifecycle of AI systems themselves, from dataset preparation and model training to deployment, monitoring and improvement; the first meaning the glossary's AI SDLC entry separates from this site's."
+
+ibm-ai-dlc:
+  title: "AI-DLC: The AI-Driven Development Lifecycle"
+  author: "IBM"
+  org: "IBM Think"
+  url: "https://www.ibm.com/think/topics/ai-dlc"
+  accessed: "2026-09-25"
+  note: "Describes AI-DLC as a software development methodology built around AI as a collaborator in every step, and credits it to AWS (2025)."
+
+aws-ai-dlc:
+  title: "SDLC Who? Meet AI-DLC: The New Build Loop"
+  author: "AWS Builder Center"
+  org: "Amazon Web Services"
+  url: "https://builder.aws.com/content/376vNVPtBqlCvqIjHPub8iPBSxa/sdlc-who-meet-ai-dlc-the-new-build-loop"
+  accessed: "2026-09-25"
+  note: "AWS's account of the AI-Driven Development Lifecycle (AI-DLC): a loop in which AI plans and asks clarifying questions and people approve, run through Inception, Construction and Operations phases."

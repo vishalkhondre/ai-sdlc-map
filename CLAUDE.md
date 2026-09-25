@@ -1,6 +1,6 @@
 # CLAUDE.md — start here
 
-This repository builds **AI SDLC on one page**, a public reference site published at
+This repository builds **The AI SDLC Map**, a public reference site published at
 <https://vishalkhondre.github.io/ai-sdlc-map/>. The work spans many sessions. This file and the
 files in `project/` are how one session hands over to the next.
 

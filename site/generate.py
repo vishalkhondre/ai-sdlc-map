@@ -1,4 +1,4 @@
-"""Generate the AI SDLC on one page site from content/.
+"""Generate The AI SDLC Map site from content/.
 
 Source of truth:
   content/toc.yml            site identity, and the series parts this site links to
@@ -376,15 +376,16 @@ def render_index() -> str:
     parts = "".join(
         f'<li><a href="{esc(part_url(c))}" rel="noopener"><span class="layer-k">Part {c["number"]}</span> {esc(c["title"])}</a></li>'
         for c in PARTS)
-    page = head(f"{TITLE} — the AI-assisted software lifecycle in five bands", TOC["tagline"], "index.html", "diagrams/ai-sdlc-map.png")
+    page = head(f"{TITLE} — the AI-assisted software lifecycle on one page", TOC["about"], "index.html", "diagrams/ai-sdlc-map.png")
     page += "<body class=\"home\">" + nav("home")
     page += f"""
 <main>
 <section class="hero hero-plain">
 <div class="hero-inner">
 <div class="kicker">Reference · edition {esc(VERSION)}</div>
-<h1>AI SDLC on <em>one page</em></h1>
+<h1>The AI SDLC <em>Map</em></h1>
 <p class="lede">{esc(TOC['tagline'])}</p>
+<p class="hero-about">{esc(TOC['about'])}</p>
 <div class="hero-actions"><a class="btn primary" href="#map">See the map</a><a class="btn" href="workflow-catalog.html">Browse the workflow catalog</a></div>
 <div class="stats"><div><b>5</b><span>bands</span></div><div><b>5</b><span>adoption stages</span></div><div><b>{n_workflows}</b><span>catalogued workflows</span></div><div><b>{n_terms}</b><span>terms, each with its origin</span></div></div>
 </div>
@@ -393,7 +394,7 @@ def render_index() -> str:
 <section class="section" id="map">
 <div class="section-inner">
 <div class="section-head"><h2>The map</h2><p>Context sets the risk tier; the lifecycle says where the work runs; the core does the work; enablement makes it possible; assurance proves it. Underlined labels open the page that covers them; or start by purpose below the map.</p></div>
-{figure('ai-sdlc-map', 'The AI SDLC on one page: five bands and the adoption path. Underlined labels are links to the page that covers them.', None, 'clickable', linked_map())}
+{figure('ai-sdlc-map', 'The AI SDLC Map: five bands and the adoption path. Underlined labels are links to the page that covers them.', None, 'clickable', linked_map())}
 <nav class="routes" aria-label="Start by purpose">{routes()}</nav>
 </div>
 </section>
@@ -437,9 +438,11 @@ def render_glossary() -> str:
     for g in GLOSSARY:
         src = g.get("source")
         srcs = [src] + list(g.get("also") or []) if src else list(g.get("also") or [])
+        authors = [REFERENCES[k].get("author") for k in srcs]
+        # Name a source by its author, or by its title when the author is missing or cited twice here.
         src_html = " ".join(
-            f'<a class="src" href="references.html#{k}">{esc(REFERENCES[k]["author"] if REFERENCES[k].get("author") else REFERENCES[k]["title"])}</a>'
-            for k in srcs)
+            f'<a class="src" href="references.html#{k}">{esc(a if a and authors.count(a) == 1 else REFERENCES[k]["title"])}</a>'
+            for k, a in zip(srcs, authors))
         chapters = " ".join(part_chip(PART_BY_ID[c]) for c in g.get("chapters", []) if c in PART_BY_ID)
         counterpart = f'<div class="counterpart"><span class="k">In Böckeler\'s terms</span> {esc(g["counterpart"])}</div>' if g.get("counterpart") else ""
         items += f"""
@@ -552,7 +555,7 @@ def render_catalog() -> str:
     page += f"""
 <main>
 <div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Workflow catalog</div><h1>SDLC workflow catalog</h1>
-<p class="lede">Every candidate workflow across the lifecycle, using the definition from <a href="{esc(part_url(definition))}" rel="noopener">Part {definition['number']} of the series</a>: it supports one delivery decision; it has a trigger, an agent action, deterministic checks, a human decision, an evidence record and a named owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
+<p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition from <a href="{esc(part_url(definition))}" rel="noopener">Part {definition['number']} of the series</a>: it supports one delivery decision; it has a trigger, an agent action, deterministic checks, a human decision, an evidence record and a named owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
 <div class="stats small"><div><b>{len(data['workflows'])}</b><span>workflows</span></div><div><b>{len(data['phases'])}</b><span>phases</span></div><div><b>{counts.get('Floor',0)}</b><span>floor</span></div><div><b>{counts.get('First',0)}</b><span>first</span></div><div><b>{counts.get('Later',0)}</b><span>later</span></div><div><b>{len(data['traditional_map'])}</b><span>traditional activities mapped</span></div></div>
 </div></div>
 <div class="section-inner">

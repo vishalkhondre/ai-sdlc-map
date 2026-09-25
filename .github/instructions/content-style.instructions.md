@@ -1,7 +1,7 @@
 ---
 applyTo: "content/**"
 ---
-# Content rules for AI SDLC on one page
+# Content rules for The AI SDLC Map
 
 These apply to any person or agent editing `content/`.
 

@@ -1,4 +1,4 @@
-# AI SDLC on one page
+# The AI SDLC Map
 
 Read README.md and .github/instructions/content-style.instructions.md before edits.
 content/ is the authored source; site/*.html, diagram exports and downloads are generated.

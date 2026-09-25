@@ -3,7 +3,7 @@
 ## In one sentence
 
 A complete, public, vendor-neutral reference for running software delivery with AI agents —
-from spec-driven development to a software factory — organised as **AI SDLC on one page**,
+from spec-driven development to a software factory — organised as **The AI SDLC Map**,
 where the one-page map is the front door and every part of it leads to a full reference page.
 
 ## What is being built

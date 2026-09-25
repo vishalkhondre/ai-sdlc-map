@@ -119,7 +119,7 @@ class Generated(unittest.TestCase):
         idx = json.loads((SITE / "search-index.json").read_text(encoding="utf-8"))
         self.assertGreater(len(idx), 40)
         llms = (SITE / "llms.txt").read_text(encoding="utf-8")
-        self.assertIn("AI SDLC on one page", llms)
+        self.assertIn("The AI SDLC Map", llms)
         self.assertIn(self.toc["series"]["url"], llms)
 
     def test_catalog_data(self):

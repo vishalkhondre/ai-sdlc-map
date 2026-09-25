@@ -53,7 +53,7 @@ downloadable diagrams, and references that only a diagram uses being reported as
 ## D-010 · Separate site for the map
 Decided 2026-09-25 by the author; supersedes the landing-page part of D-003.
 `vishalkhondre/ai-sdlc` stays as the finished *Beyond Faster Coding* series at
-`vishalkhondre.github.io/ai-sdlc/`, maintained only, with cross-links. *AI SDLC on one page* is
+`vishalkhondre.github.io/ai-sdlc/`, maintained only, with cross-links. *AI SDLC on one page* (renamed *The AI SDLC Map* by D-013) is
 built in `vishalkhondre/ai-sdlc-map`, served at `vishalkhondre.github.io/ai-sdlc-map/`, with its
 own release cycle, review gate and changelog (starting at edition 1.0.0). The map site links to
 the series parts and never copies their text; `content/toc.yml` lists the parts with the
@@ -79,3 +79,14 @@ pages and every tracked file. Matches are reported by position only. Vendor keep
 in plain text in `check_citations.py`, because they reveal nothing confidential. A salted hash of
 a short name can still be found by trying candidate names; the salt only stops precomputed
 lists. Rules out: plain-text employer names anywhere in this repository or its history.
+
+## D-013 · Name: The AI SDLC Map
+Decided 2026-09-25 by the author. The site is called **The AI SDLC Map**, subtitle "The
+AI-assisted software lifecycle, from spec to software factory, on one page." The URL
+`vishalkhondre.github.io/ai-sdlc-map/` and the repository name do not change. The term is
+"AI SDLC", without a hyphen; each page spells out "software development lifecycle" at the first
+use of the term in its body text. The glossary entry "AI SDLC" separates it from two nearby uses:
+the lifecycle for building AI and machine-learning systems, and AWS's AI-Driven Development
+Lifecycle (AI-DLC), one vendor's named methodology (sources: IBM Think and AWS Builder Center,
+accessed 2026-09-25). Released as edition 1.2.0 and tag `v1.2.0`. Rules out: "AI SDLC on one
+page" as the site name, "AI-SDLC", and following any single vendor's methodology.
