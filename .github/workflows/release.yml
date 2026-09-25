@@ -1,18 +1,56 @@
 name: Release
 
-# A tag marks the author's approval of a section (D-014, D-016). Pushing tag vX.Y.Z re-runs
-# validation on the tagged commit, then creates the GitHub Release with the changelog entry
-# as notes and a PDF snapshot of the section's pages.
+# A tag marks the author's approval of a section (D-014, D-016). Either push tag vX.Y.Z on
+# main, or run this workflow by hand on main with the tag as input, in which case the workflow
+# creates the tag on the validated commit. It re-runs validation, then creates the GitHub
+# Release with the section's changelog entries as notes and a PDF snapshot of its pages.
+# If a ruleset restricts creating v* tags, the manual path needs a bypass for GitHub Actions.
 
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to create on main: v followed by content/VERSION, for example v1.3.0"
+        required: true
+        type: string
 
 permissions:
   contents: read
 
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
 jobs:
+  precheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Tag must be on main, and a manual run must not reuse a tag
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag '$TAG' is not vMAJOR.MINOR.PATCH"; exit 1
+          fi
+          if [[ "$EVENT" == "workflow_dispatch" ]]; then
+            [[ "$REF" == "refs/heads/main" ]] || { echo "Run the release from main"; exit 1; }
+            status=0; git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null || status=$?
+            if [[ $status -eq 0 ]]; then echo "Tag $TAG already exists; push it or pick the next edition"; exit 1; fi
+            if [[ $status -ne 2 ]]; then echo "Could not list remote tags (exit $status)"; exit 1; fi
+          fi
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "Tagged commit is not on main"; exit 1; }
+
   validate:
+    needs: precheck
     uses: ./.github/workflows/validate.yml
 
   release:
@@ -23,12 +61,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Tag must be on main
-        run: |
-          git fetch --no-tags origin main
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "Tagged commit is not on main"; exit 1; }
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -44,14 +76,17 @@ jobs:
           python scripts/render_diagrams.py
       - name: Release notes and PDF snapshot
         env:
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           python scripts/release_snapshot.py notes "$TAG" > release-notes.md
           python scripts/release_snapshot.py pdf "$TAG" "ai-sdlc-map-$TAG.pdf"
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+          EVENT: ${{ github.event_name }}
         run: |
-          gh release create "$TAG" "ai-sdlc-map-$TAG.pdf" \
-            --verify-tag --title "The AI SDLC Map $TAG" --notes-file release-notes.md
+          # A pushed tag must already exist; a manual run creates it on the validated main commit.
+          if [[ "$EVENT" == "push" ]]; then TARGET=(--verify-tag); else TARGET=(--target "$GITHUB_SHA"); fi
+          gh release create "$TAG" "ai-sdlc-map-$TAG.pdf" "${TARGET[@]}" \
+            --title "The AI SDLC Map $TAG" --notes-file release-notes.md

@@ -50,7 +50,7 @@ scripts/
   check_browser.py      browser regressions for the home map, search, catalog and zoom
   tests/                site, citation and release regression tests
 .github/
-  workflows/            validate on every PR; deploy to GitHub Pages from main; release on v* tags
+  workflows/            validate on every PR; deploy to GitHub Pages from main; release on a v* tag or by hand
   instructions/, agents/, prompts/   content rules and roles for people and agents
 release/
   sections.yml          the section and pages each tagged release covers

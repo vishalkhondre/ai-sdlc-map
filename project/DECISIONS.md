@@ -123,9 +123,12 @@ section; the rename to The AI SDLC Map is v1.2.0 (D-013). A section merges as a 
 edition; follow-up changes before approval bump the patch, so the tag is `v` plus
 `content/VERSION` at approval (for example v1.3.2). `release/sections.yml`, keyed by
 major.minor, names the section and the pages each release covers. An agent creates a `v*` tag
-only on the author's explicit instruction; the workflow refuses a tag that is not on `main`.
-`.github/workflows/release.yml` runs on `v*` tags: it re-runs validation, then creates the
-release with the version's changelog entry as notes and attaches a PDF snapshot of the section's
+only on the author's explicit instruction; the workflow refuses a tag that is not on `main`. The
+tag can be pushed, or created by running the Release workflow by hand on `main` with the tag as
+input.
+`.github/workflows/release.yml` runs on a pushed `v*` tag, or by hand on `main` with the tag as
+input: it re-runs validation, then creates the
+release with the section's changelog entries as notes and attaches a PDF snapshot of the section's
 pages (`scripts/release_snapshot.py`). v2.0.0 is released when every box on the map links to a
 page. Rules out: releases without the author's approval, and a tag that does not match the
 edition.
