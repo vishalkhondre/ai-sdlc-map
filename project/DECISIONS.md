@@ -144,3 +144,63 @@ without false alarms: the source researcher and the author, who can see the libr
 them, and the confidentiality reviewer checks for fingerprinting combinations. Rules out: case-sensitive matching, and an identifier found in the
 library but left off the list.
 
+## D-018 · Core section plan approved, with changes
+Decided 2026-09-25 by the author (D-014). `project/plans/core.md` is approved with two changes.
+The Engineering Kit overview page also covers technology profiles, project configuration, the
+kit's commands (init, doctor, verify) and the `could_not_run` result; there is no tenth page. The
+harness engineering page covers guides and sensors, computational and inferential controls and the
+steering loop, and the map's "Feedback path" links to it. The kit's five parts are linked on the
+map. The boundary table is approved, with cross-links both ways between core pages and the pages
+of the other sections that own each use. Rules out: a separate page for kit commands or profiles.
+
+## D-019 · Disconnect from the series site and repository
+Decided 2026-09-25 by the author; supersedes the cross-linking parts of D-010 and D-003.
+*Beyond Faster Coding* and the `vishalkhondre/ai-sdlc` repository are no longer part of this
+work. This repository and site do not link to or mention them. Map labels that pointed to series
+parts point to the matching glossary entries until the Core pages replace them. A check fails on
+any link to the series site or the series repository. Rules out: links to, or mention of, the
+series anywhere in this repository or on the site.
+
+## D-020 · Documentation layout
+Decided 2026-09-25 by the author. Pages use a three-column documentation layout, built in the
+Python generator with plain CSS and JavaScript: a sticky header with section tabs and search; a
+sticky left navigation listing the current section's pages; the content; a sticky right "On this
+page" list built from the page's headings; breadcrumbs; previous and next links. The home page
+keeps the full-width map with a "choose a section" panel. On small screens the left navigation is
+a drawer and the right column is hidden. Accessibility: labelled navigation landmarks,
+`aria-current`, a skip link, visible focus and reduced motion. The change of layout must not
+change any page's text; a test compares every page's main-content text before and after. Rules
+out: a framework, and layout changes that alter content.
+
+## D-021 · Brand: Slate & Teal
+Decided 2026-09-25 by the author (option A). An independent palette, never an employer's design
+system. Light tokens: ground `#f6f8f8`, surface `#ffffff`, ink `#15232b`, body text `#34434b`,
+muted `#5b6b72`, line `#d8e1e1`, primary teal `#0b6e69` (text on it `#ffffff`), primary tint
+`#e2f1ef`, link `#0b6e69`, accent amber `#b7791f`, accent tint `#fbf1df`, accent text `#7a4e0f`.
+Dark tokens: ground `#0f1a1d`, surface `#142225`, ink `#e4eeed`, body text `#c3d0cf`, muted
+`#8fa3a3`, line `#243639`, primary `#4fc1b9` (text on it `#07201e`), primary tint `#15363a`, link
+`#6fd3cb`, accent `#e0a84a`, accent tint `#2e2718`, accent text `#f0c47a`. Teal marks navigation
+state, links, primary buttons and "gate"; amber marks judgment, warnings and notes. Fonts:
+Atkinson Hyperlegible for text and IBM Plex Mono for code and IDs, bundled with the site. Logo:
+five stacked horizontal bars, one per band, in the primary colour, with the wordmark "The AI SDLC
+Map". The map's five band colours do not change. Every text pair passes WCAG AA, checked by a
+test. Released as v1.3.0; the Core section therefore becomes edition 1.4.0. Rules out: fonts
+loaded from a third party at runtime, and any resemblance to an employer's design system.
+
+## D-022 · "Draft" in pages
+Decided 2026-09-25 by the author; clarifies GR-3.2. "Draft" fails in a page's title, summary,
+headings and link text, where it would label the page; it is allowed in running prose, where
+pages describe agents drafting specifications and plans. `scripts/check_pages.py` enforces it.
+
+## D-023 · Keyed deny-list hashes
+Decided 2026-09-25 by the author; replaces the published salt of D-012 and D-017. The deny-list
+stores HMAC-SHA-256 values keyed by a secret held as the CI secret `DENYLIST_KEY`, so a reader
+with a guessed name cannot confirm it. Without the key, a local run warns and skips the check; in
+CI a missing key fails the build. Hashes made with the old salt remain in git history. Rules out:
+a key in the repository.
+
+## D-024 · Tag protection
+Decided 2026-09-25 by the author. A repository ruleset limits creating, updating and deleting
+`v*` tags to the author, with a bypass for GitHub Actions so the Release workflow can create a tag
+from a manual run (D-016). The author sets the ruleset in the repository settings.
+
