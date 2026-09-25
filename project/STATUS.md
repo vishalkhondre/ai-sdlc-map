@@ -19,42 +19,51 @@ Update at the end of every session (see `CLAUDE.md`).
   ACCEPT) is bound in `content/release-review.json`, pointing to `1.2.0-rename.md`.
 - **Decisions:** Q2–Q4 settled as D-014 (one section at a time; ground rules v1.1), D-015 (SAFe:
   generic labels plus a reference model) and D-016 (a tag and GitHub Release per approved
-  section, `.github/workflows/release.yml`).
+  section, `.github/workflows/release.yml`). Session 5 recorded D-018 to D-024: Core plan
+  approved, disconnect from the series, documentation layout, Slate & Teal brand, the "draft"
+  rule, keyed deny-list, tag protection (ground rules v1.2).
 - **Wave 0 foundations in place:** checks for GR-2.5 access dates and superseded terms
   (`scripts/outdated_terms.yml`); six page templates (`templates/pages/`) and the page gate
   (`scripts/check_pages.py`, in CI); the nine agents and their skills plus `section-pipeline`
   (`.claude/`); the deny-list now case-folded, with word pairs and the inventory's identifiers
   (D-017); the source coverage table (`project/COVERAGE.md`; the inventory itself stays outside
   the repository). Edition 1.2.1 backfilled access dates and corrected seven references.
-- **Current wave:** 0 Foundations; the Core section plan waits for the author's approval.
+- **Current wave:** 0 Foundations closing; the Core plan is approved (D-018). Decisions D-018 to
+  D-024 recorded 2026-09-25 (session 5).
 
 ## Next (in order)
 
-1. **Author: approve, change or cut the Core section plan** (`project/plans/core.md`), the first
-   section under D-014. It asks three questions (the page list, linking the kit's sub-elements on
-   the map, and where the evidence schema lives). Work on the section starts only after approval.
-2. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, no history rewrite.
-   Session 4's attempt was stopped by the session's permission classifier; it needs the author's
-   go-ahead in the session.
-3. Before the first section's pages: extend `check_citations.py` to `content/pages/` (references
-   cited only by pages, keep-out and product names in page prose, glossary credit per page), and
-   render pages in `site/generate.py`.
-4. Re-check the references verified by search only (all but Spec Kit and the six dated 1.1.0 to
-   1.2.0) by a direct read, from a session whose network reaches the source sites.
-5. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
-6. Wave 0 retrospective (APPROACH.md, Waves), after the first section plan is approved.
+1. Disconnect from the series site and repository (D-019), as content edition 1.3.0.
+2. Documentation layout (D-020), with the page-text snapshot test, accessibility checks in the
+   browser tests, and light and dark screenshots of the home page, a catalog page and the
+   glossary on the PR.
+3. Slate & Teal brand (D-021): tokens, fonts bundled, logo and wordmark, favicon, social preview
+   image, a contrast test, and a confidentiality check that it resembles no employer's design
+   system; add the `"1.3"` entry to `release/sections.yml`; then release v1.3.0 on the author's
+   instruction.
+4. Keyed deny-list (D-023); the author adds the CI secret `DENYLIST_KEY`.
+5. Core section (D-018, `project/plans/core.md`), edition 1.4.0: tooling first (pages in
+   `check_citations.py` and `site/generate.py`), then the pages through `section-pipeline`;
+   deploy when every agent reviewer accepts; the author reviews live; tag after approval.
+6. Re-check the references verified by search only, by a direct read, from a session whose
+   network reaches the source sites.
+7. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
+8. Wave 0 retrospective (APPROACH.md, Waves).
 
 ## For the author
 
-- **GR-3.2 and "draft".** `check_pages.py` fails "draft" in a page's title, summary, headings and
-  link text, and the other provisional phrases anywhere; it allows "draft" in running prose,
-  because agents draft specs and plans and pages describe that. Confirm this reading of GR-3.2 or
-  tighten it.
-- **Deny-list design.** The salt is published beside the hashes, so a reader with a candidate
-  name can confirm a guess (confidentiality review of 1.2.1). An HMAC keyed by a CI secret, which
-  GR-1.4 allows, would close that; earlier hashes stay in history.
-- **Tag protection.** Consider a ruleset limiting who may create `v*` tags, with a bypass for
-  GitHub Actions so the manual Release run still works.
+- **Tag protection (D-024).** Settings → Rules → Rulesets → New tag ruleset: target
+  `refs/tags/v*`; rules "Restrict creations", "Restrict updates", "Restrict deletions"; bypass
+  list: the "Repository admin" role (the author) and the **GitHub Actions** app (it acts as
+  `github-actions[bot]`, app ID 15368), mode "Always".
+- **Keyed deny-list (D-023).** Generate a key (for example `python -c "import secrets;
+  print(secrets.token_hex(32))"`) and add it as the repository secret `DENYLIST_KEY`; a session
+  computes the hashes with it from an environment variable, never storing it in the repository.
+- **"Feedback path" on the map (D-018).** The only map label containing it is adoption stage 3,
+  "Feedback path proven", which links to the adoption path today. Confirm that this label should
+  link to the harness engineering page, or name the label meant.
+- **The old repository.** It still holds employer names in plain text in a check script; the
+  author removes them in the GitHub web editor or makes the repository private.
 
 ## Wave 0 retrospective items
 
@@ -93,7 +102,7 @@ retrospective (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | in progress | — | — |
-| 1 Core and lifecycle | Core plan proposed (9 pages) | 9 (core) | 0 |
+| 1 Core and lifecycle | Core plan approved (D-018) | 9 (core) | 0 |
 | 2 Assurance and enablement | not started | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
