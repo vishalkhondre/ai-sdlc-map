@@ -1,0 +1,16 @@
+{
+  "verdict": "ACCEPT",
+  "source_sha256": "6b2faad576dcd6034131ebaa889ac7983cd8257889966559ffce5966b9695462",
+  "report": "content/reviews/1.0.0-seed-confirmation.md",
+  "report_sha256": "e1d6a89c3ee4cbb0419fa35a42c209bc421e44eb957cfbc6dbfcb794f2ee57ed",
+  "prior": [
+    {
+      "report": "content/reviews/ai-sdlc-1.1.0-citation-review.md",
+      "report_sha256": "be19e089db5cd43aee6315f25322fd0d9368ea38e2e26749f662374b362849a6"
+    },
+    {
+      "report": "content/reviews/ai-sdlc-1.1.0-references-confirmation.md",
+      "report_sha256": "e19cb15f7de085b85d20ab28550b18a9de9f015334778b5ab825d4441ad07e74"
+    }
+  ]
+}
