@@ -36,6 +36,32 @@ GLOSSARY = yaml.safe_load((CONTENT / "glossary.yml").read_text(encoding="utf-8")
 REFERENCES = yaml.safe_load((CONTENT / "references.yml").read_text(encoding="utf-8"))
 CATALOG = yaml.safe_load((CONTENT / "workflows" / "catalog.yml").read_text(encoding="utf-8"))
 VERSION = (CONTENT / "VERSION").read_text(encoding="utf-8").strip()
+
+# Reference pages (content/pages/<band>/<id>.md), in the order toc.yml `pages` gives per band,
+# otherwise by id. The page gate (scripts/check_pages.py) checks their structure.
+sys.path.insert(0, str(ROOT / "scripts"))
+import check_pages  # noqa: E402
+
+BANDS = [("context", "Context"), ("lifecycle", "Lifecycle"), ("core", "Core"), ("enablement", "Enablement"),
+         ("assurance", "Assurance"), ("adoption", "Adoption path")]
+
+
+def load_pages() -> dict[str, list[dict]]:
+    order = TOC.get("pages") or {}
+    by_band: dict[str, list[dict]] = {}
+    for band, _ in BANDS:
+        found = []
+        for path in sorted((CONTENT / "pages" / band).glob("*.md")):
+            meta, body = check_pages.split_page(path.read_text(encoding="utf-8"))
+            found.append({**meta, "body": body, "href": f"{meta['id']}.html"})
+        wanted = order.get(band) or []
+        found.sort(key=lambda m: (wanted.index(m["id"]) if m["id"] in wanted else len(wanted), m["id"]))
+        if found:
+            by_band[band] = found
+    return by_band
+
+
+PAGES = load_pages()
 CHANGELOG = (CONTENT / "CHANGELOG.md").read_text(encoding="utf-8")
 
 SITE_URL = TOC["site_url"].rstrip("/")
@@ -260,6 +286,7 @@ LOGO_MARK = '<svg class="brand-mark" viewBox="0 0 20 20" width="22" height="22" 
 # order; previous and next follow SECTIONS from top to bottom.
 SECTIONS = [
     ("map", "Map", [("index.html", "The map and the adoption path")]),
+    *[(band, title, [(pg["href"], pg["title"]) for pg in PAGES[band]]) for band, title in BANDS if band in PAGES],
     ("workflows", "Workflows", [("workflow-catalog.html", "Workflow catalog")]),
     ("reference", "Reference", [("glossary.html", "Terminology"), ("references.html", "References")]),
 ]
@@ -273,7 +300,7 @@ def section_of(page: str) -> tuple[str, str, list] | None:
 
 def nav(current: str = "") -> str:
     """The sticky header: brand, section tabs, search, theme and the drawer button."""
-    page = NAV_KEY.get(current, "")
+    page = NAV_KEY.get(current, current)
     here = section_of(page)
     tabs = "".join(
         f'<a href="{rel(pages[0][0])}"' + (' aria-current="true" class="on"' if here and here[0] == key else "") + f">{esc(title)}</a>"
@@ -669,9 +696,35 @@ def render_catalog() -> str:
     return page
 
 
+# --------------------------------------------------------------------------- reference pages
+def render_page(pg: dict) -> str:
+    """One reference page from content/pages/, in the documentation layout."""
+    set_prefix("")
+    md, diagrams, _ = preprocess_markdown(pg["body"], pg["id"])
+    body, _ = render_markdown(md)
+    body = re.sub(r"<p>\s*<!--FIG:([a-z0-9\-]+)\|(\d+)\|(.*?)-->\s*</p>|<!--FIG:([a-z0-9\-]+)\|(\d+)\|(.*?)-->",
+                  lambda m: figure(m.group(1) or m.group(4), html.unescape(m.group(3) or m.group(6)), int(m.group(2) or m.group(5))), body)
+    body, _ = autolink_terms(body, pg["id"])
+    band_title = dict(BANDS)[pg["band"]]
+    first = PAGES[pg["band"]][0]["href"]
+    page = head(f"{pg['title']} · {TITLE}", pg["summary"], pg["href"])
+    page += "<body>" + nav(pg["href"])
+    page += f"""
+<main>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="{first}">{esc(band_title)}</a> <span aria-hidden="true">/</span> <span aria-current="page">{esc(pg['title'])}</span></nav><h1>{esc(pg['title'])}</h1>
+<p class="lede">{esc(pg['summary'])}</p></div></div>
+<div class="section-inner narrow"><article class="prose" id="article" data-page="{esc(pg['id'])}">{body}</article></div>
+</main>
+{glossary_json()}
+{footer()}
+</body></html>"""
+    return page
+
+
 # --------------------------------------------------------------------------- discovery files
 def write_discovery() -> None:
-    urls = ["index.html", "workflow-catalog.html", "glossary.html", "references.html"]
+    all_pages = [pg for band in PAGES.values() for pg in band]
+    urls = ["index.html", "workflow-catalog.html", "glossary.html", "references.html"] + [pg["href"] for pg in all_pages]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
         loc = f"{SITE_URL}/" if u == "index.html" else f"{SITE_URL}/{u}"
@@ -684,7 +737,7 @@ def write_discovery() -> None:
              "## Reference", f"- [The map]({SITE_URL}/): the five bands and the adoption path",
              f"- [SDLC workflow catalog]({SITE_URL}/workflow-catalog.html)", f"- [Terminology and sources]({SITE_URL}/glossary.html)",
              f"- [References]({SITE_URL}/references.html)", f"- [Full text]({SITE_URL}/llms-full.txt)",
-             ]
+             ] + [f"- [{pg['title']}]({SITE_URL}/{pg['href']}): {pg['summary']}" for pg in all_pages]
     write(SITE / "llms.txt", "\n".join(lines) + "\n")
     full = [f"# {TITLE}", "", TOC["tagline"], ""]
     for p in sorted(DIAGRAMS_SVG.glob("*.svg")):
@@ -692,6 +745,8 @@ def write_discovery() -> None:
         parts = {el.tag.rsplit("}", 1)[-1]: (el.text or "").strip() for el in svg if el.tag.rsplit("}", 1)[-1] in ("title", "desc")}
         if parts.get("title"):
             full += [f"\n\n# {parts['title']}", "", parts.get("desc", "")]
+    for pg in all_pages:
+        full += [f"\n\n# {pg['title']}", "", pg["summary"], "", pg["body"].strip()]
     full += ["\n\n# Terminology", ""]
     for g in GLOSSARY:
         full.append(f"- **{g['term']}** ({g['attribution']}{', source: ' + g['source'] if g.get('source') else ''}): {g['definition'].strip()}")
@@ -702,6 +757,9 @@ def write_discovery() -> None:
     write(SITE / "llms-full.txt", "\n".join(full) + "\n")
     # search index
     idx = []
+    for pg in all_pages:
+        text = re.sub(r"\[\^[a-z0-9\-]+\]|<!--.*?-->|[#*_`>]", " ", pg["body"], flags=re.S)
+        idx.append({"t": pg["title"], "u": pg["href"], "k": "page", "s": pg["summary"], "b": " ".join(text.split())})
     for g in GLOSSARY:
         idx.append({"t": g["term"], "u": f"glossary.html#{g['id']}", "k": "term", "s": g["definition"].strip()[:200], "b": g["definition"].strip()})
     for w in CATALOG["workflows"]:
@@ -731,8 +789,11 @@ def main() -> None:
     write(SITE / "glossary.html", docs_page(render_glossary(), "glossary.html"))
     write(SITE / "references.html", docs_page(render_references(), "references.html"))
     write(SITE / "workflow-catalog.html", docs_page(render_catalog(), "workflow-catalog.html"))
+    pages = [pg for band in PAGES.values() for pg in band]
+    for pg in pages:
+        write(SITE / pg["href"], docs_page(render_page(pg), pg["href"]))
     write_discovery()
-    print(f"Generated 4 pages, {len(ids)} diagrams → {SITE}")
+    print(f"Generated {4 + len(pages)} pages, {len(ids)} diagrams → {SITE}")
 
 if __name__ == "__main__":
     main()

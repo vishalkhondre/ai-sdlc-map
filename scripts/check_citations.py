@@ -198,12 +198,21 @@ def main() -> int:
     glossary = yaml.safe_load((CONTENT / "glossary.yml").read_text(encoding="utf-8"))
     refs = yaml.safe_load((CONTENT / "references.yml").read_text(encoding="utf-8"))
     diagram_ids = {p.stem for p in (CONTENT / "diagrams" / "svg").glob("*.svg")}
-    chapters = toc.get("chapters") or []
+    chapters = [{**ch, "text": (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")}
+                for ch in toc.get("chapters") or []]
+    # Reference pages (content/pages/<band>/<id>.md) are checked like chapters. A page that lists an
+    # adopted or adapted term under key_terms must cite that term's source (check 3).
+    page_terms: dict[str, list[str]] = {}
+    for path in sorted((CONTENT / "pages").rglob("*.md")):
+        m = re.match(r"^---\n(.*?)\n---\n(.*)$", path.read_text(encoding="utf-8"), re.S)
+        meta = (yaml.safe_load(m.group(1)) or {}) if m else {}
+        chapters.append({"id": meta.get("id") or path.stem, "text": m.group(2) if m else ""})
+        page_terms[meta.get("id") or path.stem] = list(meta.get("key_terms") or [])
 
     problems: list[str] = []
     cited_by_chapter: dict[str, set[str]] = {}
     for ch in chapters:
-        text = (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")
+        text = ch["text"]
         used = set(re.findall(r"\[\^([a-z0-9\-]+)\](?!:)", text))
         defined = set(re.findall(r"^\[\^([a-z0-9\-]+)\]:", text, flags=re.M))
         for key in sorted(defined & refs.keys()):
@@ -238,7 +247,7 @@ def main() -> int:
     used_refs: set[str] = set().union(*cited_by_chapter.values()) if cited_by_chapter else set()
     embedded = set()
     for ch in chapters:
-        embedded |= set(re.findall(r"\]\(diagram:([a-z0-9\-]+)\)", (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")))
+        embedded |= set(re.findall(r"\]\(diagram:([a-z0-9\-]+)\)", ch["text"]))
     diagram_problems, cited_by_diagrams = check_diagrams(refs, glossary, embedded)
     problems += check_denylist()
     problems += check_disconnected()
@@ -261,7 +270,8 @@ def main() -> int:
             else:
                 used_refs.add(src)
                 accepted = {src} | set(g.get("also") or [])
-                for cid in g.get("chapters") or []:
+                users = list(g.get("chapters") or []) + [pid for pid, terms in page_terms.items() if g["id"] in terms]
+                for cid in users:
                     if cid in cited_by_chapter and not (cited_by_chapter[cid] & accepted):
                         problems.append(f"{cid}: uses '{g['term']}' ({attr} from {src}) but never cites {src}")
         for k in g.get("also") or []:
@@ -281,7 +291,7 @@ def main() -> int:
             print("  -", p)
         return 1
     n_notes = sum(len(v) for v in cited_by_chapter.values())
-    print(f"Citation check passed: {len(chapters)} chapters, {n_notes} citations, "
+    print(f"Citation check passed: {len(chapters) - len(page_terms)} chapters, {len(page_terms)} pages, {n_notes} citations, "
           f"{len(glossary)} terms, {len(refs)} references.")
     return 0
 
