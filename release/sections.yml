@@ -10,3 +10,7 @@
 "1.3":
   section: "An independent site: disconnected, documentation layout, Slate & Teal brand"
   pages: [index.html, glossary.html, workflow-catalog.html, references.html]
+
+"1.4":
+  section: "Core: harness engineering, the Engineering Kit and its parts, workflows, the software factory"
+  pages: [index.html, harness-engineering.html, engineering-kit.html, rule-registry.html, validators.html, skills-and-evals.html, evidence-schema.html, adapters.html, workflows.html, software-factory.html]

@@ -2,14 +2,20 @@
 # (GR-3.2): only destinations that exist are linked.
 #
 # Targets: a page or anchor of this site (relative). site/generate.py fails the build if a label
-# here does not appear on the map; the site tests check that every target resolves. Until the
-# Core pages exist, core labels point to their glossary entries (D-019).
+# here does not appear on the map; the site tests check that every target resolves. Core labels
+# point to the Core pages (D-018); each page links on to its glossary entry and the catalog.
 
-# Band 3 · core
-Harness engineering: "glossary.html#harness-engineering"
-Engineering Kit: "glossary.html#engineering-kit"
-Workflows: "workflow-catalog.html"
-Software factory: "glossary.html#software-factory"
+# Band 3 · core. The Engineering Kit's title opens the overview; its five parts are separate
+# labels inside the box, each opening its own page (D-018).
+Harness engineering: "harness-engineering.html"
+Engineering Kit: "engineering-kit.html"
+rule registry: "rule-registry.html"
+validators: "validators.html"
+skills with evals: "skills-and-evals.html"
+evidence schema: "evidence-schema.html"
+adapters: "adapters.html"
+Workflows: "workflows.html"
+Software factory: "software-factory.html"
 
 # Band 2 · lifecycle: the workflow in each phase, in the workflow catalog
 intake & triage: "workflow-catalog.html#W01"
@@ -24,9 +30,10 @@ incident feedback: "workflow-catalog.html#W28"
 Spike / research: "workflow-catalog.html#W07"
 Dependency / CVE fix: "workflow-catalog.html#W15"
 
-# Adoption path
+# Adoption path. "3  Feedback path proven" opens the harness engineering page's steering-loop
+# section, where the feedback path is defined (D-018, confirmed by the author).
 0  Deterministic floor: "#adoption"
 1  One workflow: "#adoption"
 2  Second workflow + hand-off: "#adoption"
-3  Feedback path proven: "#adoption"
+3  Feedback path proven: "harness-engineering.html#the-steering-loop-and-the-feedback-path"
 4  Factory emerges: "#adoption"

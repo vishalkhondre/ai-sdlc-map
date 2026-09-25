@@ -12,3 +12,7 @@ site_url: "https://vishalkhondre.github.io/ai-sdlc-map"
 # Pages this site hosts, in reading order. Chapter-style Markdown pages (content/chapters/)
 # are supported by the generator but none exist yet; reference pages arrive from wave 1.
 chapters: []
+
+# Reference pages per band; the order of each list sets the reading order in the navigation (D-020).
+pages:
+  core: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, adapters, workflows, software-factory]

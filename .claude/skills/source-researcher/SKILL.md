@@ -33,3 +33,13 @@ cautions: anything that would be recognisable if written closely
 - [ ] No document titles and no quotations; nothing close enough to be recognised.
 - [ ] No combination of named tools that together fingerprints one organisation's stack.
 - [ ] Practices generalised: "a team", "an organisation", never "the programme".
+- [ ] Concepts only (D-026): no list of rules, conditions or examples reproduced as a set, no step
+      order, and no worked example from the library; one concept per entry.
+
+## The paraphrase sweep (D-026)
+
+Before a section's first review, compare every draft page with the library and report each passage
+that is close in wording, list, sequence, set of examples or structure, with page and lines and a
+one-line topic. Do not write replacement text: close passages are cut and rewritten by an author
+who has not read the library. Repeat the sweep until it reports nothing close. Never quote the
+library or name its documents in the report.

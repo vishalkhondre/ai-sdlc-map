@@ -46,9 +46,9 @@
   definition: >-
     The practice of deliberately designing and maintaining the harness: what the agent can discover,
     what it can do, how its work is checked and when a person needs to decide. Böckeler frames it as
-    building trust in coding agents through systematic controls; OpenAI's account describes the same
+    building trust in coding agents through systematic controls; one model vendor's account describes the same
     work applied to one large codebase. Here it is the discipline, distinct from the artefact
-    (Engineering Kit), the unit (workflow) and the operating model (software factory).
+    (Engineering Kit), the unit (workflow) and the operating state (software factory).
   match: ["harness engineering"]
 
 - id: guides-and-sensors
@@ -117,14 +117,50 @@
     concrete form of this idea, with a rule registry and evidence schema added underneath.
   counterpart: "harness template ↔ Engineering Kit technology profile"
 
+- id: technology-profile
+  term: Technology profile
+  attribution: coined
+  definition: >-
+    The Engineering Kit layer that packages what one supported stack needs: its validators, pinned tool
+    versions, skills, scaffolds and default thresholds. It adds rules and checks for its stack; it does
+    not change what the shared core's rules mean and carries no one project's choices. One concrete form
+    of what Böckeler proposes as a harness template.
+  counterpart: "technology profile ↔ harness template"
+  match: ["technology profile", "technology profiles"]
+
+- id: project-configuration
+  term: Project configuration
+  attribution: coined
+  definition: >-
+    The Engineering Kit layer where one project supplies meaning, as a committed, reviewed file: which
+    rules apply and which checks run for each kind of change, thresholds within the bounds the core or
+    profile allows, exceptions with an owner and expiry, and the chosen profile and adapters. It cannot
+    change the evidence schema, redefine a result state or waive a rule the core marks as never open to
+    exception.
+  match: ["project configuration"]
+
+- id: golden-path
+  term: Golden path
+  attribution: adopted
+  source: spotify-golden-paths
+  also: [cncf-platforms, dora-platform-engineering]
+  definition: >-
+    The opinionated, supported way to build a kind of system that a platform offers its users, with
+    templates and documentation, so that each team does not assemble its own tooling. Associated with
+    Spotify's engineering writing and used in the CNCF platforms white paper and by DORA. An Engineering
+    Kit's technology profiles play a similar part for the harness around a coding agent.
+  match: ["golden path", "golden paths"]
+
 - id: engineering-kit
   term: Engineering Kit
   attribution: coined
   definition: >-
     A working name, used on this site, for a versioned, installable package of the engineering environment
-    a team wants its people and its coding agents to operate inside: rule registry, validators, skills,
-    evaluation scenarios, evidence schema, commands and thin tool adapters, organised in four layers
-    (shared core, technology profiles, tool adapters, project configuration). Not an industry term.
+    a team wants its people and its coding agents to operate inside: rule registry, validators, skills with
+    evaluation scenarios, evidence schema and thin tool adapters, organised in four layers (shared core,
+    technology profiles, tool adapters, project configuration) and run through three commands: init
+    (install), doctor (check prerequisites) and verify (run the declared checks and write the evidence
+    record, the same way locally and in CI). Not an industry term.
   match: ["Engineering Kit"]
 
 - id: rule-registry
@@ -135,6 +171,18 @@
     guidance), an owner and known gaps. Validators declare which rules they enforce, skills which rules
     they support, evidence which rule checks ran. The connecting structure of the kit.
   match: ["rule registry"]
+
+- id: architecture-decision-record
+  term: Architecture decision record
+  attribution: adopted
+  source: nygard-adr
+  also: [tw-radar-adr]
+  definition: >-
+    Michael Nygard's short record of one architecturally significant decision: its title, context,
+    the decision, its status and its consequences. Records are numbered in sequence, numbers are
+    not reused, and a reversed decision is kept and marked superseded rather than edited. This site
+    uses the same pattern for the history of each rule in the rule registry.
+  match: ["architecture decision record", "architecture decision records"]
 
 - id: rule-route
   term: Rule route (gate / judgment / guidance)
@@ -150,19 +198,32 @@
 - id: gate
   term: Gate (deterministic gate)
   attribution: common
-  also: [fowler-ci, fowler-fitness]
+  also: [fowler-ci, fitness-function, ford-evolutionary-architectures]
   definition: >-
-    A check that runs on the output and can stop it: the quality command before a push, required checks
+    A check that runs on the output and can stop it: the kit's verify command before a push, required checks
     on a pull request, policy rules at release. Different from an instruction because it refuses rather
     than asks. Architecture gates are what evolutionary-architecture practice calls fitness functions.
   match: ["deterministic gate", "deterministic gates"]
+
+- id: fitness-function
+  term: Fitness function (architectural)
+  attribution: adopted
+  source: ford-evolutionary-architectures
+  also: [thoughtworks-radar-fitness, fitness-function]
+  definition: >-
+    From evolutionary-architecture practice (Ford, Parsons and Kua, Building Evolutionary
+    Architectures), which borrows the idea from evolutionary computing: an objective assessment of
+    how well a system preserves an architectural characteristic, carried out through tests, metrics,
+    monitoring and similar mechanisms. On this site, an architecture rule expressed as a fitness
+    function that runs with the build is a validator, and an architecture gate once it blocks.
+  match: ["fitness function", "fitness functions", "architectural fitness function"]
 
 - id: deterministic-gate
   term: Deterministic floor
   attribution: coined
   definition: >-
-    The minimum a kit's first release needs before any skill: a quality command that runs the same way
-    locally and in CI, a handful of validators for rules the team has already been hurt by, a rule
+    The minimum a kit's first release needs before any skill: a verify command that runs the same way
+    locally and in CI, a few validators for rules the team has broken before, a rule
     registry and an evidence schema. Dull, and the only part that makes the rest safe.
   match: ["deterministic floor"]
 
@@ -173,14 +234,15 @@
   definition: >-
     A deterministic check tied to a rule identifier. Runs the same way locally and in CI, returns
     passed / failed / skipped / could_not_run, and can block a merge. Ships when it runs reliably and
-    its failures are actionable. Böckeler's computational sensors (linters, type checks, dependency-cruiser,
-    SAST, mutation testing) are validators.
+    its failures are actionable. Böckeler's computational sensors (linters, type checks, dependency
+    rules, SAST, mutation testing) are validators.
   counterpart: "validator ↔ computational sensor"
   match: ["validators", "validator"]
 
 - id: skill
   term: Skill
   attribution: common
+  also: [bockeler-context, anthropic-agent-skills, github-agent-skills]
   definition: >-
     Guidance the agent loads on demand, tied to rule identifiers, that shapes what it tries to do without
     guaranteeing it. Probabilistic. Ships only with an evaluation history. In Böckeler's terms, a guide.
@@ -201,38 +263,106 @@
 - id: harness-evaluation
   term: Harness evaluation (eval)
   attribution: common
+  also: [anthropic-agent-evals]
   definition: >-
     A scenario that tests whether the agent and its environment behave as intended: given a spec with an
     unresolved access rule, does the agent stop and ask? Distinct from application tests. Repeated when
     prompts, skills, tools or models change. This site treats eval history as the bar for shipping a skill.
   match: ["harness evaluations", "evaluation case", "eval suite"]
 
+- id: llm-as-a-judge
+  term: LLM-as-a-judge
+  attribution: adopted
+  source: zheng-llm-judge
+  definition: >-
+    Using a language model to grade the output of another model or agent, as studied by Zheng et al.
+    (2023). Flexible and scalable, but itself non-deterministic and subject to position, verbosity and
+    self-enhancement biases, so its grades are checked against human judgement before they are relied on.
+    In an eval set it is one kind of grader, alongside code-based checks and human review.
+  match: ["LLM-as-a-judge"]
+
 - id: evidence-record
   term: Evidence record
   attribution: coined
   definition: >-
-    What a run leaves behind without anyone writing it: change and configuration revisions, kit version,
-    each check with its status and report link, agent findings, decisions pending, overall status.
-    Its schema is fixed by the kit and is the one thing a project cannot customise.
+    What a run records in one fixed shape, as a by-product of the run rather than a report written
+    afterwards: schema version, change and configuration revisions, kit version, the checks expected
+    before the run, each check's result with its rule ID, status and report link, agent findings,
+    decisions pending and taken, and an overall status derived from the rest. Each field has one kind
+    of writer (the kit, a validator, an agent or a named person). Its schema is fixed by the kit and
+    is the one thing a project cannot customise.
   match: ["evidence record", "evidence schema"]
 
 - id: could-not-run
   term: could_not_run
   attribution: coined
+  also: [sarif-2-1-0, python-unittest]
   definition: >-
     A first-class result state, distinct from failed and skipped: the check was required but its
-    prerequisite was missing (a tool absent from the runner image, an environment unavailable). Blocks
-    on its own cause. Without it, the first broken runner quietly turns every gate it hosts into a suggestion.
+    prerequisite was missing (a tool absent from the runner image, an environment unavailable), it timed
+    out again after one retry, or the tool itself crashed. It is never reported as passed or skipped;
+    what it means for a merge or release is decided in assurance. Without it, the first broken runner
+    quietly turns every gate it hosts into a suggestion.
+    The name is this site's; the distinction is established, for example in SARIF's record of whether a
+    tool's execution succeeded, and in test frameworks that report errors apart from failures.
   match: ["could_not_run", "could not run"]
 
 - id: adapter
   term: Adapter
-  attribution: coined
+  attribution: adapted
+  source: cockburn-hexagonal
   definition: >-
     The thin binding between the kit's core and one tool: an execution surface (where the agent runs),
-    a change host (where the pull request lives) or a pipeline runner (where checks run unattended).
-    The test of an adapter is how little is in it.
+    a change host (where the pull request lives), a pipeline runner (where checks run unattended), a
+    work tracker, or a tool server the agent calls. It translates; it holds no rules, validator logic or
+    schema. The test of an adapter is how little is in it. Adapted from Alistair Cockburn's ports and
+    adapters pattern (see that entry): his adapters sit at an application's ports, and this site
+    applies the idea to the one layer of a kit that talks to outside tools.
   match: ["tool adapters", "thin adapters"]
+
+- id: ports-and-adapters
+  term: Ports and adapters
+  attribution: adopted
+  source: cockburn-hexagonal
+  definition: >-
+    Alistair Cockburn's architecture pattern, also called hexagonal architecture: an application
+    talks to the outside world only through ports, and a technology-specific adapter at each port
+    translates between the outside device and the application, so the application can be driven
+    by people, programs or tests and developed apart from the devices and databases it runs
+    against. The Engineering Kit's tool adapters apply the same idea to the tools a kit runs against.
+  match: ["ports and adapters", "hexagonal architecture"]
+
+- id: anticorruption-layer
+  term: Anticorruption layer
+  attribution: adopted
+  source: evans-ddd-reference
+  definition: >-
+    Eric Evans's domain-driven design pattern: an isolating layer that talks to another system
+    through its existing interface and translates between the two models, so the other system's
+    concepts do not reshape the model that uses it. A kit's adapters play this part between the
+    kit's core and a tool's own vocabulary.
+  match: ["anticorruption layer", "anti-corruption layer"]
+
+- id: contract-test
+  term: Contract test
+  attribution: adopted
+  source: fowler-contract-test
+  definition: >-
+    Martin Fowler's name for a test that checks a test double still behaves like the real
+    outside service it stands in for. It runs apart from the main build, at the pace the outside
+    service changes. On this site, the contract suite a kit's core defines for each kind of
+    adapter is the same idea pointed at the kit's own interface.
+  match: ["contract test", "contract tests"]
+
+- id: consumer-driven-contract
+  term: Consumer-driven contract
+  attribution: adopted
+  source: robinson-cdc
+  definition: >-
+    Ian Robinson's service-evolution pattern: the consumers of a service state their
+    expectations as tests, and the provider is checked against all of them, so it can change
+    without breaking any consumer.
+  match: ["consumer-driven contract", "consumer-driven contracts"]
 
 - id: mechanism-vs-meaning
   term: Mechanism versus meaning
@@ -248,8 +378,8 @@
   attribution: coined
   definition: >-
     One delivery decision run end to end: a trigger, inputs, an agent task, automated checks, guardrails,
-    a human decision, outputs, feedback and an owner. A team has one when it has run repeatedly, leaves
-    evidence each time and has a metric.
+    a human decision, outputs, feedback and an owner. A team has one when every qualifying change goes
+    through it and leaves a record that the next decision reads.
   match: ["a workflow"]
 
 - id: three-roles
@@ -263,9 +393,11 @@
 - id: risk-tier
   term: Risk tier
   attribution: common
+  also: [istqb-rbt, iso-29119-1]
   definition: >-
     Assigned at readiness or planning; selects which checks and which reviewers apply. The workflow
     definition stays the same, its cost scales with the change. A low tier never removes an applicable rule.
+    The idea of scaling test effort to risk comes from risk-based testing.
   match: ["risk tier", "tier 2"]
 
 - id: failure-path
@@ -289,10 +421,15 @@
 - id: software-factory
   term: Software factory
   attribution: coined
+  also: [cusumano-software-factories, greenfield-software-factories, shapiro-five-levels, willison-software-factory]
   definition: >-
-    Not a product or a platform: the operating model that appears when enough workflows share rules,
-    evidence and feedback, so that what production teaches changes what specification asks. The industrial
-    sense (identical outputs from a fixed process) is explicitly not what is meant.
+    Not a product or a platform: the operating state that appears when enough workflows share rules,
+    evidence and feedback, so that what production teaches changes what specification asks. Coined in
+    this sense. Earlier uses of the phrase mean something else: Cusumano (1991) for Japanese firms that
+    applied production-management discipline to large-scale software development, and Greenfield and
+    Short (2004) for model-driven production of variants of a standard product. Recent writing on the
+    "dark software factory", where agents produce software that no person reviews, is not what is meant
+    either, nor is the industrial sense of identical outputs from a fixed process.
   match: ["software factory"]
 
 - id: review-fatigue
@@ -319,8 +456,9 @@
   source: spec-kit
   definition: >-
     Making expected behaviour and constraints explicit before implementation, in a sequence from intent
-    through specification, clarification, plan and tasks. This site treats it as the process spine the
-    harness wraps around, and stays neutral on which tool supplies it.
+    through specification, plan and tasks, with clarification added where the specification leaves
+    questions open. This site treats it as the process spine the harness wraps around, and stays neutral
+    on which tool supplies it.
   match: ["Spec-Driven Development", "spec-driven development", "spec-driven flow"]
 
 - id: specification-readiness
@@ -360,6 +498,7 @@
   definition: >-
     Ashby's law: a regulator can only control a system if it has at least as much variety as the system
     it governs. Böckeler uses it to explain why committing to a narrow topology makes an agent easier to
-    harness: restricting what the agent may produce shrinks the space the controls must cover. It is also the
-    reason this site recommends starting with fewer controls than feel sufficient, on a few well-defined
-    execution surfaces.
+    harness: restricting what the agent may produce shrinks the space the controls must cover. The law
+    does not say fewer controls are better. This site's recommendation follows from shrinking what is
+    governed: narrow what the agent may produce first, on a few well-defined execution surfaces, then
+    start with a small set of controls fitted to failures actually seen.

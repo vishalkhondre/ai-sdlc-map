@@ -14,7 +14,9 @@ The library is internal material and falls under GR-1 in full (ASSUMPTIONS A3).
 - Read-only in Drive. Never create, change, share, copy or trash a file.
 - Write only to the session scratchpad. Nothing you write may enter a repository, a commit, a
   pull request or a comment: not the brief, not an excerpt, not a document name (GR-1.3, D-005).
-- The practice brief states practices in general industry words. No organisation, group,
+- The practice brief lists concepts only (D-026): what a page should cover and whether each is
+  general practice. It gives no wording, lists, step order, sets of examples or figures from the
+  library. It states practices in general industry words. No organisation, group,
   product, platform, project, team or people names, internal codes, customers, figures, dates of
   internal events, document titles, or quotations (GR-1.1, GR-1.2).
 - Check the brief against every identifier the library uses, including ordinary words used as

@@ -248,7 +248,7 @@ workflows:
   name: Task execution loop
   decision: Is this task done to the agreed standard?
   trigger: Task picked up
-  agent: Implement the task; run the quality command; self-correct within the retry limit; write the commit message with task
+  agent: Implement the task; run the kit's verify command; self-correct within the retry limit; write the commit message with task
     identifier
   checks: Lint, type check, unit tests, sandbox and permission boundaries, command restrictions, branch protection
   people: Developer directs and inspects; stops the loop on repeated failure
@@ -260,7 +260,7 @@ workflows:
     activity: Feature implementation; unit testing; coding standards; branch and merge; integration builds
     owner: Development
     artefact: Commits; unit tests
-  notes: The quality command is the floor. No agent needed to start.
+  notes: The verify command is the floor. No agent needed to start.
 - id: W14
   phase: '3'
   name: Documentation generation
@@ -614,7 +614,7 @@ workflows:
   decision: Adopt this kit version in this project?
   trigger: New kit release
   agent: None required; optional summary of behavior changes
-  checks: init, doctor, verify; new validators in observe mode before blocking; enforcement verified
+  checks: init, doctor, verify; new validators report-only before they become required; enforcement verified
   people: Project owner accepts the upgrade
   evidence: Upgrade record
   applies_to:
@@ -866,7 +866,7 @@ traditional_map:
   artefact: Unit-test framework
   lands_in: W13
   how: Inside workflow
-  note: Quality command
+  note: Verify command
 - source: PRM
   phase: P3 Development
   role: Development

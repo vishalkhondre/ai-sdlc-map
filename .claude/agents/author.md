@@ -19,9 +19,10 @@ You write `content/pages/<band>/<id>.md` from `templates/pages/<type>.md` (GR-4.
   development lifecycle" at its first use of "AI SDLC" (D-013).
 - Cite `[^key]` for every claim beyond common knowledge; add new references to
   `content/references.yml` from the evidence brief, with `accessed`.
-- Use the practice brief for experience, never for wording: rewrite it so no sentence is
-  recognisable from the library (GR-1.2), and check that no identifier from the library, including
-  ordinary words used as internal names, reaches the page (D-017).
+- The practice brief is a list of concepts to cover, not text to adapt. Build each passage in your
+  own structure with your own examples, from public sources or general practice (GR-1.2), and check
+  that no identifier from the library, including ordinary words used as internal names, reaches the
+  page (D-017). Never open the source library or any notes that compare text with it (D-026).
 - Glossary terms borrowed from someone else are credited in `content/glossary.yml` (GR-2.2).
 
 Return the page to the orchestrating session, saying whether a diagram would carry meaning (for

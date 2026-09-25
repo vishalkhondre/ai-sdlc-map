@@ -1,12 +1,12 @@
 {
   "verdict": "ACCEPT",
-  "source_sha256": "a430903fceb63f9b002015aaf877b67376824983ec644bdd22b0aea19d9d422b",
-  "report": "content/reviews/1.3.0-brand.md",
-  "report_sha256": "8d1c14c230a912dd1b193ec8932c31e3c21064667c758ceeeded2139c6283bfe",
+  "source_sha256": "a3ad81ff215b804938b6dcc5af492ea4ecbc96d52027716ad038c01572305898",
+  "report": "content/reviews/1.4.0-core.md",
+  "report_sha256": "cae63cddd742b65f00747bd2a0bb82ce20a82ac95134150a55486b196b4515c3",
   "prior": [
     {
-      "report": "content/reviews/1.3.0-layout.md",
-      "report_sha256": "d147ebd295d25cd90c2623c789857c96fd8b508cbb7ebde752bbc584e17503bf"
+      "report": "content/reviews/1.3.0-brand.md",
+      "report_sha256": "8d1c14c230a912dd1b193ec8932c31e3c21064667c758ceeeded2139c6283bfe"
     }
   ]
 }

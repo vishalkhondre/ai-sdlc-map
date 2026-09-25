@@ -12,9 +12,11 @@ import re
 import threading
 from pathlib import Path
 
+import yaml
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+TOC = yaml.safe_load((ROOT / "content" / "toc.yml").read_text(encoding="utf-8"))
 
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
@@ -22,7 +24,10 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-PAGES = ["index.html", "workflow-catalog.html", "glossary.html", "references.html", "404.html"]
+# Every reference page too, in the reading order toc.yml gives (D-020), so a new page is checked
+# without editing this list.
+REFERENCE_PAGES = [f"{pid}.html" for band in (TOC.get("pages") or {}).values() for pid in band or []]
+PAGES = ["index.html", "workflow-catalog.html", "glossary.html", "references.html", "404.html"] + REFERENCE_PAGES
 AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"]
 
 
@@ -55,6 +60,8 @@ def accessibility(browser, base):
     assert page_text.catalog_rendered(page, base) == expected, "the catalog's rendered text changed"
     for name in PAGES:
         page.goto(f"{base}/{name}")
+        if name in REFERENCE_PAGES:
+            assert page.locator('.sidenav a[aria-current="page"]').count() == 1, (name, "the page is marked in its section")
         for nav in page.locator("nav").all():
             assert nav.get_attribute("aria-label"), f"{name}: every nav landmark is labelled"
         assert page.locator("main").count() == 1, name
@@ -96,7 +103,8 @@ def accessibility(browser, base):
     page = browser.new_page(reduced_motion="reduce")
     page.goto(base + "/index.html")
     assert page.evaluate("getComputedStyle(document.documentElement).scrollBehavior") == "auto"
-    assert page.locator("nav.choose a").count() == 3, "the home page offers a section chooser"
+    bands = sum(1 for band in (TOC.get("pages") or {}).values() if band)
+    assert page.locator("nav.choose a").count() == 3 + bands, "the home page offers a section chooser"
     page.close()
 
 
@@ -135,9 +143,9 @@ def main():
                 page.route("**/search-index.json", lambda route: (page.wait_for_timeout(800), route.continue_()))
                 page.keyboard.press("/")
                 page.locator("#search-input").fill("harness engineering")
-                result = page.locator("#search-results a", has_text="Harness engineering").first
+                result = page.locator('#search-results a[href$="glossary.html#harness-engineering"]').first
                 result.wait_for(state="visible")
-                assert result.get_attribute("href").endswith("glossary.html#harness-engineering")
+                assert "Harness engineering" in result.inner_text()
                 page.keyboard.press("Escape")
 
                 assert page.locator("nav.routes .route").count() == 5
@@ -145,9 +153,13 @@ def main():
                 assert page.locator("#adoption svg").first.get_attribute("role") == "img"
                 tree = page.locator("#map svg").first.aria_snapshot()
                 names = re.findall(r'- link "([^"]+)"', tree)
-                assert len(names) == 18 and "Engineering Kit" in names, tree
+                links = yaml.safe_load((ROOT / "content/diagrams/map/links.yml").read_text(encoding="utf-8"))
+                assert len(names) == len(links) and "Engineering Kit" in names, tree
                 kit = page.get_by_role("link", name="Engineering Kit", exact=True)
-                assert kit.get_attribute("href") == "glossary.html#engineering-kit"
+                assert kit.get_attribute("href") == links["Engineering Kit"]
+                # the kit's five parts are links of their own, beside the title's (D-018)
+                for part in ("rule registry", "validators", "skills with evals", "evidence schema", "adapters"):
+                    assert page.locator("#map svg").first.get_by_role("link", name=part, exact=True).get_attribute("href") == links[part], part
                 page.get_by_role("link", name="intake & triage", exact=True).click()
                 page.wait_for_url("**/workflow-catalog.html#W01")
                 page.locator("#wf-detail").wait_for(state="visible")

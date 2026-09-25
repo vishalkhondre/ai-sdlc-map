@@ -22,6 +22,8 @@ C = {  # stroke, fill, dark text
     "coral": ("#993C1D", "#FAECE7", "#4A1B0C"),
 }
 FONT = '"Liberation Sans","DejaVu Sans",Arial,sans-serif'
+# The Engineering Kit's five parts, laid out as separate labels in two columns inside its box.
+KIT_PARTS = ["rule registry", "validators", "skills with evals", "evidence schema", "adapters"]
 LINKS: dict[str, str] = {}   # label -> href, set by page_map(links)
 LINKED: set[str] = set()     # labels that received a link in the last page_map call
 
@@ -242,16 +244,23 @@ def page_map(links: dict[str, str] | None = None) -> str:
     y0, h = 510, 118
     s.append(band_label(y0, h, "3", "CORE", "what does the work", ["Built-in quality: gates enforce what a machine can check."], "purple"))
     core = [("DISCIPLINE", "Harness engineering", "what the agent may do, what a machine checks, what a person decides", "purple", None),
-            ("ARTEFACT", "Engineering Kit", "rule registry, validators, skills with evals, evidence schema, adapters", "teal", None),
+            ("ARTEFACT", "Engineering Kit", KIT_PARTS, "teal", None),
             ("UNIT OF WORK", "Workflows", "one decision end to end, with evidence; e.g. pull-request verification", "coral", None),
             ("OPERATING STATE", "Software factory", "emerges when workflows share rules, evidence and feedback", "grey", "6 4")]
     cw, gap = 300, 30
     for i, (k, n, d, col, dash) in enumerate(core):
         x = 250 + i * (cw + gap)
         stroke, fill, dark = C[col]
-        p, _ = para(x + 16, y0 + 74, d, cw - 32, 13, MUTE, 17)
-        s.append(linked(n, r(x, y0, cw, h, fill if not dash else "#fff", stroke, 1.6, 12, dash)
-                        + "\n" + t(x + 16, y0 + 24, k, 11.5, stroke, 700, spacing=0.6) + t(x + 16, y0 + 50, n, 20, dark, 700) + "\n" + p))
+        box = r(x, y0, cw, h, fill if not dash else "#fff", stroke, 1.6, 12, dash) + "\n" + t(x + 16, y0 + 24, k, 11.5, stroke, 700, spacing=0.6)
+        title = t(x + 16, y0 + 50, n, 20, dark, 700)
+        if isinstance(d, list):
+            # The kit's five parts are separate labels, each its own link; only the title links the
+            # overview, because an SVG link cannot hold other links (D-018).
+            parts = [linked(part, t(x + 16 + (j % 2) * 150, y0 + 72 + (j // 2) * 17, part, 13, MUTE)) for j, part in enumerate(d)]
+            s.append(box + "\n" + linked(n, title) + "\n" + "\n".join(parts))
+        else:
+            p, _ = para(x + 16, y0 + 74, d, cw - 32, 13, MUTE, 17)
+            s.append(linked(n, box + title + "\n" + p))
         if i < 3:
             s.append(f'<line x1="{x + cw + 3}" y1="{y0 + h / 2}" x2="{x + cw + gap - 4}" y2="{y0 + h / 2}" stroke="{FAINT}" stroke-width="1.6" marker-end="url(#a)"/>')
 
@@ -308,8 +317,9 @@ def page_map(links: dict[str, str] | None = None) -> str:
         sx += w + 25
     s.append(credit(60, fy + 64, "Harness engineering, feedback path and validators: after Böckeler (martinfowler.com)",
                     ["bockeler-harness", "bockeler-sensors"]))
-    s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle terms: SAFe (Scaled Agile, Inc.)",
-                    ["spec-kit", "safe-framework"]))
+    s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle terms: SAFe (Scaled Agile, Inc.) · "
+                    "Architecture decision records (ADRs): after Nygard · Adapters: after Cockburn (ports and adapters)",
+                    ["spec-kit", "safe-framework", "nygard-adr", "cockburn-hexagonal"]))
     s.append(t(1540, fy + 64, "Detail: the adoption-path companion diagram.  The AI SDLC Map · vishalkhondre.github.io/ai-sdlc-map", 12, FAINT, anchor="end"))
     s.append("</svg>")
     return "\n".join(s)
@@ -318,7 +328,7 @@ def page_map(links: dict[str, str] | None = None) -> str:
 # ============================================================================ page 2
 STAGES = [
     ("0", "Deterministic floor", "teal",
-     ["A quality command that runs the same way locally and in CI", "Suggested: 3–5 validators for rules the team has already been hurt by", "Rule registry: every rule gets an ID, a route and an owner", "Evidence schema; branch protection actually enforced"],
+     ["A verify command that runs the same way locally and in CI", "A few validators for rules the team has broken before", "Rule registry: every rule gets an ID, a route and an owner", "Evidence schema; branch protection actually enforced"],
      ["Baseline: lead time, review time, escaped defects", "Share of rules still guidance-only"],
      "Every merge passes the same checks, and enforcement is verified, not assumed.",
      "Skipping straight to skills and agents on top of no gates."),

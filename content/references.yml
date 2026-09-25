@@ -9,7 +9,7 @@ bockeler-harness:
   date: "2026-04-02"
   url: "https://martinfowler.com/articles/harness-engineering.html"
   accessed: "2026-09-25"
-  note: "Defines the harness as everything in an agent except the model, and introduces guides (feedforward) and sensors (feedback), computational vs inferential controls, the steering loop, harnessability, ambient affordances and harness templates."
+  note: "Defines the harness as everything in an agent except the model, and introduces guides (feedforward) and sensors (feedback), computational vs inferential controls, the steering loop, harnessability, harness templates and three regulation categories (maintainability, architecture fitness, behaviour), and discusses ambient affordances."
 
 bockeler-sensors:
   title: "Maintainability sensors for coding agents"
@@ -47,14 +47,14 @@ fowler-ci:
   accessed: "2026-09-25"
   note: "The classic statement of most of the deterministic floor this site takes for granted: a build that runs the same way everywhere and fails fast."
 
-fowler-fitness:
+fitness-function:
   title: "Fitness function-driven development"
   author: "Paula Paul, Rosemary Wang"
-  org: "Thoughtworks"
+  org: "Thoughtworks, published on thoughtworks.com (Insights)"
   date: "2019-01"
   url: "https://www.thoughtworks.com/insights/articles/fitness-function-driven-development"
   accessed: "2026-09-25"
-  note: "Architecture goals expressed as executable tests, written first in the manner of test-driven development; what this site calls architecture gates and Böckeler calls the architecture fitness harness."
+  note: "Architecture goals expressed as executable tests, written first in the manner of test-driven development, giving continuous feedback on architectural conformance during development rather than after. What this site calls architecture gates."
 
 spec-kit:
   title: "Spec Kit: toolkit to help you get started with Spec-Driven Development"
@@ -62,7 +62,7 @@ spec-kit:
   org: "GitHub (open source)"
   url: "https://github.com/github/spec-kit"
   accessed: "2026-09-25"
-  note: "An open-source toolkit whose commands include specify, clarify, plan, tasks and implement: the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
+  note: "An open-source toolkit whose commands include specify, plan, tasks and implement, with clarification, checklists and consistency analysis available as optional extra quality gates: the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
 
 ashby:
   title: "An Introduction to Cybernetics (Law of Requisite Variety)"
@@ -119,3 +119,822 @@ aws-ai-dlc:
   url: "https://builder.aws.com/content/376vNVPtBqlCvqIjHPub8iPBSxa/sdlc-who-meet-ai-dlc-the-new-build-loop"
   accessed: "2026-09-25"
   note: "AWS's account of the AI-Driven Development Lifecycle (AI-DLC): a loop in which AI plans and asks clarifying questions, and people approve, run through Inception, Construction and Operations phases."
+
+# Core section (1.4.0): harness engineering
+bockeler-harness-memo:
+  title: "Harness Engineering - first thoughts"
+  author: "Birgitta Böckeler"
+  org: "Thoughtworks, published on martinfowler.com (Exploring Generative AI)"
+  date: "2026-02-17"
+  url: "https://martinfowler.com/articles/exploring-gen-ai/harness-engineering-memo.html"
+  accessed: "2026-09-25"
+  note: "Böckeler's first memo on the term, responding to OpenAI's account; lists context engineering, architectural constraints and garbage collection of the code base as parts of the harness, and argues a harness should direct human input to where it matters most rather than eliminate it."
+
+anthropic-context-engineering:
+  title: "Effective context engineering for AI agents"
+  author: "Prithvi Rajasekaran, Ethan Dixon, Carly Ryan, Jeremy Hadfield"
+  org: "Anthropic Engineering"
+  date: "2025-09-29"
+  url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"
+  accessed: "2026-09-25"
+  note: "Distinguishes prompt engineering (writing and organising LLM instructions) from context engineering (curating and maintaining the set of tokens available during inference). Cited for that distinction only."
+
+tw-radar-feedback-sensors:
+  title: "Feedback sensors for coding agents"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar, Volume 34"
+  date: "2026-04"
+  url: "https://www.thoughtworks.com/radar/techniques/feedback-sensors-for-coding-agents"
+  accessed: "2026-09-25"
+  note: "Radar technique: feedback loops that coding agents can access directly, to reduce the manual review burden and let agents correct themselves."
+
+swe-agent:
+  title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+  author: "John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press"
+  org: "Advances in Neural Information Processing Systems 37 (NeurIPS 2024)"
+  date: "2024"
+  url: "https://proceedings.neurips.cc/paper_files/paper/2024/file/5a7c947568c1b1328ccc5230172e1e7c-Paper-Conference.pdf"
+  accessed: "2026-09-25"
+  note: "Peer-reviewed study of how the interface around a language-model agent affects its results on software tasks; its ablation reports that an edit command which rejects edits failing a lint check improved the resolve rate on SWE-bench Lite. One benchmark and one agent design."
+
+# Core section (1.4.0): engineering kit
+cncf-platforms:
+  title: "CNCF Platforms White Paper"
+  author: "CNCF TAG App Delivery, Platforms Working Group"
+  org: "Cloud Native Computing Foundation"
+  date: "2023-04"
+  url: "https://tag-app-delivery.cncf.io/whitepapers/platforms/"
+  accessed: "2026-09-25"
+  note: "Defines a platform for cloud-native computing as an integrated collection of capabilities presented according to its users' needs, lists 'platform as a product' among its attributes, names golden path templates and documentation as a capability, and gives reducing product teams' cognitive load and reusing platform tools and knowledge across teams as goals. Cited for packaging a shared engineering environment as a product for other teams."
+
+dora-platform-engineering:
+  title: "Capabilities: Platform engineering"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  url: "https://dora.dev/capabilities/platform-engineering/"
+  accessed: "2026-09-25"
+  note: "Describes platform engineering as building an internal developer platform of shared tools, services and golden paths, run as an internal product whose customers are developers."
+
+dora-test-automation:
+  title: "Capabilities: Test automation"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  url: "https://dora.dev/capabilities/test-automation/"
+  accessed: "2026-09-25"
+  note: "Recommends that developers get feedback from automated tests in less than ten minutes, both on local workstations and from the continuous integration system."
+
+fowler-selftesting:
+  title: "Self Testing Code"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  url: "https://martinfowler.com/bliki/SelfTestingCode.html"
+  accessed: "2026-09-25"
+  note: "Self-testing code: comprehensive automated tests written with the code, so that a single command runs them and a pass gives confidence that they would expose the bugs in the code."
+
+npm-doctor:
+  title: "npm-doctor"
+  author: "npm, Inc."
+  org: "npm Docs"
+  url: "https://docs.npmjs.com/cli/commands/npm-doctor"
+  accessed: "2026-09-25"
+  note: "npm doctor runs a set of checks that npm's own requirements are met (executables, registry access, writable directories, cache integrity). Cited only as one example of a doctor-style environment check."
+
+homebrew-doctor:
+  title: "brew(1) -- The Package Manager for Everywhere (brew doctor)"
+  author: "Homebrew"
+  org: "Homebrew Documentation"
+  url: "https://docs.brew.sh/Manpage"
+  accessed: "2026-09-25"
+  note: "brew doctor checks the system for potential problems and exits with a non-zero status if it finds any. Cited only as one example of a doctor-style environment check."
+
+flutter-doctor:
+  title: "doctor.dart (flutter doctor command)"
+  author: "The Flutter Authors"
+  org: "flutter/flutter on GitHub"
+  url: "https://github.com/flutter/flutter/blob/master/packages/flutter_tools/lib/src/commands/doctor.dart"
+  accessed: "2026-09-25"
+  note: "Source of the flutter doctor command, described as 'Show information about the installed tooling.' Cited only as one example of a doctor-style environment check."
+
+python-unittest:
+  title: "unittest — Unit testing framework"
+  author: "Python Software Foundation"
+  org: "Python documentation"
+  url: "https://docs.python.org/3/library/unittest.html"
+  accessed: "2026-09-25"
+  note: "The TestResult object lists errors (tests that raised an unexpected exception), failures (tests where an assert method signalled a failure) and skipped tests separately. Tool documentation, cited for this framework only."
+
+spotify-golden-paths:
+  title: "How We Use Golden Paths to Solve Fragmentation in Our Software Ecosystem"
+  author: "Spotify Engineering"
+  org: "Spotify Engineering blog"
+  date: "2020-08"
+  url: "https://engineering.atspotify.com/2020/08/how-we-use-golden-paths-to-solve-fragmentation-in-our-software-ecosystem"
+  accessed: "2026-09-25"
+  note: "Describes the Golden Path as the opinionated and supported path to build a system, adopted to reduce a fragmented tooling ecosystem."
+
+# Core section (1.4.0): rule registry
+owasp-asvs:
+  title: "What is the ASVS? (OWASP Application Security Verification Standard 5.0.0)"
+  author: "OWASP ASVS project"
+  org: "OWASP Foundation"
+  date: "2025-05"
+  url: "https://github.com/OWASP/ASVS/blob/master/5.0/en/0x03-What-is-the-ASVS.md"
+  accessed: "2026-09-25"
+  note: "How ASVS 5.0 requirements are identified (<chapter>.<section>.<requirement>) and why other documents and tools should cite them with the version prefix (for example v5.0.0-1.2.5): identifiers may change between versions."
+
+owasp-asvs-v4-users:
+  title: "Changes Compared to v4.x (OWASP Application Security Verification Standard 5.0.0)"
+  author: "OWASP ASVS project"
+  org: "OWASP Foundation"
+  date: "2025-05"
+  url: "https://github.com/OWASP/ASVS/blob/master/5.0/en/0x05-For-Users-Of-4.0.md"
+  accessed: "2026-09-25"
+  note: "How requirements changed from ASVS 4.0.3 to 5.0: many were deleted, deduplicated or merged, and even unchanged requirements received new identifiers after restructuring; mappings between versions are provided."
+
+nist-800-53:
+  title: "Security and Privacy Controls for Information Systems and Organizations (NIST SP 800-53 Rev. 5)"
+  author: "Joint Task Force"
+  org: "National Institute of Standards and Technology (NIST)"
+  date: "2020-09 (updated 2020-12-10; Release 5.2.0, 2025-08-27)"
+  url: "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+  accessed: "2026-09-25"
+  note: "The NIST control catalog, in which each control has a family-based identifier (for example AC-2) and withdrawn controls remain listed under their identifiers with their disposition (incorporated into or moved to another control). AC-5 (Separation of Duties) divides mission and support functions among different individuals or roles, so misuse of privilege needs collusion, and AC-6 (Least Privilege) limits access to what users, and processes acting on behalf of users, need for their tasks."
+
+nist-oscal:
+  title: "OSCAL: the Open Security Controls Assessment Language"
+  author: "NIST"
+  org: "National Institute of Standards and Technology (GitHub: usnistgov/OSCAL)"
+  url: "https://github.com/usnistgov/OSCAL"
+  accessed: "2026-09-25"
+  note: "XML, JSON and YAML formats for publishing, implementing and assessing security controls; NIST publishes the SP 800-53 Rev. 5 catalog and baselines in these formats (usnistgov/oscal-content)."
+
+cwe-deprecated:
+  title: "CWE VIEW: Deprecated Entries (CWE-604)"
+  author: "MITRE"
+  org: "Common Weakness Enumeration (CWE), MITRE Corporation"
+  url: "https://cwe.mitre.org/data/definitions/604.html"
+  accessed: "2026-09-25"
+  note: "The CWE view that groups deprecated entries; each deprecated entry keeps its identifier and should reference its replacement."
+
+nygard-adr:
+  title: "Documenting Architecture Decisions"
+  author: "Michael Nygard"
+  org: "Cognitect blog"
+  date: "2011-11-15"
+  url: "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+  accessed: "2026-09-25"
+  note: "Proposes architecture decision records: short, sequentially numbered records (title, context, decision, status, consequences) whose numbers are not reused; a reversed decision is kept and marked superseded."
+
+tw-radar-adr:
+  title: "Lightweight Architecture Decision Records"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar, Volume 17 (archived entry)"
+  date: "2017-11 (Adopt)"
+  url: "https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records"
+  accessed: "2026-09-25"
+  note: "Radar technique in the Adopt ring recommending that architecture decision records, with their context and consequences, be kept in source control alongside the code rather than in a wiki."
+
+tw-radar-security-policy-as-code:
+  title: "Security policy as code"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar, Volume 23 (archived entry)"
+  date: "2020-10 (Trial)"
+  url: "https://www.thoughtworks.com/radar/techniques/security-policy-as-code"
+  accessed: "2026-09-25"
+  note: "Radar technique describing security policies written as files under version control, validated automatically in the pipeline, deployed automatically and monitored."
+
+nist-800-37:
+  title: "Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy (NIST SP 800-37 Rev. 2)"
+  author: "Joint Task Force"
+  org: "National Institute of Standards and Technology (NIST)"
+  date: "2018-12"
+  url: "https://csrc.nist.gov/pubs/sp/800/37/r2/final"
+  accessed: "2026-09-25"
+  note: "The NIST Risk Management Framework; its Select step includes control allocation (Task S-3), assigning controls to the system, its elements or the environment as system-specific, hybrid or common controls."
+
+sadowski-tricorder:
+  title: "Tricorder: Building a Program Analysis Ecosystem"
+  author: "Caitlin Sadowski, Jeffrey van Gogh, Ciera Jaspan, Emma Söderberg, Collin Winter"
+  org: "Google; International Conference on Software Engineering (ICSE 2015)"
+  date: "2015-05"
+  url: "https://research.google/pubs/pub43322/"
+  accessed: "2026-09-25"
+  note: "Google's program-analysis platform, which keeps analyzers only while their effective false-positive rate, measured from developer feedback, stays low; analyzers around 10% are put on probation."
+
+# Core section (1.4.0): validators
+ford-evolutionary-architectures:
+  title: "Building Evolutionary Architectures: Support Constant Change"
+  author: "Neal Ford, Rebecca Parsons, Patrick Kua"
+  org: "O'Reilly Media"
+  date: "2017"
+  url: "https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986356/"
+  accessed: "2026-09-25"
+  note: "Introduces architectural fitness functions, an objective integrity assessment of an architectural characteristic, implemented through tests, metrics, monitoring and similar mechanisms; the term is borrowed from evolutionary computing. A second edition with Pramod Sadalage (2022) is subtitled Automated Software Governance."
+
+thoughtworks-radar-fitness:
+  title: "Architectural fitness function"
+  author: "Thoughtworks Technology Advisory Board"
+  org: "Thoughtworks Technology Radar"
+  url: "https://www.thoughtworks.com/radar/techniques/architectural-fitness-function"
+  accessed: "2026-09-25"
+  note: "Radar entry restating the Building Evolutionary Architectures definition of an architectural fitness function and noting it may encompass existing verification criteria such as unit tests, metrics and monitors."
+
+fowler-nondeterminism:
+  title: "Eradicating Non-Determinism in Tests"
+  author: "Martin Fowler"
+  org: "martinfowler.com"
+  date: "2011-04-14"
+  url: "https://martinfowler.com/articles/nonDeterminism.html"
+  accessed: "2026-09-25"
+  note: "Why non-deterministic tests destroy the value of a test suite, quarantine as a short-term measure with limits, and remedies for common causes: lack of isolation, asynchronous behaviour, remote services, time and resource leaks."
+
+google-flaky-tests:
+  title: "Flaky Tests at Google and How We Mitigate Them"
+  author: "John Micco"
+  org: "Google Testing Blog"
+  date: "2016-05-27"
+  url: "https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html"
+  accessed: "2026-09-25"
+  note: "Google's account of flaky results in its continuous test runs and its mitigations, including re-running failed tests and automatically quarantining highly flaky tests and filing bugs."
+
+luo-flaky-2014:
+  title: "An empirical analysis of flaky tests"
+  author: "Qingzhou Luo, Farah Hariri, Lamyaa Eloussi, Darko Marinov"
+  org: "Proceedings of the 22nd ACM SIGSOFT International Symposium on Foundations of Software Engineering (FSE 2014), ACM"
+  date: "2014-11"
+  url: "https://doi.org/10.1145/2635868.2635920"
+  accessed: "2026-09-25"
+  note: "Study of 201 commits that likely fix flaky tests in 51 open-source projects; classifies root causes, the most common being asynchronous waits, concurrency and test-order dependency."
+
+gatekeeper-violations:
+  title: "Handling Constraint Violations"
+  author: "Open Policy Agent Gatekeeper project"
+  org: "Open Policy Agent (CNCF)"
+  url: "https://open-policy-agent.github.io/gatekeeper/website/docs/violations"
+  accessed: "2026-09-25"
+  note: "Gatekeeper's enforcement actions: deny by default, dryrun to test constraints in a running cluster without enforcing them when rolling out new constraints, and warn, which also returns immediate feedback. Cited for this tool's behaviour only."
+
+k8s-validating-admission-policy:
+  title: "Validating Admission Policy"
+  author: "The Kubernetes Authors"
+  org: "Kubernetes documentation"
+  url: "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+  accessed: "2026-09-25"
+  note: "Defines the Deny, Warn and Audit validation actions: deny the request, return a warning to the client, or record the failure in the audit event. Cited for this tool's behaviour only."
+
+github-protected-branches:
+  title: "About protected branches"
+  author: "GitHub"
+  org: "GitHub Docs"
+  url: "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+  accessed: "2026-09-25"
+  note: "States that required status checks must have a successful, skipped or neutral status before changes reach a protected branch. Cited for this platform's behaviour only."
+
+github-checks-api:
+  title: "Using the REST API to interact with checks"
+  author: "GitHub"
+  org: "GitHub Docs"
+  url: "https://docs.github.com/en/rest/guides/using-the-rest-api-to-interact-with-checks"
+  accessed: "2026-09-25"
+  note: "Lists check-run conclusions action_required, cancelled, timed_out, failure, neutral, skipped and success. Cited for this platform's behaviour only."
+
+pytest-flaky:
+  title: "Flaky tests"
+  author: "pytest developers"
+  org: "pytest documentation"
+  url: "https://docs.pytest.org/en/stable/explanation/flaky.html"
+  accessed: "2026-09-25"
+  note: "Defines a flaky test as one with intermittent, seemingly non-deterministic failure and explains why it makes a CI failure an unreliable signal; lists re-run plugins and warns that marking tests as expected failures is dangerous to use permanently."
+
+pytest-timeout:
+  title: "pytest-timeout"
+  author: "pytest-dev"
+  org: "GitHub"
+  url: "https://github.com/pytest-dev/pytest-timeout"
+  accessed: "2026-09-25"
+  note: "Plugin that terminates tests that run too long, such as deadlocked or hanging tests, by failing the test or terminating the process. Cited for this tool's behaviour only."
+
+gitlab-ci-yaml:
+  title: "CI/CD YAML syntax reference"
+  author: "GitLab"
+  org: "GitLab Docs"
+  url: "https://docs.gitlab.com/ci/yaml/"
+  accessed: "2026-09-25"
+  note: "Documents allow_failure: a job allowed to fail shows a warning while the pipeline continues and succeeds. Cited for this platform's behaviour only."
+
+# Core section (1.4.0): skills and evals
+anthropic-agent-evals:
+  title: "Demystifying evals for AI agents"
+  author: "Mikaela Grace, Jeremy Hadfield, Rodrigo Olivares, Jiri De Jonghe"
+  org: "Anthropic (Engineering at Anthropic)"
+  date: "2026-01-09"
+  url: "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents"
+  accessed: "2026-09-25"
+  note: "Defines tasks, trials and graders for agent evals; explains multiple trials because outputs vary between runs, pass@k and pass^k, capability versus regression evals, code-based, model-based and human graders and their trade-offs, calibrating LLM-as-judge graders against human experts, running automated evals in CI on each agent change and model upgrade, and starting from a small set of tasks drawn from real failures."
+
+anthropic-agent-skills:
+  title: "Equipping agents for the real world with Agent Skills"
+  author: "Barry Zhang, Keith Lazuka, Mahesh Murag"
+  org: "Anthropic (Engineering at Anthropic)"
+  date: "2025-10-16"
+  url: "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills"
+  accessed: "2026-09-25"
+  note: "Describes skills as folders of instructions, scripts and resources that an agent discovers and loads dynamically, with progressive disclosure (name and description first, full SKILL.md when relevant), and recommends starting from evaluation of where the agent struggles. Updated 2025-12-18 to note publication as an open standard."
+
+github-agent-skills:
+  title: "About agent skills"
+  author: "GitHub"
+  org: "GitHub Docs"
+  url: "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills"
+  accessed: "2026-09-25"
+  note: "GitHub's documentation of agent skills as folders of instructions, scripts and resources loaded when relevant; it states that the Agent Skills specification is an open standard used by a range of AI systems."
+
+claude-skill-practices:
+  title: "Skill authoring best practices"
+  author: "Anthropic"
+  org: "Claude Developer Platform documentation"
+  url: "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices"
+  accessed: "2026-09-25"
+  note: "One vendor's guidance on writing skills for its models: metadata pre-loaded and SKILL.md read when relevant, building evaluations before writing extensive instructions and measuring against a no-skill baseline, testing with every model the skill will be used with, and preferring scripts for deterministic operations."
+
+agentskills-evaluating:
+  title: "Evaluating skill output quality"
+  author: "Agent Skills project"
+  org: "agentskills.io"
+  url: "https://agentskills.io/skill-creation/evaluating-skills"
+  accessed: "2026-09-25"
+  note: "Guidance for evaluating a skill: test cases with a realistic prompt and expected output, runs with and without the skill (or against the previous version) as a baseline, full reruns for each iteration, standard deviation across multiple runs to expose flaky evals, and scripts rather than LLM judgment for mechanical checks."
+
+openai-eval-skills:
+  title: "Testing Agent Skills Systematically with Evals"
+  author: "Dominik Kundel, Gabriel Chua"
+  org: "OpenAI Developers"
+  date: "2026-01-22"
+  url: "https://developers.openai.com/blog/eval-skills"
+  accessed: "2026-09-25"
+  note: "Treats an eval for a skill as a prompt, a captured run, a small set of checks and a score compared over time; recommends testing both explicit invocation and activation from prompts that do not name the skill, and turning manual fixes into evals."
+
+zheng-llm-judge:
+  title: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"
+  author: "Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, et al."
+  org: "NeurIPS 2023 Datasets and Benchmarks Track"
+  date: "2023-06"
+  url: "https://arxiv.org/abs/2306.05685"
+  accessed: "2026-09-25"
+  note: "Examines using strong LLMs as judges of other models' answers; reports position, verbosity and self-enhancement biases and limited reasoning ability, and that the strongest judge reaches over 80% agreement with human preferences, the same level as agreement between humans."
+
+ouyang-nondeterminism:
+  title: "An Empirical Study of the Non-Determinism of ChatGPT in Code Generation"
+  author: "Shuyin Ouyang, Jie M. Zhang, Mark Harman, Meng Wang"
+  org: "ACM Transactions on Software Engineering and Methodology, 34(2)"
+  date: "2025-01"
+  url: "https://dl.acm.org/doi/10.1145/3697010"
+  accessed: "2026-09-25"
+  note: "Peer-reviewed study of code-generation problems showing that the same prompt yields materially different code across requests, and that temperature 0 reduces but does not remove this non-determinism."
+
+yao-tau-bench:
+  title: "tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains"
+  author: "Shunyu Yao, Noah Shinn, Pedram Razavi, Karthik Narasimhan"
+  org: "ICLR 2025 (arXiv 2406.12045)"
+  date: "2024-06-17"
+  url: "https://arxiv.org/abs/2406.12045"
+  accessed: "2026-09-25"
+  note: "Benchmark of tool-using agents following domain rules in simulated conversations; proposes the pass^k metric, the chance that all k trials of a task succeed, to measure the reliability of agent behaviour over repeated trials. Published with the Greek letter tau as its first character; spelled out here."
+
+husain-evals:
+  title: "Your AI Product Needs Evals"
+  author: "Hamel Husain"
+  org: "hamel.dev"
+  date: "2024-03-29"
+  url: "https://hamel.dev/blog/posts/evals/"
+  accessed: "2026-09-25"
+  note: "Practitioner argument that systematic evaluation, not ad hoc checking, is what lets an LLM product improve; describes assertion-style tests, human and model-based evaluation, and tracking agreement between model-based and human evaluation."
+
+# Core section (1.4.0): evidence schema
+slsa-provenance:
+  title: "Build: Provenance"
+  author: "SLSA (Supply-chain Levels for Software Artifacts)"
+  org: "OpenSSF, published on slsa.dev"
+  date: "2025-11 (SLSA v1.2)"
+  url: "https://slsa.dev/spec/v1.2/build-provenance"
+  accessed: "2026-09-25"
+  note: "Defines provenance as verifiable information about where, when and how an artifact was produced, split into buildDefinition (buildType, externalParameters, internalParameters, resolvedDependencies) and runDetails (builder, metadata, byproducts). Identifies the format with the versioned predicate type https://slsa.dev/provenance/v1, requires consumers to ignore unrecognized fields, and keeps minor versions backwards compatible."
+
+slsa-build-requirements:
+  title: "Build: Requirements for producing artifacts"
+  author: "SLSA (Supply-chain Levels for Software Artifacts)"
+  org: "OpenSSF, published on slsa.dev"
+  date: "2025-11 (SLSA v1.2)"
+  url: "https://slsa.dev/spec/v1.2/build-requirements"
+  accessed: "2026-09-25"
+  note: "Build-track requirements. From Build L2, provenance must be generated by the build platform's control plane and not by a tenant. At L3, every field must be generated or verified by the platform, and user-defined build steps must not be able to inject or alter it."
+
+slsa-verifying:
+  title: "Build: Verifying artifacts"
+  author: "SLSA (Supply-chain Levels for Software Artifacts)"
+  org: "OpenSSF, published on slsa.dev"
+  date: "2025-11 (SLSA v1.2)"
+  url: "https://slsa.dev/spec/v1.2/verifying-artifacts"
+  accessed: "2026-09-25"
+  note: "Describes checking provenance against expectations (known values set by trust on first use, by the producer or by the source repository), comparing at least builder identity, canonical source repository, buildType and externalParameters."
+
+slsa-vsa:
+  title: "Verification Summary Attestation (VSA)"
+  author: "SLSA (Supply-chain Levels for Software Artifacts)"
+  org: "OpenSSF, published on slsa.dev"
+  date: "2025-11 (SLSA v1.2)"
+  url: "https://slsa.dev/spec/v1.2/verification_summary"
+  accessed: "2026-09-25"
+  note: "An attestation recording the outcome of a verification: the verifier, the time, the policy applied, the input attestations used, and a verificationResult of PASSED or FAILED."
+
+in-toto-attestation:
+  title: "in-toto Attestation Framework Spec"
+  author: "in-toto project"
+  org: "in-toto (CNCF), github.com/in-toto/attestation"
+  date: "v1.2"
+  url: "https://github.com/in-toto/attestation/blob/main/spec/v1/README.md"
+  accessed: "2026-09-25"
+  note: "Layers an attestation into envelope, statement, predicate and bundle. Versions each type with SemVer, with the major version in the type URI, requires consumers to ignore unrecognized fields, and asks that policies be monotonic, so that ignoring a field or attestation never turns a deny into an allow."
+
+in-toto-spec:
+  title: "in-toto Specification"
+  author: "in-toto project"
+  org: "in-toto (CNCF), github.com/in-toto/docs"
+  date: "2023-06-02 (v1.0.0)"
+  url: "https://github.com/in-toto/docs/blob/master/in-toto-spec.md"
+  accessed: "2026-09-25"
+  note: "A project owner's layout sets the required supply-chain steps and who may perform them. Link metadata records that each step was carried out, and verification checks the links against the layout."
+
+in-toto-usenix:
+  title: "in-toto: Providing farm-to-table guarantees for bits and bytes"
+  author: "Santiago Torres-Arias, Hammad Afzali, Trishank Karthik Kuppusamy, Reza Curtmola, Justin Cappos"
+  org: "28th USENIX Security Symposium"
+  date: "2019-08"
+  url: "https://www.usenix.org/conference/usenixsecurity19/presentation/torres-arias"
+  accessed: "2026-09-25"
+  note: "Peer-reviewed paper presenting in-toto, a framework that lets end users verify the integrity of a software supply chain from inception to deployment."
+
+sarif-2-1-0:
+  title: "Static Analysis Results Interchange Format (SARIF) Version 2.1.0 Plus Errata 01"
+  author: "Michael C. Fanning, Laurence J. Golding (editors); OASIS Static Analysis Results Interchange Format (SARIF) TC"
+  org: "OASIS Open"
+  date: "2023-08-28 (OASIS Standard incorporating Errata 01)"
+  url: "https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html"
+  accessed: "2026-09-25"
+  note: "OASIS Standard for static-analysis tool output. Each result carries a stable ruleId and a kind (pass, fail, open, review, notApplicable, informational). The invocation records whether the tool's execution succeeded (executionSuccessful) separately from its results, and an informative appendix explains that a run whose execution failed cannot be assumed to hold complete results. Results also record the scanned revision (revisionId) and suppressions with a status (underReview, accepted, rejected) and a user-supplied justification."
+
+nist-ssdf:
+  title: "Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities"
+  author: "National Institute of Standards and Technology (NIST)"
+  org: "NIST Special Publication 800-218"
+  date: "2022-02"
+  url: "https://csrc.nist.gov/pubs/sp/800/218/final"
+  accessed: "2026-09-25"
+  note: "Secure development practices, including configuring tools to generate artifacts of their support of secure development practices (PO.3.3), and archiving and protecting each release's supporting data and provenance (PS.3.1, PS.3.2). Version 1.2 (SP 800-218r1) was at initial public draft when accessed."
+
+json-schema-core:
+  title: "JSON Schema: A Media Type for Describing JSON Documents"
+  author: "A. Wright, H. Andrews, B. Hutton (editors), G. Dennis"
+  org: "JSON Schema, published on json-schema.org (draft 2020-12)"
+  date: "2022-06"
+  url: "https://json-schema.org/draft/2020-12/json-schema-core"
+  accessed: "2026-09-25"
+  note: "The JSON Schema core specification. The $schema keyword identifies the dialect (the version) that a schema follows."
+
+semver:
+  title: "Semantic Versioning 2.0.0"
+  author: "Tom Preston-Werner"
+  org: "semver.org"
+  url: "https://semver.org/spec/v2.0.0.html"
+  accessed: "2026-09-25"
+  note: "Versioning scheme in which MAJOR marks incompatible changes, MINOR backward-compatible additions and PATCH backward-compatible fixes, against a declared public API."
+
+fowler-tolerant-reader:
+  title: "TolerantReader"
+  author: "Martin Fowler"
+  org: "martinfowler.com"
+  date: "2011-05-09"
+  url: "https://martinfowler.com/bliki/TolerantReader.html"
+  accessed: "2026-09-25"
+  note: "Recommends reading data from another service as tolerantly as possible, after Postel's law."
+
+# Core section (1.4.0): adapters
+cockburn-hexagonal:
+  title: "Hexagonal architecture"
+  author: "Alistair Cockburn"
+  org: "alistair.cockburn.us"
+  date: "2005-09-04"
+  url: "https://alistair.cockburn.us/hexagonal-architecture/"
+  accessed: "2026-09-25"
+  note: "The ports-and-adapters pattern: an application driven equally by users, programs, automated tests or batch scripts and tested in isolation from its run-time devices and databases, with technology-specific adapters converting what arrives at each port. Also describes logic leaking across layer boundaries when nothing detects the violation."
+
+fowler-contract-test:
+  title: "Contract Test"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  date: "2011-01-12"
+  url: "https://martinfowler.com/bliki/ContractTest.html"
+  accessed: "2026-09-25"
+  note: "Contract tests check that calls against a test double return the same results as the real external service would. They run separately from the regular pipeline, at the rhythm of changes to the external service, and a failure triggers work to restore consistency. Originally titled 'Integration Contract Test'."
+
+robinson-cdc:
+  title: "Consumer-Driven Contracts: A Service Evolution Pattern"
+  author: "Ian Robinson"
+  org: "martinfowler.com"
+  date: "2006-06-12"
+  url: "https://martinfowler.com/articles/consumerDrivenContracts.html"
+  accessed: "2026-09-25"
+  note: "Describes provider contracts and consumer-driven contracts: consumers state their expectations of a service, the provider verifies them, and the service evolves without breaking its consumers."
+
+evans-ddd-reference:
+  title: "Domain-Driven Design Reference: Definitions and Pattern Summaries"
+  author: "Eric Evans"
+  org: "Domain Language, Inc."
+  date: "2015-03"
+  url: "https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf"
+  accessed: "2026-09-25"
+  note: "Pattern summaries from Domain-Driven Design, including the anticorruption layer: an isolating layer that gives clients functionality in terms of their own model, talks to the other system through its existing interface and translates between the two models."
+
+mcp-spec:
+  title: "Specification"
+  author: "Model Context Protocol"
+  org: "modelcontextprotocol.io"
+  date: "2026-07-28"
+  url: "https://modelcontextprotocol.io/specification/2026-07-28"
+  accessed: "2026-09-25"
+  note: "The Model Context Protocol, an open protocol for integrating LLM applications with external data sources and tools: hosts, clients and servers; servers offer resources, prompts and tools; JSON-RPC 2.0 messages. Cited for facts about the protocol only, as one example of a tool-server interface."
+
+openapi-spec:
+  title: "OpenAPI Specification"
+  author: "OpenAPI Initiative"
+  org: "OpenAPI Initiative, a Linux Foundation Collaborative Project"
+  url: "https://github.com/OAI/OpenAPI-Specification"
+  accessed: "2026-09-25"
+  note: "A standard, programming-language-agnostic interface description for HTTP APIs that lets people and programs discover a service's capabilities without its source code. Cited as one example of a published tool interface."
+
+twelve-factor-parity:
+  title: "X. Dev/prod parity"
+  author: "Adam Wiggins"
+  org: "The Twelve-Factor App (12factor.net)"
+  url: "https://12factor.net/dev-prod-parity"
+  accessed: "2026-09-25"
+  note: "Keep development, staging and production as similar as possible. Warns against using different backing services in different environments even when adapters appear to hide the differences, because small incompatibilities let code pass tests in one environment and fail in another."
+
+twelve-factor-backing-services:
+  title: "IV. Backing services"
+  author: "Adam Wiggins"
+  org: "The Twelve-Factor App (12factor.net)"
+  url: "https://12factor.net/backing-services"
+  accessed: "2026-09-25"
+  note: "Treat backing services as attached resources: the code makes no distinction between local and third-party services, and a resource can be swapped by changing configuration without code changes."
+
+thoughtworks-pipelines-as-code:
+  title: "Pipelines as code"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar"
+  url: "https://www.thoughtworks.com/radar/techniques/pipelines-as-code"
+  accessed: "2026-09-25"
+  note: "A technique in the Adopt ring: delivery-pipeline configuration treated as code, kept under source control and modularised into reusable components with automated testing and deployment."
+
+thoughtworks-generic-cloud:
+  title: "Generic cloud usage"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar"
+  url: "https://www.thoughtworks.com/radar/techniques/generic-cloud-usage"
+  accessed: "2026-09-25"
+  note: "A technique in the Hold ring: avoiding cloud lock-in at all costs by using only features common to every provider, which gives up each provider's distinctive benefits. About cloud platforms, not developer tooling."
+
+junit-assumptions:
+  title: "Assumptions (JUnit 5.9.0 API)"
+  author: "The JUnit Team"
+  org: "JUnit"
+  url: "https://docs.junit.org/5.9.0/api/org.junit.jupiter.api/org/junit/jupiter/api/Assumptions.html"
+  accessed: "2026-09-25"
+  note: "Failed assumptions abort a test instead of failing it; used when a test depends on something absent from the current runtime environment. Cited only for this distinction in JUnit."
+
+# Core section (1.4.0): workflows
+dora-2024-report:
+  title: "Accelerate State of DevOps Report 2024"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "2024-10"
+  url: "https://dora.dev/research/2024/dora-report/"
+  accessed: "2026-09-25"
+  note: "Reports that higher AI adoption was associated with estimated decreases in software delivery throughput and stability, suggests larger batch sizes as a reason and points teams back to basics such as small batches and robust testing, and reports gains in individual productivity, flow and job satisfaction."
+
+dora-2025-report:
+  title: "State of AI-assisted Software Development 2025"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "2025-09"
+  url: "https://dora.dev/dora-report-2025/"
+  accessed: "2026-09-25"
+  note: "Describes AI's primary role as an amplifier of an organisation's existing strengths and dysfunctions. Reports that higher AI adoption is associated with higher software delivery throughput and with higher instability, and names control systems such as strong automated testing, mature version control practices and fast feedback loops."
+
+dora-ai-capabilities:
+  title: "DORA AI Capabilities Model"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "2025"
+  url: "https://dora.dev/ai/capabilities-model/report/"
+  accessed: "2026-09-25"
+  note: "Names seven capabilities that amplify the benefits of AI adoption, including strong version control practices, working in small batches and quality internal platforms."
+
+dora-vsm-guide:
+  title: "Value stream mapping for software delivery"
+  author: "Andrew Davis, Rob Edwards"
+  org: "DORA, published on dora.dev"
+  date: "2024-08-19"
+  url: "https://dora.dev/guides/value-stream-management/"
+  accessed: "2026-09-25"
+  note: "DORA's guide to value stream mapping: visualising the flow of work from idea to production with stakeholders from each part of the stream, to find bottlenecks."
+
+lean-vsm:
+  title: "Value-Stream Mapping"
+  author: "Lean Enterprise Institute"
+  org: "Lean Enterprise Institute, Lean Lexicon"
+  url: "https://www.lean.org/lexicon-terms/value-stream-mapping/"
+  accessed: "2026-09-25"
+  note: "Lean Lexicon definition: diagramming every step in the material and information flows needed to deliver a product or service."
+
+lean-vs-manager:
+  title: "Value-Stream Manager"
+  author: "Lean Enterprise Institute"
+  org: "Lean Enterprise Institute, Lean Lexicon"
+  url: "https://www.lean.org/lexicon-terms/value-stream-manager/"
+  accessed: "2026-09-25"
+  note: "Lean Lexicon definition of the person accountable for a value stream's flow, who may not own the resources in it."
+
+fowler-deployment-pipeline:
+  title: "Deployment Pipeline"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  url: "https://martinfowler.com/bliki/DeploymentPipeline.html"
+  accessed: "2026-09-25"
+  note: "Defines a deployment pipeline as a build broken into stages, each giving more confidence at more cost in time, with early stages giving faster feedback."
+
+nist-ai-rmf:
+  title: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
+  author: "National Institute of Standards and Technology"
+  org: "NIST, NIST AI 100-1"
+  date: "2023-01"
+  url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+  accessed: "2026-09-25"
+  note: "GOVERN 3.2 calls for defining and differentiating roles and responsibilities for human-AI configurations and oversight of AI systems; MAP 3.5 for defined, assessed and documented human oversight processes."
+
+nist-ai-600-1:
+  title: "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile"
+  author: "National Institute of Standards and Technology"
+  org: "NIST, NIST AI 600-1"
+  date: "2024-07"
+  url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+  accessed: "2026-09-25"
+  note: "Lists Human-AI Configuration among the risks of generative AI, including automation bias and over-reliance."
+
+parasuraman-manzey-2010:
+  title: "Complacency and Bias in Human Use of Automation: An Attentional Integration"
+  author: "Raja Parasuraman, Dietrich H. Manzey"
+  org: "Human Factors, 52(3), 381–410"
+  date: "2010-06"
+  url: "https://doi.org/10.1177/0018720810376055"
+  accessed: "2026-09-25"
+  note: "Review of research on automation complacency and automation bias. Complacency arises under multiple-task load; bias produces omission and commission errors when people rely on an imperfect decision aid. Both affect experts as well as novices, and neither is prevented by training, instructions or simple practice alone."
+
+perry-2023:
+  title: "Do Users Write More Insecure Code with AI Assistants?"
+  author: "Neil Perry, Megha Srivastava, Deepak Kumar, Dan Boneh"
+  org: "ACM SIGSAC Conference on Computer and Communications Security (CCS '23)"
+  date: "2023-11"
+  url: "https://doi.org/10.1145/3576915.3623157"
+  accessed: "2026-09-25"
+  note: "User study finding that participants with an AI code assistant wrote less secure code yet were more likely to believe it was secure."
+
+istqb-rbt:
+  title: "risk-based testing"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  url: "https://glossary.istqb.org/en_US/term/risk-based-testing"
+  accessed: "2026-09-25"
+  note: "Defines risk-based testing as a test approach in which the management, selection, prioritization and use of test activities and resources are based on risk types and risk levels."
+
+iso-29119-1:
+  title: "ISO/IEC/IEEE 29119-1:2022 Software and systems engineering — Software testing — Part 1: General concepts"
+  author: "ISO/IEC JTC 1/SC 7 and IEEE"
+  org: "International Organization for Standardization"
+  date: "2022-01"
+  url: "https://www.iso.org/standard/81291.html"
+  accessed: "2026-09-25"
+  note: "General concepts of software testing, including risk-based testing as the approach for prioritizing test effort."
+
+github-status-checks:
+  title: "Troubleshooting required status checks"
+  author: "GitHub"
+  org: "GitHub Docs"
+  url: "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks"
+  accessed: "2026-09-25"
+  note: "States that a job skipped by a conditional reports its status as Success, while a workflow skipped by path or branch filtering leaves required checks Pending. Cited for this platform's behaviour only."
+
+# Core section (1.4.0): software factory
+cusumano-software-factories:
+  title: "Japan's Software Factories: A Challenge to U.S. Management"
+  author: "Michael A. Cusumano"
+  org: "Oxford University Press"
+  date: "1991"
+  url: "https://global.oup.com/academic/product/japans-software-factories-9780195062168"
+  accessed: "2026-09-25"
+  note: "A study of Japanese firms that applied engineering and production-management methods to large-scale software development, which they called software factories. Cited as an earlier, different sense of the term."
+
+greenfield-software-factories:
+  title: "Software Factories: Assembling Applications with Patterns, Models, Frameworks, and Tools"
+  author: "Jack Greenfield and Keith Short, with Steve Cook and Stuart Kent"
+  org: "John Wiley & Sons"
+  date: "2004-09"
+  url: "https://www.softwarefactories.com/TheBook.html"
+  accessed: "2026-09-25"
+  note: "Defines a software factory as a configuration of languages, patterns, frameworks and tools for producing variants of a standard product, using models and domain-specific languages. Cited as an earlier, model-driven sense of the term."
+
+shapiro-five-levels:
+  title: "The Five Levels: from Spicy Autocomplete to the Dark Factory"
+  author: "Dan Shapiro"
+  org: "danshapiro.com"
+  date: "2026-01-23"
+  url: "https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/"
+  accessed: "2026-09-25"
+  note: "A five-level model of AI-assisted programming whose top level, the dark software factory, is likened to a factory run by robots with the lights out. Cited as a recent use of factory language that differs from this site's sense."
+
+willison-software-factory:
+  title: "How StrongDM's AI team build serious software without even looking at the code"
+  author: "Simon Willison"
+  org: "simonwillison.net"
+  date: "2026-02-07"
+  url: "https://simonwillison.net/2026/Feb/7/software-factory/"
+  accessed: "2026-09-25"
+  note: "A practitioner account of a small team whose stated principles are that code is not written or reviewed by humans, with scenario-based validation instead of code review. Cited as a recent use of the term in a different sense."
+
+morris-humans-agents-loops:
+  title: "Humans and Agents in Software Engineering Loops"
+  author: "Kief Morris"
+  org: "martinfowler.com"
+  date: "2026-03"
+  url: "https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents.html"
+  accessed: "2026-09-25"
+  note: "Describes nested loops in software delivery and argues that people work on the loop, changing the harness that produces artifacts rather than inspecting every artifact."
+
+dora-customer-feedback:
+  title: "Capabilities: Customer feedback"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  url: "https://dora.dev/capabilities/customer-feedback/"
+  accessed: "2026-09-25"
+  note: "Places customer feedback in a group of capabilities, with value-stream visibility, small batches and team experimentation, that DORA finds help predict software delivery and organisational performance."
+
+bainbridge-ironies:
+  title: "Ironies of automation"
+  author: "Lisanne Bainbridge"
+  org: "Automatica 19(6), 775-779"
+  date: "1983-11"
+  url: "https://doi.org/10.1016/0005-1098(83)90046-8"
+  accessed: "2026-09-25"
+  note: "Argues that automating most of a task leaves people with tiring monitoring work and rare interventions, and that unused manual skills deteriorate, so operators need more training rather than less."
+
+lee-genai-critical-thinking:
+  title: "The Impact of Generative AI on Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence Effects From a Survey of Knowledge Workers"
+  author: "Hao-Ping (Hank) Lee, Advait Sarkar, Lev Tankelevitch, Ian Drosos, Sean Rintel, Richard Banks, Nicholas Wilson"
+  org: "Microsoft Research; CHI 2025"
+  date: "2025-04"
+  url: "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/"
+  accessed: "2026-09-25"
+  note: "A survey of 319 knowledge workers finding that higher confidence in generative AI is associated with less critical thinking, and higher self-confidence with more. Self-reported data."
+
+conway-committees:
+  title: "How Do Committees Invent?"
+  author: "Melvin E. Conway"
+  org: "Datamation 14(5), 28-31"
+  date: "1968-04"
+  url: "https://www.melconway.com/research/committees.html"
+  accessed: "2026-09-25"
+  note: "The paper behind Conway's law: organisations that design systems produce designs that copy their communication structures."
+
+google-sre-postmortem:
+  title: "Postmortem Culture: Learning from Failure"
+  author: "Google"
+  org: "The Site Reliability Workbook, sre.google"
+  url: "https://sre.google/workbook/postmortem-culture/"
+  accessed: "2026-09-25"
+  note: "Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that a postmortem's value depends on the learning it creates."
+
+tw-incremental-developer-platform:
+  title: "Incremental developer platform"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar"
+  url: "https://www.thoughtworks.com/radar/techniques/incremental-developer-platform"
+  accessed: "2026-09-25"
+  note: "Observes that teams often aim for too much of a platform vision too fast, and recommends growing a developer platform in increments from a thinnest viable first version."
+
+team-topologies-tvp:
+  title: "What is a Thinnest Viable Platform (TVP)?"
+  author: "Matthew Skelton and Manuel Pais"
+  org: "Team Topologies"
+  url: "https://teamtopologies.com/key-concepts-content/what-is-a-thinnest-viable-platform-tvp"
+  accessed: "2026-09-25"
+  note: "Defines the thinnest viable platform as the smallest set of APIs, documentation and tools that speeds up the teams using it."

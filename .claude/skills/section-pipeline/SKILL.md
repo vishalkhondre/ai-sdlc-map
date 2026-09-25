@@ -19,6 +19,7 @@ and its skill, and never the practice brief.
 | 3 Research | `source-researcher` ║ `external-researcher` | practice brief (scratchpad only) ║ evidence brief and reference entries | — |
 | 4 Write | `author` | `content/pages/<band>/<id>.md` from its template | — |
 | 5 Diagram | `diagrammer` | diagrams as code, when they carry meaning | — |
+| 5a Sweep | `source-researcher` | every draft page compared with the library; close passages cut and rewritten by an author who sees neither the old text nor the notes; repeated until clean (D-026) | **no close passage; nothing pushed before this passes** |
 | 6 Check | `site-builder` | review record created with Scope and Limitations only; full validation (`CLAUDE.md`) green except the release gate | every other check passes |
 | 7 Review | main session starts `confidentiality-reviewer` ║ `accuracy-reviewer` ║ `editorial-reviewer`, fresh contexts | three reports | all ACCEPT; three rounds, then the author |
 | 8 Record | `site-builder` | `content/reviews/<edition>-<section>.md`, bound by `record-review` | `release_content.py check` |
@@ -29,6 +30,9 @@ and its skill, and never the practice brief.
 ## Rules that hold at every step
 
 - Nothing from the source library enters the repository (GR-1.3). Briefs live in the scratchpad.
+- Authors never read the library, and the researcher passes concepts only, never wording, lists,
+  step order or examples (D-026, `project/AGENTS.md`). The pushed branch holds the section as one
+  commit on top of `main`.
 - Reviewers see the pages, sources and check output, never the author's reasoning or the
   practice brief (AGENTS.md, Independence).
 - A section merges only complete: every page of the plan, every section of every template

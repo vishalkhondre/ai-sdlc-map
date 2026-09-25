@@ -35,6 +35,30 @@ Reviewers never see the author agent's reasoning, only the page and its sources.
 runs in a fresh context. The confidentiality reviewer does not see the practice brief, so it
 judges the page as a public reader would.
 
+## Source library and the paraphrase sweep (D-026)
+
+This rule holds for every section, because a de-identified brief still carries the source's
+structure: its lists, the order of its steps and its examples.
+
+1. **Authors never read the library.** `author` works from the page brief, the evidence brief and
+   the site's own pages. It never opens the source library, a practice brief's source documents,
+   or notes written by someone who compared text with the library.
+2. **The researcher passes concepts only.** `source-researcher` gives `author` the concepts a
+   page should cover and which of them are general practice, never the library's wording, lists,
+   step order, sets of examples, figures or its own names for things.
+3. **The sweep runs before the first review.** After Write and before Check, `source-researcher`
+   compares every draft page with the library and reports passages that are close in wording,
+   list, sequence, set of examples or structure. Close passages are cut, and rewritten only by an
+   author who sees neither the old passage nor the sweep's notes; the sweep then runs again until
+   it reports no close passage. Replacement text written by anyone who has read the library is
+   never used.
+4. **Nothing is pushed before the sweep passes.** Drafts stay on the local machine: no push to any
+   remote branch and no pull request until the sweep is clean. The branch that is pushed holds the
+   section as one commit on top of `main`, with a neutral message, so no earlier draft is in its
+   history.
+   If a draft was pushed by mistake, delete the branch, confirm with `git ls-remote` that no ref
+   holds it, and ask the host to purge the unreferenced commits.
+
 ## Review record
 
 Today one record covers a section: `content/reviews/<edition>-<section>.md` holds each

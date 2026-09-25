@@ -214,3 +214,28 @@ from a manual run (D-016). "The author" is the repository admin role while the a
 admin. The author sets the ruleset in the repository settings and confirms that GitHub Actions
 is offered as a bypass actor; if it is not, the manual Release path cannot create tags.
 
+## D-025 · Core section answers
+Decided 2026-09-25 by the author, on the questions raised while writing the Core section. The
+map's "Feedback path proven" label opens the harness engineering page's steering-loop section.
+The reference key `fowler-fitness` is renamed `fitness-function`. "Adapter" is adapted from
+Cockburn's ports and adapters pattern and cites it. A repeated timeout reports could_not_run,
+except for a rule that is itself a time limit, where it fails. Kit versioning: anything that can
+turn an unchanged project red is a major change; a new rule whose validator starts report-only is
+minor; switching a rule to required is major. Glossary entries for golden path and LLM-as-a-judge
+stay only while a Core page uses them, credited to Spotify Engineering and to Zheng et al. (2023).
+Archived Technology Radar entries may be cited with their volume, date and access date, labelled
+archived. Wording in earlier editions is aligned with the kit's command names and the report-only
+term in 1.4.0. Organisations may be named in page prose only as the credited author or originator of
+a cited source or term (for example the Thoughtworks Technology Radar, or Spotify Engineering for the
+golden path), never as a recommended product (GR-3.3).
+
+## D-026 · Library sweep before review
+Decided 2026-09-25 by the author, after the Core section's first drafts followed the source
+library's structure too closely although every brief was de-identified. Authors never read the
+library; the source researcher passes concepts only; a paraphrase sweep of every draft page runs
+before the first review; nothing is pushed before it passes. The full rule is in `AGENTS.md`
+(Source library and the paraphrase sweep) and in `section-pipeline`. If a draft has already been
+pushed, the branch is deleted, `git ls-remote` confirms no ref holds it, and the author asks the
+host to purge the unreferenced commits. Rules out: using replacement text written by anyone who has
+read the library.
+

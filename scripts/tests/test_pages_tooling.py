@@ -2,11 +2,14 @@
 import contextlib
 import importlib.util
 import io
+import re
 import shutil
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 PAGE = """---
@@ -42,6 +45,19 @@ def load(name, path):
     return module
 
 
+def drop_references_only_real_pages_cite(content: Path) -> None:
+    """Without the real pages, the references only they cite would be dead; drop them from the copy."""
+    cited = set()
+    for page in (ROOT / "content/pages").rglob("*.md"):
+        cited |= set(re.findall(r"\[\^([a-z0-9\-]+)\]", page.read_text(encoding="utf-8")))
+    elsewhere = (content / "glossary.yml").read_text(encoding="utf-8") + (ROOT / "scripts/outdated_terms.yml").read_text(encoding="utf-8")
+    elsewhere += "".join(p.read_text(encoding="utf-8") for p in (content / "diagrams/svg").glob("*.svg"))
+    path = content / "references.yml"
+    refs = yaml.safe_load(path.read_text(encoding="utf-8"))
+    kept = {k: v for k, v in refs.items() if k not in cited or re.search(rf"(?<![\w-]){re.escape(k)}(?![\w-])", elsewhere)}
+    path.write_text(yaml.safe_dump(kept, allow_unicode=True, sort_keys=False), encoding="utf-8")
+
+
 class GateReadsPages(unittest.TestCase):
     def run_gate(self, terms, body, **meta):
         with tempfile.TemporaryDirectory() as temporary:
@@ -49,6 +65,7 @@ class GateReadsPages(unittest.TestCase):
             gate.CONTENT = Path(temporary) / "content"
             # the real content without its pages, so the fixture is the only page
             shutil.copytree(ROOT / "content", gate.CONTENT, ignore=lambda d, names: ["pages"] if Path(d) == ROOT / "content" else [])
+            drop_references_only_real_pages_cite(gate.CONTENT)
             (gate.CONTENT / "pages/core").mkdir(parents=True, exist_ok=True)
             (gate.CONTENT / "pages/core/harness-engineering.md").write_text(page_text(terms, body, **meta), encoding="utf-8")
             with contextlib.redirect_stdout(io.StringIO()) as out:

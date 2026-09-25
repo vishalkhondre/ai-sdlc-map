@@ -19,6 +19,9 @@ import denylist  # noqa: E402
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 CONTENT = ROOT / "content"
+# Reference pages, from toc.yml's reading order per band (D-020): new pages are checked without editing the tests.
+REFERENCE_PAGES = [f"{pid}.html" for band in (yaml.safe_load((CONTENT / "toc.yml").read_text(encoding="utf-8")).get("pages") or {}).values()
+                   for pid in band or []]
 
 
 class Generated(unittest.TestCase):
@@ -28,7 +31,7 @@ class Generated(unittest.TestCase):
         cls.toc = yaml.safe_load((CONTENT / "toc.yml").read_text(encoding="utf-8"))
 
     def test_expected_pages_exist(self):
-        for name in ("index.html", "workflow-catalog.html", "glossary.html", "references.html", "404.html"):
+        for name in ("index.html", "workflow-catalog.html", "glossary.html", "references.html", "404.html", *REFERENCE_PAGES):
             self.assertTrue((SITE / name).exists(), name)
 
     def test_no_page_links_to_or_names_the_series(self):
@@ -44,7 +47,7 @@ class Generated(unittest.TestCase):
 
     def test_documentation_layout(self):
         """D-020: header tabs, left navigation, content, On this page, previous and next."""
-        for name in ("workflow-catalog.html", "glossary.html", "references.html"):
+        for name in ("workflow-catalog.html", "glossary.html", "references.html", *REFERENCE_PAGES):
             source = (SITE / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertEqual(source.count('<main id="content"'), 1)

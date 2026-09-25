@@ -9,32 +9,31 @@
 <rect x="66" y="202" width="280" height="500" rx="12" fill="#fff" stroke="#0F6E56" stroke-width="1.2"/>
 <text x="82" y="230" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">BUILD</text>
 <circle cx="86" cy="245.5" r="2.4" fill="#0F6E56"/>
-<text x="96" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">A quality command that runs the</text>
+<text x="96" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">A verify command that runs the</text>
 <text x="96" y="268" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">same way locally and in CI</text>
 <circle cx="86" cy="286.5" r="2.4" fill="#0F6E56"/>
-<text x="96" y="291" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Suggested: 3–5 validators for</text>
-<text x="96" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">rules the team has already been</text>
-<text x="96" y="327" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">hurt by</text>
-<circle cx="86" cy="345.5" r="2.4" fill="#0F6E56"/>
-<text x="96" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Rule registry: every rule gets</text>
-<text x="96" y="368" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">an ID, a route and an owner</text>
-<circle cx="86" cy="386.5" r="2.4" fill="#0F6E56"/>
-<text x="96" y="391" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Evidence schema; branch</text>
-<text x="96" y="409" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">protection actually enforced</text>
-<line x1="80" y1="434" x2="332" y2="434" stroke="#d3d1c7" stroke-width="1"/>
-<text x="82" y="446" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
-<circle cx="86" cy="461.5" r="2.4" fill="#0F6E56"/>
-<text x="96" y="466" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Baseline: lead time, review</text>
-<text x="96" y="484" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">time, escaped defects</text>
-<circle cx="86" cy="502.5" r="2.4" fill="#0F6E56"/>
-<text x="96" y="507" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Share of rules still</text>
-<text x="96" y="525" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">guidance-only</text>
-<line x1="80" y1="550" x2="332" y2="550" stroke="#d3d1c7" stroke-width="1"/>
-<text x="82" y="562" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
-<text x="82" y="582" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">Every merge passes the same</text><text x="82" y="600" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">checks, and enforcement is</text><text x="82" y="618" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">verified, not assumed.</text>
-<line x1="80" y1="643" x2="332" y2="643" stroke="#d3d1c7" stroke-width="1"/>
-<text x="82" y="655" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
-<text x="82" y="675" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Skipping straight to skills and</text><text x="82" y="693" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">agents on top of no gates.</text>
+<text x="96" y="291" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">A few validators for rules the</text>
+<text x="96" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">team has broken before</text>
+<circle cx="86" cy="327.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="332" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Rule registry: every rule gets</text>
+<text x="96" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">an ID, a route and an owner</text>
+<circle cx="86" cy="368.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="373" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Evidence schema; branch</text>
+<text x="96" y="391" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">protection actually enforced</text>
+<line x1="80" y1="416" x2="332" y2="416" stroke="#d3d1c7" stroke-width="1"/>
+<text x="82" y="428" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
+<circle cx="86" cy="443.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="448" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Baseline: lead time, review</text>
+<text x="96" y="466" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">time, escaped defects</text>
+<circle cx="86" cy="484.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="489" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Share of rules still</text>
+<text x="96" y="507" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">guidance-only</text>
+<line x1="80" y1="532" x2="332" y2="532" stroke="#d3d1c7" stroke-width="1"/>
+<text x="82" y="544" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
+<text x="82" y="564" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">Every merge passes the same</text><text x="82" y="582" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">checks, and enforcement is</text><text x="82" y="600" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">verified, not assumed.</text>
+<line x1="80" y1="625" x2="332" y2="625" stroke="#d3d1c7" stroke-width="1"/>
+<text x="82" y="637" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
+<text x="82" y="657" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Skipping straight to skills and</text><text x="82" y="675" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">agents on top of no gates.</text>
 <rect x="363" y="120" width="280" height="70" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
 <text x="379" y="146" font-size="11.5" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">STAGE 1</text><text x="379" y="172" font-size="18" fill="#26215C" font-weight="700" text-anchor="start">One workflow</text>
 <line x1="645" y1="155" x2="657" y2="155" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
