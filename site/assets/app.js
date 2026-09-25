@@ -24,6 +24,8 @@
     if (!menu || !sidenav) return;
     sidenav.classList.toggle('open', open);
     if (scrim) scrim.hidden = !open;
+    // While the drawer is open, the page behind it cannot take focus (it sits under the scrim).
+    $$('main, .onpage, .footer').forEach(el => { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
     menu.setAttribute('aria-expanded', String(open));
     menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     if (open) { const first = $('a', sidenav); if (first) first.focus(); }

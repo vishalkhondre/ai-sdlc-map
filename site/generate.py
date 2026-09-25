@@ -295,7 +295,7 @@ def _slug(text: str) -> str:
 
 
 def _headings(main_html: str) -> tuple[str, list[tuple[str, str, int]]]:
-    """Give every h2 and h3 in the main content an id, outside figures and dynamic panels, and
+    """Give every h2 and h3 in the main content an id, outside figures, scripts and cards, and
     return the "On this page" entries. Adding an id never changes the text."""
     taken = set(re.findall(r'\bid="([^"]+)"', main_html))
     items: list[tuple[str, str, int]] = []
@@ -322,7 +322,7 @@ def _headings(main_html: str) -> tuple[str, list[tuple[str, str, int]]]:
         return f"<h{level}{attrs}>{inner}</h{level}>"
 
     # headings inside a figure (diagram titles) or a route card are not page sections
-    protected = re.compile(r"(<figure\b.*?</figure>|<nav class=\"routes\".*?</nav>|<a class=\"card\".*?</a>)", re.S)
+    protected = re.compile(r"(<figure\b.*?</figure>|<script\b.*?</script>|<nav class=\"routes\".*?</nav>|<a class=\"card\".*?</a>)", re.S)
     parts = protected.split(main_html)
     for i in range(0, len(parts), 2):
         parts[i] = re.sub(r"<section\b[^>]*>|<h([23])(\b[^>]*)>(.*?)</h\1>", one, parts[i], flags=re.S)
@@ -563,7 +563,7 @@ def render_glossary() -> str:
     page += "<body>" + nav("glossary")
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Terminology</div><h1>Terminology and sources</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="glossary.html">Reference</a> <span aria-hidden="true">/</span> <span aria-current="page">Terminology</span></nav><h1>Terminology and sources</h1>
 <p class="lede">The map reuses vocabulary that Birgitta Böckeler set out in <a href="https://martinfowler.com/articles/harness-engineering.html" rel="noopener">Harness engineering for coding agent users</a> on martinfowler.com, adds a few working names of its own, and leans on ordinary engineering words for the rest. This page says which is which, so a reader moving between the two vocabularies can translate.</p>
 <div class="filterbar" id="term-filter"><button class="chipbtn on" data-attr="all">All ({len(GLOSSARY)})</button>{''.join(f'<button class="chipbtn" data-attr="{k}">{ATTR_LABEL[k]} ({len(v)})</button>' for k, v in groups.items())}</div>
 </div></div>
@@ -615,7 +615,7 @@ def render_references() -> str:
     page += "<body>" + nav("references")
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> References</div><h1>References</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="glossary.html">Reference</a> <span aria-hidden="true">/</span> <span aria-current="page">References</span></nav><h1>References</h1>
 <p class="lede">Every source in one place. Each glossary term that is adopted or adapted names one of these, and each downloadable diagram lists the sources it draws on.</p></div></div>
 <div class="section-inner narrow"><section class="refs">{items}</section></div>
 </main>
@@ -639,7 +639,7 @@ def render_catalog() -> str:
     page += "<body>" + nav("workflows")
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Workflow catalog</div><h1>SDLC workflow catalog</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="workflow-catalog.html">Workflows</a> <span aria-hidden="true">/</span> <span aria-current="page">Workflow catalog</span></nav><h1>SDLC workflow catalog</h1>
 <p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition in the <a href="glossary.html#workflow">terminology</a>: it supports one delivery decision end to end, with a trigger, inputs, an agent task, automated checks, guardrails, a human decision, outputs, feedback and an owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
 <div class="stats small"><div><b>{len(data['workflows'])}</b><span>workflows</span></div><div><b>{len(data['phases'])}</b><span>phases</span></div><div><b>{counts.get('Floor',0)}</b><span>floor</span></div><div><b>{counts.get('First',0)}</b><span>first</span></div><div><b>{counts.get('Later',0)}</b><span>later</span></div><div><b>{len(data['traditional_map'])}</b><span>traditional activities mapped</span></div></div>
 </div></div>

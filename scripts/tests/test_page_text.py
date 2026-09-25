@@ -30,9 +30,18 @@ class PageText(unittest.TestCase):
                 self.assertEqual(actual[name], expected[name], f"{name}: main-content text changed")
 
     def test_chrome_is_excluded_and_content_is_kept(self):
-        html = ('<main><div class="crumbs">Home / X</div><nav data-chrome="toc">On this page</nav>'
+        html = ('<main><div class="crumbs">Home / X</div><nav data-chrome="pagenav">Previous Next</nav>'
                 '<h1>Title</h1><p>Body <b>text</b>.</p><script>x()</script><nav class="routes"><h3>Route</h3></nav></main>')
         self.assertEqual(page_text.main_text(html), "Title Body text . Route")
+
+    def test_data_drawn_by_javascript_and_text_alternatives_count(self):
+        html = ('<main><img alt="A diagram"><script type="application/json">{"w": [{"name": "Intake"}], "n": 3}</script>'
+                '<button aria-label="Close">×</button></main>')
+        self.assertEqual(page_text.main_text(html), "A diagram Intake Close ×")
+
+    def test_only_known_chrome_may_be_excluded(self):
+        with self.assertRaises(ValueError):
+            page_text.main_text('<main><div data-chrome="anything">Hidden text</div></main>')
 
 
 if __name__ == "__main__":

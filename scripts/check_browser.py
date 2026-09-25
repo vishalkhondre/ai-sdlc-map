@@ -41,15 +41,27 @@ def accessibility(browser, base):
                 assert not found, (scheme, width, name, [(v["id"], [n["target"] for n in v["nodes"][:3]]) for v in found])
             page.close()
 
+    import json
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import page_text
     page = browser.new_page(viewport={"width": 1440, "height": 900})
+    expected = json.loads(page_text.RENDERED.read_text(encoding="utf-8"))["workflow-catalog.html"]
+    assert page_text.catalog_rendered(page, base) == expected, "the catalog's rendered text changed"
+    for name in PAGES:
+        page.goto(f"{base}/{name}")
+        for nav in page.locator("nav").all():
+            assert nav.get_attribute("aria-label"), f"{name}: every nav landmark is labelled"
+        assert page.locator("main").count() == 1, name
+        page.keyboard.press("Tab")
+        page.keyboard.press("Tab")
+        style = page.evaluate("(() => { const s = getComputedStyle(document.activeElement); return [s.outlineStyle, s.outlineWidth]; })()")
+        assert style[0] != "none" and style[1] not in ("0px", ""), (name, "focus is visible", style)
     page.goto(base + "/glossary.html")
     page.keyboard.press("Tab")
     assert page.evaluate("document.activeElement.className") == "skip", "the skip link is the first stop"
     page.keyboard.press("Enter")
     assert page.evaluate("document.activeElement.id") == "content"
-    for nav in page.locator("nav").all():
-        assert nav.get_attribute("aria-label"), "every nav landmark is labelled"
-    assert page.locator("main").count() == 1
     assert page.locator('.tabs a[aria-current="true"]').inner_text() == "Reference"
     assert page.locator('.sidenav a[aria-current="page"]').inner_text() == "Terminology"
     assert page.locator(".onpage a").count() > 10
@@ -57,21 +69,19 @@ def accessibility(browser, base):
         assert page.locator(href).count() == 1, href
     assert page.locator(".pagenav-prev").get_attribute("href") == "workflow-catalog.html"
     assert page.locator(".pagenav-next").get_attribute("href") == "references.html"
-    link = page.locator(".sidenav a").first
-    link.focus()
-    page.keyboard.press("Shift+Tab")
-    page.keyboard.press("Tab")
-    assert page.evaluate("getComputedStyle(document.activeElement).outlineStyle") != "none", "focus is visible"
     page.close()
 
     page = browser.new_page(viewport={"width": 390, "height": 800})
     page.goto(base + "/references.html")
-    assert page.locator(".onpage").count() == 0 or not page.locator(".onpage").is_visible()
+    assert page.locator(".onpage").count() == 1 and not page.locator(".onpage").is_visible(), "On this page is hidden on phones"
     assert not page.locator("#sidenav").is_visible()
     page.click("#menu-toggle")
     page.locator("#sidenav").wait_for(state="visible")
     assert page.get_attribute("#menu-toggle", "aria-expanded") == "true"
     assert page.evaluate("document.getElementById('sidenav').contains(document.activeElement)")
+    for _ in range(12):  # focus stays in the drawer or the header, never behind the scrim
+        page.keyboard.press("Tab")
+        assert page.evaluate("document.activeElement === document.body || !!document.activeElement.closest('#sidenav, .topbar, .skip')"), "focus left the drawer"
     page.keyboard.press("Escape")
     page.wait_for_timeout(300)
     assert page.get_attribute("#menu-toggle", "aria-expanded") == "false"
