@@ -42,6 +42,7 @@ The narrative series *Beyond Faster Coding* is a separate, finished site in
 pip install -r scripts/requirements.txt
 python -m playwright install chromium
 python scripts/check_citations.py
+python scripts/check_pages.py
 python scripts/release_content.py check --base <base commit>
 python site/generate.py
 python scripts/render_diagrams.py

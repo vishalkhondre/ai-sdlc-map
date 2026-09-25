@@ -521,7 +521,7 @@ def render_references() -> str:
         items += f"""
 <article class="ref-entry" id="{k}">
 <h3><a href="{esc(r['url'])}" rel="noopener">{esc(r['title'])}</a></h3>
-<div class="muted">{esc(', '.join(x for x in [r.get('author'), r.get('org')] if x))}{(' · ' + esc(r['date'])) if r.get('date') else ''}</div>
+<div class="muted">{esc(', '.join(x for x in [r.get('author'), r.get('org')] if x))}{(' · ' + esc(r['date'])) if r.get('date') else ''}{(' · accessed ' + esc(r['accessed'])) if r.get('accessed') else ''}</div>
 <p>{esc(r.get('note', ''))}</p>
 <div class="term-foot">{('<span class="k">Cited in the series</span> ' + chs) if chs else ''} {('<span class="k">Terms</span> ' + terms) if terms else ''} {('<span class="k">Diagrams</span> ' + diags) if diags else ''}</div>
 </article>"""

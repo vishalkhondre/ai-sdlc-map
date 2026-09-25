@@ -1,0 +1,26 @@
+# Superseded terms (GR-2.1, GR-5.3). scripts/check_citations.py fails when one appears in
+# reader-visible content: everything under content/ except references.yml (source titles are
+# quoted as published), CHANGELOG.md and reviews/ (history).
+#
+# pattern: a case-insensitive regular expression; use: the current term; source: the
+# references.yml key that says so; why: one line on what changed.
+
+- pattern: '\bprogram increments?\b'
+  use: "Planning Interval (PI)"
+  source: safe-framework
+  why: "SAFe 6.0 renamed the Program Increment to the Planning Interval; PI planning keeps its abbreviation."
+
+- pattern: '\bfour keys\b|\bfour (?:DORA )?key metrics\b|\bfour DORA (?:keys|metrics)\b'
+  use: "DORA's software delivery performance metrics (five metrics, in throughput and instability groups)"
+  source: dora-metrics
+  why: "DORA's model moved from four key metrics to five, grouped as throughput and instability."
+
+- pattern: '\btime to restore service\b|\bmean time to (?:restore|recover|recovery)\b'
+  use: "failed deployment recovery time"
+  source: dora-metrics
+  why: "DORA replaced time to restore service (mean time to recover) with failed deployment recovery time."
+
+- pattern: '\bchange failure rate\b'
+  use: "change fail rate"
+  source: dora-metrics
+  why: "DORA's current metric name is change fail rate."

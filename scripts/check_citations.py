@@ -20,6 +20,9 @@ Fails (exit 1) when:
      references.yml (keys listed there count as cited, so a reference used only by a diagram is not dead)
   9. a diagram that no chapter embeds uses an adopted or adapted glossary term without a credit line
      naming that term's source: a downloaded diagram has no chapter notes to carry the credit (GR-2.2)
+ 11. a reference in references.yml has no `accessed` date (YYYY-MM-DD, not in the future), or lacks a
+     title, a URL, or an author or organisation (GR-2.5)
+ 12. reader-visible content uses a superseded term listed in scripts/outdated_terms.yml (GR-2.1, GR-5.3)
 
 Run:  python scripts/check_citations.py
 """
@@ -27,6 +30,7 @@ from __future__ import annotations
 
 import re
 import sys
+from datetime import date, datetime, timezone
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -113,6 +117,50 @@ def check_denylist() -> list[str]:
     return problems
 
 
+def check_reference_fields(refs: dict, today: date | None = None) -> list[str]:
+    """GR-2.5: every reference records a title, a URL and the date it was accessed."""
+    today = today or datetime.now(timezone.utc).date()
+    problems = []
+    for key, r in refs.items():
+        for field in ("title", "url"):
+            if not r.get(field):
+                problems.append(f"references.yml: '{key}' has no {field} (GR-2.5)")
+        if not (r.get("author") or r.get("org")):
+            problems.append(f"references.yml: '{key}' has no author or organisation (GR-2.5)")
+        accessed = str(r.get("accessed") or "")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", accessed):
+            problems.append(f"references.yml: '{key}' has no accessed date as YYYY-MM-DD (GR-2.5)")
+            continue
+        try:
+            when = date.fromisoformat(accessed)
+        except ValueError:
+            problems.append(f"references.yml: '{key}' accessed date {accessed} is not a real date (GR-2.5)")
+            continue
+        if when > today:
+            problems.append(f"references.yml: '{key}' accessed date {accessed} is in the future (GR-2.5)")
+    return problems
+
+
+OUTDATED_EXEMPT = {"references.yml", "CHANGELOG.md"}
+
+
+def check_outdated_terms(content: Path = CONTENT, terms_file: Path = ROOT / "scripts" / "outdated_terms.yml") -> list[str]:
+    """GR-5.3: a superseded term found in review once becomes a check."""
+    terms = yaml.safe_load(terms_file.read_text(encoding="utf-8")) or []
+    problems = []
+    for path in sorted(content.rglob("*")):
+        rel = path.relative_to(content)
+        if (not path.is_file() or rel.parts[0] == "reviews" or path.name in OUTDATED_EXEMPT
+                or "__pycache__" in rel.parts or path.suffix not in (".md", ".yml", ".yaml", ".svg", ".py", ".txt")):
+            continue
+        text = path.read_text(encoding="utf-8")
+        for term in terms:
+            for m in re.finditer(term["pattern"], text, flags=re.I):
+                line = text.count("\n", 0, m.start()) + 1
+                problems.append(f"content/{rel.as_posix()}:{line}: '{m.group(0)}' is superseded; use {term['use']} ({term['why']})")
+    return problems
+
+
 def main() -> int:
     toc = yaml.safe_load((CONTENT / "toc.yml").read_text(encoding="utf-8"))
     glossary = yaml.safe_load((CONTENT / "glossary.yml").read_text(encoding="utf-8"))
@@ -166,6 +214,12 @@ def main() -> int:
         embedded |= set(re.findall(r"\]\(diagram:([a-z0-9\-]+)\)", (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")))
     diagram_problems, cited_by_diagrams = check_diagrams(refs, glossary, embedded)
     problems += check_denylist()
+    problems += check_reference_fields(refs)
+    problems += check_outdated_terms()
+    terms = yaml.safe_load((ROOT / "scripts" / "outdated_terms.yml").read_text(encoding="utf-8")) or []
+    for term in terms:
+        if term.get("source") not in refs:
+            problems.append(f"outdated_terms.yml: '{term['use']}' names source '{term.get('source')}', which is not in references.yml")
     problems += diagram_problems
     used_refs |= cited_by_diagrams
     for g in glossary:

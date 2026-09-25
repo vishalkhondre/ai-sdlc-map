@@ -164,7 +164,7 @@
   definition: >-
     A check that runs on the output and can stop it: the quality command before a push, required checks
     on a pull request, policy rules at release. Different from an instruction because it refuses rather
-    than asks. Architecture gates are what Ford, Parsons and Kua call fitness functions.
+    than asks. Architecture gates are what evolutionary-architecture practice calls fitness functions.
   match: ["deterministic gate", "deterministic gates"]
   chapters: [part-1, part-3]
 

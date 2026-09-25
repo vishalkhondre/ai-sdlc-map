@@ -2,6 +2,7 @@
 
 Read README.md and .github/instructions/content-style.instructions.md before edits.
 content/ is the authored source; site/*.html, diagram exports and downloads are generated.
+The research, writing and review roles are in .claude/agents and .claude/skills (project/AGENTS.md).
 Use update-content.prompt.md for scoped research, authoring, verification and review;
 use release-content.prompt.md to prepare already reviewed content for a PR.
 Agents only claim checks for which the caller supplied actual execution evidence.

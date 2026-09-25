@@ -1,8 +1,9 @@
 # Agents and skills
 
 Agents are Claude Code sub-agents in `.claude/agents/`; each has a matching skill in
-`.claude/skills/` holding its template, checklist and examples (created in wave 0). Every agent
-reads `CLAUDE.md` and `project/GROUND-RULES.md` before working.
+`.claude/skills/<agent>/SKILL.md` holding its checklist, templates and output format. The skill
+`section-pipeline` runs a whole section through them (D-014). Every agent reads `CLAUDE.md`,
+`project/GROUND-RULES.md` and this file before working.
 
 Claude Code agents are used because the source library is reachable only through the Google
 Drive connector in Claude sessions (see `DECISIONS.md`, D-004).
@@ -11,15 +12,22 @@ Drive connector in Claude sessions (see `DECISIONS.md`, D-004).
 
 | Agent | Job | Reads | Writes |
 |---|---|---|---|
-| `architect` | Owns the map, the page inventory and section plans; opens page briefs | Map, `STATUS.md`, inventory | `briefs/<page>.md`, inventory, section plan |
+| `architect` | Owns the map, the page inventory and section plans; opens page briefs | Map, `STATUS.md`, `COVERAGE.md` | Section plan (`project/plans/`); page briefs and the source inventory in the session scratchpad only |
 | `source-researcher` | Reads the private library for a brief; extracts practice; de-identifies | Brief, Drive library | Practice brief **outside the repo** (session scratch only) |
-| `external-researcher` | Finds and verifies public sources for every claim | Brief, web | `content/references.yml` entries, evidence notes in the brief |
+| `external-researcher` | Finds and verifies public sources for every claim | Brief, web | Evidence brief with drafted reference entries (the author adds them to `content/references.yml`) |
 | `author` | Writes the page to its template in the site voice | Brief, both research outputs, template | `content/pages/<band>/<page>.md` |
 | `diagrammer` | Diagrams as code in the house palette; text alternatives | Page | `content/diagrams/...` |
 | `confidentiality-reviewer` | GR-1 and GR-3.3; can BLOCK | Page, diagrams | Verdict in the review record |
 | `accuracy-reviewer` | GR-2: every claim sourced, sources say what is claimed | Page, references | Verdict in the review record |
 | `editorial-reviewer` | GR-3, GR-4: voice, completeness, standalone, consistency with map and other pages | Page, template, related pages | Verdict in the review record |
 | `site-builder` | Wires pages into map and navigation; runs checks and build; opens the PR | Everything | Site code, PR |
+
+## Orchestration
+
+The main session runs the pipeline (`.claude/skills/section-pipeline`). It starts each agent,
+carries each output to the next step, and starts the three reviewers in fresh contexts. Agents do
+not start other agents; where an agent file says "return", the output goes back to the main
+session.
 
 ## Independence
 
@@ -29,7 +37,11 @@ judges the page as a public reader would.
 
 ## Review record
 
-One file per page in `reviews/<page-id>.yml`:
+Today one record covers a section: `content/reviews/<edition>-<section>.md` holds each
+reviewer's report for every round and one final `Verdict: ACCEPT`, and
+`scripts/release_content.py record-review` binds it to the exact sources, so CI fails if any
+page changes after review. The planned per-page record, one file per page in
+`reviews/<page-id>.yml`, is:
 
 ```yaml
 page: <page-id>
@@ -52,8 +64,10 @@ section: <band or adoption>   # the author's approval is the section's release t
 CI fails if a published page has no record, if any verdict is not ACCEPT, or if `page_hash`
 does not match the current page (the page changed after review).
 
-## Existing assets to fold in
+## Folded-in assets
 
-- `.github/agents/citation-reviewer.agent.md` → merged into `accuracy-reviewer`.
-- `.github/instructions/content-style.instructions.md` → merged into the editorial skill and
-  referenced from `GROUND-RULES.md`.
+- `.github/agents/citation-reviewer.agent.md`, `content-author.agent.md` and
+  `content-researcher.agent.md` were folded into `accuracy-reviewer`, `author` and
+  `external-researcher` and removed.
+- `.github/instructions/content-style.instructions.md` stays as the style source for editors and
+  Copilot; the `author` and `editorial-reviewer` skills apply it in full.
