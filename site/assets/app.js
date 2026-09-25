@@ -264,11 +264,13 @@
     }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, 12);
     // index text is plain text: escape it, then mark the matches (terms are escaped the same way)
     const escHtml = str => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    const marks = new RegExp('(' + terms.map(t => escHtml(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+    // split on the raw terms, then escape each piece, so a term never matches inside an entity
+    const marks = new RegExp('(' + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+    const mark = str => String(str).split(marks).map((part, k) => k % 2 ? `<mark>${escHtml(part)}</mark>` : escHtml(part)).join('');
     sRes.innerHTML = scored.map(([, it]) => {
       const b = (it.b || ''); const i = b.toLowerCase().indexOf(terms[0]);
       const snip = i >= 0 ? b.slice(Math.max(0, i - 60), i + 90) : it.s;
-      const hl = escHtml(snip).replace(marks, '<mark>$1</mark>');
+      const hl = mark(snip);
       return `<a href="${escHtml(/^https?:/.test(it.u) ? it.u : base + it.u)}"><span class="rk">${escHtml(it.k)}</span>${escHtml(it.t)}<span class="rs">…${hl}…</span></a>`;
     }).join('') || '<div class="search-hint">Nothing found.</div>';
   });

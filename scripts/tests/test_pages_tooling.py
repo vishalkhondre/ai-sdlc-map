@@ -82,6 +82,10 @@ class GateReadsPages(unittest.TestCase):
         self.assertEqual(result, 1)
         self.assertIn("uses 'Feedback path'", out)
 
+    def test_a_link_target_is_not_a_use_of_a_term(self):
+        result, out = self.run_gate("harness", "The model.[^bockeler-harness] See [the checks](validators.html) and [the entry](glossary.html#validator).")
+        self.assertEqual(result, 0, out)
+
     def test_keep_out_names_in_the_title_and_product_names_anywhere_fail(self):
         result, out = self.run_gate("harness", "The model.[^bockeler-harness] Built on GitHub Actions.",
                                     title="Harness engineering with Copilot")

@@ -231,6 +231,7 @@ def main() -> int:
         chapters.append({"id": pid, "text": m.group(2) if m else "", "labels": labels, "page": True})
         page_terms[pid] = list(meta.get("key_terms") or [])
         prose = strip_code(re.sub(r"^\[\^.*$", "", m.group(2) if m else "", flags=re.M)) + "\n" + labels
+        prose = re.sub(r"\]\([^)]*\)", "]", prose)  # link targets are not prose; link text is
         for g in glossary:
             if g.get("attribution") in ("adopted", "adapted") and g["id"] not in page_terms[pid]:
                 if any(re.search(rf"(?<![\w-]){re.escape(name)}(?![\w-])", prose, flags=re.I)
