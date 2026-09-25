@@ -91,7 +91,10 @@ def svg_source(diagram_id: str, instance: str, markup: str | None = None) -> tup
                  lambda m: m.group(1) + '#' + id_map.get(m.group(2), m.group(2)) + m.group(3), svg)
     # scope the style rules to this svg only
     svg = re.sub(r"<style>(.*?)</style>", lambda mm: "<style>" + scope_css(mm.group(1), instance) + "</style>", svg, flags=re.S)
-    svg = svg.replace("<svg ", f'<svg id="svg-{instance}" role="img" aria-labelledby="cap-{instance}" ', 1)
+    # A diagram with links is a group, not an image: children of role="img" are presentational,
+    # which can hide the links from assistive technology.
+    role = "group" if "<a " in svg else "img"
+    svg = svg.replace("<svg ", f'<svg id="svg-{instance}" role="{role}" aria-labelledby="cap-{instance}" ', 1)
     return svg, w, h
 
 
