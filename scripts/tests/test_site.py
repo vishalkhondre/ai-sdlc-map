@@ -42,6 +42,24 @@ class Generated(unittest.TestCase):
             for pat in gate.DISCONNECTED:
                 self.assertIsNone(pat.search(text), f"{page.name} links to or names the series (D-019)")
 
+    def test_documentation_layout(self):
+        """D-020: header tabs, left navigation, content, On this page, previous and next."""
+        for name in ("workflow-catalog.html", "glossary.html", "references.html"):
+            source = (SITE / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertEqual(source.count('<main id="content"'), 1)
+                self.assertIn('class="skip" href="#content"', source)
+                self.assertIn('aria-label="Sections"', source)
+                self.assertIn('aria-label="Pages in this section"', source)
+                self.assertEqual(source.count('aria-current="page"'), 1)
+                self.assertIn('aria-label="Previous and next page"', source)
+                for target in re.findall(r'<nav class="onpage".*?</nav>', source, re.S)[:1]:
+                    for hid in re.findall(r'href="#([^"]+)"', target):
+                        self.assertEqual(source.count(f'id="{hid}"'), 1, hid)
+        home = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertIn('aria-label="Choose a section"', home)
+        self.assertNotIn('class="onpage"', home)
+
     def test_internal_links_resolve(self):
         pages = list(SITE.glob("*.html"))
         ids_by_page = {p.name: set(re.findall(r'id="([^"]+)"', p.read_text(encoding="utf-8"))) for p in pages}

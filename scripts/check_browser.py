@@ -22,6 +22,69 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+PAGES = ["index.html", "workflow-catalog.html", "glossary.html", "references.html", "404.html"]
+AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"]
+
+
+def accessibility(browser, base):
+    """D-020: axe on every page in both themes and at desktop and phone widths, plus the layout's
+    own promises: skip link, labelled landmarks, aria-current, drawer, visible focus, reduced motion."""
+    from axe_playwright_python.sync_playwright import Axe
+    axe = Axe()
+    for scheme in ("light", "dark"):
+        for width in (1440, 390):
+            page = browser.new_page(color_scheme=scheme, viewport={"width": width, "height": 900})
+            for name in PAGES:
+                page.goto(f"{base}/{name}")
+                page.wait_for_timeout(150)
+                found = axe.run(page, options={"runOnly": {"type": "tag", "values": AXE_TAGS}}).response["violations"]
+                assert not found, (scheme, width, name, [(v["id"], [n["target"] for n in v["nodes"][:3]]) for v in found])
+            page.close()
+
+    page = browser.new_page(viewport={"width": 1440, "height": 900})
+    page.goto(base + "/glossary.html")
+    page.keyboard.press("Tab")
+    assert page.evaluate("document.activeElement.className") == "skip", "the skip link is the first stop"
+    page.keyboard.press("Enter")
+    assert page.evaluate("document.activeElement.id") == "content"
+    for nav in page.locator("nav").all():
+        assert nav.get_attribute("aria-label"), "every nav landmark is labelled"
+    assert page.locator("main").count() == 1
+    assert page.locator('.tabs a[aria-current="true"]').inner_text() == "Reference"
+    assert page.locator('.sidenav a[aria-current="page"]').inner_text() == "Terminology"
+    assert page.locator(".onpage a").count() > 10
+    for href in page.locator(".onpage a").evaluate_all("els => els.map(a => a.getAttribute('href'))"):
+        assert page.locator(href).count() == 1, href
+    assert page.locator(".pagenav-prev").get_attribute("href") == "workflow-catalog.html"
+    assert page.locator(".pagenav-next").get_attribute("href") == "references.html"
+    link = page.locator(".sidenav a").first
+    link.focus()
+    page.keyboard.press("Shift+Tab")
+    page.keyboard.press("Tab")
+    assert page.evaluate("getComputedStyle(document.activeElement).outlineStyle") != "none", "focus is visible"
+    page.close()
+
+    page = browser.new_page(viewport={"width": 390, "height": 800})
+    page.goto(base + "/references.html")
+    assert page.locator(".onpage").count() == 0 or not page.locator(".onpage").is_visible()
+    assert not page.locator("#sidenav").is_visible()
+    page.click("#menu-toggle")
+    page.locator("#sidenav").wait_for(state="visible")
+    assert page.get_attribute("#menu-toggle", "aria-expanded") == "true"
+    assert page.evaluate("document.getElementById('sidenav').contains(document.activeElement)")
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
+    assert page.get_attribute("#menu-toggle", "aria-expanded") == "false"
+    assert page.evaluate("document.activeElement.id") == "menu-toggle"
+    page.close()
+
+    page = browser.new_page(reduced_motion="reduce")
+    page.goto(base + "/index.html")
+    assert page.evaluate("getComputedStyle(document.documentElement).scrollBehavior") == "auto"
+    assert page.locator("nav.choose a").count() == 3, "the home page offers a section chooser"
+    page.close()
+
+
 def main():
     handler = functools.partial(QuietHandler, directory=str(ROOT / "site"))
     with http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler) as server:
@@ -85,10 +148,11 @@ def main():
                 definition.wait_for(state="visible")
                 assert definition.get_attribute("href") == "glossary.html#workflow"
                 assert not errors, errors
+                accessibility(browser, base)
                 browser.close()
         finally:
             server.shutdown()
-    print("Browser checks passed: home map, lightbox, map links and routes, search into the terminology, catalog views and detail link.")
+    print("Browser checks passed: home map, lightbox, map links and routes, search into the terminology, catalog views and detail link, accessibility (axe, skip link, landmarks, drawer, focus, reduced motion).")
 
 
 if __name__ == "__main__":
