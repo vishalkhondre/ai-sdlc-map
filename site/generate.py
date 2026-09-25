@@ -251,27 +251,148 @@ def head(title: str, description: str, path: str, og_image: str = "og-image.png"
 """
 
 
-def nav(current: str = "") -> str:
-    def item(href: str, label: str, key: str) -> str:
-        cls = ' class="on"' if key == current else ""
-        return f'<a href="{rel(href)}"{cls}>{label}</a>'
+# --------------------------------------------------------------------------- layout (D-020)
+# Sections of the site: header tabs, and the left navigation's page list. Pages are in reading
+# order; previous and next follow SECTIONS from top to bottom.
+SECTIONS = [
+    ("map", "Map", [("index.html", "The map and the adoption path")]),
+    ("workflows", "Workflows", [("workflow-catalog.html", "Workflow catalog")]),
+    ("reference", "Reference", [("glossary.html", "Terminology"), ("references.html", "References")]),
+]
+PAGE_ORDER = [(href, label, key) for key, _, pages in SECTIONS for href, label in pages]
+NAV_KEY = {"home": "index.html", "workflows": "workflow-catalog.html", "glossary": "glossary.html", "references": "references.html"}
 
-    return f"""<header class="topbar">
+
+def section_of(page: str) -> tuple[str, str, list] | None:
+    return next((sec for sec in SECTIONS if any(href == page for href, _ in sec[2])), None)
+
+
+def nav(current: str = "") -> str:
+    """The sticky header: brand, section tabs, search, theme and the drawer button."""
+    page = NAV_KEY.get(current, "")
+    here = section_of(page)
+    tabs = "".join(
+        f'<a href="{rel(pages[0][0])}"' + (' aria-current="true" class="on"' if here and here[0] == key else "") + f">{esc(title)}</a>"
+        for key, title, pages in SECTIONS)
+    return f"""<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
 <div class="topbar-inner">
+<button class="iconbtn menu" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidenav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 <a class="brand" href="{rel('index.html')}"><span class="brand-mark" aria-hidden="true"></span><span>{esc(TITLE)}</span></a>
-<nav class="topnav" aria-label="Site">
-{item('index.html#map', 'Map', 'home')}
-{item('workflow-catalog.html', 'Workflow catalog', 'workflows')}
-{item('glossary.html', 'Terminology', 'glossary')}
-{item('references.html', 'References', 'references')}
-<button class="iconbtn" id="search-open" type="button" aria-label="Search (press /)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
-<button class="iconbtn" id="theme-toggle" type="button" aria-label="Toggle colour theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 12 3z"/></svg></button>
-<button class="iconbtn menu" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-</nav>
+<nav class="tabs" aria-label="Sections">{tabs}</nav>
+<div class="tools">
+<button class="iconbtn" id="search-open" type="button" aria-label="Search (press /)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+<button class="iconbtn" id="theme-toggle" type="button" aria-label="Toggle colour theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 12 3z"/></svg></button>
+</div>
 </div>
 <div class="progress" id="progress" aria-hidden="true"><span></span></div>
 </header>
 """
+
+
+def _slug(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", html.unescape(re.sub(r"<[^>]+>", "", text)).lower()).strip("-") or "section"
+
+
+def _headings(main_html: str) -> tuple[str, list[tuple[str, str, int]]]:
+    """Give every h2 and h3 in the main content an id, outside figures, scripts and cards, and
+    return the "On this page" entries. Adding an id never changes the text."""
+    taken = set(re.findall(r'\bid="([^"]+)"', main_html))
+    items: list[tuple[str, str, int]] = []
+    h2_open = [False]  # an h3 nests under an h2 only within the same <section>
+
+    def one(m: re.Match) -> str:
+        if m.group(0).startswith("<section"):
+            h2_open[0] = False
+            return m.group(0)
+        level, attrs, inner = int(m.group(1)), m.group(2), m.group(3)
+        found = re.search(r'\bid="([^"]+)"', attrs)
+        if found:
+            hid = found.group(1)
+        else:
+            base = hid = "h-" + _slug(inner)
+            n = 2
+            while hid in taken:
+                hid, n = f"{base}-{n}", n + 1
+            taken.add(hid)
+            attrs = f' id="{hid}"' + attrs
+        shown = level if level == 2 or h2_open[0] else 2
+        h2_open[0] = h2_open[0] or level == 2
+        items.append((hid, html.unescape(re.sub(r"<[^>]+>", "", inner)).strip(), shown))
+        return f"<h{level}{attrs}>{inner}</h{level}>"
+
+    # headings inside a figure (diagram titles) or a route card are not page sections
+    protected = re.compile(r"(<figure\b.*?</figure>|<script\b.*?</script>|<nav class=\"routes\".*?</nav>|<a class=\"card\".*?</a>)", re.S)
+    parts = protected.split(main_html)
+    for i in range(0, len(parts), 2):
+        parts[i] = re.sub(r"<section\b[^>]*>|<h([23])(\b[^>]*)>(.*?)</h\1>", one, parts[i], flags=re.S)
+    return "".join(parts), items
+
+
+def _sidenav(page: str) -> str:
+    here = section_of(page)
+    sections = "".join(
+        f'<li><a href="{rel(pages[0][0])}"' + (' aria-current="true"' if here and here[0] == key else "") + f">{esc(title)}</a></li>"
+        for key, title, pages in SECTIONS)
+    pages = ""
+    if here:
+        pages = f'<div class="sidenav-title">{esc(here[1])}</div><ul class="sidenav-pages">' + "".join(
+            f'<li><a href="{rel(href)}"' + (' aria-current="page"' if href == page else "") + f">{esc(label)}</a></li>"
+            for href, label in here[2]) + "</ul>"
+    always = "" if here else " always"  # a page in no section (404) shows the sections instead
+    return (f'<nav class="sidenav" id="sidenav" aria-label="Pages in this section">'
+            f'<div class="sidenav-sections{always}"><div class="sidenav-title">Sections</div><ul>{sections}</ul></div>{pages}</nav>')
+
+
+def _onpage(items: list[tuple[str, str, int]]) -> str:
+    if not items:
+        return ""
+    lis = "".join(f'<li class="lvl{lvl}"><a href="#{hid}">{esc(label)}</a></li>' for hid, label, lvl in items)
+    return f'<nav class="onpage" aria-label="On this page"><div class="onpage-title">On this page</div><ul>{lis}</ul></nav>'
+
+
+def _pagenav(page: str) -> str:
+    order = [href for href, _, _ in PAGE_ORDER]
+    if page not in order:
+        return ""
+    i = order.index(page)
+    cells = []
+    if i > 0:
+        href, label, _ = PAGE_ORDER[i - 1]
+        cells.append(f'<a class="pagenav-prev" href="{rel(href)}" rel="prev"><span class="k">Previous</span>{esc(label)}</a>')
+    else:
+        cells.append("<span></span>")
+    if i + 1 < len(order):
+        href, label, _ = PAGE_ORDER[i + 1]
+        cells.append(f'<a class="pagenav-next" href="{rel(href)}" rel="next"><span class="k">Next</span>{esc(label)}</a>')
+    return f'<nav class="pagenav" data-chrome="pagenav" aria-label="Previous and next page">{"".join(cells)}</nav>'
+
+
+def _choose_section() -> str:
+    cards = "".join(
+        f'<li><a href="{rel(pages[0][0] if key != "map" else "index.html#map")}"><b>{esc(title)}</b>'
+        f'<span>{esc(" · ".join(label for _, label in pages))}</span></a></li>'
+        for key, title, pages in SECTIONS)
+    return (f'<nav class="choose" data-chrome="choose" aria-label="Choose a section"><div class="section-inner">'
+            f'<h2 class="choose-title">Choose a section</h2><ul>{cards}</ul></div></nav>')
+
+
+def docs_page(page_html: str, page: str) -> str:
+    """Put a rendered page into the documentation layout (D-020): left navigation, content, and
+    "On this page"; the home page keeps the full-width map with a section chooser."""
+    m = re.search(r"<main>(.*)</main>", page_html, re.S)
+    if not m:
+        raise SystemExit(f"{page}: no <main> element")
+    inner, items = _headings(m.group(1))
+    home = page == "index.html"
+    if home:
+        body = (f'<div class="docs docs-home">{_sidenav(page)}'
+                f'<main id="content" tabindex="-1">{inner}{_choose_section()}</main></div>')
+    else:
+        right = _onpage(items)
+        body = (f'<div class="docs{" has-onpage" if right else ""}">{_sidenav(page)}'
+                f'<main id="content" tabindex="-1">{inner}{_pagenav(page)}</main>{right}</div>')
+    return page_html[:m.start()] + body + '<div class="scrim" id="scrim" hidden></div>' + page_html[m.end():]
 
 
 def footer() -> str:
@@ -442,7 +563,7 @@ def render_glossary() -> str:
     page += "<body>" + nav("glossary")
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Terminology</div><h1>Terminology and sources</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="glossary.html">Reference</a> <span aria-hidden="true">/</span> <span aria-current="page">Terminology</span></nav><h1>Terminology and sources</h1>
 <p class="lede">The map reuses vocabulary that Birgitta Böckeler set out in <a href="https://martinfowler.com/articles/harness-engineering.html" rel="noopener">Harness engineering for coding agent users</a> on martinfowler.com, adds a few working names of its own, and leans on ordinary engineering words for the rest. This page says which is which, so a reader moving between the two vocabularies can translate.</p>
 <div class="filterbar" id="term-filter"><button class="chipbtn on" data-attr="all">All ({len(GLOSSARY)})</button>{''.join(f'<button class="chipbtn" data-attr="{k}">{ATTR_LABEL[k]} ({len(v)})</button>' for k, v in groups.items())}</div>
 </div></div>
@@ -485,7 +606,7 @@ def render_references() -> str:
         terms = " ".join(f'<a class="chip" href="glossary.html#{g["id"]}">{esc(g["term"])}</a>' for g in GLOSSARY if k in ([g.get("source")] + list(g.get("also") or [])))
         items += f"""
 <article class="ref-entry" id="{k}">
-<h3><a href="{esc(r['url'])}" rel="noopener">{esc(r['title'])}</a></h3>
+<h2><a href="{esc(r['url'])}" rel="noopener">{esc(r['title'])}</a></h2>
 <div class="muted">{esc(', '.join(x for x in [r.get('author'), r.get('org')] if x))}{(' · ' + esc(r['date'])) if r.get('date') else ''}{(' · accessed ' + esc(r['accessed'])) if r.get('accessed') else ''}</div>
 <p>{esc(r.get('note', ''))}</p>
 <div class="term-foot">{('<span class="k">Terms</span> ' + terms) if terms else ''} {('<span class="k">Diagrams</span> ' + diags) if diags else ''}</div>
@@ -494,7 +615,7 @@ def render_references() -> str:
     page += "<body>" + nav("references")
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> References</div><h1>References</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="glossary.html">Reference</a> <span aria-hidden="true">/</span> <span aria-current="page">References</span></nav><h1>References</h1>
 <p class="lede">Every source in one place. Each glossary term that is adopted or adapted names one of these, and each downloadable diagram lists the sources it draws on.</p></div></div>
 <div class="section-inner narrow"><section class="refs">{items}</section></div>
 </main>
@@ -518,7 +639,7 @@ def render_catalog() -> str:
     page += "<body>" + nav("workflows")
     page += f"""
 <main>
-<div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Workflow catalog</div><h1>SDLC workflow catalog</h1>
+<div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="workflow-catalog.html">Workflows</a> <span aria-hidden="true">/</span> <span aria-current="page">Workflow catalog</span></nav><h1>SDLC workflow catalog</h1>
 <p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition in the <a href="glossary.html#workflow">terminology</a>: it supports one delivery decision end to end, with a trigger, inputs, an agent task, automated checks, guardrails, a human decision, outputs, feedback and an owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
 <div class="stats small"><div><b>{len(data['workflows'])}</b><span>workflows</span></div><div><b>{len(data['phases'])}</b><span>phases</span></div><div><b>{counts.get('Floor',0)}</b><span>floor</span></div><div><b>{counts.get('First',0)}</b><span>first</span></div><div><b>{counts.get('Later',0)}</b><span>later</span></div><div><b>{len(data['traditional_map'])}</b><span>traditional activities mapped</span></div></div>
 </div></div>
@@ -595,17 +716,17 @@ def write_discovery() -> None:
     # 404
     set_prefix("")
     page = head(f"Not found · {TITLE}", "Page not found.", "404.html") + "<body>" + nav("") + f'<main><div class="hero hero-plain"><div class="hero-inner"><h1>Not found</h1><p class="lede">That page is not part of this site. <a href="{SITE_URL}/">Start from the map</a>, or look a term up in the <a href="{SITE_URL}/glossary.html">terminology</a>.</p></div></div></main>' + glossary_json() + footer() + "</body></html>"
-    write(SITE / "404.html", page)
+    write(SITE / "404.html", docs_page(page, "404.html"))
     write(SITE / ".nojekyll", "")
 
 
 # --------------------------------------------------------------------------- main
 def main() -> None:
     ids = write_diagram_files()
-    write(SITE / "index.html", render_index())
-    write(SITE / "glossary.html", render_glossary())
-    write(SITE / "references.html", render_references())
-    write(SITE / "workflow-catalog.html", render_catalog())
+    write(SITE / "index.html", docs_page(render_index(), "index.html"))
+    write(SITE / "glossary.html", docs_page(render_glossary(), "glossary.html"))
+    write(SITE / "references.html", docs_page(render_references(), "references.html"))
+    write(SITE / "workflow-catalog.html", docs_page(render_catalog(), "workflow-catalog.html"))
     write_discovery()
     print(f"Generated 4 pages, {len(ids)} diagrams → {SITE}")
 

@@ -18,16 +18,29 @@
     root.dataset.theme = next; store.set('aisdlcmap-theme', next);
   });
 
-  /* ---------- mobile menu ---------- */
-  const menu = $('#menu-toggle'), topnav = $('.topnav');
-  if (menu && topnav) menu.addEventListener('click', () => {
-    const open = topnav.classList.toggle('open');
+  /* ---------- navigation drawer (small screens, D-020) ---------- */
+  const menu = $('#menu-toggle'), sidenav = $('#sidenav'), scrim = $('#scrim');
+  function setDrawer(open, returnFocus) {
+    if (!menu || !sidenav) return;
+    sidenav.classList.toggle('open', open);
+    if (scrim) scrim.hidden = !open;
+    // While the drawer is open, the page behind it cannot take focus (it sits under the scrim).
+    $$('main, .onpage, .footer').forEach(el => { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
     menu.setAttribute('aria-expanded', String(open));
-  });
+    menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    if (open) { const first = $('a', sidenav); if (first) first.focus(); }
+    else if (returnFocus) menu.focus();
+  }
+  if (menu && sidenav) {
+    menu.addEventListener('click', () => setDrawer(!sidenav.classList.contains('open'), true));
+    if (scrim) scrim.addEventListener('click', () => setDrawer(false, true));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && sidenav.classList.contains('open')) setDrawer(false, true); });
+    matchMedia('(min-width: 961px)').addEventListener('change', e => { if (e.matches) setDrawer(false, false); });
+  }
 
   /* ---------- reading progress + active TOC ---------- */
   const bar = $('#progress span'), article = $('#article');
-  const tocLinks = $$('.toc a');
+  const tocLinks = $$('.onpage a');
   const headings = tocLinks.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
   function onScroll() {
     if (bar && article) {

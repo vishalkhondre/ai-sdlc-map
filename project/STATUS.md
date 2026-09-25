@@ -8,7 +8,7 @@ Update at the end of every session (see `CLAUDE.md`).
   `vishalkhondre.github.io/ai-sdlc-map/`. It stands on its own: it does not link to or mention the
   earlier narrative series (D-019).
 - **Live: edition 1.3.0** (main deploys continuously): the site no longer links to or names the
-  earlier series (D-019). The site is The AI SDLC Map, with the
+  earlier series (D-019), and pages use the documentation layout (D-020). The site is The AI SDLC Map, with the
   subtitle "The AI-assisted software lifecycle, from spec to software factory, on one page." Home
   page: the clickable five-band map (18 linked labels in `content/diagrams/map/links.yml`), the
   purpose routing row and the adoption path; also the workflow catalog, terminology (with the AI
@@ -32,21 +32,18 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-1. Documentation layout (D-020), with the page-text snapshot test, accessibility checks in the
-   browser tests, and light and dark screenshots of the home page, a catalog page and the
-   glossary on the PR.
-2. Slate & Teal brand (D-021): tokens, fonts bundled, logo and wordmark, favicon, social preview
+1. Slate & Teal brand (D-021): tokens, fonts bundled, logo and wordmark, favicon, social preview
    image, a contrast test, and a confidentiality check that it resembles no employer's design
    system; then release v1.3.0 (the `"1.3"` entry in `release/sections.yml` exists) on the author's
    instruction.
-3. Keyed deny-list (D-023); the author adds the CI secret `DENYLIST_KEY`.
-4. Core section (D-018, `project/plans/core.md`), edition 1.4.0: tooling first (pages in
+2. Keyed deny-list (D-023); the author adds the CI secret `DENYLIST_KEY`.
+3. Core section (D-018, `project/plans/core.md`), edition 1.4.0: tooling first (pages in
    `check_citations.py` and `site/generate.py`), then the pages through `section-pipeline`;
    deploy when every agent reviewer accepts; the author reviews live; tag after approval.
-5. Re-check the references verified by search only, by a direct read, from a session whose
+4. Re-check the references verified by search only, by a direct read, from a session whose
    network reaches the source sites.
-6. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
-7. Wave 0 retrospective (APPROACH.md, Waves).
+5. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
+6. Wave 0 retrospective (APPROACH.md, Waves).
 
 ## For the author
 
