@@ -395,3 +395,20 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .parts-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
 .parts-list a:hover { color: var(--accent); }
 .parts-list .layer-k { display: inline; padding: 0; margin-right: 6px; }
+
+/* home: clickable map */
+.diagram.clickable a.maplink { cursor: pointer; text-decoration: none; }
+.diagram.clickable a.maplink text { text-decoration: none; }
+.diagram.clickable a.maplink text.maplabel { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.diagram.clickable a.maplink rect { transition: stroke-width .12s, filter .12s; }
+.diagram.clickable a.maplink:hover rect, .diagram.clickable a.maplink:focus-visible rect { stroke-width: 3; filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .18)); }
+.diagram.clickable a.maplink:focus { outline: none; }
+.diagram.clickable a.maplink:focus-visible rect { stroke: var(--accent); }
+
+/* home: start by purpose */
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 28px; }
+.route { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--bg-2); }
+.route h3 { margin: 0 0 6px; font-size: 18px; }
+.route p { margin: 0 0 10px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.route ul { list-style: none; margin: 0; padding: 0; }
+.route li { padding: 3px 0; font-size: 14.5px; }

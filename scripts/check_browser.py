@@ -61,6 +61,14 @@ def main():
                 assert result.get_attribute("href").startswith("https://vishalkhondre.github.io/ai-sdlc/")
                 page.keyboard.press("Escape")
 
+                assert page.locator("nav.routes .route").count() == 5
+                kit = page.get_by_role("link", name="Engineering Kit", exact=True)
+                assert kit.get_attribute("href") == "https://vishalkhondre.github.io/ai-sdlc/engineering-kit.html"
+                page.get_by_role("link", name="intake & triage", exact=True).click()
+                page.wait_for_url("**/workflow-catalog.html#W01")
+                page.locator("#wf-detail").wait_for(state="visible")
+                assert "W01" in page.locator("#wf-detail").inner_text()
+
                 page.goto(base + "/workflow-catalog.html")
                 for label, visible in [("Table", "wf-table"), ("Traditional map", "wf-trad"), ("Map", "wf-map")]:
                     page.get_by_role("tab", name=label, exact=True).click()
@@ -74,7 +82,7 @@ def main():
                 browser.close()
         finally:
             server.shutdown()
-    print("Browser checks passed: home map and lightbox, search into the series, catalog views and detail link.")
+    print("Browser checks passed: home map, lightbox, map links and routes, search into the series, catalog views and detail link.")
 
 
 if __name__ == "__main__":

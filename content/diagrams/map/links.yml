@@ -1,0 +1,32 @@
+# Where each label on the home-page map leads. A label not listed here stays a plain label
+# (GR-3.2): only destinations that exist are linked.
+#
+# Targets: a page or anchor of this site (relative), or `series:<part id>` for a part of the
+# series on its own site (see content/toc.yml). site/generate.py fails the build if a label
+# here does not appear on the map, or a target does not resolve.
+
+# Band 3 · core
+Harness engineering: "series:part-3"
+Engineering Kit: "series:part-4"
+Workflows: "workflow-catalog.html"
+Software factory: "series:part-6"
+
+# Band 2 · lifecycle: the workflow in each phase, in the workflow catalog
+intake & triage: "workflow-catalog.html#W01"
+spec readiness: "workflow-catalog.html#W04"
+design conformance: "workflow-catalog.html#W08"
+"pull-request verification  ·  security & performance checks by tier": "workflow-catalog.html#W23"
+deploy verification: "workflow-catalog.html#W26"
+release readiness: "workflow-catalog.html#W25"
+incident feedback: "workflow-catalog.html#W28"
+
+# Band 1 · context: flows that have a workflow of their own
+Spike / research: "workflow-catalog.html#W07"
+Dependency / CVE fix: "workflow-catalog.html#W15"
+
+# Adoption path
+0  Deterministic floor: "#adoption"
+1  One workflow: "#adoption"
+2  Second workflow + hand-off: "#adoption"
+3  Feedback path proven: "#adoption"
+4  Factory emerges: "#adoption"

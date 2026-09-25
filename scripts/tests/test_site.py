@@ -1,4 +1,6 @@
 """Build-time checks for the generated site. Run: python -m unittest discover -s scripts/tests -v"""
+import html
+import importlib.util
 import json
 import re
 import subprocess
@@ -60,6 +62,24 @@ class Generated(unittest.TestCase):
         figures = [el.get("data-diagram") for el in doc.iter() if el.tag == "figure"]
         self.assertEqual(figures, ["ai-sdlc-map", "ai-sdlc-adoption-path"])
         self.assertFalse([error for error in parser.errors if error[1] == "unexpected-start-tag-implies-end-tag"])
+
+    def test_every_link_label_is_on_the_map_and_linked_once(self):
+        spec = importlib.util.spec_from_file_location("build_map", CONTENT / "diagrams/map/build_map.py")
+        build_map = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(build_map)
+        links = yaml.safe_load((CONTENT / "diagrams/map/links.yml").read_text(encoding="utf-8"))
+        build_map.page_map({label: "#x" for label in links})
+        self.assertEqual(build_map.LINKED, set(links))
+        home = (SITE / "index.html").read_text(encoding="utf-8")
+        labels = re.findall(r'<a class="maplink" href="[^"]+" aria-label="([^"]+)"', home)
+        self.assertEqual(sorted(html.unescape(label) for label in labels), sorted(" ".join(label.split()) for label in links))
+        self.assertEqual(home.count('class="maplabel"'), len(links))
+
+    def test_routing_row_has_the_five_purposes(self):
+        home = (SITE / "index.html").read_text(encoding="utf-8")
+        routes = re.search(r'<nav class="routes"[^>]*>(.*?)</nav>', home, re.S).group(1)
+        self.assertEqual(re.findall(r"<h3>([^<]+)</h3>", routes),
+                         ["Understand", "Build the kit", "Run a workflow", "Lead adoption", "Look it up"])
 
     def test_diagram_ids_and_references_are_unique(self):
         for page in SITE.glob("*.html"):

@@ -6,28 +6,29 @@ Update at the end of every session (see `CLAUDE.md`).
 
 - **Repositories (D-010):** this repository, `vishalkhondre/ai-sdlc-map`, builds *AI SDLC on one
   page* at `vishalkhondre.github.io/ai-sdlc-map/`. The series *Beyond Faster Coding* stays in
-  `vishalkhondre/ai-sdlc`, finished and maintained only; its session history is in the log below.
-- **Seed (edition 1.0.0):** site engine, checks, CI, the map generator, glossary, references and
-  workflow catalog, seeded from `vishalkhondre/ai-sdlc` at `4a997c8` without the chapter text.
-  The home page shows the map and the adoption path as figures; the series parts are linked.
-- **Current wave:** 0 Foundations — Q1 settled (generic labels); diagram text gated (D-009);
-  confidentiality deny-list hashed and applied to all of `content/`, the built site and every
-  tracked file (D-012).
+  `vishalkhondre/ai-sdlc`, finished and maintained only (its `MAINTENANCE.md`); its home page
+  links here ("See the whole picture"), and its session history is in the log below.
+- **Live: edition 1.1.0.** Home page: the clickable five-band map (18 linked labels, listed in
+  `content/diagrams/map/links.yml`; the rest plain) with the purpose routing row, and the
+  adoption path. Also the workflow catalog, terminology and references. The series parts are
+  linked, not copied.
+- **Review record:** `content/reviews/1.1.0-clickable-map.md` (ACCEPT) is bound in
+  `content/release-review.json`, pointing to `1.0.0-seed-confirmation.md`, which points to the
+  series' 1.1.0 reviews (D-011).
+- **Current wave:** 0 Foundations — first item (clickable map) done; Q1 settled; diagram text
+  gated (D-009); hashed deny-list (D-012).
 
 ## Next (in order)
 
-1. Wave 0, first item: the clickable five-band map as the home page, with the purpose routing
-   row (Understand / Build the kit / Run a workflow / Lead adoption / Look it up). Boxes without
-   a page are plain labels (GR-3.2).
-2. In `vishalkhondre/ai-sdlc`: replace `project/` with `MAINTENANCE.md` pointing here, and add a
-   "See the whole picture" link on the series home page, through a reviewed PR.
-3. Author answers the open questions Q2–Q4 in `ASSUMPTIONS.md`.
-4. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, and whether to
-   rewrite history there. This repository already uses the hashed deny-list (D-012).
-5. Wave 0: page templates, `.claude/agents` and skills (folding in `.github/agents`), new checks
+1. Follow-up (tooling): links inside the map sit under `role="img"`, which can hide them from
+   screen readers; emit `role="group"` for diagrams with links, and add an automated check.
+2. Author answers the open questions Q2–Q4 in `ASSUMPTIONS.md`.
+3. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, and whether to
+   rewrite history there. This repository already uses one (D-012).
+4. Wave 0: page templates, `.claude/agents` and skills (folding in `.github/agents`), new checks
    (banned phrases, template structure, link check, review-record gate, GR-2.5 access dates,
    outdated terms).
-6. Wave 0: source inventory — every library document mapped to map boxes, gaps listed.
+5. Wave 0: source inventory — every library document mapped to map boxes, gaps listed.
 
 ## Wave 0 retrospective items
 
@@ -50,6 +51,16 @@ retrospective (GR-5.3).
   WSJF (Reinertsen via SAFe) and flow metrics; `role="img"` / `aria-labelledby` if diagrams are
   ever inlined; DORA metrics guide as a more specific link than the research page.
 
+- **Open review suggestions from this repository's 1.0.0 and 1.1.0 reviews:** "this series" in
+  glossary definitions and reference notes, and bare "Part 5 / Part 6" in two catalog notes, now
+  read on a different site; case-folded deny-list hashes; `app.js` header and theme key still
+  carry the series name; 404 page relative links at nested paths; "Dependency / CVE fix" could
+  also point to W29; "Migration · rollback" could link W16; caption and intro wording on the
+  map (S4, S5 of the 1.1.0 review).
+- **Deny-list lesson.** The seed first copied plain-text names from `ai-sdlc`; review caught it
+  and the seed commit was rebuilt. A commit that briefly held them was pushed to a branch and is
+  now unreferenced; GitHub may keep unreferenced objects for a time.
+
 ## Wave tracker
 
 | Wave | State | Pages planned | Pages published |
@@ -65,3 +76,4 @@ retrospective (GR-5.3).
 |---|---|---|---|
 | 1 | 2026-09-25 | *(in `ai-sdlc`)* Built and released 1.0.0; drew the five-band map and adoption path; reviewed the Hopsworks landing pattern; agreed the goal, ground rules and approach; wrote these project files | Two map commits and this commit need pushing; session could not push (repo not selected at start) |
 | 2 | 2026-09-25 | *(in `ai-sdlc`)* Pushed 1.0.0 to GitHub and applied the publishing-and-review-gates patch; removed the Jekyll workflow; merged the map bundle; released 1.1.0 after four citation reviews (REVISE ×3, ACCEPT) plus a confirmation review of the author's reference URLs; diagram text checks and credit lines added (D-009) | Branch `claude/hopeful-pasteur-7og55e` deleted after merge; retrospective items above |
+| 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from `ai-sdlc` at `4a997c8` without the chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; `ai-sdlc` handed over with `MAINTENANCE.md` and a whole-picture link (ACCEPT); clickable map and routing row released as 1.1.0 (ACCEPT) | Merged branches may still need deleting in GitHub (branch deletion is blocked from the session); next: the `role="group"` follow-up |

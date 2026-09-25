@@ -1,16 +1,12 @@
 {
   "verdict": "ACCEPT",
-  "source_sha256": "6b2faad576dcd6034131ebaa889ac7983cd8257889966559ffce5966b9695462",
-  "report": "content/reviews/1.0.0-seed-confirmation.md",
-  "report_sha256": "e1d6a89c3ee4cbb0419fa35a42c209bc421e44eb957cfbc6dbfcb794f2ee57ed",
+  "source_sha256": "ab10e425215bdda17ce84dc456c49d9ae9285fc67403a416bcd3a1e48b3c4cc7",
+  "report": "content/reviews/1.1.0-clickable-map.md",
+  "report_sha256": "33d8913f1007013a26a0a88198723452876f58301bd5183f5ca60f689391ecc4",
   "prior": [
     {
-      "report": "content/reviews/ai-sdlc-1.1.0-citation-review.md",
-      "report_sha256": "be19e089db5cd43aee6315f25322fd0d9368ea38e2e26749f662374b362849a6"
-    },
-    {
-      "report": "content/reviews/ai-sdlc-1.1.0-references-confirmation.md",
-      "report_sha256": "e19cb15f7de085b85d20ab28550b18a9de9f015334778b5ab825d4441ad07e74"
+      "report": "content/reviews/1.0.0-seed-confirmation.md",
+      "report_sha256": "e1d6a89c3ee4cbb0419fa35a42c209bc421e44eb957cfbc6dbfcb794f2ee57ed"
     }
   ]
 }

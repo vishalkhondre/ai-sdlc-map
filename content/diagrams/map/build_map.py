@@ -1,10 +1,14 @@
 """Generate the one-page AI SDLC map (five bands) and its adoption-path companion page.
 
     python content/diagrams/map/build_map.py      -> writes ../svg/ai-sdlc-map.svg and ../svg/ai-sdlc-adoption-path.svg
+
+The written SVGs have no links. site/generate.py calls page_map(links) for the home page, where
+each label listed in links.yml becomes a link; LINKED records which labels were used.
 """
 from __future__ import annotations
 
 import html
+import re
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parents[1] / "svg"
@@ -18,6 +22,8 @@ C = {  # stroke, fill, dark text
     "coral": ("#993C1D", "#FAECE7", "#4A1B0C"),
 }
 FONT = '"Liberation Sans","DejaVu Sans",Arial,sans-serif'
+LINKS: dict[str, str] = {}   # label -> href, set by page_map(links)
+LINKED: set[str] = set()     # labels that received a link in the last page_map call
 
 
 def esc(s: str) -> str:
@@ -57,9 +63,20 @@ def para(x, y, text, width, size=14, fill=INK, lh=None, weight=400):
     return s, y + len(wrap(text, width, size)) * lh
 
 
+def linked(label: str, markup: str) -> str:
+    """Wrap a box and its label in a link when links.yml lists the label; otherwise leave it plain."""
+    href = LINKS.get(label)
+    if not href:
+        return markup
+    LINKED.add(label)
+    # mark the label itself, so the page can underline it: a visible cue that does not rely on colour
+    markup = re.sub(rf'<text ([^>]*)>{re.escape(esc(label))}</text>', lambda m: f'<text class="maplabel" {m.group(1)}>{esc(label)}</text>', markup, count=1)
+    return f'<a class="maplink" href="{html.escape(href)}" aria-label="{html.escape(" ".join(label.split()))}">{markup}</a>'
+
+
 def chip(x, y, w, label, color, h=30, size=13):
     stroke, fill, dark = C[color]
-    return r(x, y, w, h, "#fff", stroke, 1.2, 8) + t(x + w / 2, y + h / 2 + size * 0.36, label, size, dark, 600, "middle")
+    return linked(label, r(x, y, w, h, "#fff", stroke, 1.2, 8) + t(x + w / 2, y + h / 2 + size * 0.36, label, size, dark, 600, "middle"))
 
 
 def svg_open(w: int, h: int, title: str, desc: str, refs: list[str]) -> str:
@@ -146,7 +163,10 @@ PATH_DESC = (
 
 
 # ============================================================================ page 1
-def page_map() -> str:
+def page_map(links: dict[str, str] | None = None) -> str:
+    LINKS.clear()
+    LINKS.update(links or {})
+    LINKED.clear()
     W, H = 1600, 1152
     s = [svg_open(W, H, "The AI SDLC on one page", MAP_DESC, ["aicpa-soc2", "dora-metrics"]),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
@@ -205,8 +225,8 @@ def page_map() -> str:
     for a, b, lab in wfs:
         x1, x2 = px[a], px[b] + pw
         bold = a == 3
-        s.append(r(x1, wy, x2 - x1, 22, C["purple"][1], C["purple"][0], 1.8 if bold else 1.1, 11))
-        s.append(t((x1 + x2) / 2, wy + 15.5, lab, 11.5, C["purple"][2], 700 if bold else 600, "middle"))
+        s.append(linked(lab, r(x1, wy, x2 - x1, 22, C["purple"][1], C["purple"][0], 1.8 if bold else 1.1, 11)
+                        + "\n" + t((x1 + x2) / 2, wy + 15.5, lab, 11.5, C["purple"][2], 700 if bold else 600, "middle")))
     # traceability spine
     sy = wy + 50
     s.append(f'<line x1="{px[0]}" y1="{sy}" x2="{px[8] + pw}" y2="{sy}" stroke="{C["teal"][0]}" stroke-width="2"/>')
@@ -229,10 +249,9 @@ def page_map() -> str:
     for i, (k, n, d, col, dash) in enumerate(core):
         x = 250 + i * (cw + gap)
         stroke, fill, dark = C[col]
-        s.append(r(x, y0, cw, h, fill if not dash else "#fff", stroke, 1.6, 12, dash))
-        s.append(t(x + 16, y0 + 24, k, 11.5, stroke, 700, spacing=0.6) + t(x + 16, y0 + 50, n, 20, dark, 700))
         p, _ = para(x + 16, y0 + 74, d, cw - 32, 13, MUTE, 17)
-        s.append(p)
+        s.append(linked(n, r(x, y0, cw, h, fill if not dash else "#fff", stroke, 1.6, 12, dash)
+                        + "\n" + t(x + 16, y0 + 24, k, 11.5, stroke, 700, spacing=0.6) + t(x + 16, y0 + 50, n, 20, dark, 700) + "\n" + p))
         if i < 3:
             s.append(f'<line x1="{x + cw + 3}" y1="{y0 + h / 2}" x2="{x + cw + gap - 4}" y2="{y0 + h / 2}" stroke="{FAINT}" stroke-width="1.6" marker-end="url(#a)"/>')
 
@@ -282,8 +301,8 @@ def page_map() -> str:
     sx = 250
     for i, st in enumerate(steps):
         w = 238
-        s.append(r(sx, fy, w, 38, C["purple"][1] if i else C["teal"][1], C["purple"][0] if i else C["teal"][0], 1.2, 19))
-        s.append(t(sx + w / 2, fy + 24, st, 13.5, C["purple"][2] if i else C["teal"][2], 700, "middle"))
+        s.append(linked(st, r(sx, fy, w, 38, C["purple"][1] if i else C["teal"][1], C["purple"][0] if i else C["teal"][0], 1.2, 19)
+                        + "\n" + t(sx + w / 2, fy + 24, st, 13.5, C["purple"][2] if i else C["teal"][2], 700, "middle")))
         if i < 4:
             s.append(f'<line x1="{sx + w + 3}" y1="{fy + 19}" x2="{sx + w + 22}" y2="{fy + 19}" stroke="{FAINT}" stroke-width="1.5" marker-end="url(#a)"/>')
         sx += w + 25
