@@ -4,12 +4,11 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Where things stand
 
-- **Repositories (D-010):** this repository, `vishalkhondre/ai-sdlc-map`, builds *The AI SDLC Map*
-  (D-013) at `vishalkhondre.github.io/ai-sdlc-map/`. The series *Beyond Faster Coding* stays in
-  `vishalkhondre/ai-sdlc`, finished and maintained only (its `MAINTENANCE.md`); its home page
-  links here ("See the whole picture", now naming The AI SDLC Map), and its session history is
-  in the log below.
-- **Live: edition 1.2.1** (main deploys continuously). The site is The AI SDLC Map, with the
+- **Repository (D-010, D-019):** `vishalkhondre/ai-sdlc-map` builds *The AI SDLC Map* (D-013) at
+  `vishalkhondre.github.io/ai-sdlc-map/`. It stands on its own: it does not link to or mention the
+  earlier narrative series (D-019).
+- **Live: edition 1.3.0** (main deploys continuously): the site no longer links to or names the
+  earlier series (D-019). The site is The AI SDLC Map, with the
   subtitle "The AI-assisted software lifecycle, from spec to software factory, on one page." Home
   page: the clickable five-band map (18 linked labels in `content/diagrams/map/links.yml`), the
   purpose routing row and the adoption path; also the workflow catalog, terminology (with the AI
@@ -33,22 +32,21 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-1. Disconnect from the series site and repository (D-019), as content edition 1.3.0.
-2. Documentation layout (D-020), with the page-text snapshot test, accessibility checks in the
+1. Documentation layout (D-020), with the page-text snapshot test, accessibility checks in the
    browser tests, and light and dark screenshots of the home page, a catalog page and the
    glossary on the PR.
-3. Slate & Teal brand (D-021): tokens, fonts bundled, logo and wordmark, favicon, social preview
+2. Slate & Teal brand (D-021): tokens, fonts bundled, logo and wordmark, favicon, social preview
    image, a contrast test, and a confidentiality check that it resembles no employer's design
-   system; add the `"1.3"` entry to `release/sections.yml`; then release v1.3.0 on the author's
+   system; then release v1.3.0 (the `"1.3"` entry in `release/sections.yml` exists) on the author's
    instruction.
-4. Keyed deny-list (D-023); the author adds the CI secret `DENYLIST_KEY`.
-5. Core section (D-018, `project/plans/core.md`), edition 1.4.0: tooling first (pages in
+3. Keyed deny-list (D-023); the author adds the CI secret `DENYLIST_KEY`.
+4. Core section (D-018, `project/plans/core.md`), edition 1.4.0: tooling first (pages in
    `check_citations.py` and `site/generate.py`), then the pages through `section-pipeline`;
    deploy when every agent reviewer accepts; the author reviews live; tag after approval.
-6. Re-check the references verified by search only, by a direct read, from a session whose
+5. Re-check the references verified by search only, by a direct read, from a session whose
    network reaches the source sites.
-7. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
-8. Wave 0 retrospective (APPROACH.md, Waves).
+6. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
+7. Wave 0 retrospective (APPROACH.md, Waves).
 
 ## For the author
 
@@ -67,8 +65,7 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Wave 0 retrospective items
 
-Raised during the series' 1.1.0 release in `vishalkhondre/ai-sdlc`; decide at the wave 0
-retrospective (GR-5.3).
+Raised during earlier releases; decide at the wave 0 retrospective (GR-5.3).
 
 - **Done in session 4:** the GR-2.5 access-date check and the outdated-terms list are in
   `check_citations.py`; reviewer checklists generated from the ground rules are in the reviewer
@@ -88,12 +85,11 @@ retrospective (GR-5.3).
   ever inlined; DORA metrics guide as a more specific link than the research page.
 
 - **Open review suggestions from this repository's 1.0.0 and 1.1.0 reviews:** "this series" in
-  glossary definitions and reference notes, and bare "Part 5 / Part 6" in two catalog notes, now
-  read on a different site; case-folded deny-list hashes (done, D-017); `app.js` header and theme key still
-  carry the series name; 404 page relative links at nested paths; "Dependency / CVE fix" could
+  glossary definitions and reference notes and bare part numbers in two catalog notes (done, D-019);
+  case-folded deny-list hashes (done, D-017); `app.js` header and theme key (done, D-019); 404 page relative links at nested paths; "Dependency / CVE fix" could
   also point to W29; "Migration · rollback" could link W16; caption and intro wording on the
   map (S4, S5 of the 1.1.0 review).
-- **Deny-list lesson.** The seed first copied plain-text names from `ai-sdlc`; review caught it
+- **Deny-list lesson.** The seed first copied plain-text names from its source; review caught it
   and the seed commit was rebuilt. A commit that briefly held them was pushed to a branch and is
   now unreferenced; GitHub may keep unreferenced objects for a time.
 
@@ -110,7 +106,7 @@ retrospective (GR-5.3).
 
 | # | Date | What happened | Handover |
 |---|---|---|---|
-| 1 | 2026-09-25 | *(in `ai-sdlc`)* Built and released 1.0.0; drew the five-band map and adoption path; reviewed the Hopsworks landing pattern; agreed the goal, ground rules and approach; wrote these project files | Two map commits and this commit need pushing; session could not push (repo not selected at start) |
-| 2 | 2026-09-25 | *(in `ai-sdlc`)* Pushed 1.0.0 to GitHub and applied the publishing-and-review-gates patch; removed the Jekyll workflow; merged the map bundle; released 1.1.0 after four citation reviews (REVISE ×3, ACCEPT) plus a confirmation review of the author's reference URLs; diagram text checks and credit lines added (D-009) | Branch `claude/hopeful-pasteur-7og55e` deleted after merge; retrospective items above |
-| 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from `ai-sdlc` at `4a997c8` without the chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; `ai-sdlc` handed over with `MAINTENANCE.md` and a whole-picture link (ACCEPT); clickable map and routing row released as 1.1.0 (ACCEPT) | `role="group"` follow-up merged (PR #4). Author: delete the merged branches `claude/seed-site`, `claude/fix-search-race`, `claude/clickable-map`, `claude/map-links-a11y` and `claude/status-session-3` in GitHub (branch deletion is blocked from the session) |
-| 4 | 2026-09-25 | Renamed the site The AI SDLC Map (D-013) and released edition 1.2.0 (PR #6; three reviewers ACCEPT after one editorial REVISE); renamed the whole-picture link in `ai-sdlc` (its PR #3); recorded D-014 to D-016 with ground rules v1.1 and the release workflow; read the source library for the inventory (kept outside the repository) | Wave 0 remainder (edition 1.2.1): access-date and outdated-terms checks, page templates and `check_pages.py`, nine agents and ten skills, deny-list D-017, `project/COVERAGE.md`; release workflow run by hand when tag pushes failed (PR #8); v1.2.0 released; 1.2.1 merged (PR #9); Core section plan proposed (`project/plans/core.md`). Step 2 (`ai-sdlc` deny-list) blocked by the permission classifier | See Next and For the author |
+| 1 | 2026-09-25 | *(in the earlier repository)* Built and released 1.0.0; drew the five-band map and adoption path; reviewed the Hopsworks landing pattern; agreed the goal, ground rules and approach; wrote these project files | Two map commits and this commit need pushing; session could not push (repo not selected at start) |
+| 2 | 2026-09-25 | *(in the earlier repository)* Pushed 1.0.0 to GitHub and applied the publishing-and-review-gates patch; removed the Jekyll workflow; merged the map bundle; released 1.1.0 after four citation reviews (REVISE ×3, ACCEPT) plus a confirmation review of the author's reference URLs; diagram text checks and credit lines added (D-009) | Branch deleted after merge; retrospective items above |
+| 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from the earlier repository without its chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; clickable map and routing row released as 1.1.0 (ACCEPT) | `role="group"` follow-up merged (PR #4). Author: delete the merged branches `claude/seed-site`, `claude/fix-search-race`, `claude/clickable-map`, `claude/map-links-a11y` and `claude/status-session-3` in GitHub (branch deletion is blocked from the session) |
+| 4 | 2026-09-25 | Renamed the site The AI SDLC Map (D-013) and released edition 1.2.0 (PR #6; three reviewers ACCEPT after one editorial REVISE); recorded D-014 to D-016 with ground rules v1.1 and the release workflow; read the source library for the inventory (kept outside the repository) | Wave 0 remainder (edition 1.2.1): access-date and outdated-terms checks, page templates and `check_pages.py`, nine agents and ten skills, deny-list D-017, `project/COVERAGE.md`; release workflow run by hand when tag pushes failed (PR #8); v1.2.0 released; 1.2.1 merged (PR #9); Core section plan proposed (`project/plans/core.md`). | See Next and For the author |

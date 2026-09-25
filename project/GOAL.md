@@ -15,10 +15,8 @@ where the one-page map is the front door and every part of it leads to a full re
    role on the map has its own complete page, written to a fixed template for its page type.
 3. **Routing by purpose.** Under the map, readers choose a path by intent: *Understand*,
    *Build the kit*, *Run a workflow*, *Lead adoption*, *Look it up*.
-4. **The series stays on its own site.** The seven-part "Beyond Faster Coding" series remains the
-   narrative introduction at `vishalkhondre.github.io/ai-sdlc/`, finished and maintained only.
-   This site links to its parts and never copies their text (D-010). The workflow catalog,
-   glossary and references live here and grow.
+4. **The site stands on its own.** It does not link to or mention the earlier narrative series
+   (D-019). The workflow catalog, glossary and references live here and grow.
 
 ## Who it is for
 
@@ -41,7 +39,7 @@ where the one-page map is the front door and every part of it leads to a full re
 
 - Anything describing a specific organisation's adoption, people, products or internal numbers.
 - Tool tutorials. Tools appear only as examples, or on pages specifically about a tool category.
-- Opinion pieces and news. The series and the reference pages are not a blog.
+- Opinion pieces and news. The reference pages are not a blog.
 
 ## Where it lives
 

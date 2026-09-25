@@ -1,7 +1,7 @@
 """Generate The AI SDLC Map site from content/.
 
 Source of truth:
-  content/toc.yml            site identity, and the series parts this site links to
+  content/toc.yml            site identity
   content/glossary.yml       terms, attribution, sources, auto-link phrases
   content/references.yml     canonical references
   content/workflows/catalog.yml   the SDLC workflow catalog
@@ -40,22 +40,9 @@ CHANGELOG = (CONTENT / "CHANGELOG.md").read_text(encoding="utf-8")
 
 SITE_URL = TOC["site_url"].rstrip("/")
 TITLE = TOC["title"]
-SERIES = TOC["series"]
-SERIES_URL = SERIES["url"].rstrip("/")
-PARTS = SERIES["parts"]
-PART_BY_ID = {c["id"]: c for c in PARTS}
 TODAY = date.today().isoformat()
 
 GLOSS_BY_ID = {g["id"]: g for g in GLOSSARY}
-
-
-def part_url(part: dict) -> str:
-    """Parts of the series live on the series site, not here."""
-    return f"{SERIES_URL}/{part['slug']}.html"
-
-
-def part_chip(part: dict) -> str:
-    return f'<a class="chip" href="{esc(part_url(part))}" rel="noopener">Part {part["number"]}</a>'
 
 
 def esc(s) -> str:
@@ -258,7 +245,7 @@ def head(title: str, description: str, path: str, og_image: str = "og-image.png"
 <meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{rel('favicon.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{rel('assets/style.css')}?v={VERSION}">
-<script>try{{const t=localStorage.getItem('bfc-theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>
+<script>try{{const t=localStorage.getItem('aisdlcmap-theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>
 {extra}
 </head>
 """
@@ -277,7 +264,6 @@ def nav(current: str = "") -> str:
 {item('workflow-catalog.html', 'Workflow catalog', 'workflows')}
 {item('glossary.html', 'Terminology', 'glossary')}
 {item('references.html', 'References', 'references')}
-<a href="{esc(SERIES_URL)}/" rel="noopener">Series</a>
 <button class="iconbtn" id="search-open" type="button" aria-label="Search (press /)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
 <button class="iconbtn" id="theme-toggle" type="button" aria-label="Toggle colour theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 12 3z"/></svg></button>
 <button class="iconbtn menu" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
@@ -293,21 +279,20 @@ def footer() -> str:
 <div class="footer-inner">
 <div>
 <div class="footer-title">{esc(TITLE)}</div>
-<div class="muted">By <a href="{esc(TOC['author_url'])}" rel="noopener">{esc(TOC['author'])}</a>, companion to the series <a href="{esc(SERIES_URL)}/" rel="noopener">{esc(SERIES['title'])}</a>. Edition {esc(VERSION)}. Prose <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; site tooling MIT.</div>
+<div class="muted">By <a href="{esc(TOC['author_url'])}" rel="noopener">{esc(TOC['author'])}</a>. Edition {esc(VERSION)}. Prose <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>; site tooling MIT.</div>
 </div>
 <div class="footer-links">
 <a href="{rel('index.html#map')}">Map</a>
 <a href="{rel('workflow-catalog.html')}">Workflow catalog</a>
 <a href="{rel('glossary.html')}">Terminology</a>
 <a href="{rel('references.html')}">References</a>
-<a href="{esc(SERIES_URL)}/" rel="noopener">Series</a>
 <a href="{esc(TOC['repo_url'])}" rel="noopener">Source</a>
 <a href="{rel('llms.txt')}">llms.txt</a>
 </div>
 </div>
 </footer>
 <div class="lightbox" id="lightbox" hidden><button class="lightbox-close" type="button" aria-label="Close">×</button><div class="lightbox-body"></div></div>
-<div class="search" id="search" hidden><div class="search-box"><input id="search-input" type="search" placeholder="Search terms and workflows…" autocomplete="off"><div id="search-results" class="search-results"></div><div class="search-hint">Type to search terms, workflows and the series parts. <kbd>Esc</kbd> closes.</div></div></div>
+<div class="search" id="search" hidden><div class="search-box"><input id="search-input" type="search" placeholder="Search terms and workflows…" autocomplete="off"><div id="search-results" class="search-results"></div><div class="search-hint">Type to search terms and workflows. <kbd>Esc</kbd> closes.</div></div></div>
 <div class="tip" id="tip" role="tooltip" hidden></div>
 <script src="{rel('assets/app.js')}?v={VERSION}"></script>
 """
@@ -322,22 +307,14 @@ def glossary_json() -> str:
 def linked_map() -> str:
     """The map with every label in content/diagrams/map/links.yml turned into a link.
 
-    Fails the build if a listed label is not on the map, or a series target names no part.
+    Fails the build if a listed label is not on the map.
     Relative targets are checked by the site tests' link check.
     """
     spec = importlib.util.spec_from_file_location("build_map", CONTENT / "diagrams" / "map" / "build_map.py")
     build_map = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(build_map)  # type: ignore[union-attr]
     links = yaml.safe_load((CONTENT / "diagrams" / "map" / "links.yml").read_text(encoding="utf-8"))
-    hrefs = {}
-    for label, target in links.items():
-        if target.startswith("series:"):
-            part = PART_BY_ID.get(target.split(":", 1)[1])
-            if not part:
-                raise SystemExit(f"links.yml: '{label}' points at {target}, which is not a series part")
-            hrefs[label] = part_url(part)
-        else:
-            hrefs[label] = target
+    hrefs = dict(links)
     svg = build_map.page_map(hrefs)
     missing = sorted(set(hrefs) - build_map.LINKED)
     if missing:
@@ -348,16 +325,15 @@ def linked_map() -> str:
 # --------------------------------------------------------------------------- home
 def routes() -> str:
     """The purpose routing row under the map (project/APPROACH.md): only destinations that exist."""
-    p = PART_BY_ID
     rows = [
         ("Understand", "What changes when agents do more of the delivery work, and the words for it.",
-         [(part_url(p["part-1"]), f"The series, from Part 1", True), ("glossary.html", "Terminology and sources", False)]),
+         [("glossary.html#ai-sdlc", "What the AI SDLC is", False), ("glossary.html", "Terminology and sources", False)]),
         ("Build the kit", "The engineering environment the agent works in: rules, checks, skills and evidence.",
-         [(part_url(p["part-3"]), "Harness engineering (Part 3)", True), (part_url(p["part-4"]), "The Engineering Kit (Part 4)", True)]),
+         [("glossary.html#harness-engineering", "Harness engineering", False), ("glossary.html#engineering-kit", "The Engineering Kit", False)]),
         ("Run a workflow", "One delivery decision end to end, with a trigger, checks, a human decision and evidence.",
-         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), (part_url(p["part-7"]), "One workflow in full (Part 7)", True)]),
+         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), ("glossary.html#workflow", "What a workflow is", False)]),
         ("Lead adoption", "What to build first, what to measure, and when to move on.",
-         [("#adoption", "The adoption path", False), (part_url(p["part-6"]), "The software factory (Part 6)", True)]),
+         [("#adoption", "The adoption path", False), ("glossary.html#software-factory", "The software factory", False)]),
         ("Look it up", "Definitions, sources and the catalog as data.",
          [("glossary.html", "Terminology", False), ("references.html", "References", False), ("data/workflow-catalog.csv", "Catalog as CSV", False)]),
     ]
@@ -373,9 +349,6 @@ def render_index() -> str:
     set_prefix("")
     n_workflows = len(CATALOG["workflows"])
     n_terms = len(GLOSSARY)
-    parts = "".join(
-        f'<li><a href="{esc(part_url(c))}" rel="noopener"><span class="layer-k">Part {c["number"]}</span> {esc(c["title"])}</a></li>'
-        for c in PARTS)
     page = head(f"{TITLE} — the AI-assisted software lifecycle on one page", TOC["about"], "index.html", "diagrams/ai-sdlc-map.png")
     page += "<body class=\"home\">" + nav("home")
     page += f"""
@@ -411,11 +384,9 @@ def render_index() -> str:
 <div class="section-head"><h2>Go further</h2><p>The map is the summary. These carry the detail.</p></div>
 <div class="cards three">
 <a class="card" href="workflow-catalog.html"><div class="card-num">Catalog</div><h3>{n_workflows} SDLC workflows, mapped to what they replace</h3><p>Every candidate workflow across the lifecycle, each with its decision, trigger, agent task, checks, human decision and evidence record, mapped one-to-one to the traditional activity it absorbs.</p></a>
-<a class="card" href="glossary.html"><div class="card-num">Terminology</div><h3>Every term, and where it comes from</h3><p>Which words are adopted from Böckeler and Thoughtworks, which are adapted, and which were coined in the series, with a translation table between the vocabularies.</p></a>
-<a class="card" href="references.html"><div class="card-num">References</div><h3>Every source in one place</h3><p>The public sources behind the terms, the map and the series, each with its author, publisher and link.</p></a>
+<a class="card" href="glossary.html"><div class="card-num">Terminology</div><h3>Every term, and where it comes from</h3><p>Which words are adopted from Böckeler and Thoughtworks, which are adapted, and which are coined here, with a translation table between the vocabularies.</p></a>
+<a class="card" href="references.html"><div class="card-num">References</div><h3>Every source in one place</h3><p>The public sources behind the terms, the map and the catalog, each with its author, publisher and link.</p></a>
 </div>
-<div class="section-head series-list"><h2>The series</h2><p><a href="{esc(SERIES_URL)}/" rel="noopener">{esc(SERIES['title'])}</a> is the narrative introduction. {esc(SERIES['summary'])}</p></div>
-<ol class="parts-list">{parts}</ol>
 </div>
 </section>
 </main>
@@ -426,7 +397,7 @@ def render_index() -> str:
 
 
 # --------------------------------------------------------------------------- glossary
-ATTR_LABEL = {"adopted": "Adopted from source", "adapted": "Adapted from source", "coined": "Coined in the series", "common": "Common engineering usage"}
+ATTR_LABEL = {"adopted": "Adopted from source", "adapted": "Adapted from source", "coined": "Coined here", "common": "Common engineering usage"}
 
 
 def render_glossary() -> str:
@@ -443,14 +414,13 @@ def render_glossary() -> str:
         src_html = " ".join(
             f'<a class="src" href="references.html#{k}">{esc(a if a and authors.count(a) == 1 else ((a + " — ") if a else "") + REFERENCES[k]["title"])}</a>'
             for k, a in zip(srcs, authors))
-        chapters = " ".join(part_chip(PART_BY_ID[c]) for c in g.get("chapters", []) if c in PART_BY_ID)
         counterpart = f'<div class="counterpart"><span class="k">In Böckeler\'s terms</span> {esc(g["counterpart"])}</div>' if g.get("counterpart") else ""
         items += f"""
 <article class="term-entry" id="{g['id']}" data-attr="{g['attribution']}">
 <div class="term-head"><h3>{esc(g['term'])}</h3><span class="attr attr-{g['attribution']}">{ATTR_LABEL[g['attribution']]}</span></div>
 <p>{esc(g['definition'].strip())}</p>
 {counterpart}
-<div class="term-foot">{('<span class="k">Source</span> ' + src_html) if src_html else ''} {('<span class="k">Used in the series</span> ' + chapters) if chapters else ''}</div>
+<div class="term-foot">{('<span class="k">Source</span> ' + src_html) if src_html else ''}</div>
 </article>"""
 
     translation = [
@@ -468,12 +438,12 @@ def render_glossary() -> str:
     ]
     trans_html = "".join(f'<tr><td>{esc(a)}</td><td>{esc(b)}</td><td><span class="attr attr-{c}">{c}</span></td></tr>' for a, b, c in translation)
 
-    page = head(f"Terminology and sources · {TITLE}", "Every term the map and the series use, what it means, and where it comes from: adopted from Böckeler and Thoughtworks, adapted, or coined in this work.", "glossary.html")
+    page = head(f"Terminology and sources · {TITLE}", "Every term the map uses, what it means, and where it comes from: adopted from Böckeler and Thoughtworks, adapted, or coined here.", "glossary.html")
     page += "<body>" + nav("glossary")
     page += f"""
 <main>
 <div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Terminology</div><h1>Terminology and sources</h1>
-<p class="lede">The map and the <a href="{esc(SERIES_URL)}/" rel="noopener">{esc(SERIES['title'])}</a> series reuse vocabulary that Birgitta Böckeler set out in <a href="https://martinfowler.com/articles/harness-engineering.html" rel="noopener">Harness Engineering for Coding Agent Users</a> on martinfowler.com, add a few working names of their own, and lean on ordinary engineering words for the rest. This page says which is which, so a reader moving between the two vocabularies can translate.</p>
+<p class="lede">The map reuses vocabulary that Birgitta Böckeler set out in <a href="https://martinfowler.com/articles/harness-engineering.html" rel="noopener">Harness engineering for coding agent users</a> on martinfowler.com, adds a few working names of its own, and leans on ordinary engineering words for the rest. This page says which is which, so a reader moving between the two vocabularies can translate.</p>
 <div class="filterbar" id="term-filter"><button class="chipbtn on" data-attr="all">All ({len(GLOSSARY)})</button>{''.join(f'<button class="chipbtn" data-attr="{k}">{ATTR_LABEL[k]} ({len(v)})</button>' for k, v in groups.items())}</div>
 </div></div>
 <div class="section-inner narrow">
@@ -495,10 +465,6 @@ def render_glossary() -> str:
 def render_references() -> str:
     set_prefix("")
     used_by: dict[str, list[dict]] = {k: [] for k in REFERENCES}
-    for part in PARTS:
-        for k in part.get("cites") or []:
-            if k in used_by:
-                used_by[k].append(part)
     for g in GLOSSARY:
         for k in [g.get("source")] + list(g.get("also") or []):
             if k:
@@ -516,21 +482,20 @@ def render_references() -> str:
     items = ""
     for k, r in REFERENCES.items():
         diags = " ".join(f'<a class="chip" href="diagrams/{stem}.svg">{esc(title)}</a>' for stem, title in by_diagram.get(k, []))
-        chs = " ".join(part_chip(c) for c in used_by.get(k, []))
         terms = " ".join(f'<a class="chip" href="glossary.html#{g["id"]}">{esc(g["term"])}</a>' for g in GLOSSARY if k in ([g.get("source")] + list(g.get("also") or [])))
         items += f"""
 <article class="ref-entry" id="{k}">
 <h3><a href="{esc(r['url'])}" rel="noopener">{esc(r['title'])}</a></h3>
 <div class="muted">{esc(', '.join(x for x in [r.get('author'), r.get('org')] if x))}{(' · ' + esc(r['date'])) if r.get('date') else ''}{(' · accessed ' + esc(r['accessed'])) if r.get('accessed') else ''}</div>
 <p>{esc(r.get('note', ''))}</p>
-<div class="term-foot">{('<span class="k">Cited in the series</span> ' + chs) if chs else ''} {('<span class="k">Terms</span> ' + terms) if terms else ''} {('<span class="k">Diagrams</span> ' + diags) if diags else ''}</div>
+<div class="term-foot">{('<span class="k">Terms</span> ' + terms) if terms else ''} {('<span class="k">Diagrams</span> ' + diags) if diags else ''}</div>
 </article>"""
-    page = head(f"References · {TITLE}", "Canonical list of the sources the map, the terminology and the series cite.", "references.html")
+    page = head(f"References · {TITLE}", "Canonical list of the sources the map, the terminology and the catalog cite.", "references.html")
     page += "<body>" + nav("references")
     page += f"""
 <main>
 <div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> References</div><h1>References</h1>
-<p class="lede">Every source in one place. Each glossary term that is adopted or adapted names one of these, each downloadable diagram lists the sources it draws on, and each part of the <a href="{esc(SERIES_URL)}/" rel="noopener">{esc(SERIES['title'])}</a> series is listed against the sources it cites.</p></div></div>
+<p class="lede">Every source in one place. Each glossary term that is adopted or adapted names one of these, and each downloadable diagram lists the sources it draws on.</p></div></div>
 <div class="section-inner narrow"><section class="refs">{items}</section></div>
 </main>
 {glossary_json()}
@@ -544,9 +509,8 @@ def render_catalog() -> str:
     set_prefix("")
     data = CATALOG
     phases = {p["key"]: p["name"] for p in data["phases"]}
-    definition = PART_BY_ID["part-5"]
     wf_json = json.dumps({"phases": data["phases"], "maturity": data["maturity"], "sources": data["sources"], "workflows": data["workflows"], "traditional_map": data["traditional_map"],
-                          "definition": {"url": part_url(definition), "label": f"How workflows are defined (Part {definition['number']})"}})
+                          "definition": {"url": "glossary.html#workflow", "label": "What a workflow is"}})
     counts = {}
     for w in data["workflows"]:
         counts[w["maturity"]] = counts.get(w["maturity"], 0) + 1
@@ -555,7 +519,7 @@ def render_catalog() -> str:
     page += f"""
 <main>
 <div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> Workflow catalog</div><h1>SDLC workflow catalog</h1>
-<p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition from <a href="{esc(part_url(definition))}" rel="noopener">Part {definition['number']} of the series</a>: it supports one delivery decision; it has a trigger, an agent action, deterministic checks, a human decision, an evidence record and a named owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
+<p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition in the <a href="glossary.html#workflow">terminology</a>: it supports one delivery decision end to end, with a trigger, inputs, an agent task, automated checks, guardrails, a human decision, outputs, feedback and an owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
 <div class="stats small"><div><b>{len(data['workflows'])}</b><span>workflows</span></div><div><b>{len(data['phases'])}</b><span>phases</span></div><div><b>{counts.get('Floor',0)}</b><span>floor</span></div><div><b>{counts.get('First',0)}</b><span>first</span></div><div><b>{counts.get('Later',0)}</b><span>later</span></div><div><b>{len(data['traditional_map'])}</b><span>traditional activities mapped</span></div></div>
 </div></div>
 <div class="section-inner">
@@ -595,9 +559,7 @@ def write_discovery() -> None:
              "## Reference", f"- [The map]({SITE_URL}/): the five bands and the adoption path",
              f"- [SDLC workflow catalog]({SITE_URL}/workflow-catalog.html)", f"- [Terminology and sources]({SITE_URL}/glossary.html)",
              f"- [References]({SITE_URL}/references.html)", f"- [Full text]({SITE_URL}/llms-full.txt)",
-             "", f"## The series: {SERIES['title']}", f"{SERIES['summary']} Published at {SERIES_URL}/"]
-    for c in PARTS:
-        lines.append(f"- [Part {c['number']}: {c['title']}]({part_url(c)}): {c['summary']}")
+             ]
     write(SITE / "llms.txt", "\n".join(lines) + "\n")
     full = [f"# {TITLE}", "", TOC["tagline"], ""]
     for p in sorted(DIAGRAMS_SVG.glob("*.svg")):
@@ -612,13 +574,9 @@ def write_discovery() -> None:
     for k, r in REFERENCES.items():
         by = ", ".join(x for x in [r.get("author"), r.get("org")] if x)
         full.append(f"- {r['title']} — {by}. {r['url']}")
-    full += ["\n\n# The series", "", f"{SERIES['title']}: {SERIES['summary']} Published at {SERIES_URL}/", ""]
-    full += [f"- Part {c['number']}: {c['title']} — {part_url(c)}" for c in PARTS]
     write(SITE / "llms-full.txt", "\n".join(full) + "\n")
     # search index
     idx = []
-    for c in PARTS:
-        idx.append({"t": f"Part {c['number']}: {c['title']}", "u": part_url(c), "k": "series", "s": c["summary"], "b": c["summary"]})
     for g in GLOSSARY:
         idx.append({"t": g["term"], "u": f"glossary.html#{g['id']}", "k": "term", "s": g["definition"].strip()[:200], "b": g["definition"].strip()})
     for w in CATALOG["workflows"]:
@@ -636,7 +594,7 @@ def write_discovery() -> None:
     write(SITE / "data" / "workflow-catalog.csv", buf.getvalue())
     # 404
     set_prefix("")
-    page = head(f"Not found · {TITLE}", "Page not found.", "404.html") + "<body>" + nav("") + f'<main><div class="hero hero-plain"><div class="hero-inner"><h1>Not found</h1><p class="lede">That page is not part of this site. <a href="{SITE_URL}/">Start from the map</a>, or read the series at <a href="{esc(SERIES_URL)}/" rel="noopener">{esc(SERIES["title"])}</a>.</p></div></div></main>' + glossary_json() + footer() + "</body></html>"
+    page = head(f"Not found · {TITLE}", "Page not found.", "404.html") + "<body>" + nav("") + f'<main><div class="hero hero-plain"><div class="hero-inner"><h1>Not found</h1><p class="lede">That page is not part of this site. <a href="{SITE_URL}/">Start from the map</a>, or look a term up in the <a href="{SITE_URL}/glossary.html">terminology</a>.</p></div></div></main>' + glossary_json() + footer() + "</body></html>"
     write(SITE / "404.html", page)
     write(SITE / ".nojekyll", "")
 

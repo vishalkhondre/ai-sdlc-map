@@ -310,7 +310,7 @@ def page_map(links: dict[str, str] | None = None) -> str:
                     ["bockeler-harness", "bockeler-sensors"]))
     s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle terms: SAFe (Scaled Agile, Inc.)",
                     ["spec-kit", "safe-framework"]))
-    s.append(t(1540, fy + 64, "Detail: the adoption-path companion diagram.  Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc", 12, FAINT, anchor="end"))
+    s.append(t(1540, fy + 64, "Detail: the adoption-path companion diagram.  The AI SDLC Map · vishalkhondre.github.io/ai-sdlc-map", 12, FAINT, anchor="end"))
     s.append("</svg>")
     return "\n".join(s)
 

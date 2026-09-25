@@ -8,11 +8,6 @@ enablement and assurance) and an adoption path, with every source named.
 
 Read it at **https://vishalkhondre.github.io/ai-sdlc-map/**
 
-The narrative introduction, the seven-part series *Beyond Faster Coding*, is published separately
-at <https://vishalkhondre.github.io/ai-sdlc/> from
-[`vishalkhondre/ai-sdlc`](https://github.com/vishalkhondre/ai-sdlc). This site links to its parts
-rather than reproducing them.
-
 The site has:
 
 - **The map and the adoption path** on the home page.
@@ -20,7 +15,7 @@ The site has:
   traditional activity it absorbs, filterable by phase, maturity and change type.
 - **Terminology and sources**: every term, marked as adopted, adapted, coined or common, with a
   translation table to Birgitta Böckeler's harness-engineering vocabulary on martinfowler.com.
-- **References**: every source, with the terms, diagrams and series parts that cite it.
+- **References**: every source, with the terms and diagrams that cite it.
 
 ## Working on it
 
@@ -31,7 +26,7 @@ status, approach, agents, assumptions and decisions.
 
 ```
 content/
-  toc.yml               site identity, and the series parts this site links to (with what each cites)
+  toc.yml               site identity
   glossary.yml          terms, attribution (adopted / adapted / coined / common), sources
   references.yml        canonical references
   workflows/catalog.yml the workflow catalog and traditional-activity map

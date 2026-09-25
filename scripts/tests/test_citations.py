@@ -4,6 +4,7 @@ import hashlib
 import importlib.util
 import io
 import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -83,7 +84,7 @@ class DiagramText(unittest.TestCase):
     def test_neutral_diagram_passes_and_lowercase_urls_are_not_products(self):
         with tempfile.TemporaryDirectory() as temporary:
             gate = load_gate(temporary)
-            self.write(gate, text="Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc")
+            self.write(gate, text="The AI SDLC Map · vishalkhondre.github.io/ai-sdlc-map")
             self.assertEqual(run(gate)[0], 0)
 
     def test_unknown_data_reference_fails(self):
@@ -140,40 +141,39 @@ class DiagramText(unittest.TestCase):
         self.assertEqual(build_map.page_path(), (svg / "ai-sdlc-adoption-path.svg").read_text(encoding="utf-8"))
 
 
-class SeriesParts(unittest.TestCase):
-    def test_series_part_citing_an_unknown_key_fails(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            gate = load_gate(temporary)
-            toc_path = gate.CONTENT / "toc.yml"
-            toc = yaml.safe_load(toc_path.read_text(encoding="utf-8"))
-            toc["series"]["parts"][0]["cites"].append("no-such-key")
-            toc_path.write_text(yaml.safe_dump(toc, allow_unicode=True), encoding="utf-8")
-            result, output = run(gate)
-            self.assertEqual(result, 1)
-            self.assertIn("series part-1: cites 'no-such-key'", output)
+class Disconnected(unittest.TestCase):
+    """D-019: nothing links to or names the earlier series. Test strings are assembled from parts so
+    this file does not trip the check itself."""
+    HOST = "vishalkhondre" + ".github.io/" + "ai-sdlc"
+    REPO = "vishalkhondre/" + "ai-sdlc"
+    TITLE = "Beyond " + "Faster Coding"
 
-    def test_reference_cited_only_by_a_series_part_is_not_dead(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            gate = load_gate(temporary)
-            self.assertEqual(run(gate)[0], 0)  # bockeler-context is cited only by part 3
-            toc_path = gate.CONTENT / "toc.yml"
-            toc = yaml.safe_load(toc_path.read_text(encoding="utf-8"))
-            toc["series"]["parts"][2]["cites"].remove("bockeler-context")
-            toc_path.write_text(yaml.safe_dump(toc, allow_unicode=True), encoding="utf-8")
-            result, output = run(gate)
-            self.assertEqual(result, 1)
-            self.assertIn("'bockeler-context' is never cited", output)
+    def scan(self, files):
+        with tempfile.TemporaryDirectory() as content_dir, tempfile.TemporaryDirectory() as temporary:
+            gate = load_gate(content_dir)
+            root = Path(temporary)
+            subprocess.run(["git", "init", "-q", str(root)], check=True)
+            for name, text in files.items():
+                (root / name).parent.mkdir(parents=True, exist_ok=True)
+                (root / name).write_text(text, encoding="utf-8")
+            subprocess.run(["git", "-C", str(root), "add", "-A"], check=True)
+            return gate.check_disconnected(root)
 
-    def test_term_used_in_a_part_must_be_cited_by_that_part(self):
+    def test_links_and_names_fail(self):
+        found = self.scan({"README.md": f"See https://{self.HOST}/ and github.com/{self.REPO}.git\n",
+                           "site/x.html": f"<p>{self.TITLE.upper()}</p> {self.HOST.upper()}\n",
+                           "notes/é.md": f"{self.REPO}/blob/main/x\n"})
+        self.assertEqual(len(found), 5)
+        self.assertTrue(all("D-019" in f for f in found))
+
+    def test_this_site_and_historical_reviews_pass(self):
+        self.assertEqual(self.scan({"README.md": f"https://{self.HOST}-map/ and {self.REPO}-map\n",
+                                    "project/A.md": "The Drive folder `ai-sdlc` and /home/user/ai-sdlc-map/\n",
+                                    "content/reviews/old.md": f"{self.TITLE} {self.HOST}\n"}), [])
+
+    def test_the_repository_passes(self):
         with tempfile.TemporaryDirectory() as temporary:
-            gate = load_gate(temporary)
-            toc_path = gate.CONTENT / "toc.yml"
-            toc = yaml.safe_load(toc_path.read_text(encoding="utf-8"))
-            toc["series"]["parts"][3]["cites"] = ["bockeler-harness"]  # part 4 uses validators (bockeler-sensors)
-            toc_path.write_text(yaml.safe_dump(toc, allow_unicode=True), encoding="utf-8")
-            result, output = run(gate)
-            self.assertEqual(result, 1)
-            self.assertIn("part-4: uses", output)
+            self.assertEqual(load_gate(temporary).check_disconnected(), [])
 
 
 class DenyList(unittest.TestCase):

@@ -4,10 +4,9 @@ Fails (exit 1) when:
   1. a chapter uses a footnote [^key] that is neither defined in the chapter nor a key in references.yml
   2. a glossary term is `adopted` or `adapted` but names no `source`, or its source is not in references.yml
   3. a chapter listed under an adopted/adapted term's `chapters:` never cites that term's source
-     (a chapter that uses someone else's vocabulary must point at them at least once). Parts of the
-     series live on the series site; toc.yml records what each part cites, and that record is checked.
-  4. a reference in references.yml is never cited by a chapter, a series part, a glossary term or a
-     diagram (dead reference), or a series part's `cites` names a key that is not in references.yml
+     (a chapter that uses someone else's vocabulary must point at them at least once)
+  4. a reference in references.yml is never cited by a chapter, a glossary term or a diagram (dead
+     reference)
   5. a diagram embed ![..](diagram:id) points at an id that does not exist
   6. a chapter mentions a vendor name the site keeps out of the prose
  10. any text file under content/ contains a name on the confidentiality deny-list (GR-1.1). The
@@ -23,6 +22,8 @@ Fails (exit 1) when:
  11. a reference in references.yml has no `accessed` date (YYYY-MM-DD, not in the future), or lacks a
      title, a URL, or an author or organisation (GR-2.5)
  12. reader-visible content uses a superseded term listed in scripts/outdated_terms.yml (GR-2.1, GR-5.3)
+ 13. any tracked file, except the historical review reports, links to or names the series site or its
+     repository (D-019)
 
 Run:  python scripts/check_citations.py
 """
@@ -117,6 +118,37 @@ def check_denylist() -> list[str]:
     return problems
 
 
+# D-019: this site does not link to or name the earlier narrative series or its repository. The
+# patterns are built from parts so this file does not match itself.
+_SERIES_HOST = "vishalkhondre" + r"\.github\.io/ai-sdlc"
+_SERIES_REPO = "vishalkhondre/" + "ai-sdlc"
+DISCONNECTED = [
+    re.compile(_SERIES_HOST + r"(?![\w-])", re.I),
+    re.compile(_SERIES_REPO + r"(?![\w-])", re.I),
+    re.compile("Beyond" + r"\s+Faster\s+Coding", re.I),
+]
+DISCONNECT_EXEMPT = ("content/reviews/",)  # review reports are historical records, never published
+
+
+def check_disconnected(root: Path = ROOT) -> list[str]:
+    """D-019: no tracked file links to or names the series site or repository."""
+    import subprocess
+    files = subprocess.run(["git", "-C", str(root), "ls-files", "-z"], capture_output=True, text=True, check=True).stdout.split("\0")
+    problems = []
+    for name in filter(None, files):
+        if name.startswith(DISCONNECT_EXEMPT) or not (root / name).is_file():
+            continue
+        try:
+            text = (root / name).read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        for pat in DISCONNECTED:
+            for m in pat.finditer(text):
+                line = text.count("\n", 0, m.start()) + 1
+                problems.append(f"{name}:{line}: '{m.group(0)}' links to or names the series, which this site does not (D-019)")
+    return problems
+
+
 def check_reference_fields(refs: dict, today: date | None = None) -> list[str]:
     """GR-2.5: every reference records a title, a URL and the date it was accessed."""
     today = today or datetime.now(timezone.utc).date()
@@ -203,17 +235,13 @@ def main() -> int:
                 line = prose[: m.start()].count("\n") + 1
                 problems.append(f"{ch['id']}: line {line}: '{m.group(0)}' is on the keep-out list for chapter prose")
 
-    for part in toc["series"]["parts"]:
-        for key in part.get("cites") or []:
-            if key not in refs:
-                problems.append(f"series {part['id']}: cites '{key}', which is not in references.yml")
-        cited_by_chapter[part["id"]] = set(part.get("cites") or []) & refs.keys()
     used_refs: set[str] = set().union(*cited_by_chapter.values()) if cited_by_chapter else set()
     embedded = set()
     for ch in chapters:
         embedded |= set(re.findall(r"\]\(diagram:([a-z0-9\-]+)\)", (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")))
     diagram_problems, cited_by_diagrams = check_diagrams(refs, glossary, embedded)
     problems += check_denylist()
+    problems += check_disconnected()
     problems += check_reference_fields(refs)
     problems += check_outdated_terms()
     terms = yaml.safe_load((ROOT / "scripts" / "outdated_terms.yml").read_text(encoding="utf-8")) or []
@@ -245,7 +273,7 @@ def main() -> int:
                 problems.append(f"glossary '{g['id']}': unknown chapter '{cid}'")
     for k in refs:
         if k not in used_refs:
-            problems.append(f"references.yml: '{k}' is never cited by a chapter, a series part, a glossary term or a diagram")
+            problems.append(f"references.yml: '{k}' is never cited by a chapter, a glossary term or a diagram")
 
     if problems:
         print("Citation check FAILED:")
@@ -253,7 +281,7 @@ def main() -> int:
             print("  -", p)
         return 1
     n_notes = sum(len(v) for v in cited_by_chapter.values())
-    print(f"Citation check passed: {len(chapters)} chapters, {len(toc['series']['parts'])} series parts, {n_notes} citations, "
+    print(f"Citation check passed: {len(chapters)} chapters, {n_notes} citations, "
           f"{len(glossary)} terms, {len(refs)} references.")
     return 0
 

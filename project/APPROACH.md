@@ -19,7 +19,7 @@ Navigation by purpose sits under the map on the home page:
 
 | Route | Takes the reader to |
 |---|---|
-| Understand | The series (on its own site), core concepts, glossary |
+| Understand | The map, core concepts, glossary |
 | Build the kit | Engineering Kit, rule registry, validators, evidence, kit commands |
 | Run a workflow | Workflow catalog and workflow pages |
 | Lead adoption | Adoption path, roles, operating model, measurement, change management |

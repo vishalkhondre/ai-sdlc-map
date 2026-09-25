@@ -1,4 +1,4 @@
-/* Beyond Faster Coding — progressive enhancement. No dependencies. */
+/* The AI SDLC Map — progressive enhancement. No dependencies. */
 (function () {
   'use strict';
   const $ = (s, r) => (r || document).querySelector(s);
@@ -15,7 +15,7 @@
     const dark = matchMedia('(prefers-color-scheme: dark)').matches;
     const cur = root.dataset.theme && root.dataset.theme !== 'auto' ? root.dataset.theme : (dark ? 'dark' : 'light');
     const next = cur === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = next; store.set('bfc-theme', next);
+    root.dataset.theme = next; store.set('aisdlcmap-theme', next);
   });
 
   /* ---------- mobile menu ---------- */
@@ -48,7 +48,7 @@
   let glossary = {};
   try { glossary = JSON.parse(($('#glossary-data') || {}).textContent || '{}'); } catch (e) { glossary = {}; }
   const tip = $('#tip');
-  const ATTR = { adopted: 'Adopted from source', adapted: 'Adapted from source', coined: 'Coined in the series', common: 'Common usage' };
+  const ATTR = { adopted: 'Adopted from source', adapted: 'Adapted from source', coined: 'Coined here', common: 'Common usage' };
   function showTip(el, html) {
     if (!tip) return;
     tip.innerHTML = html; tip.hidden = false;

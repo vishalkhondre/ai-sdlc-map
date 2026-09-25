@@ -31,15 +31,16 @@ class Generated(unittest.TestCase):
         for name in ("index.html", "workflow-catalog.html", "glossary.html", "references.html", "404.html"):
             self.assertTrue((SITE / name).exists(), name)
 
-    def test_series_links_point_at_the_series_site(self):
-        series = self.toc["series"]["url"].rstrip("/")
-        home = (SITE / "index.html").read_text(encoding="utf-8")
-        for part in self.toc["series"]["parts"]:
-            self.assertIn(f'href="{series}/{part["slug"]}.html"', home, part["id"])
-        for page in SITE.glob("*.html"):
-            source = page.read_text(encoding="utf-8")
-            for part in self.toc["series"]["parts"]:
-                self.assertNotIn(f'href="{part["slug"]}.html"', source, f"{page.name}: relative link to {part['slug']}")
+    def test_no_page_links_to_or_names_the_series(self):
+        spec = importlib.util.spec_from_file_location("citation_gate", ROOT / "scripts/check_citations.py")
+        gate = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gate)
+        built = (list(SITE.glob("*.html")) + list(SITE.glob("*.txt")) + list(SITE.glob("*.xml")) + [SITE / "search-index.json"]
+                 + list((SITE / "diagrams").glob("*.svg")) + list((SITE / "data").glob("*")))
+        for page in built:
+            text = page.read_text(encoding="utf-8")
+            for pat in gate.DISCONNECTED:
+                self.assertIsNone(pat.search(text), f"{page.name} links to or names the series (D-019)")
 
     def test_internal_links_resolve(self):
         pages = list(SITE.glob("*.html"))
@@ -120,7 +121,7 @@ class Generated(unittest.TestCase):
         self.assertGreater(len(idx), 40)
         llms = (SITE / "llms.txt").read_text(encoding="utf-8")
         self.assertIn("The AI SDLC Map", llms)
-        self.assertIn(self.toc["series"]["url"], llms)
+        self.assertIn(self.toc["site_url"], llms)
 
     def test_catalog_data(self):
         cat = yaml.safe_load((CONTENT / "workflows" / "catalog.yml").read_text(encoding="utf-8"))

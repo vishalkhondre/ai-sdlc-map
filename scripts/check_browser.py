@@ -57,9 +57,9 @@ def main():
                 page.route("**/search-index.json", lambda route: (page.wait_for_timeout(800), route.continue_()))
                 page.keyboard.press("/")
                 page.locator("#search-input").fill("harness engineering")
-                result = page.locator("#search-results a", has_text="Part 3").first
+                result = page.locator("#search-results a", has_text="Harness engineering").first
                 result.wait_for(state="visible")
-                assert result.get_attribute("href").startswith("https://vishalkhondre.github.io/ai-sdlc/")
+                assert result.get_attribute("href").endswith("glossary.html#harness-engineering")
                 page.keyboard.press("Escape")
 
                 assert page.locator("nav.routes .route").count() == 5
@@ -69,7 +69,7 @@ def main():
                 names = re.findall(r'- link "([^"]+)"', tree)
                 assert len(names) == 18 and "Engineering Kit" in names, tree
                 kit = page.get_by_role("link", name="Engineering Kit", exact=True)
-                assert kit.get_attribute("href") == "https://vishalkhondre.github.io/ai-sdlc/engineering-kit.html"
+                assert kit.get_attribute("href") == "glossary.html#engineering-kit"
                 page.get_by_role("link", name="intake & triage", exact=True).click()
                 page.wait_for_url("**/workflow-catalog.html#W01")
                 page.locator("#wf-detail").wait_for(state="visible")
@@ -83,12 +83,12 @@ def main():
                 page.locator(".wf-card").first.click()
                 definition = page.locator(".wf-nav a")
                 definition.wait_for(state="visible")
-                assert definition.get_attribute("href") == "https://vishalkhondre.github.io/ai-sdlc/workflows.html"
+                assert definition.get_attribute("href") == "glossary.html#workflow"
                 assert not errors, errors
                 browser.close()
         finally:
             server.shutdown()
-    print("Browser checks passed: home map, lightbox, map links and routes, search into the series, catalog views and detail link.")
+    print("Browser checks passed: home map, lightbox, map links and routes, search into the terminology, catalog views and detail link.")
 
 
 if __name__ == "__main__":

@@ -20,7 +20,6 @@ These apply to any person or agent editing `content/`.
 ## Citations
 - A term that is `adopted` or `adapted` in `content/glossary.yml` must name a `source` in `content/references.yml`.
 - Every page listed under such a term must cite that source at least once (a `[^key]` footnote or a note linking its URL).
-  Series parts are listed in `content/toc.yml` with the references they cite; the series itself lives in `vishalkhondre/ai-sdlc`.
 - New references go in `references.yml` first; pages cite them as `[^key]`, diagrams list them in `data-references`.
 
 ## Diagrams

@@ -7,8 +7,7 @@ record it in `DECISIONS.md`.
 
 - **A1 Audience.** Practitioners and leaders in organisations of any size; familiarity with
   agile delivery and CI/CD is assumed, familiarity with AI agents is not.
-- **A2 Scope.** The five-band map (as drawn in commit `76d0756` of `vishalkhondre/ai-sdlc`, with
-  the neutral labels of edition 1.1.0) is the agreed scope. New boxes are
+- **A2 Scope.** The five-band map (with the neutral labels of edition 1.1.0) is the agreed scope. New boxes are
   added only through the architect agent with the author's approval.
 - **A3 Source library.** The author's private Google Drive folder `ai-sdlc` is the source of
   practice experience: a delivery framework, executive and organisation-wide summaries, a
@@ -19,8 +18,7 @@ record it in `DECISIONS.md`.
 - **A5 Tooling.** The existing generator (Python, Markdown, YAML, inline SVG, vanilla JS) scales
   to the full site without a framework change.
 - **A6 Hosting.** GitHub Pages via GitHub Actions from `main` of `vishalkhondre/ai-sdlc-map`, served
-  at `vishalkhondre.github.io/ai-sdlc-map/`. The series stays at `vishalkhondre.github.io/ai-sdlc/`
-  (D-010).
+  at `vishalkhondre.github.io/ai-sdlc-map/`.
 - **A7 Sessions.** Work spans many sessions. Continuity lives in this folder, not in any
   session's memory.
 - **A8 Push access.** A session can push only to repositories attached to it: selected when the

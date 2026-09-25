@@ -37,7 +37,7 @@ review_record: <content/reviews/<edition>-<section>.md>
 
 ## Related
 
-<!-- Links to related pages on this site and to the series part that introduces it. -->
+<!-- Links to related pages on this site. -->
 
 ## Sources
 

@@ -1,4 +1,4 @@
-/* Beyond Faster Coding — site styles. One file, no build step. */
+/* The AI SDLC Map — site styles. One file, no build step. */
 
 :root {
   --bg: #f6f4ee;
@@ -390,12 +390,6 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
   .prose { max-width: none; font-size: 12pt; }
 }
 
-/* home: the series parts, linked out to the series site */
-.series-list { margin-top: 56px; }
-.parts-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px 24px; }
-.parts-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
-.parts-list a:hover { color: var(--accent); }
-.parts-list .layer-k { display: inline; padding: 0; margin-right: 6px; }
 
 /* home: clickable map */
 .diagram.clickable a.maplink { cursor: pointer; text-decoration: none; }
