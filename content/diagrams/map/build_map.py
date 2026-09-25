@@ -168,9 +168,9 @@ def page_map(links: dict[str, str] | None = None) -> str:
     LINKS.update(links or {})
     LINKED.clear()
     W, H = 1600, 1152
-    s = [svg_open(W, H, "The AI SDLC on one page", MAP_DESC, ["aicpa-soc2", "dora-metrics"]),
+    s = [svg_open(W, H, "The AI SDLC Map", MAP_DESC, ["aicpa-soc2", "dora-metrics"]),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
-         t(60, 58, "The AI SDLC on one page", 34, INK, 700),
+         t(60, 58, "The AI SDLC Map", 34, INK, 700),
          t(60, 88, "Five bands. Context sets the risk tier; the lifecycle says where; the core does the work; enablement makes it possible; assurance proves it.", 16, MUTE)]
 
     # ---------------- band 1: context

@@ -1,7 +1,10 @@
-# AI SDLC on one page
+# The AI SDLC Map
 
-**A vendor-neutral reference for running software delivery with AI agents, organised as one
-five-band map: context, lifecycle, core, enablement and assurance.**
+**The AI-assisted software lifecycle, from spec to software factory, on one page.**
+
+A vendor-neutral reference for the AI SDLC: the software development lifecycle (SDLC) with AI
+agents doing part of the work in every phase. One map in five bands (context, lifecycle, core,
+enablement and assurance) and an adoption path, with every source named.
 
 Read it at **https://vishalkhondre.github.io/ai-sdlc-map/**
 

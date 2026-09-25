@@ -1,5 +1,5 @@
 ---
-description: Research, author, verify and review a scoped update to AI SDLC on one page.
+description: Research, author, verify and review a scoped update to The AI SDLC Map.
 ---
 # Update content
 

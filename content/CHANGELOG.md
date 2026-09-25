@@ -1,6 +1,12 @@
 # Changelog
 
-Content edition history of AI SDLC on one page. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version. The series Beyond Faster Coding keeps its own edition history in its repository.
+Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version. The series Beyond Faster Coding keeps its own edition history in its repository.
+
+## 1.2.0 — 2026-09-25
+
+- The site is renamed **The AI SDLC Map**, with the subtitle "The AI-assisted software lifecycle, from spec to software factory, on one page." The address does not change. The home page, page titles, social preview text, the map's own title and the downloadable map now carry the new name.
+- The home page and the workflow catalog spell out "software development lifecycle (SDLC)" where the term first appears.
+- New terminology entry, **AI SDLC**: what the term means on this site, and how it differs from the lifecycle for building AI and machine-learning systems and from AWS's AI-Driven Development Lifecycle (AI-DLC). Three references added: IBM's pages on the AI lifecycle and on AI-DLC, and AWS Builder Center's introduction to AI-DLC. Where one entry cites the same author twice, its source links now add each title.
 
 ## 1.1.0 — 2026-09-25
 
