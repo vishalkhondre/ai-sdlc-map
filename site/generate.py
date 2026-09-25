@@ -13,6 +13,7 @@ Run:    python site/generate.py
 from __future__ import annotations
 
 import html
+import importlib.util
 import json
 import math
 import re
@@ -71,10 +72,12 @@ def write(p: Path, s: str) -> None:
 
 
 # --------------------------------------------------------------------------- diagrams
-def svg_source(diagram_id: str, instance: str) -> tuple[str, int, int]:
-    """Return (svg markup, width, height) for a diagram id."""
+def svg_source(diagram_id: str, instance: str, markup: str | None = None) -> tuple[str, int, int]:
+    """Return (svg markup, width, height) for a diagram id, or for the given markup of that diagram."""
     p = DIAGRAMS_SVG / f"{diagram_id}.svg"
-    if p.exists():
+    if markup is not None:
+        svg = markup
+    elif p.exists():
         svg = read(p)
     else:
         raise SystemExit(f"Unknown diagram: {diagram_id}")
@@ -117,11 +120,11 @@ def write_diagram_files() -> list[str]:
     return ids
 
 
-def figure(diagram_id: str, caption: str, number: int | None = None, cls: str = "") -> str:
+def figure(diagram_id: str, caption: str, number: int | None = None, cls: str = "", markup: str | None = None) -> str:
     count = _FIGURE_COUNTS.get(diagram_id, 0) + 1
     _FIGURE_COUNTS[diagram_id] = count
     instance = f"{diagram_id}-{count}"
-    svg, w, h = svg_source(diagram_id, instance)
+    svg, w, h = svg_source(diagram_id, instance, markup)
     label = f"Figure {number}. " if number else ""
     return (
         f'<figure class="diagram {cls}" data-diagram="{diagram_id}" style="--ar:{w}/{h}">'
@@ -312,7 +315,57 @@ def glossary_json() -> str:
     return f'<script id="glossary-data" type="application/json">{json.dumps(data)}</script>'
 
 
+# --------------------------------------------------------------------------- clickable map
+def linked_map() -> str:
+    """The map with every label in content/diagrams/map/links.yml turned into a link.
+
+    Fails the build if a listed label is not on the map, or a series target names no part.
+    Relative targets are checked by the site tests' link check.
+    """
+    spec = importlib.util.spec_from_file_location("build_map", CONTENT / "diagrams" / "map" / "build_map.py")
+    build_map = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(build_map)  # type: ignore[union-attr]
+    links = yaml.safe_load((CONTENT / "diagrams" / "map" / "links.yml").read_text(encoding="utf-8"))
+    hrefs = {}
+    for label, target in links.items():
+        if target.startswith("series:"):
+            part = PART_BY_ID.get(target.split(":", 1)[1])
+            if not part:
+                raise SystemExit(f"links.yml: '{label}' points at {target}, which is not a series part")
+            hrefs[label] = part_url(part)
+        else:
+            hrefs[label] = target
+    svg = build_map.page_map(hrefs)
+    missing = sorted(set(hrefs) - build_map.LINKED)
+    if missing:
+        raise SystemExit(f"links.yml: labels not on the map: {missing}")
+    return svg
+
+
 # --------------------------------------------------------------------------- home
+def routes() -> str:
+    """The purpose routing row under the map (project/APPROACH.md): only destinations that exist."""
+    p = PART_BY_ID
+    rows = [
+        ("Understand", "What changes when agents do more of the delivery work, and the words for it.",
+         [(part_url(p["part-1"]), f"The series, from Part 1", True), ("glossary.html", "Terminology and sources", False)]),
+        ("Build the kit", "The engineering environment the agent works in: rules, checks, skills and evidence.",
+         [(part_url(p["part-3"]), "Harness engineering (Part 3)", True), (part_url(p["part-4"]), "The Engineering Kit (Part 4)", True)]),
+        ("Run a workflow", "One delivery decision end to end, with a trigger, checks, a human decision and evidence.",
+         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), (part_url(p["part-7"]), "One workflow in full (Part 7)", True)]),
+        ("Lead adoption", "What to build first, what to measure, and when to move on.",
+         [("#adoption", "The adoption path", False), (part_url(p["part-6"]), "The software factory (Part 6)", True)]),
+        ("Look it up", "Definitions, sources and the catalog as data.",
+         [("glossary.html", "Terminology", False), ("references.html", "References", False), ("data/workflow-catalog.csv", "Catalog as CSV", False)]),
+    ]
+    out = ""
+    for title, blurb, links in rows:
+        noopener = ' rel="noopener"'
+        items = "".join(f'<li><a href="{esc(h)}"{noopener if ext else ""}>{esc(label)}</a></li>' for h, label, ext in links)
+        out += f'<div class="route"><h3>{esc(title)}</h3><p>{esc(blurb)}</p><ul>{items}</ul></div>'
+    return out
+
+
 def render_index() -> str:
     set_prefix("")
     n_workflows = len(CATALOG["workflows"])
@@ -336,8 +389,9 @@ def render_index() -> str:
 
 <section class="section" id="map">
 <div class="section-inner">
-<div class="section-head"><h2>The map</h2><p>Context sets the risk tier; the lifecycle says where the work runs; the core does the work; enablement makes it possible; assurance proves it.</p></div>
-{figure('ai-sdlc-map', 'The AI SDLC on one page: five bands and the adoption path.')}
+<div class="section-head"><h2>The map</h2><p>Context sets the risk tier; the lifecycle says where the work runs; the core does the work; enablement makes it possible; assurance proves it. Underlined labels open the page that covers them; or start by purpose below the map.</p></div>
+{figure('ai-sdlc-map', 'The AI SDLC on one page: five bands and the adoption path. Underlined labels are links to the page that covers them.', None, 'clickable', linked_map())}
+<nav class="routes" aria-label="Start by purpose">{routes()}</nav>
 </div>
 </section>
 
