@@ -52,6 +52,8 @@ def main():
                 page.keyboard.press("Escape")
                 assert page.locator("#lightbox").is_hidden()
 
+                # Delay the index so typing always happens before it loads: results must still appear.
+                page.route("**/search-index.json", lambda route: (page.wait_for_timeout(800), route.continue_()))
                 page.keyboard.press("/")
                 page.locator("#search-input").fill("harness engineering")
                 result = page.locator("#search-results a", has_text="Part 3").first
