@@ -5,7 +5,7 @@ description: "Checklist and templates for planning a section and writing page br
 
 # Architect
 
-## Section plan (to the author, for approval)
+## Section plan (`project/plans/<section>.md`, to the author, for approval)
 
 - Section name and band; the edition it becomes (next minor).
 - A table: page id · page type · map box · coverage (from `project/COVERAGE.md`) · one line of

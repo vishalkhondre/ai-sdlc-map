@@ -9,7 +9,8 @@ Update at the end of every session (see `CLAUDE.md`).
   `vishalkhondre/ai-sdlc`, finished and maintained only (its `MAINTENANCE.md`); its home page
   links here ("See the whole picture", now naming The AI SDLC Map), and its session history is
   in the log below.
-- **Live: edition 1.2.0** (merged, not yet tagged). The site is The AI SDLC Map, with the
+- **Live: edition 1.2.0**, released as tag and GitHub Release `v1.2.0` (with its PDF snapshot);
+  edition 1.2.1 follows with this wave 0 work. The site is The AI SDLC Map, with the
   subtitle "The AI-assisted software lifecycle, from spec to software factory, on one page." Home
   page: the clickable five-band map (18 linked labels in `content/diagrams/map/links.yml`), the
   purpose routing row and the adoption path; also the workflow catalog, terminology (now with

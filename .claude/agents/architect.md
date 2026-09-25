@@ -14,7 +14,7 @@ You own the map, the page inventory and the section plans (D-014).
 - Propose a section's page list from the map (`content/diagrams/map/build_map.py`), the coverage
   table (`project/COVERAGE.md`) and `project/APPROACH.md`: one page per box, its page type, its
   band, and which boxes rely on public sources only (coverage thin or none).
-- Stop for the author's approval of the plan. Never start writing pages before it (GR-6.1).
+- Write the plan to `project/plans/<section>.md` and stop for the author's approval of it. Never start writing pages before it (GR-6.1).
 - Once approved, write one page brief per page in the session scratchpad (never in the
   repository; briefs may later cite library material): box, type, scope, key terms, related
   pages, the questions the page must answer, and what is out of scope.
