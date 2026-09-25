@@ -17,13 +17,13 @@
   definition: >-
     The software development lifecycle (SDLC) with AI agents doing part of the work in every phase,
     from intent and specification through design, build, verification, release and operation, while
-    deterministic checks and human decisions stay where they are needed. Written without a hyphen.
-    Not to be confused with two nearby uses. First, the lifecycle for building AI and machine-learning
-    systems themselves: data preparation, model training and evaluation, deployment and monitoring for
-    drift, which IBM calls the AI lifecycle. Second, the AI-Driven Development Lifecycle (AI-DLC), one
-    vendor's named methodology: AWS structures it as Inception, Construction and Operations phases in
-    which AI proposes, asks clarifying questions and people approve. This site uses the plain term for the
-    lifecycle and does not follow any one methodology.
+    deterministic checks and human decisions stay where they are needed. Not to be confused with two
+    nearby uses. First, the lifecycle for building AI and machine-learning systems themselves: data
+    preparation, model training and evaluation, deployment and monitoring for drift, which IBM calls the
+    AI lifecycle. Second, the AI-Driven Development Lifecycle (AI-DLC), one vendor's named methodology:
+    AWS structures it as Inception, Construction and Operations phases in which AI proposes a plan and
+    asks clarifying questions, and people approve. This site uses the plain term for the lifecycle and
+    does not follow any one methodology. The term is written without a hyphen.
   match: ["AI SDLC"]
 
 - id: harness

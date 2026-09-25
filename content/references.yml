@@ -90,7 +90,7 @@ ibm-ai-lifecycle:
   org: "IBM Think"
   url: "https://www.ibm.com/think/topics/ai-lifecycle"
   accessed: "2026-09-25"
-  note: "Describes the lifecycle of AI systems themselves, from dataset preparation and model training to deployment, monitoring and improvement; the first meaning the glossary's AI SDLC entry separates from this site's."
+  note: "Describes the lifecycle of AI systems themselves, from dataset preparation and model training to deployment, monitoring and improvement. The terminology page separates this lifecycle for building AI systems from the AI-assisted software development lifecycle that this site describes."
 
 ibm-ai-dlc:
   title: "AI-DLC: The AI-Driven Development Lifecycle"
@@ -106,4 +106,4 @@ aws-ai-dlc:
   org: "Amazon Web Services"
   url: "https://builder.aws.com/content/376vNVPtBqlCvqIjHPub8iPBSxa/sdlc-who-meet-ai-dlc-the-new-build-loop"
   accessed: "2026-09-25"
-  note: "AWS's account of the AI-Driven Development Lifecycle (AI-DLC): a loop in which AI plans and asks clarifying questions and people approve, run through Inception, Construction and Operations phases."
+  note: "AWS's account of the AI-Driven Development Lifecycle (AI-DLC): a loop in which AI plans and asks clarifying questions, and people approve, run through Inception, Construction and Operations phases."
