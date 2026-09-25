@@ -52,7 +52,10 @@ python scripts/check_browser.py
 CI (`.github/workflows/validate.yml`) runs the same steps on every pull request and push to `main`.
 Content changes need an edition bump, a changelog entry and a recorded reviewer ACCEPT
 (`scripts/release_content.py record-review`); see `.github/prompts/update-content.prompt.md`.
-Pages deploy only from `main`, via `.github/workflows/deploy-pages.yml`.
+Pages deploy only from `main`, via `.github/workflows/deploy-pages.yml`. A section is released
+only after the author approves it: tag `v<content/VERSION>` on `main` and push the tag;
+`.github/workflows/release.yml` creates the GitHub Release with the changelog notes and a PDF
+snapshot of the pages listed in `release/sections.yml` (D-014, D-016).
 
 ## The three rules most often broken
 

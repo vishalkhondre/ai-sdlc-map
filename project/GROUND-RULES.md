@@ -1,6 +1,7 @@
 # Ground rules
 
-Version 1.0 · approved by the author · changes only with the author's approval (§6).
+Version 1.1 · approved by the author · changes only with the author's approval (§6).
+Version 1.1 (2026-09-25) replaced the per-page approval in GR-6.1 with section approval (D-014).
 
 Every automated check and every reviewer finding cites a rule number from this file, for
 example `GR-2.3`. A rule that nothing enforces is marked *(review)*; the aim over time is to
@@ -64,8 +65,9 @@ turn review-only rules into automated checks (§5.3).
 - **GR-5.1 Repeatable.** Every page goes through the same pipeline (see `APPROACH.md`), run by
   named agents whose prompts and templates are versioned in the repository.
 - **GR-5.2 Verifiable.** Every published page has a review record in `reviews/` listing the
-  sources used, each reviewer's verdict with findings, and the human approver. CI refuses to
-  publish a page without an ACCEPT from every required reviewer. *(check)*
+  sources used and each reviewer's verdict with findings. CI refuses to publish a page without
+  an ACCEPT from every required reviewer. The author's approval is recorded by the section's
+  release tag (GR-6.1). *(check)*
 - **GR-5.3 Improvable.** Reviewer findings are logged by rule number. After each wave a
   retrospective decides whether a rule, template, prompt or check changes. A finding that
   recurs becomes an automated check where possible. Changes are recorded in `DECISIONS.md` and
@@ -74,8 +76,11 @@ turn review-only rules into automated checks (§5.3).
 
 ## §6 Authority
 
-- **GR-6.1** The author approves these rules, each wave plan, and the first publication of
-  every page in wave 1. Later waves may use agent-only approval for small edits if the author
-  agrees in `DECISIONS.md`.
+- **GR-6.1** The author approves these rules and each section plan. Work is built one section
+  at a time; a section is one band of the map or the adoption path. Agents research, write and
+  review the whole section; once every required reviewer accepts, it merges and deploys; the
+  author reviews it on the live site; changes come as follow-up pull requests; the author
+  approves the section, and the approval is recorded by tagging its release (D-014, D-016).
+  GR-3.2 and GR-4.1 still hold: nothing goes live before it is complete and accepted.
 - **GR-6.2** Where a rule conflicts with a request in a session, the rule wins until the author
   changes it here.

@@ -28,15 +28,19 @@ record it in `DECISIONS.md`.
 
 ## Open questions (need the author)
 
-- **Q2 Approval after wave 1.** Proposed: author approves every wave 1 page; agent-only
-  approval for small edits from wave 2, if the retrospective supports it.
-- **Q3 SAFe on the map.** Proposed: keep portfolio / train / team as the lifecycle levels,
-  labelled generically, with SAFe cited as one framework that uses them.
-- **Q4 Release versioning.** Proposed: the site moves to 2.0.0 when every map box links to a
-  published page; waves ship as 1.x minor releases in between.
+None open.
 
 ## Settled
 
 - **Q1 Vendor names on the map.** Settled 2026-09-25: generic labels on the map (for example
   "Spec-driven development (SDD) frameworks", "Work tracking & knowledge base"); named tools only
   on category pages, as examples. Diagram text is gated for product names (D-009).
+- **Q2 Approval.** Settled 2026-09-25: one section at a time (a section is one map band, or the
+  adoption path). Agents review the whole section; it goes live after every agent reviewer
+  accepts; the author reviews it live and approves it by its release tag (D-014; GR-6.1 v1.1).
+- **Q3 SAFe on the map.** Settled 2026-09-25: generic portfolio / train / team labels on the map
+  with SAFe cited, plus a worked SAFe reference model page, de-identified in full, origin not
+  named (D-015).
+- **Q4 Release versioning.** Settled 2026-09-25: a semver tag and GitHub Release per approved
+  section, one minor version each, with changelog notes and a PDF snapshot; v2.0.0 when every
+  map box has a page (D-016).
