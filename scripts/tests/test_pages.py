@@ -117,6 +117,26 @@ class Pages(unittest.TestCase):
         text = page(self.concept, sources="[bockeler-harness]").replace(PROSE, PROSE + "See the sensors article.[^bockeler-sensors] ", 1)
         self.assertIn("does not list it under sources", " ".join(self.run_on(text)))
 
+    def test_footnote_keys_must_be_reference_keys(self):
+        text = page(self.concept).replace(PROSE, PROSE + "A claim.[^Bockeler_Harness] Another.[^Fowler 2024] ", 1)
+        found = " ".join(self.run_on(text))
+        self.assertIn("[^Bockeler_Harness] is not a reference key", found)
+        self.assertIn("[^Fowler 2024] is not a reference key", found)
+
+    def test_ids_must_be_hyphenated_words_and_not_a_built_page(self):
+        self.assertIn("is taken by a built page", " ".join(self.run_on(page(self.concept, id="glossary"), "core/glossary.md")))
+        (self.root / "content/pages/core/glossary.md").unlink()
+        self.assertIn("lower-case words joined by hyphens", " ".join(self.run_on(page(self.concept, id="Harness_Eng"), "core/Harness_Eng.md")))
+
+    def test_toc_sets_the_reading_order_of_every_page(self):
+        toc = self.root / "content/toc.yml"
+        toc.write_text("pages:\n  core: [harness-engineering]\n", encoding="utf-8")
+        self.assertEqual(self.run_on(page(self.concept)), [])
+        toc.write_text("pages:\n  core: [validators]\n", encoding="utf-8")
+        found = " ".join(self.run_on(page(self.concept)))
+        self.assertIn("'harness-engineering' is missing from pages.core", found)
+        self.assertIn("lists 'validators', which is not a core page", found)
+
 
 if __name__ == "__main__":
     unittest.main()
