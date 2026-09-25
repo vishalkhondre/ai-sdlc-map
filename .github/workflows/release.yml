@@ -1,9 +1,10 @@
 name: Release
 
 # A tag marks the author's approval of a section (D-014, D-016). Either push tag vX.Y.Z on
-# main, or run this workflow by hand on main with the tag as input, and it creates the tag.
-# It re-runs validation, then creates the GitHub Release with the section's changelog entries
-# as notes and a PDF snapshot of the section's pages.
+# main, or run this workflow by hand on main with the tag as input, in which case the workflow
+# creates the tag on the validated commit. It re-runs validation, then creates the GitHub
+# Release with the section's changelog entries as notes and a PDF snapshot of its pages.
+# If a ruleset restricts creating v* tags, the manual path needs a bypass for GitHub Actions.
 
 on:
   push:
@@ -13,12 +14,43 @@ on:
       tag:
         description: "Tag to create on main: v followed by content/VERSION, for example v1.3.0"
         required: true
+        type: string
 
 permissions:
   contents: read
 
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
 jobs:
+  precheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Tag must be on main, and a manual run must not reuse a tag
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag '$TAG' is not vMAJOR.MINOR.PATCH"; exit 1
+          fi
+          if [[ "$EVENT" == "workflow_dispatch" ]]; then
+            [[ "$REF" == "refs/heads/main" ]] || { echo "Run the release from main"; exit 1; }
+            if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null; then
+              echo "Tag $TAG already exists; push it or pick the next edition"; exit 1
+            fi
+          fi
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "Tagged commit is not on main"; exit 1; }
+
   validate:
+    needs: precheck
     uses: ./.github/workflows/validate.yml
 
   release:
@@ -29,18 +61,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Tag must be on main
-        env:
-          EVENT: ${{ github.event_name }}
-          REF: ${{ github.ref }}
-        run: |
-          if [[ "$EVENT" == "workflow_dispatch" && "$REF" != "refs/heads/main" ]]; then
-            echo "Run the release from main"; exit 1
-          fi
-          git fetch --no-tags origin main
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "Tagged commit is not on main"; exit 1; }
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
