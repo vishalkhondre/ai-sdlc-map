@@ -441,7 +441,7 @@ def render_glossary() -> str:
         authors = [REFERENCES[k].get("author") for k in srcs]
         # Name a source by its author; add the title when the same author is cited twice here.
         src_html = " ".join(
-            f'<a class="src" href="references.html#{k}">{esc(a if a and authors.count(a) == 1 else ((a + ": ") if a else "") + REFERENCES[k]["title"])}</a>'
+            f'<a class="src" href="references.html#{k}">{esc(a if a and authors.count(a) == 1 else ((a + " — ") if a else "") + REFERENCES[k]["title"])}</a>'
             for k, a in zip(srcs, authors))
         chapters = " ".join(part_chip(PART_BY_ID[c]) for c in g.get("chapters", []) if c in PART_BY_ID)
         counterpart = f'<div class="counterpart"><span class="k">In Böckeler\'s terms</span> {esc(g["counterpart"])}</div>' if g.get("counterpart") else ""
