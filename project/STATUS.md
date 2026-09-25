@@ -9,14 +9,14 @@ Update at the end of every session (see `CLAUDE.md`).
   `vishalkhondre/ai-sdlc`, finished and maintained only (its `MAINTENANCE.md`); its home page
   links here ("See the whole picture", now naming The AI SDLC Map), and its session history is
   in the log below.
-- **Live: edition 1.2.0**, released as tag and GitHub Release `v1.2.0` (with its PDF snapshot);
-  edition 1.2.1 follows with this wave 0 work. The site is The AI SDLC Map, with the
+- **Live: edition 1.2.1** (main deploys continuously). The site is The AI SDLC Map, with the
   subtitle "The AI-assisted software lifecycle, from spec to software factory, on one page." Home
   page: the clickable five-band map (18 linked labels in `content/diagrams/map/links.yml`), the
-  purpose routing row and the adoption path; also the workflow catalog, terminology (now with
-  the AI SDLC entry) and references.
-- **Review record:** `content/reviews/1.2.0-rename.md` (confidentiality, accuracy and editorial
-  ACCEPT) is bound in `content/release-review.json`, pointing to `1.1.0-clickable-map.md`.
+  purpose routing row and the adoption path; also the workflow catalog, terminology (with the AI
+  SDLC entry) and references, each showing its access date. Released: `v1.2.0` (tag and GitHub
+  Release with its PDF snapshot).
+- **Review record:** `content/reviews/1.2.1-wave0.md` (confidentiality, accuracy and editorial
+  ACCEPT) is bound in `content/release-review.json`, pointing to `1.2.0-rename.md`.
 - **Decisions:** Q2–Q4 settled as D-014 (one section at a time; ground rules v1.1), D-015 (SAFe:
   generic labels plus a reference model) and D-016 (a tag and GitHub Release per approved
   section, `.github/workflows/release.yml`).
