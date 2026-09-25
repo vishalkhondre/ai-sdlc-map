@@ -1,6 +1,14 @@
 # Changelog
 
-Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version. The series Beyond Faster Coding keeps its own edition history in its repository.
+Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
+
+## 1.3.0 — 2026-09-25
+
+- Every link now stays on this site: the navigation, footer, home page, routing row, terminology, references, workflow catalog, search, the not-found page and the downloadable map.
+- The map's Harness engineering, Engineering Kit and Software factory labels open their terminology entries. The routing row leads to the AI SDLC entry, the terminology, the workflow catalog and the adoption path.
+- Terminology and reference notes speak of "this site"; terms introduced here are labelled "Coined here". The export example, Requisite variety, Harnessability and Guides and sensors entries say what the site itself does. The Harness entry also cites Böckeler's context-engineering article, for the context the agent reads.
+- The workflow catalog's introduction quotes the Workflow entry's definition. Two catalog notes are shortened.
+- Earlier entries in this changelog were reworded to match.
 
 ## 1.2.1 — 2026-09-25
 
@@ -23,9 +31,9 @@ Content edition history of The AI SDLC Map. Only reader-visible changes to the m
 
 ## 1.1.0 — 2026-09-25
 
-- The map on the home page is clickable. Eighteen underlined labels open the page that covers them: the four core concepts (three parts of the series and the workflow catalog), the workflow in each lifecycle phase and the two flows that have a workflow of their own (in the workflow catalog), and the five adoption stages. Labels without a page stay plain. The downloadable SVG is unchanged.
+- The map on the home page is clickable. Eighteen underlined labels open the page that covers them: the four core concepts (three core-concept pages and the workflow catalog), the workflow in each lifecycle phase and the two flows that have a workflow of their own (in the workflow catalog), and the five adoption stages. Labels without a page stay plain. The downloadable SVG is unchanged.
 - Under the map, a routing row starts readers by purpose: Understand, Build the kit, Run a workflow, Lead adoption, Look it up.
 
 ## 1.0.0 — 2026-09-25
 
-- First edition as a site of its own. The home page carries the five-band AI SDLC map and the adoption path. The SDLC workflow catalog, terminology and references come from Beyond Faster Coding edition 1.1.0; the seven parts of that series are linked from the home page, the terminology page and the references rather than reproduced here.
+- First edition as a site of its own. The home page carries the five-band AI SDLC map and the adoption path, with the SDLC workflow catalog, terminology and references.

@@ -49,7 +49,7 @@ of them should land on it directly.
 
 ## Order of work
 
-1. **Tooling first** (STATUS Next item 5): `check_citations.py` covers `content/pages/`
+1. **Tooling first** (STATUS Next item 4): `check_citations.py` covers `content/pages/`
    (references cited only by pages, keep-out and product names in page prose, glossary credit per
    page); `site/generate.py` renders pages (chrome, navigation, search, sitemap, llms files).
    Reviewed and merged on its own, before any page.

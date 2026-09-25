@@ -1,15 +1,15 @@
 # Where each label on the home-page map leads. A label not listed here stays a plain label
 # (GR-3.2): only destinations that exist are linked.
 #
-# Targets: a page or anchor of this site (relative), or `series:<part id>` for a part of the
-# series on its own site (see content/toc.yml). site/generate.py fails the build if a label
-# here does not appear on the map, or a target does not resolve.
+# Targets: a page or anchor of this site (relative). site/generate.py fails the build if a label
+# here does not appear on the map; the site tests check that every target resolves. Until the
+# Core pages exist, core labels point to their glossary entries (D-019).
 
 # Band 3 · core
-Harness engineering: "series:part-3"
-Engineering Kit: "series:part-4"
+Harness engineering: "glossary.html#harness-engineering"
+Engineering Kit: "glossary.html#engineering-kit"
 Workflows: "workflow-catalog.html"
-Software factory: "series:part-6"
+Software factory: "glossary.html#software-factory"
 
 # Band 2 · lifecycle: the workflow in each phase, in the workflow catalog
 intake & triage: "workflow-catalog.html#W01"

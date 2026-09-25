@@ -4,9 +4,8 @@ This repository builds **The AI SDLC Map**, a public reference site published at
 <https://vishalkhondre.github.io/ai-sdlc-map/>. The work spans many sessions. This file and the
 files in `project/` are how one session hands over to the next.
 
-The narrative series *Beyond Faster Coding* is a separate, finished site in
-[`vishalkhondre/ai-sdlc`](https://github.com/vishalkhondre/ai-sdlc), maintained only (see its
-`MAINTENANCE.md`). This site links to its parts; it never copies their text (D-010).
+The site stands on its own: it does not link to or mention the earlier narrative series or its
+repository (D-019), and a check enforces that.
 
 ## Read before doing anything
 

@@ -433,7 +433,7 @@ workflows:
     activity: Code review; design-adherence review; peer review
     owner: Development; architecture
     artefact: Approval comment
-  notes: The Part 5 example. Aggregates W17-W21 results.
+  notes: Aggregates W17-W21 results.
 - id: W24
   phase: '5'
   name: Design and architecture review
@@ -521,7 +521,7 @@ workflows:
     activity: Post-mortem; root-cause analysis; defect-driven backlog; tech-debt and improvement backlog; feedback loop
     owner: Development; QA; PM
     artefact: RCA document; backlog items
-  notes: The loop that makes the factory real (Part 6).
+  notes: The loop that makes the software factory real.
 - id: W29
   phase: '7'
   name: Vulnerability response

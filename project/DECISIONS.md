@@ -7,16 +7,14 @@ author.
 The site is the author's independent work. It carries no reference to any employer or its
 internal work. Rules out: case studies, internal names, internal numbers (GR-1).
 
-## D-002 · Title, home and licences
-"Beyond Faster Coding", hosted at `vishalkhondre.github.io/ai-sdlc`. Prose CC BY 4.0, tooling
-MIT. The web edition may diverge from the LinkedIn text.
+## D-002 · Licences
+Prose CC BY 4.0, tooling MIT. *The title and home recorded here belonged to the earlier narrative
+series; the site's name is set by D-013 and its home by D-010.*
 
 ## D-003 · The one-page map is the site's front door
 The five-band AI SDLC map becomes the landing page with every box clickable, following the
-Hopsworks documentation overview pattern. The seven-part series stays as the narrative
-introduction. Rules out: a blog-style home page.
-*The landing-page part is superseded by D-010: the map is the front door of its own site, not
-of the series site.*
+Hopsworks documentation overview pattern. Rules out: a blog-style home page.
+*The landing-page part is superseded by D-010: the map is the front door of its own site.*
 
 ## D-004 · Claude Code agents, not GitHub Copilot agents
 The source library is reachable only through the Google Drive connector in Claude sessions.
@@ -51,16 +49,13 @@ keep-out name. Rules out: product names in diagram body text, uncredited borrowe
 downloadable diagrams, and references that only a diagram uses being reported as dead.
 
 ## D-010 · Separate site for the map
-Decided 2026-09-25 by the author; supersedes the landing-page part of D-003.
-`vishalkhondre/ai-sdlc` stays as the finished *Beyond Faster Coding* series at
-`vishalkhondre.github.io/ai-sdlc/`, maintained only, with cross-links. *AI SDLC on one page* (renamed *The AI SDLC Map* by D-013) is
-built in `vishalkhondre/ai-sdlc-map`, served at `vishalkhondre.github.io/ai-sdlc-map/`, with its
-own release cycle, review gate and changelog (starting at edition 1.0.0). The map site links to
-the series parts and never copies their text; `content/toc.yml` lists the parts with the
-references each cites, so the citation gate and the References page stay complete. Reason:
-renaming the old repository would break the Pages URL already shared publicly, and the build
-needs its own release cycle. Rules out: moving or renaming the series, and duplicating chapter
-text across the two sites.
+Decided 2026-09-25 by the author; supersedes the landing-page part of D-003. The map is built in
+`vishalkhondre/ai-sdlc-map`, served at `vishalkhondre.github.io/ai-sdlc-map/`, with its own release
+cycle, review gate and changelog (starting at edition 1.0.0). It was seeded from the earlier
+narrative series without that series' text. Reason: a separate repository gives the map its own
+URL, release cycle and review gate, and leaves the earlier site's published address unchanged.
+Rules out: duplicating another site's text.
+*The cross-linking with the series that this decision also set up is superseded by D-019.*
 
 ## D-011 · A confirmation review may reuse a prior ACCEPT
 Decided 2026-09-25 by the author. A review limited to a diff may rely on an earlier full review
@@ -79,6 +74,7 @@ pages and every tracked file. Matches are reported by position only. Vendor keep
 in plain text in `check_citations.py`, because they reveal nothing confidential. A salted hash of
 a short name can still be found by trying candidate names; the salt only stops precomputed
 lists. Rules out: plain-text employer names anywhere in this repository or its history.
+*The published salt is replaced by a keyed hash (D-023).*
 
 ## D-013 · Name: The AI SDLC Map
 Decided 2026-09-25 by the author. The site is called **The AI SDLC Map**, subtitle "The
@@ -143,6 +139,7 @@ are ordinary words, or public products whose risk lies only in combination, cann
 without false alarms: the source researcher and the author, who can see the library, check for
 them, and the confidentiality reviewer checks for fingerprinting combinations. Rules out: case-sensitive matching, and an identifier found in the
 library but left off the list.
+*The published salt is replaced by a keyed hash (D-023).*
 
 ## D-018 · Core section plan approved, with changes
 Decided 2026-09-25 by the author (D-014). `project/plans/core.md` is approved with two changes.
@@ -154,9 +151,9 @@ map. The boundary table is approved, with cross-links both ways between core pag
 of the other sections that own each use. Rules out: a separate page for kit commands or profiles.
 
 ## D-019 · Disconnect from the series site and repository
-Decided 2026-09-25 by the author; supersedes D-003's "the series stays as the narrative
-introduction", D-010's cross-links and parts list in `content/toc.yml`, and D-002's title and
-home. The earlier narrative series, its site and its repository are no longer part of this work.
+Decided 2026-09-25 by the author; supersedes the cross-linking with the series set up by D-002,
+D-003 and D-010. Those entries were reworded when this decision was applied, so that they no
+longer name the series; their decisions otherwise stand. The earlier narrative series, its site and its repository are no longer part of this work.
 This repository and site do not link to or name them. Map labels that pointed to series parts
 point to the matching glossary entries until the Core pages replace them. A check fails on any
 link to, or naming of, the series site or its repository in a tracked file. The review reports

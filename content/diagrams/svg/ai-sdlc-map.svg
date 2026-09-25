@@ -129,5 +129,5 @@
 <text x="1421.0" y="1080" font-size="13.5" fill="#26215C" font-weight="700" text-anchor="middle">4  Factory emerges</text>
 <text class="credit" data-references="bockeler-harness bockeler-sensors" x="60" y="1120" font-size="12" fill="#888780" text-anchor="start">Harness engineering, feedback path and validators: after Böckeler (martinfowler.com)</text>
 <text class="credit" data-references="spec-kit safe-framework" x="60" y="1138" font-size="12" fill="#888780" text-anchor="start">Spec-driven development: after GitHub Spec Kit · Lifecycle terms: SAFe (Scaled Agile, Inc.)</text>
-<text x="1540" y="1120" font-size="12" fill="#888780" font-weight="400" text-anchor="end">Detail: the adoption-path companion diagram.  Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc</text>
+<text x="1540" y="1120" font-size="12" fill="#888780" font-weight="400" text-anchor="end">Detail: the adoption-path companion diagram.  The AI SDLC Map · vishalkhondre.github.io/ai-sdlc-map</text>
 </svg>

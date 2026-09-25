@@ -27,7 +27,7 @@ bockeler-context:
   date: "2026-02"
   url: "https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html"
   accessed: "2026-09-25"
-  note: "How the context configuration features of coding agents (rules files, skills, sub-agents and similar) load context into a session, and the case for loading it on demand rather than always-on."
+  note: "How the context configuration features of coding agents (rules files, skills, sub-agents and similar) load context into a session, and the case for loading it on demand rather than always-on. Cited for the context the agent reads, one part of the harness."
 
 openai-harness:
   title: "Harness engineering: leveraging Codex in an agent-first world"
@@ -45,7 +45,7 @@ fowler-ci:
   date: "2024-01"
   url: "https://martinfowler.com/articles/continuousIntegration.html"
   accessed: "2026-09-25"
-  note: "The classic statement of most of the deterministic floor this series takes for granted: a build that runs the same way everywhere and fails fast."
+  note: "The classic statement of most of the deterministic floor this site takes for granted: a build that runs the same way everywhere and fails fast."
 
 fowler-fitness:
   title: "Fitness function-driven development"
@@ -54,7 +54,7 @@ fowler-fitness:
   date: "2019-01"
   url: "https://www.thoughtworks.com/insights/articles/fitness-function-driven-development"
   accessed: "2026-09-25"
-  note: "Architecture goals expressed as executable tests, written first in the manner of test-driven development; what this series calls architecture validators and Böckeler calls the architecture fitness harness."
+  note: "Architecture goals expressed as executable tests, written first in the manner of test-driven development; what this site calls architecture gates and Böckeler calls the architecture fitness harness."
 
 spec-kit:
   title: "Spec Kit: toolkit to help you get started with Spec-Driven Development"
@@ -62,7 +62,7 @@ spec-kit:
   org: "GitHub (open source)"
   url: "https://github.com/github/spec-kit"
   accessed: "2026-09-25"
-  note: "An open-source toolkit whose commands include specify, clarify, plan, tasks and implement: the sequence the series refers to as spec-driven development. Named here as a source; the series text stays tool-neutral."
+  note: "An open-source toolkit whose commands include specify, clarify, plan, tasks and implement: the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
 
 ashby:
   title: "An Introduction to Cybernetics (Law of Requisite Variety)"
