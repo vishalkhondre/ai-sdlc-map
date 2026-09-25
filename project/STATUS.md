@@ -8,14 +8,16 @@ Update at the end of every session (see `CLAUDE.md`).
   `vishalkhondre.github.io/ai-sdlc-map/`. It stands on its own: it does not link to or mention the
   earlier narrative series (D-019).
 - **Live: edition 1.3.0** (main deploys continuously): the site no longer links to or names the
-  earlier series (D-019), and pages use the documentation layout (D-020). The site is The AI SDLC Map, with the
+  earlier series (D-019), pages use the documentation layout (D-020), and the site
+  carries the Slate & Teal brand (D-021). The site is The AI SDLC Map, with the
   subtitle "The AI-assisted software lifecycle, from spec to software factory, on one page." Home
   page: the clickable five-band map (18 linked labels in `content/diagrams/map/links.yml`), the
   purpose routing row and the adoption path; also the workflow catalog, terminology (with the AI
   SDLC entry) and references, each showing its access date. Released: `v1.2.0` (tag and GitHub
   Release with its PDF snapshot).
-- **Review record:** `content/reviews/1.2.1-wave0.md` (confidentiality, accuracy and editorial
-  ACCEPT) is bound in `content/release-review.json`, pointing to `1.2.0-rename.md`.
+- **Review record:** `content/reviews/1.3.0-brand.md` (confidentiality, accuracy and editorial
+  ACCEPT) is bound in `content/release-review.json`, pointing to `1.3.0-layout.md`. The
+  confidentiality reviewer found the brand resembles no employer's design system (D-021).
 - **Decisions:** Q2–Q4 settled as D-014 (one section at a time; ground rules v1.1), D-015 (SAFe:
   generic labels plus a reference model) and D-016 (a tag and GitHub Release per approved
   section, `.github/workflows/release.yml`). Session 5 recorded D-018 to D-024: Core plan
@@ -32,10 +34,7 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-1. Slate & Teal brand (D-021): tokens, fonts bundled, logo and wordmark, favicon, social preview
-   image, a contrast test, and a confidentiality check that it resembles no employer's design
-   system; then release v1.3.0 (the `"1.3"` entry in `release/sections.yml` exists) on the author's
-   instruction.
+1. Release v1.3.0 on the author's instruction (the Release workflow on `main`).
 2. Keyed deny-list (D-023); the author adds the CI secret `DENYLIST_KEY`.
 3. Core section (D-018, `project/plans/core.md`), edition 1.4.0: tooling first (pages in
    `check_citations.py` and `site/generate.py`), then the pages through `section-pipeline`;

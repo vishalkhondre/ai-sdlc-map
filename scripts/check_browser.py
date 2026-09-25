@@ -39,6 +39,11 @@ def accessibility(browser, base):
                 page.wait_for_timeout(150)
                 found = axe.run(page, options={"runOnly": {"type": "tag", "values": AXE_TAGS}}).response["violations"]
                 assert not found, (scheme, width, name, [(v["id"], [n["target"] for n in v["nodes"][:3]]) for v in found])
+            page.goto(f"{base}/workflow-catalog.html")
+            page.locator(".wf-card").first.click()
+            page.locator("#wf-detail").wait_for(state="visible")
+            found = axe.run(page, options={"runOnly": {"type": "tag", "values": AXE_TAGS}}).response["violations"]
+            assert not found, (scheme, width, "workflow detail", [(v["id"], [n["target"] for n in v["nodes"][:3]]) for v in found])
             page.close()
 
     import json

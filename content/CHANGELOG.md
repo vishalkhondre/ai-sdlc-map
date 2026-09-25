@@ -10,6 +10,7 @@ Content edition history of The AI SDLC Map. Only reader-visible changes to the m
 - The workflow catalog's introduction quotes the Workflow entry's definition. Two catalog notes are shortened.
 - Earlier entries in this changelog were reworded to match.
 - Pages use a documentation layout: a sticky header with section tabs and search, a left navigation listing the section's pages, an "On this page" list on pages with sections, breadcrumbs that name the section, and previous and next links. The home page keeps the full-width map and adds a section chooser. On small screens the navigation opens as a drawer. A skip link, labelled navigation landmarks and visible focus support keyboard and screen-reader use, checked with automated accessibility tests. The References page's entries become second-level headings. The text of every page stays the same; the only new words are navigation labels.
+- The site has its own look, Slate & Teal: a slate and teal palette with amber for judgment and notes, in light and dark themes that meet WCAG AA contrast; Atkinson Hyperlegible for text and IBM Plex Mono for code, served with the site; a logo of five stacked bars, one per band of the map, with the wordmark; a matching favicon and social preview image. The map's band colours are unchanged.
 
 ## 1.2.1 — 2026-09-25
 
