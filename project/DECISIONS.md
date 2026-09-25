@@ -154,12 +154,15 @@ map. The boundary table is approved, with cross-links both ways between core pag
 of the other sections that own each use. Rules out: a separate page for kit commands or profiles.
 
 ## D-019 · Disconnect from the series site and repository
-Decided 2026-09-25 by the author; supersedes the cross-linking parts of D-010 and D-003.
-*Beyond Faster Coding* and the `vishalkhondre/ai-sdlc` repository are no longer part of this
-work. This repository and site do not link to or mention them. Map labels that pointed to series
-parts point to the matching glossary entries until the Core pages replace them. A check fails on
-any link to the series site or the series repository. Rules out: links to, or mention of, the
-series anywhere in this repository or on the site.
+Decided 2026-09-25 by the author; supersedes D-003's "the series stays as the narrative
+introduction", D-010's cross-links and parts list in `content/toc.yml`, and D-002's title and
+home. The earlier narrative series, its site and its repository are no longer part of this work.
+This repository and site do not link to or name them. Map labels that pointed to series parts
+point to the matching glossary entries until the Core pages replace them. A check fails on any
+link to, or naming of, the series site or its repository in a tracked file. The review reports
+in `content/reviews/` are exempt: they are historical records bound by hash to the release
+record (D-011), are never published, and are not rewritten. Rules out: links to, or naming of,
+the series anywhere else in this repository or on the site.
 
 ## D-020 · Documentation layout
 Decided 2026-09-25 by the author. Pages use a three-column documentation layout, built in the

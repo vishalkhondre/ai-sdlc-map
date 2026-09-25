@@ -32,7 +32,8 @@ the artefact is used.
 
 | # | Page id | Type | Map box | Coverage | Scope | Leaves to others |
 |---|---|---|---|---|---|---|
-| 1 | `harness-engineering` | Concept | Harness engineering | covered | The discipline: what the agent may read and do, what a machine checks, what a person decides; guides and sensors; computational and inferential controls; the steering loop (the feedback path, which the map links here); harnessability; how the discipline relates to the kit, workflows and the factory. | Agent runtime and tools (enablement) |
+| 1 | `harness-engineering` | Concept | Harness engineering | covered | The discipline: what the agent may read and do, what a machine checks, what a person decides; guides and sensors; computational and inferential controls; the steering loop (the feedback path; which map label links here is confirmed with the author, see
+STATUS); harnessability; how the discipline relates to the kit, workflows and the factory. | Agent runtime and tools (enablement) |
 | 2 | `engineering-kit` | Concept | Engineering Kit | overview of rows 3–7 | The artefact: a versioned, installable package of the reusable environment; its parts; technology profiles; project configuration; the kit's commands (init, doctor, verify); the `could_not_run` result; what installation must prove; versioning and upgrades. The overview for pages 3–7. | Each part's detail (pages 3–7) |
 | 3 | `rule-registry` | Concept | Engineering Kit · rule registry | covered | Every rule with an ID, a route (gate, judgment or guidance) and an owner; how rules enter, change and retire; choosing the first rules. | Tracing rule → check → decision (assurance) |
 | 4 | `validators` | Concept | Engineering Kit · validators | covered | Deterministic checks as code; the path from observing to blocking; how a validator reports a result, including when it cannot run; timeouts and flaky checks; fitness functions for architecture rules. | What each result means for a decision (assurance) |
@@ -49,20 +50,19 @@ of them should land on it directly.
 
 ## Order of work
 
-1. **Tooling first** (STATUS Next item 3): `check_citations.py` covers `content/pages/`
+1. **Tooling first** (STATUS Next item 5): `check_citations.py` covers `content/pages/`
    (references cited only by pages, keep-out and product names in page prose, glossary credit per
    page); `site/generate.py` renders pages (chrome, navigation, search, sitemap, llms files).
    Reviewed and merged on its own, before any page.
 2. **Parts before the whole:** pages 3–7 in parallel, then page 2 (the kit overview), which
    summarises them.
 3. **Pages 1, 8 and 9** in parallel with step 2.
-4. **Map and routes** once every page exists: `links.yml`, and the map change if Decision 2 is
-   yes.
+4. **Map and routes** once every page exists: `links.yml`, and the map change that links the
+   kit's five parts (D-018).
 5. **Review** of the whole section (three reviewers, three rounds, then the author), merge as
-   1.3.0, the author reviews it live, follow-ups as 1.3.x, tag at approval.
+   1.4.0, the author reviews it live, follow-ups as 1.4.x, tag at approval.
 
-The D-015 relabel of the lifecycle levels is a separate content edition. It lands before this
-section as 1.2.2 if it is ready first; otherwise after the section as its own patch.
+The D-015 relabel of the lifecycle levels is a separate content edition, after this section.
 
 ## Links and map changes
 
@@ -70,12 +70,11 @@ Approved (D-018): the kit's five parts are linked on the map, and every boundary
 cross-linked both ways once the other section's page exists.
 
 - **Map links** (`content/diagrams/map/links.yml`): Harness engineering, Engineering Kit and
-  Software factory move from the series parts to these pages. Workflows moves from the catalog to
-  the `workflows` page. Each page links on to its series part and to the catalog.
-- **Routing row:** "Build the kit" gains the kit pages and keeps the Engineering Kit series part
-  as further reading. Harness engineering moves from "Build the kit" to "Understand", and "Build
+  Software factory move from their glossary entries (D-019) to these pages. Workflows moves from
+  the catalog to the `workflows` page. Each page links on to its glossary entry and to the catalog.
+- **Routing row:** "Build the kit" gains the kit pages. Harness engineering moves from "Build the kit" to "Understand", and "Build
   the kit" links the kit overview in its place.
-- **Decision 2's cost.** Today the whole Engineering Kit box, including its text line, is one link,
+- **Linking the kit's parts (D-018).** Today the whole Engineering Kit box, including its text line, is one link,
   and an SVG link cannot hold other links. Linking the five parts means laying them out as five
   separate labels inside the box, with only the title linked to the overview. That is a small
   redesign of the box in `build_map.py`, five new `links.yml` entries, and the build's check that
@@ -85,7 +84,7 @@ cross-linked both ways once the other section's page exists.
 
 The Evidence & traceability, Measurement and Standards pages (assurance), People & roles and
 Agent runtime (enablement), the adoption stages, and the pull-request verification workflow
-(lifecycle) do not exist yet. Until they do, core pages link to the catalog and the series; no
+(lifecycle) do not exist yet. Until they do, core pages link to the catalog and the glossary; no
 link points at a page that does not exist (GR-4.3).
 
 ## Risks
@@ -96,8 +95,8 @@ link points at a page that does not exist (GR-4.3).
   extra close-paraphrase pass for these covered boxes.
 - **Evidence:** adapters and the software factory have little public evidence beyond practitioner
   writing, so those pages present recommended practice as such.
-- **Overlap with the series:** the pages are reference pages, not the series' narrative. They
-  link to the parts and never copy their text (D-010).
+- **Independence:** the pages are reference pages written for this site. They neither link to
+  nor draw text from the earlier narrative series (D-019).
 
 ## Decisions taken by the author (D-018)
 
