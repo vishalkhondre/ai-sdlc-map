@@ -251,6 +251,10 @@ def head(title: str, description: str, path: str, og_image: str = "og-image.png"
 """
 
 
+# Logo (D-021): five stacked bars, one per band of the map, in the primary colour.
+LOGO_MARK = '<svg class="brand-mark" viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" focusable="false"><rect x="2" y="2.0" width="16" height="2.2" rx="1.1"/><rect x="2" y="5.4" width="16" height="2.2" rx="1.1"/><rect x="2" y="8.8" width="16" height="2.2" rx="1.1"/><rect x="2" y="12.2" width="16" height="2.2" rx="1.1"/><rect x="2" y="15.6" width="16" height="2.2" rx="1.1"/></svg>'
+
+
 # --------------------------------------------------------------------------- layout (D-020)
 # Sections of the site: header tabs, and the left navigation's page list. Pages are in reading
 # order; previous and next follow SECTIONS from top to bottom.
@@ -278,7 +282,7 @@ def nav(current: str = "") -> str:
 <header class="topbar">
 <div class="topbar-inner">
 <button class="iconbtn menu" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidenav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<a class="brand" href="{rel('index.html')}"><span class="brand-mark" aria-hidden="true"></span><span>{esc(TITLE)}</span></a>
+<a class="brand" href="{rel('index.html')}">{LOGO_MARK}<span>{esc(TITLE)}</span></a>
 <nav class="tabs" aria-label="Sections">{tabs}</nav>
 <div class="tools">
 <button class="iconbtn" id="search-open" type="button" aria-label="Search (press /)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
@@ -470,7 +474,7 @@ def render_index() -> str:
     set_prefix("")
     n_workflows = len(CATALOG["workflows"])
     n_terms = len(GLOSSARY)
-    page = head(f"{TITLE} — the AI-assisted software lifecycle on one page", TOC["about"], "index.html", "diagrams/ai-sdlc-map.png")
+    page = head(f"{TITLE} — the AI-assisted software lifecycle on one page", TOC["about"], "index.html")
     page += "<body class=\"home\">" + nav("home")
     page += f"""
 <main>
