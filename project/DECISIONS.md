@@ -139,7 +139,8 @@ lower-cases every word before hashing it, and also hashes each pair of neighbour
 name is caught whatever its capitalisation and a two-word name is caught as a pair. It holds the
 original names plus the single-word and two-word identifiers the inventory found in the source
 library: organisation, product, project-code and people names. It uses a new salt. Identifiers that
-are ordinary words, or public products whose risk lies only in combination, are left to the
-confidentiality reviewer. Rules out: case-sensitive matching, and an identifier found in the
+are ordinary words, or public products whose risk lies only in combination, cannot be listed
+without false alarms: the source researcher and the author, who can see the library, check for
+them, and the confidentiality reviewer checks for fingerprinting combinations. Rules out: case-sensitive matching, and an identifier found in the
 library but left off the list.
 

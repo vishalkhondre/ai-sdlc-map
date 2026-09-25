@@ -27,11 +27,15 @@ python scripts/check_browser.py
 
 ## Review rounds
 
-1. Commit and push; record the commit hash.
-2. Start the three reviewers in fresh contexts, in parallel, each with the commit, the diff
-   range, the check output and its skill. Never pass the practice brief.
-3. On REVISE or BLOCK: route findings to `author` or `diagrammer`, rerun validation, and send
-   the fix range back for confirmation (D-011). Three rounds at most; then the author decides.
+0. Before the first validation, create `content/reviews/<edition>-<section>.md` with Scope and
+   Limitations only, so each page's `review_record` resolves. `release_content.py check` fails
+   until the record is bound with an ACCEPT; that is expected until step 4.
+1. Commit and push; record the commit hash for the orchestrating session, which starts the
+   reviewers (`section-pipeline`).
+2. On REVISE or BLOCK: the findings go to `author` or `diagrammer` through the main session;
+   rerun validation and return the fix range for confirmation (D-011). Three rounds at most; then
+   the author decides.
+3. Add each reviewer's report to the record as it arrives.
 4. When all three ACCEPT, assemble the record (see `section-pipeline`) and bind it with
    `record-review`.
 

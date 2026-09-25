@@ -12,15 +12,22 @@ Drive connector in Claude sessions (see `DECISIONS.md`, D-004).
 
 | Agent | Job | Reads | Writes |
 |---|---|---|---|
-| `architect` | Owns the map, the page inventory and section plans; opens page briefs | Map, `STATUS.md`, inventory | `briefs/<page>.md`, inventory, section plan |
+| `architect` | Owns the map, the page inventory and section plans; opens page briefs | Map, `STATUS.md`, `COVERAGE.md` | Section plan (`project/plans/`); page briefs and the source inventory in the session scratchpad only |
 | `source-researcher` | Reads the private library for a brief; extracts practice; de-identifies | Brief, Drive library | Practice brief **outside the repo** (session scratch only) |
-| `external-researcher` | Finds and verifies public sources for every claim | Brief, web | `content/references.yml` entries, evidence notes in the brief |
+| `external-researcher` | Finds and verifies public sources for every claim | Brief, web | Evidence brief with drafted reference entries (the author adds them to `content/references.yml`) |
 | `author` | Writes the page to its template in the site voice | Brief, both research outputs, template | `content/pages/<band>/<page>.md` |
 | `diagrammer` | Diagrams as code in the house palette; text alternatives | Page | `content/diagrams/...` |
 | `confidentiality-reviewer` | GR-1 and GR-3.3; can BLOCK | Page, diagrams | Verdict in the review record |
 | `accuracy-reviewer` | GR-2: every claim sourced, sources say what is claimed | Page, references | Verdict in the review record |
 | `editorial-reviewer` | GR-3, GR-4: voice, completeness, standalone, consistency with map and other pages | Page, template, related pages | Verdict in the review record |
 | `site-builder` | Wires pages into map and navigation; runs checks and build; opens the PR | Everything | Site code, PR |
+
+## Orchestration
+
+The main session runs the pipeline (`.claude/skills/section-pipeline`). It starts each agent,
+carries each output to the next step, and starts the three reviewers in fresh contexts. Agents do
+not start other agents; where an agent file says "return", the output goes back to the main
+session.
 
 ## Independence
 

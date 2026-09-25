@@ -17,7 +17,10 @@ The library is internal material and falls under GR-1 in full (ASSUMPTIONS A3).
 - The practice brief states practices in general industry words. No organisation, group,
   product, platform, project, team or people names, internal codes, customers, figures, dates of
   internal events, document titles, or quotations (GR-1.1, GR-1.2).
+- Check the brief against every identifier the library uses, including ordinary words used as
+  internal names, which the hashed deny-list cannot know (D-017).
 - Say for each practice how strong the library's evidence is (in depth, partial, mention) and
   flag practices that are local convention rather than general practice.
 
-Hand the practice brief to `author`. Never hand it to `confidentiality-reviewer`.
+Return the practice brief (its scratchpad path) to the orchestrating session for `author`. It is
+never passed to `confidentiality-reviewer`.

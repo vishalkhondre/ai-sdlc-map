@@ -50,7 +50,7 @@ scripts/
   release_content.py    edition/changelog validation and source-bound editorial acceptance
   release_snapshot.py   release notes and PDF snapshot for a tagged section release
   check_browser.py      browser regressions for the home map, search, catalog and zoom
-  tests/                site, citation and release regression tests
+  tests/                site, citation, reference, page, agent, deny-list and release tests
 .github/
   workflows/            validate on every PR; deploy to GitHub Pages from main; release on a v* tag or by hand
   instructions/, prompts/   content rules and procedures for people and agents

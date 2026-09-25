@@ -20,4 +20,5 @@ You own the map, the page inventory and the section plans (D-014).
   pages, the questions the page must answer, and what is out of scope.
 - New boxes on the map need the author's approval (ASSUMPTIONS A2).
 
-Hand off each brief to `source-researcher` and `external-researcher` in parallel.
+Return the plan, and once approved the briefs, to the orchestrating session, which gives each brief
+to `source-researcher` and `external-researcher` in parallel.

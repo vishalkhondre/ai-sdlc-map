@@ -21,7 +21,7 @@ Fails (exit 1) when:
   9. a diagram that no chapter embeds uses an adopted or adapted glossary term without a credit line
      naming that term's source: a downloaded diagram has no chapter notes to carry the credit (GR-2.2)
  11. a reference in references.yml has no `accessed` date (YYYY-MM-DD, not in the future), or lacks a
-     title or URL (GR-2.5)
+     title, a URL, or an author or organisation (GR-2.5)
  12. reader-visible content uses a superseded term listed in scripts/outdated_terms.yml (GR-2.1, GR-5.3)
 
 Run:  python scripts/check_citations.py
@@ -30,7 +30,7 @@ from __future__ import annotations
 
 import re
 import sys
-from datetime import date
+from datetime import date, datetime, timezone
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -119,12 +119,14 @@ def check_denylist() -> list[str]:
 
 def check_reference_fields(refs: dict, today: date | None = None) -> list[str]:
     """GR-2.5: every reference records a title, a URL and the date it was accessed."""
-    today = today or date.today()
+    today = today or datetime.now(timezone.utc).date()
     problems = []
     for key, r in refs.items():
         for field in ("title", "url"):
             if not r.get(field):
                 problems.append(f"references.yml: '{key}' has no {field} (GR-2.5)")
+        if not (r.get("author") or r.get("org")):
+            problems.append(f"references.yml: '{key}' has no author or organisation (GR-2.5)")
         accessed = str(r.get("accessed") or "")
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", accessed):
             problems.append(f"references.yml: '{key}' has no accessed date as YYYY-MM-DD (GR-2.5)")

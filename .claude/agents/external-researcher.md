@@ -21,4 +21,5 @@ You make every non-obvious claim on a page traceable to a public source (GR-2).
 - Where no public evidence exists, say so: the page then presents recommended practice (GR-2.3).
 - Look up the current term for anything that may be superseded (`scripts/outdated_terms.yml`).
 
-Hand the evidence brief (claims, sources, verification, gaps) to `author`.
+Return the evidence brief (claims, sources, verification, gaps, drafted reference entries) to the
+orchestrating session for `author`.

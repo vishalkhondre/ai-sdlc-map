@@ -20,7 +20,9 @@ You write `content/pages/<band>/<id>.md` from `templates/pages/<type>.md` (GR-4.
 - Cite `[^key]` for every claim beyond common knowledge; add new references to
   `content/references.yml` from the evidence brief, with `accessed`.
 - Use the practice brief for experience, never for wording: rewrite it so no sentence is
-  recognisable from the library (GR-1.2).
+  recognisable from the library (GR-1.2), and check that no identifier from the library, including
+  ordinary words used as internal names, reaches the page (D-017).
 - Glossary terms borrowed from someone else are credited in `content/glossary.yml` (GR-2.2).
 
-Hand the page to `diagrammer` if a diagram carries meaning, then to `site-builder` for checks.
+Return the page to the orchestrating session, saying whether a diagram would carry meaning (for
+`diagrammer`); `site-builder` then runs the checks.

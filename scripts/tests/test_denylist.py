@@ -24,6 +24,7 @@ class DenyList(unittest.TestCase):
             self.assertEqual(len(denylist.matches("the Quiet Harbour team")), 1)
             self.assertEqual(len(denylist.matches("quiet-harbour and quiet\nharbour")), 2)
             self.assertEqual(denylist.matches("quiet, harbour; quiet night"), [])
+            self.assertEqual(len(denylist.matches("definition: >-\n    the quiet\n    harbour way")), 1)
 
     def test_hashes_are_well_formed(self):
         self.assertTrue(denylist.HASHES)

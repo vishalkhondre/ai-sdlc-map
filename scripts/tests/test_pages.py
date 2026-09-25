@@ -85,6 +85,23 @@ class Pages(unittest.TestCase):
                 self.assertIn("GR-3.2", " ".join(self.run_on(page(self.concept).replace(PROSE, PROSE + phrase, 1))))
         self.assertEqual(self.run_on(page(self.concept).replace(PROSE, PROSE + "The agent writes a draft plan. ", 1)), [])
 
+    def test_draft_as_a_label_and_v0x_fail(self):
+        self.assertIn("labels the page as a draft", " ".join(self.run_on(page(self.concept, title="Harness engineering (draft)"))))
+        self.assertIn("labels the page as a draft", " ".join(self.run_on(page(self.concept, summary="A draft of the discipline."))))
+        self.assertIn("GR-3.2", " ".join(self.run_on(page(self.concept).replace(PROSE, PROSE + "Version v0.x of the kit. ", 1))))
+
+    def test_short_sections_need_fewer_words_and_code_fences_are_not_sections(self):
+        workflow = check_pages.load_templates()[0]["workflow"]
+        text = page(workflow, type="workflow")
+        text = text.replace("## Decision\n\n" + PROSE, "## Decision\n\nIs this change safe to merge on its evidence?", 1)
+        self.assertEqual(self.run_on(text), [])
+        fenced = page(self.concept).replace(PROSE, PROSE + "\n```\n## Not a section\n```\n", 1)
+        self.assertEqual(self.run_on(fenced), [])
+
+    def test_link_targets_do_not_count_as_words(self):
+        short = "See [the kit](https://example.org/a/very/long/path/with/many/segments/that/look/like/words/one/two/three/four/five/six/seven/eight/nine/ten/eleven/twelve)."
+        self.assertIn("at least 25", " ".join(self.run_on(page(self.concept).replace(PROSE, short, 1))))
+
     def test_metadata_is_checked(self):
         self.assertIn("missing or empty", " ".join(self.run_on(page(self.concept, summary=None))))
         self.assertIn("placeholder", " ".join(self.run_on(page(self.concept, title="<page title>"))))

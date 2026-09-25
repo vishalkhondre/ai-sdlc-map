@@ -17,6 +17,9 @@ class AccessDates(unittest.TestCase):
     def ref(self, **fields):
         return {"k": {"title": "T", "url": "https://example.org/", **fields}}
 
+    def full(self, **fields):
+        return self.ref(author="A", **fields)
+
     def test_reference_without_accessed_fails(self):
         self.assertIn("no accessed date", " ".join(gate.check_reference_fields(self.ref())))
 
@@ -27,9 +30,10 @@ class AccessDates(unittest.TestCase):
         self.assertIn("in the future", " ".join(gate.check_reference_fields(self.ref(accessed="2026-09-26"), today)))
 
     def test_complete_reference_passes_and_title_and_url_are_required(self):
-        self.assertEqual(gate.check_reference_fields(self.ref(accessed="2026-09-25"), date(2026, 9, 25)), [])
+        self.assertEqual(gate.check_reference_fields(self.full(accessed="2026-09-25"), date(2026, 9, 25)), [])
         broken = {"k": {"accessed": "2026-09-25"}}
-        self.assertEqual(len(gate.check_reference_fields(broken, date(2026, 9, 25))), 2)
+        self.assertEqual(len(gate.check_reference_fields(broken, date(2026, 9, 25))), 3)
+        self.assertIn("author or organisation", " ".join(gate.check_reference_fields(self.ref(accessed="2026-09-25"), date(2026, 9, 25))))
 
     def test_every_reference_in_the_repository_has_one(self):
         refs = yaml.safe_load((ROOT / "content/references.yml").read_text(encoding="utf-8"))
@@ -45,11 +49,19 @@ class OutdatedTerms(unittest.TestCase):
         return gate.check_outdated_terms(root)
 
     def test_superseded_terms_fail_where_readers_see_them(self):
-        found = self.scan({"glossary.yml": "Each Program Increment ends with a demo.\n",
-                           "diagrams/svg/x.svg": "<svg><text>the four key metrics</text></svg>\n",
-                           "pages/core/p.md": "Track mean time to restore.\n"})
-        self.assertEqual(len(found), 3)
-        self.assertIn("Planning Interval", found[1] + found[0] + found[2])
+        files = {"glossary.yml": ("Each Program Increment ends with a demo.\n", "Planning Interval"),
+                 "diagrams/svg/x.svg": ("<svg><text>the four key metrics</text></svg>\n", "five metrics"),
+                 "pages/core/p.md": ("Track mean time to recovery.\n", "failed deployment recovery time"),
+                 "pages/core/q.md": ("Watch the change failure rate.\n", "change fail rate")}
+        for name, (text, replacement) in files.items():
+            with self.subTest(name=name):
+                found = self.scan({name: text})
+                self.assertEqual(len(found), 1, found)
+                self.assertIn(replacement, found[0])
+
+    def test_ordinary_phrases_are_not_superseded_terms(self):
+        self.assertEqual(self.scan({"pages/core/p.md": "The four key ideas. Time to restore a backup. "
+                                                       "MTTR as mean time to repair a machine.\n"}), [])
 
     def test_history_and_quoted_titles_are_exempt(self):
         self.assertEqual(self.scan({"references.yml": 'title: "The four keys"\n', "CHANGELOG.md": "program increment\n",

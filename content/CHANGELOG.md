@@ -4,8 +4,16 @@ Content edition history of The AI SDLC Map. Only reader-visible changes to the m
 
 ## 1.2.1 — 2026-09-25
 
-- Every reference now records the date it was last checked, shown on the References page.
-- Corrections to five older references, checked against the sources: the fitness-function article is "Fitness function-driven development" by Paula Paul and Rosemary Wang (Thoughtworks, 2019); the OpenAI harness-engineering account is by Ryan Lopopolo; the Spec Kit entry uses the repository's own title and no longer calls it the origin of spec-driven development; the context-engineering note describes what that article covers; two Böckeler titles use the site's sentence case. The Gate entry now credits fitness functions to evolutionary-architecture practice, matching its source.
+- Every reference now records the date its title, author, date and address were last checked, shown on the References page as "accessed".
+- Corrections to seven older references:
+  - The fitness-function article is "Fitness function-driven development" by Paula Paul and Rosemary Wang (Thoughtworks, January 2019).
+  - The OpenAI harness-engineering account is by Ryan Lopopolo.
+  - Spec Kit uses the repository's own title, and its note no longer calls it the origin of spec-driven development.
+  - The context-engineering note describes what that article covers, and gains its date (February 2026).
+  - The sensors article is dated by month (May 2026), because it was published in parts.
+  - Two Böckeler titles now match their published sentence case.
+  - Fowler's Continuous Integration note calls it the classic statement of the practice rather than its origin, and gains its revision date (January 2024).
+- The Gate entry credits fitness functions to evolutionary-architecture practice, matching its source.
 
 ## 1.2.0 — 2026-09-25
 

@@ -7,6 +7,11 @@ description: "Runs one section of The AI SDLC Map end to end: plan, research, wr
 
 A section is one band of the map or the adoption path. One section is in flight at a time.
 
+**The main session orchestrates.** Subagents cannot start other subagents, so the main session
+starts each agent in the table below, passes each output to the next step, and starts the three
+reviewers in fresh contexts, in parallel, giving each the commit, the diff range, the check output
+and its skill, and never the practice brief.
+
 | Step | Who | Output | Gate |
 |---|---|---|---|
 | 1 Plan | `architect` | page list from the map and `project/COVERAGE.md` | **author approves the plan** |
@@ -14,8 +19,8 @@ A section is one band of the map or the adoption path. One section is in flight 
 | 3 Research | `source-researcher` ║ `external-researcher` | practice brief (scratchpad only) ║ evidence brief and reference entries | — |
 | 4 Write | `author` | `content/pages/<band>/<id>.md` from its template | — |
 | 5 Diagram | `diagrammer` | diagrams as code, when they carry meaning | — |
-| 6 Check | `site-builder` | full validation (`CLAUDE.md`) green | every check passes |
-| 7 Review | `confidentiality-reviewer` ║ `accuracy-reviewer` ║ `editorial-reviewer`, fresh contexts | three reports | all ACCEPT; three rounds, then the author |
+| 6 Check | `site-builder` | review record created with Scope and Limitations only; full validation (`CLAUDE.md`) green except the release gate | every other check passes |
+| 7 Review | main session starts `confidentiality-reviewer` ║ `accuracy-reviewer` ║ `editorial-reviewer`, fresh contexts | three reports | all ACCEPT; three rounds, then the author |
 | 8 Record | `site-builder` | `content/reviews/<edition>-<section>.md`, bound by `record-review` | `release_content.py check` |
 | 9 Merge | `site-builder` | pull request merged, deployed live | CI green |
 | 10 Author review | the author | follow-up PRs, each through steps 4–9 (patch editions) | — |

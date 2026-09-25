@@ -29,6 +29,7 @@ HASHES = frozenset({
     "acc4ecffac622a130a2337efe22031d0c652ff4d76dcc9d2fcc81a5e106717c9",
 })
 WORD = re.compile(r"[A-Za-z0-9]+")
+SEPARATOR = re.compile(r"\s+|[-_]")  # between the two words of a pair, including a wrapped YAML line
 
 
 def _hit(value: str) -> bool:
@@ -40,7 +41,7 @@ def matches(text: str) -> list[tuple[int, int]]:
     found = []
     words = list(WORD.finditer(text))
     for i, m in enumerate(words):
-        pair = i + 1 < len(words) and text[m.end():words[i + 1].start()] in (" ", "\n", "-", "_")
+        pair = i + 1 < len(words) and SEPARATOR.fullmatch(text[m.end():words[i + 1].start()]) is not None
         if _hit(m.group(0)) or (pair and _hit(m.group(0) + " " + words[i + 1].group(0))):
             line = text.count("\n", 0, m.start()) + 1
             found.append((line, m.start() - text.rfind("\n", 0, m.start())))

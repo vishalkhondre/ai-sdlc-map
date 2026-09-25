@@ -42,6 +42,7 @@ fowler-ci:
   title: "Continuous Integration"
   author: "Martin Fowler"
   org: "martinfowler.com"
+  date: "2024-01"
   url: "https://martinfowler.com/articles/continuousIntegration.html"
   accessed: "2026-09-25"
   note: "The classic statement of most of the deterministic floor this series takes for granted: a build that runs the same way everywhere and fails fast."

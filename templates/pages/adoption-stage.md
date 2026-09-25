@@ -1,7 +1,4 @@
 ---
-# Template for a Adoption stage page (project/APPROACH.md). Copy to content/pages/<band>/<id>.md,
-# fill every field and every section, and delete every guidance comment.
-# scripts/check_pages.py enforces the front matter and the sections, in this order (GR-4.1).
 id: <page id, lowercase words joined by hyphens>
 type: adoption-stage
 band: <context | lifecycle | core | enablement | assurance | adoption>
@@ -13,6 +10,10 @@ sources: [<reference keys from content/references.yml>]
 related: [<page ids on this site>]
 review_record: <content/reviews/<edition>-<section>.md>
 ---
+
+<!-- Template for a Adoption stage page (project/APPROACH.md). Copy to content/pages/<band>/<id>.md,
+     fill every field and every section, and delete every guidance comment.
+     scripts/check_pages.py enforces the front matter and the sections, in this order (GR-4.1). -->
 
 ## What exists
 

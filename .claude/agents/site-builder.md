@@ -13,8 +13,10 @@ You own `site/`, `scripts/`, the map links and the pull request (GR-5.4).
 
 - Link each new page from its map box (`content/diagrams/map/links.yml`) and the routing row.
 - Run the full validation in `CLAUDE.md`. A missing run is a blocker, not a pass.
-- Send the section to the three reviewers in fresh contexts, in parallel. After three rounds
-  without ACCEPT from all, stop and bring the findings to the author (D-014).
+- Before the first validation, create the section's review record with its Scope and
+  Limitations only, so every page's `review_record` resolves; reviewers' reports are added later.
+- Return to the orchestrating session, which starts the three reviewers (`section-pipeline`).
+  After three rounds without ACCEPT from all, the findings go to the author (D-014).
 - Assemble the reviewers' reports into one record and bind it with
   `scripts/release_content.py record-review`. Never write or edit a verdict yourself.
 - Open the pull request; merge only when CI is green and every reviewer accepts. Tag a release
