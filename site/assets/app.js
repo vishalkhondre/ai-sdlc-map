@@ -226,7 +226,7 @@
   const sBox = $('#search'), sIn = $('#search-input'), sRes = $('#search-results');
   let index = null, sel = -1;
   const base = (document.querySelector('link[rel=stylesheet]').getAttribute('href') || '').replace(/assets\/style\.css.*$/, '');
-  function openSearch() { if (!sBox) return; sBox.hidden = false; sIn.value = ''; sRes.innerHTML = ''; sIn.focus(); if (!index) fetch(base + 'search-index.json').then(r => r.json()).then(d => { index = d; }); }
+  function openSearch() { if (!sBox) return; sBox.hidden = false; sIn.value = ''; sRes.innerHTML = ''; sIn.focus(); if (!index) fetch(base + 'search-index.json').then(r => r.json()).then(d => { index = d; if (sIn.value) sIn.dispatchEvent(new Event('input')); }); }
   function closeSearch() { if (sBox) sBox.hidden = true; }
   const sBtn = $('#search-open'); if (sBtn) sBtn.addEventListener('click', openSearch);
   if (sBox) sBox.addEventListener('click', e => { if (e.target === sBox) closeSearch(); });
