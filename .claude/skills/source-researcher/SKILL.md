@@ -27,8 +27,8 @@ cautions: anything that would be recognisable if written closely
 ## De-identification checklist (GR-1.1, GR-1.2)
 
 - [ ] No organisation, group, business unit, product, platform, project, team or people names.
-- [ ] No internal codes: tracker keys, branch or tag patterns, field IDs, page IDs, plan codes,
-      decision numbers, technique numbers.
+- [ ] No internal identifiers of any kind: tracker keys, branch or tag patterns, document or
+      section numbers.
 - [ ] No internal figures: counts, percentages, durations, dates of internal events, costs.
 - [ ] No document titles and no quotations; nothing close enough to be recognised.
 - [ ] No combination of named tools that together fingerprints one organisation's stack.
