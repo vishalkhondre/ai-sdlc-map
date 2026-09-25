@@ -88,7 +88,7 @@ link points at a page that does not exist (GR-4.3).
 ## Risks
 
 - **Confidentiality:** the library covers this band in depth, so the risk of close paraphrase is
-  highest here. The source researcher's briefs stay in the scratchpad, the author writes in
+  highest here. The source researcher's briefs stay in the scratchpad, the author agent writes in
   general practitioner words, and the confidentiality reviewer reads the pages cold, with an
   extra close-paraphrase pass for these covered boxes.
 - **Evidence:** adapters and the software factory have little public evidence beyond practitioner
