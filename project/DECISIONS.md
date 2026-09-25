@@ -204,7 +204,9 @@ Decided 2026-09-25 by the author; replaces the published salt of D-012 and D-017
 stores HMAC-SHA-256 values keyed by a secret held as the CI secret `DENYLIST_KEY`, so a reader
 with a guessed name cannot confirm it. Without the key, a local run warns and skips the check; in
 CI a missing key fails the build; pull requests from forks and from automated dependency tools
-receive no secrets and so fail the check until a maintainer reruns them in the repository. The
+receive no Actions secrets and so fail the check; a maintainer re-creates such a change on a branch
+of this repository, or the author also adds `DENYLIST_KEY` as a Dependabot secret for dependency
+pull requests. The
 author generates the key and adds it as the secret. Hashes made with the old salt remain in git
 history. Rules out: a key in the repository.
 
