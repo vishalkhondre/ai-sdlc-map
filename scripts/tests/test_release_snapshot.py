@@ -46,6 +46,8 @@ class ReleaseSnapshot(unittest.TestCase):
         text = release_snapshot.notes("v1.3.2", repo(version="1.3.2", changelog="## 1.3.2\n\n- Fix.\n\n## 1.3.0\n\n- Core.\n"))
         self.assertIn("**Core**", text)
         self.assertIn("- Fix.", text)
+        self.assertIn("- Core.", text)
+        self.assertLess(text.index("1.3.2"), text.index("1.3.0"))
 
     def test_current_edition_is_releasable(self):
         version = (ROOT / "content/VERSION").read_text(encoding="utf-8").strip()

@@ -35,11 +35,15 @@ def version_for(tag: str, root: Path = ROOT) -> str:
 def notes(tag: str, root: Path = ROOT) -> str:
     version = version_for(tag, root)
     changelog = (root / "content/CHANGELOG.md").read_text(encoding="utf-8")
-    entry = re.search(rf"^## {re.escape(version)}(?:[ \t]+[^\n]*)?\n(.*?)(?=^## |\Z)", changelog, re.M | re.S)
-    if not entry or not entry.group(1).strip():
+    entries = {m.group(1): m.group(2).strip() for m in
+               re.finditer(r"^## (\d+\.\d+\.\d+)(?:[ \t]+[^\n]*)?\n(.*?)(?=^## |\Z)", changelog, re.M | re.S)}
+    if not entries.get(version):
         raise ValueError(f"CHANGELOG.md has no entry for {version}.")
+    # A section's release describes the whole section: its minor edition and every patch after it.
+    minor = version.rsplit(".", 1)[0]
+    parts = [f"### {v}\n\n{text}" for v, text in entries.items() if v.rsplit(".", 1)[0] == minor and text]
     section = release_section(version, root)
-    return (f"**{section['section']}**\n\n{entry.group(1).strip()}\n\n"
+    return (f"**{section['section']}**\n\n" + "\n\n".join(parts) + "\n\n"
             f"This tag marks the author's approval of the section (D-014, D-016). "
             f"The attached PDF is a snapshot of its pages, built from the tagged commit.\n")
 
