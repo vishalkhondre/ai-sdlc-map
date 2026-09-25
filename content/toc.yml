@@ -1,0 +1,79 @@
+# Site identity and the table of contents — the single source of truth for site/generate.py.
+#
+# This site hosts no chapter text. The seven-part series "Beyond Faster Coding" is published
+# separately (see `series`); its parts are listed here so the glossary, references and
+# workflow catalog can link to them. `cites` records the references each part cites, so the
+# citation gate and the References page stay complete without copying the text.
+
+title: "AI SDLC on one page"
+tagline: "A vendor-neutral reference for running software delivery with AI agents, organised as one five-band map: context, lifecycle, core, enablement and assurance."
+author: "Vishal Khondre"
+author_url: "https://www.linkedin.com/in/vishalkhondre/"
+repo_url: "https://github.com/vishalkhondre/ai-sdlc-map"
+site_url: "https://vishalkhondre.github.io/ai-sdlc-map"
+
+series:
+  title: "Beyond Faster Coding"
+  url: "https://vishalkhondre.github.io/ai-sdlc"
+  summary: "Seven parts on harness engineering, the Engineering Kit, workflows and the software factory, told through one running example."
+  parts:
+    - id: part-1
+      number: 1
+      slug: faster-coding-is-only-part
+      title: "Faster coding is only part of the software delivery problem"
+      short: "The bottleneck moved"
+      summary: "Implementation got fast. The questions moved to everything around it. Four ideas that sit at different levels: harness engineering, the Engineering Kit, workflows and the software factory."
+      cites: [bockeler-harness, openai-harness, spec-kit]
+
+    - id: part-2
+      number: 2
+      slug: the-ai-sdlc
+      title: "The AI SDLC: Same phases, different bottleneck"
+      short: "The AI SDLC"
+      summary: "Follow one hypothetical change, a customer-record export, through intent, specification, planning, implementation, verification, review, release and operations, and see where the pressure lands."
+      cites: [spec-kit]
+
+    - id: part-3
+      number: 3
+      slug: harness-engineering
+      title: "Harness engineering in the SDLC: Designing the environment around the agent"
+      short: "Harness engineering"
+      summary: "An agent is a model plus its surroundings. How to give it a usable starting point, separate instructions from permissions, decide how each rule is checked, make failures useful, and evaluate the harness itself."
+      cites: [bockeler-context, bockeler-harness, openai-harness]
+
+    - id: part-4
+      number: 4
+      slug: engineering-kit
+      title: "Engineering Kit: Packaging the reusable engineering environment"
+      short: "Engineering Kit"
+      summary: "A versioned, installable package of reusable engineering capabilities: four layers, a rule registry, validators and skills with different acceptance bars, evidence as a by-product, and installation that proves something."
+      cites: [bockeler-harness, bockeler-sensors]
+
+    - id: part-5
+      number: 5
+      slug: workflows
+      title: "Workflows: Making one part of the SDLC repeatable, measurable and improvable"
+      short: "Workflows"
+      summary: "A workflow brings the kit's capabilities together for one delivery decision. One change walked through pull-request verification, the failure paths, the measures, and how workflows hand each other evidence."
+      cites: []
+
+    - id: part-6
+      number: 6
+      slug: software-factory
+      title: "Software factory: Connecting workflows across delivery and operations"
+      short: "Software factory"
+      summary: "What appears when enough workflows share rules, evidence and feedback. What it consists of, what it is not, the condition that makes it real, how roles shift, and two risks that scale with it."
+      cites: [bockeler-harness]
+
+    - id: part-7
+      number: 7
+      slug: pull-request-verification
+      title: "One workflow in full: Pull-request verification"
+      short: "One workflow in full"
+      summary: "A single workflow drawn at the level of detail where the description can be checked: what the run takes from the kit, one failing revision step by step, the ways out, the passing revision, and what to measure."
+      cites: [bockeler-harness, bockeler-sensors]
+
+
+# Pages this site hosts, in reading order. Chapter-style Markdown pages (content/chapters/)
+# are supported by the generator but none exist yet; reference pages arrive from wave 1.
+chapters: []
