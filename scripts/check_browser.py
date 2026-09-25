@@ -8,6 +8,7 @@ from __future__ import annotations
 import functools
 import http.server
 import os
+import re
 import threading
 from pathlib import Path
 
@@ -62,6 +63,11 @@ def main():
                 page.keyboard.press("Escape")
 
                 assert page.locator("nav.routes .route").count() == 5
+                assert page.locator("#map svg").first.get_attribute("role") == "group"
+                assert page.locator("#adoption svg").first.get_attribute("role") == "img"
+                tree = page.locator("#map svg").first.aria_snapshot()
+                names = re.findall(r'- link "([^"]+)"', tree)
+                assert len(names) == 18 and "Engineering Kit" in names, tree
                 kit = page.get_by_role("link", name="Engineering Kit", exact=True)
                 assert kit.get_attribute("href") == "https://vishalkhondre.github.io/ai-sdlc/engineering-kit.html"
                 page.get_by_role("link", name="intake & triage", exact=True).click()
