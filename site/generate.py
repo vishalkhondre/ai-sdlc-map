@@ -241,8 +241,8 @@ def head(title: str, description: str, path: str, og_image: str = "og-image.png"
 <meta property="og:image" content="{SITE_URL}/{og_image}">
 <meta property="og:url" content="{canonical}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f8f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1a1d" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{rel('favicon.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{rel('assets/style.css')}?v={VERSION}">
 <script>try{{const t=localStorage.getItem('aisdlcmap-theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>

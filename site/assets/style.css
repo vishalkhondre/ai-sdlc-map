@@ -9,8 +9,10 @@
 @font-face { font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 700; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-700-italic.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/IBMPlexMono-Regular-Latin1.woff2") format("woff2"); }
+/* Arrows (← → ↔), which the text fonts lack: IBM's own unmodified Plex Mono "Pi" file, limited to them. */
+@font-face { font-family: "Plex Arrows"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/IBMPlexMono-Regular-Pi.woff2") format("woff2"); unicode-range: U+2190-21FF; }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/IBMPlexMono-Medium-Latin1.woff2") format("woff2"); }
 
 :root {
   --brand-ground: #f6f8f8;
@@ -65,7 +67,7 @@
 :root {
   --bg: var(--brand-ground);
   --bg-2: var(--brand-surface);
-  --bg-3: var(--brand-primary-tint);
+  --bg-3: color-mix(in srgb, var(--brand-line) 45%, var(--brand-surface));  /* neutral tint: chips, code, hover */
   --paper: var(--brand-surface);
   --ink: var(--brand-ink);
   --ink-2: var(--brand-body);
@@ -84,12 +86,12 @@
   --amber-mark: var(--brand-accent);
   --amber-bg: var(--brand-accent-tint);
   --coral: var(--brand-body);
-  --coral-bg: var(--brand-line);
+  --coral-bg: var(--bg-3);
   --shadow: 0 1px 2px rgba(21, 35, 43, .06), 0 8px 24px -12px rgba(21, 35, 43, .18);
   --radius: 12px;
-  --serif: "Atkinson Hyperlegible", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --sans: "Atkinson Hyperlegible", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --serif: "Atkinson Hyperlegible", "Plex Arrows", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --sans: "Atkinson Hyperlegible", "Plex Arrows", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: "IBM Plex Mono", "Plex Arrows", ui-monospace, Menlo, Consolas, monospace;
   --measure: 70ch;
   --gutter: 16px;
   --topbar: 60px;
@@ -308,7 +310,7 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .diagram { margin: 2em 0; }
 .diagram-frame { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
 .diagram-frame svg { display: block; width: 100%; height: auto; }
-.diagram .zoom { position: absolute; top: 10px; right: 10px; z-index: 2; width: 34px; height: 34px; border-radius: 999px; border: 1px solid #d3d1c7; background: #fff; color: #1f1f1c; cursor: pointer; opacity: 0; transition: opacity .15s; font-size: 16px; }
+.diagram .zoom { position: absolute; top: 10px; right: 10px; z-index: 2; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-2); color: var(--ink); cursor: pointer; opacity: 0; transition: opacity .15s; font-size: 16px; }
 .diagram:hover .zoom, .diagram-frame:focus-within .zoom { opacity: .95; }
 @media (hover: none) { .diagram .zoom { opacity: .9; } }
 .diagram figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); line-height: 1.45; }
@@ -320,11 +322,11 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .hero-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 32px; align-items: center; }
 @media (max-width: 900px) { .hero-split { grid-template-columns: 1fr; } }
 
-.lightbox { position: fixed; inset: 0; z-index: 70; background: rgba(20, 19, 15, .86); display: grid; place-items: center; padding: 24px; }
+.lightbox { position: fixed; inset: 0; z-index: 70; background: rgba(15, 26, 29, .86); display: grid; place-items: center; padding: 24px; }
 .lightbox[hidden] { display: none; }
 .lightbox-body { max-width: min(1600px, 96vw); max-height: 92vh; overflow: auto; background: #fff; border-radius: 12px; padding: 8px; }
 .lightbox-body img { width: min(1600px, 94vw); height: auto; display: block; }
-.lightbox-close, .wf-detail .lightbox-close { position: fixed; top: 14px; right: 18px; width: 42px; height: 42px; border-radius: 999px; border: 0; background: #fff; color: #1f1f1c; font-size: 24px; cursor: pointer; z-index: 2; }
+.lightbox-close, .wf-detail .lightbox-close { position: fixed; top: 14px; right: 18px; width: 42px; height: 42px; border-radius: 999px; border: 0; background: var(--brand-surface); color: var(--brand-ink); font-size: 24px; cursor: pointer; z-index: 2; }
 
 /* pager */
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 3.5em; }
@@ -361,7 +363,7 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .attr { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
 .attr-adopted { background: var(--teal-bg); color: var(--teal); }
 .attr-adapted { background: var(--amber-bg); color: var(--amber); }
-.attr-coined { background: var(--accent-bg); color: var(--accent-ink); }
+.attr-coined { background: var(--bg-2); color: var(--ink); box-shadow: inset 0 0 0 1px var(--accent); }
 .attr-common { background: var(--bg-3); color: var(--muted); }
 .attr-different { background: var(--coral-bg); color: var(--coral); }
 .counterpart { font-size: 14px; color: var(--ink-2); padding: 8px 12px; border-left: 3px solid var(--amber-mark); background: var(--amber-bg); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
@@ -418,7 +420,7 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
 .pill.m-Floor { background: var(--teal-bg); color: var(--teal); } .pill.m-First { background: var(--amber-bg); color: var(--amber); } .pill.m-Later { background: var(--coral-bg); color: var(--coral); }
 .small-note { font-size: 13px; margin-top: 20px; }
-.wf-detail { position: fixed; inset: 0; z-index: 70; background: rgba(20,19,15,.55); display: grid; place-items: center; padding: 20px; }
+.wf-detail { position: fixed; inset: 0; z-index: 70; background: rgba(15,26,29,.55); display: grid; place-items: center; padding: 20px; }
 .wf-detail[hidden] { display: none; }
 .wf-detail-panel { width: min(860px, 96vw); max-height: 90vh; overflow: auto; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 18px; padding: 28px 30px; box-shadow: var(--shadow); position: relative; }
 .wf-detail-panel .lightbox-close { position: absolute; top: 12px; right: 12px; background: var(--bg-3); color: var(--ink); }
@@ -446,7 +448,7 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .sheet .diagram-frame { border-radius: 16px; }
 
 /* ----- search ----- */
-.search { position: fixed; inset: 0; z-index: 80; background: rgba(20,19,15,.5); display: grid; place-items: start center; padding: 10vh 16px; }
+.search { position: fixed; inset: 0; z-index: 80; background: rgba(15,26,29,.5); display: grid; place-items: start center; padding: 10vh 16px; }
 .search[hidden] { display: none; }
 .search-box { width: min(680px, 100%); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
 #search-input { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; padding: 16px 18px; font-size: 18px; color: var(--ink); outline: none; }
@@ -492,3 +494,9 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .route p { margin: 0 0 10px; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .route ul { list-style: none; margin: 0; padding: 0; }
 .route li { padding: 3px 0; font-size: 14.5px; }
+
+/* The zoom button keeps its character for assistive technology; the icon is drawn in CSS. */
+.diagram .zoom { font-size: 0; }
+.diagram .zoom::before { content: ""; display: block; width: 14px; height: 14px; margin: auto; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M10 2h4v4M14 2 9 7M6 14H2v-4M2 14l5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M10 2h4v4M14 2 9 7M6 14H2v-4M2 14l5-5'/%3E%3C/svg%3E") center / contain no-repeat; }

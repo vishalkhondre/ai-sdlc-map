@@ -5,3 +5,5 @@ playwright>=1.45
 html5lib>=1.1
 pypdf>=4
 axe-playwright-python==0.1.8
+fonttools>=4.50
+brotli>=1.1

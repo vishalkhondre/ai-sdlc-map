@@ -77,7 +77,7 @@ def main() -> int:
         # Social preview card (D-021): logo, wordmark and subtitle in the brand, 1200x630
         page = browser.new_page(viewport={"width": 1200, "height": 630}, device_scale_factor=1)
         page.set_content(og_card())
-        page.wait_for_timeout(200)
+        page.evaluate("document.fonts.ready.then(() => true)")
         page.screenshot(path=str(SITE / "og-image.png"))
         page.close()
         print("  og-image.png  1200x630")
