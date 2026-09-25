@@ -118,8 +118,10 @@ class Pages(unittest.TestCase):
         self.assertIn("does not list it under sources", " ".join(self.run_on(text)))
 
     def test_footnote_keys_must_be_reference_keys(self):
-        text = page(self.concept).replace(PROSE, PROSE + "A claim.[^Bockeler_Harness] ", 1)
-        self.assertIn("[^Bockeler_Harness] is not a reference key", " ".join(self.run_on(text)))
+        text = page(self.concept).replace(PROSE, PROSE + "A claim.[^Bockeler_Harness] Another.[^Fowler 2024] ", 1)
+        found = " ".join(self.run_on(text))
+        self.assertIn("[^Bockeler_Harness] is not a reference key", found)
+        self.assertIn("[^Fowler 2024] is not a reference key", found)
 
     def test_ids_must_be_hyphenated_words_and_not_a_built_page(self):
         self.assertIn("is taken by a built page", " ".join(self.run_on(page(self.concept, id="glossary"), "core/glossary.md")))

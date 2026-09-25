@@ -72,9 +72,10 @@ class GateReadsPages(unittest.TestCase):
         self.assertIn("'Copilot' is on the keep-out list", out)
 
     def test_a_footnote_key_that_is_not_a_reference_key_fails(self):
-        result, out = self.run_gate("harness", "A claim.[^bockeler-harness] Another.[^Bockeler_Missing]")
+        result, out = self.run_gate("harness", "A claim.[^bockeler-harness] Another.[^Bockeler_Missing] More.[^Fowler 2024]")
         self.assertEqual(result, 1)
         self.assertIn("[^Bockeler_Missing] is not a reference key", out)
+        self.assertIn("[^Fowler 2024] is not a reference key", out)
 
     def test_a_borrowed_term_in_prose_needs_its_source_even_if_undeclared(self):
         result, out = self.run_gate("", "Checks close the feedback path for the agent.")

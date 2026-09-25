@@ -240,7 +240,7 @@ def main() -> int:
     cited_by_chapter: dict[str, set[str]] = {}
     for ch in chapters:
         text = strip_code(ch["text"])
-        for key in sorted(set(re.findall(r"\[\^([^\]\s]+)\]", text)) - set(re.findall(r"\[\^([a-z0-9\-]+)\]", text))):
+        for key in sorted(set(re.findall(r"\[\^([^\]]+)\]", text)) - set(re.findall(r"\[\^([a-z0-9\-]+)\]", text))):
             problems.append(f"{ch['id']}: footnote [^{key}] is not a reference key (lower-case letters, digits and hyphens); "
                             "it would be published as literal text")
         used = set(re.findall(r"\[\^([a-z0-9\-]+)\](?!:)", text))

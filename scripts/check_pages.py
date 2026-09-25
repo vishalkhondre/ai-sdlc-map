@@ -163,7 +163,7 @@ def check_page(path: Path, meta: dict, body: str, templates: dict, refs: dict, g
     for key in sorted(listed - refs.keys()):
         problems.append(f"{where}: source '{key}' is not in content/references.yml")
     code_free = without_code(body)
-    for key in sorted(set(re.findall(r"\[\^([^\]\s]+)\]", code_free)) - set(re.findall(r"\[\^([a-z0-9\-]+)\]", code_free))):
+    for key in sorted(set(re.findall(r"\[\^([^\]]+)\]", code_free)) - set(re.findall(r"\[\^([a-z0-9\-]+)\]", code_free))):
         problems.append(f"{where}: [^{key}] is not a reference key (lower-case letters, digits and hyphens)")
     for key in sorted(set(re.findall(r"\[\^([a-z0-9\-]+)\]", code_free))):
         if key not in refs:
