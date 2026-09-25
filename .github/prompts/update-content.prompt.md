@@ -6,12 +6,12 @@ description: Research, author, verify and review a scoped update to The AI SDLC 
 1. Read the requested scope, repository instructions and git status. Preserve unrelated
    work. Record the exact base commit, intended change and affected page/term/workflow/diagram
    IDs. Work on a feature branch and keep one writer per file.
-2. Use content-researcher's responsibilities to gather an evidence brief, then
-   content-author's responsibilities to update affected sources. These roles can be
-   performed sequentially; do not launch agents merely because their files exist.
+2. Use external-researcher's responsibilities (.claude/agents) to gather an evidence brief,
+   then author's responsibilities to update affected sources. These roles can be performed
+   sequentially; for a whole section, follow .claude/skills/section-pipeline instead.
 3. Have the command-capable caller run the citation gate, generator, diagram renderer,
    site tests and browser checks documented in README.md. Supply actual command output
-   and the source fingerprint to citation-reviewer. Missing execution is a blocker,
+   and the source fingerprint to the reviewers (confidentiality, accuracy, editorial). Missing execution is a blocker,
    not a pass. Revise and rerun relevant checks until blockers are closed.
 4. For reader-visible source changes choose the prose edition (patch corrections,
    minor additions, major restructuring), update VERSION and CHANGELOG.md, then obtain

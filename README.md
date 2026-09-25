@@ -43,7 +43,9 @@ site/
   generate.py           content/ -> static HTML (inline SVG, no framework, no external requests)
   assets/               one CSS file, one JS file
 scripts/
-  check_citations.py    attribution, neutrality and diagram-credit gate
+  check_citations.py    attribution, neutrality, diagram-credit, access-date and outdated-terms gate
+  check_pages.py        page-template structure and provisional-language gate
+  outdated_terms.yml    superseded terms and their replacements
   render_diagrams.py    SVG -> PNG and the OG image
   release_content.py    edition/changelog validation and source-bound editorial acceptance
   release_snapshot.py   release notes and PDF snapshot for a tagged section release
@@ -51,9 +53,12 @@ scripts/
   tests/                site, citation and release regression tests
 .github/
   workflows/            validate on every PR; deploy to GitHub Pages from main; release on a v* tag or by hand
-  instructions/, agents/, prompts/   content rules and roles for people and agents
+  instructions/, prompts/   content rules and procedures for people and agents
 release/
   sections.yml          the section and pages each tagged release covers
+.claude/
+  agents/, skills/      the nine pipeline roles and their checklists (project/AGENTS.md)
+templates/pages/        one template per page type (project/APPROACH.md)
 ```
 
 ## Run locally
@@ -62,6 +67,7 @@ release/
 pip install -r scripts/requirements.txt
 python -m playwright install chromium     # for PNG rendering and browser checks
 python scripts/check_citations.py
+python scripts/check_pages.py
 python site/generate.py
 python scripts/render_diagrams.py
 python -m unittest discover -s scripts/tests

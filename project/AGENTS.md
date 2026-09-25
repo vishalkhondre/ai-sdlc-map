@@ -1,8 +1,9 @@
 # Agents and skills
 
 Agents are Claude Code sub-agents in `.claude/agents/`; each has a matching skill in
-`.claude/skills/` holding its template, checklist and examples (created in wave 0). Every agent
-reads `CLAUDE.md` and `project/GROUND-RULES.md` before working.
+`.claude/skills/<agent>/SKILL.md` holding its checklist, templates and output format. The skill
+`section-pipeline` runs a whole section through them (D-014). Every agent reads `CLAUDE.md`,
+`project/GROUND-RULES.md` and this file before working.
 
 Claude Code agents are used because the source library is reachable only through the Google
 Drive connector in Claude sessions (see `DECISIONS.md`, D-004).
@@ -29,7 +30,11 @@ judges the page as a public reader would.
 
 ## Review record
 
-One file per page in `reviews/<page-id>.yml`:
+Today one record covers a section: `content/reviews/<edition>-<section>.md` holds each
+reviewer's report for every round and one final `Verdict: ACCEPT`, and
+`scripts/release_content.py record-review` binds it to the exact sources, so CI fails if any
+page changes after review. The planned per-page record, one file per page in
+`reviews/<page-id>.yml`, is:
 
 ```yaml
 page: <page-id>
@@ -52,8 +57,10 @@ section: <band or adoption>   # the author's approval is the section's release t
 CI fails if a published page has no record, if any verdict is not ACCEPT, or if `page_hash`
 does not match the current page (the page changed after review).
 
-## Existing assets to fold in
+## Folded-in assets
 
-- `.github/agents/citation-reviewer.agent.md` → merged into `accuracy-reviewer`.
-- `.github/instructions/content-style.instructions.md` → merged into the editorial skill and
-  referenced from `GROUND-RULES.md`.
+- `.github/agents/citation-reviewer.agent.md`, `content-author.agent.md` and
+  `content-researcher.agent.md` were folded into `accuracy-reviewer`, `author` and
+  `external-researcher` and removed.
+- `.github/instructions/content-style.instructions.md` stays as the style source for editors and
+  Copilot; the `author` and `editorial-reviewer` skills apply it in full.

@@ -133,3 +133,13 @@ pages (`scripts/release_snapshot.py`). v2.0.0 is released when every box on the 
 page. Rules out: releases without the author's approval, and a tag that does not match the
 edition.
 
+## D-017 · Deny-list: any case, word pairs, and the inventory's identifiers
+Decided 2026-09-25 from the source inventory (GR-1.1, GR-1.4, GR-5.3). `scripts/denylist.py` now
+lower-cases every word before hashing it, and also hashes each pair of neighbouring words, so a
+name is caught whatever its capitalisation and a two-word name is caught as a pair. It holds the
+original names plus the single-word and two-word identifiers the inventory found in the source
+library: organisation, product, project-code and people names. It uses a new salt. Identifiers that
+are ordinary words, or public products whose risk lies only in combination, are left to the
+confidentiality reviewer. Rules out: case-sensitive matching, and an identifier found in the
+library but left off the list.
+

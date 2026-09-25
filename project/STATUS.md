@@ -19,30 +19,33 @@ Update at the end of every session (see `CLAUDE.md`).
 - **Decisions:** Q2–Q4 settled as D-014 (one section at a time; ground rules v1.1), D-015 (SAFe:
   generic labels plus a reference model) and D-016 (a tag and GitHub Release per approved
   section, `.github/workflows/release.yml`).
-- **Current wave:** 0 Foundations.
+- **Wave 0 foundations in place:** checks for GR-2.5 access dates and superseded terms
+  (`scripts/outdated_terms.yml`); six page templates (`templates/pages/`) and the page gate
+  (`scripts/check_pages.py`, in CI); the nine agents and their skills plus `section-pipeline`
+  (`.claude/`); the deny-list now case-folded, with word pairs and the inventory's identifiers
+  (D-017); the source coverage table (`project/COVERAGE.md`; the inventory itself stays outside
+  the repository). Edition 1.2.1 backfilled access dates and corrected five references.
+- **Current wave:** 0 Foundations; next is the first section plan.
 
 ## Next (in order)
 
 1. Author: tag `v1.2.0` on `main` (or ask a session to), which is also the first run of the
    release workflow (D-016).
 2. In `vishalkhondre/ai-sdlc`: the hashed deny-list (GR-1.4), as its own PR, no history rewrite.
-3. Wave 0 remainder: GR-2.5 access dates and outdated-terms checks; page templates and the
-   template-structure check; `.claude/agents` and skills; the de-identified coverage table from
-   the source inventory.
-4. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
-5. Architect: propose the first section's page list for the author's approval (D-014).
+3. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
+4. Architect: propose the first section's page list for the author's approval (D-014).
 
 ## Wave 0 retrospective items
 
 Raised during the series' 1.1.0 release in `vishalkhondre/ai-sdlc`; decide at the wave 0
 retrospective (GR-5.3).
 
-- **Enforce the GR-2.5 access date.** `check_citations.py` should fail a reference without an
-  `accessed` date. Only the three 1.1.0 references have one; the eight older entries need
-  backfilling, from a real visit, before the check can be switched on.
-- **Add an outdated-terms check.** Review 3 caught "program increment" (SAFe 6.0 says planning
-  interval) and the map had said "the four DORA keys" after DORA moved to five metrics. A
-  maintained list of superseded terms, checked against prose and diagram text, would catch these.
+- **Done in session 4:** the GR-2.5 access-date check and the outdated-terms list are in
+  `check_citations.py`; reviewer checklists generated from the ground rules are in the reviewer
+  skills; deny-list hashes are case-folded (D-017). The eight older references were checked
+  through search results and one direct fetch, because this session's network policy blocks
+  martinfowler.com, openai.com, thoughtworks.com and wikipedia.org: re-check them from a session
+  that can open the pages (see `content/reviews/1.2.1-wave0.md`).
 - **Review rounds.** 1.1.0 took four reviews: the first two REVISE on credits and product names,
   which the new diagram checks (D-009) now catch; the third REVISE on accuracy and GR-2.5. Each
   fresh reviewer found new issues rather than repeating old ones. Consider a reviewer checklist
