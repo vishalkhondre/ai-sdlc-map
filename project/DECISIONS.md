@@ -186,8 +186,12 @@ Dark tokens: ground `#0f1a1d`, surface `#142225`, ink `#e4eeed`, body text `#c3d
 state, links, primary buttons and "gate"; amber marks judgment, warnings and notes. Fonts:
 Atkinson Hyperlegible for text and IBM Plex Mono for code and IDs, bundled with the site. Logo:
 five stacked horizontal bars, one per band, in the primary colour, with the wordmark "The AI SDLC
-Map". The map's five band colours do not change. Every text pair passes WCAG AA, checked by a
-test. Released as v1.3.0; the Core section therefore becomes edition 1.4.0. Rules out: fonts
+Map". The map's five band colours do not change. Every text pair passes WCAG AA (4.5:1), checked
+by a test; the accent colours `#b7791f` and `#e0a84a` are for non-text marks only (3:1), and text
+in the accent family uses `#7a4e0f` and `#f0c47a`. The brand changes only `site/`, not `content/`.
+Release v1.3.0 is a site release, not a band section: it covers the disconnect (D-019, content
+edition 1.3.0), the layout (D-020) and the brand, and `release/sections.yml` gains a `"1.3"`
+entry for it. The Core section therefore becomes edition 1.4.0. Rules out: fonts
 loaded from a third party at runtime, and any resemblance to an employer's design system.
 
 ## D-022 · "Draft" in pages
@@ -199,11 +203,15 @@ pages describe agents drafting specifications and plans. `scripts/check_pages.py
 Decided 2026-09-25 by the author; replaces the published salt of D-012 and D-017. The deny-list
 stores HMAC-SHA-256 values keyed by a secret held as the CI secret `DENYLIST_KEY`, so a reader
 with a guessed name cannot confirm it. Without the key, a local run warns and skips the check; in
-CI a missing key fails the build. Hashes made with the old salt remain in git history. Rules out:
-a key in the repository.
+CI a missing key fails the build; pull requests from forks and from automated dependency tools
+receive no secrets and so fail the check until a maintainer reruns them in the repository. The
+author generates the key and adds it as the secret. Hashes made with the old salt remain in git
+history. Rules out: a key in the repository.
 
 ## D-024 · Tag protection
 Decided 2026-09-25 by the author. A repository ruleset limits creating, updating and deleting
 `v*` tags to the author, with a bypass for GitHub Actions so the Release workflow can create a tag
-from a manual run (D-016). The author sets the ruleset in the repository settings.
+from a manual run (D-016). "The author" is the repository admin role while the author is the only
+admin. The author sets the ruleset in the repository settings and confirms that GitHub Actions
+is offered as a bypass actor; if it is not, the manual Release path cannot create tags.
 

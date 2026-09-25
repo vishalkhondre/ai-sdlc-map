@@ -44,10 +44,11 @@ turn review-only rules into automated checks (§5.3).
 
 - **GR-3.1** Reference-material register: present tense, authoritative, plain practitioner
   English. No first person. No statements about any organisation's progress. *(review: style)*
-- **GR-3.2** No provisional language anywhere on the site: "draft", "work in progress",
-  "coming soon", "TBD", "to be added", "placeholder", "v0.x". "Draft" is banned where it labels the
-  page (title, summary, headings, link text) and allowed in running prose (D-022). Map boxes
-  without a page are shown as plain labels, never as "coming". *(check: banned phrases)*
+- **GR-3.2** No provisional language anywhere on the site: "work in progress", "coming soon",
+  "TBD", "to be added", "placeholder", "v0.x". "Draft" is banned where it labels a page or its
+  parts (title, summary, headings, link text) and allowed in running prose, where agents draft
+  specifications and plans (D-022). Map boxes without a page are shown as plain labels, never as
+  "coming". *(check: banned phrases)*
 - **GR-3.3** Vendor-neutral by default. A product is named only on a page about its category,
   and only as one example among several. *(check: product-name list · review: style)*
 - **GR-3.4** The running example (customer-record export) is the only worked example unless the
