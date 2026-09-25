@@ -1,0 +1,8 @@
+# The section each release covers, and the pages its PDF snapshot prints (D-016).
+# Key: major.minor of content/VERSION (follow-ups bump the patch). The tag is "v" + the full edition.
+# scripts/release_snapshot.py and .github/workflows/release.yml read this file.
+# Keep the keys quoted: unquoted, YAML reads 1.10 as the number 1.1.
+
+"1.2":
+  section: "Rename, home page and terminology"
+  pages: [index.html, glossary.html]

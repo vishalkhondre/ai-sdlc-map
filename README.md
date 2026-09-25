@@ -46,11 +46,14 @@ scripts/
   check_citations.py    attribution, neutrality and diagram-credit gate
   render_diagrams.py    SVG -> PNG and the OG image
   release_content.py    edition/changelog validation and source-bound editorial acceptance
+  release_snapshot.py   release notes and PDF snapshot for a tagged section release
   check_browser.py      browser regressions for the home map, search, catalog and zoom
   tests/                site, citation and release regression tests
 .github/
-  workflows/            validate on every PR; deploy to GitHub Pages from main
+  workflows/            validate on every PR; deploy to GitHub Pages from main; release on v* tags
   instructions/, agents/, prompts/   content rules and roles for people and agents
+release/
+  sections.yml          the section and pages each tagged release covers
 ```
 
 ## Run locally

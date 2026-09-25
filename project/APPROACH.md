@@ -41,12 +41,25 @@ Templates live in `templates/pages/` (created in wave 0). Required sections:
 Every page has front matter: `id`, `type`, `band`, `map_box`, `title`, `summary`,
 `key_terms`, `sources`, `related`, `review_record`.
 
-## The pipeline (per page)
+## Sections
+
+Work is planned, built, reviewed and released one **section** at a time (D-014). A section is
+one band of the map, or the adoption path. The architect proposes each section's page list from
+the source inventory and the author approves it before work starts.
+
+## The pipeline (per page, inside a section)
 
 ```
 brief ─► research (private source ║ public sources) ─► write ─► diagram
       ─► automated checks ─► reviewers (confidentiality ║ accuracy ║ editorial)
-      ─► revise until all ACCEPT ─► author approval ─► merge ─► publish
+      ─► revise until all ACCEPT (three rounds, then the author)
+```
+
+Then, for the section as a whole:
+
+```
+every page ACCEPT ─► merge ─► deploy live ─► author reviews live ─► follow-up PRs
+                  ─► author approves ─► tag vX.Y.Z ─► GitHub Release (notes + PDF snapshot)
 ```
 
 1. **Brief.** The architect agent opens a page brief: box, type, scope, key terms, related pages.
@@ -60,17 +73,23 @@ brief ─► research (private source ║ public sources) ─► write ─► di
    findings tagged by rule number. Confidentiality BLOCK is final until fixed.
 7. **Revise** until every reviewer accepts. Loops are capped at three; after that the page goes
    to the author.
-8. **Approve and merge.** The author approves (wave 1 always); the review record is committed
-   with the page; CI verifies it before deploying.
+8. **Merge and deploy.** The review record is committed with the page; CI verifies it before
+   deploying. The page is live once its section merges.
+9. **Author review and release.** The author reviews the section on the live site. Changes come
+   as follow-up pull requests through the same pipeline. When the author approves, the section's
+   release is tagged; the tag and its GitHub Release are the record of approval (D-016).
 
 ## Waves
+
+Waves group sections for planning and retrospectives; sections are the unit of approval and
+release.
 
 | Wave | Scope | Exit criteria |
 |---|---|---|
 | 0 Foundations | Ground rules, templates, agents and skills, checks (deny-list hashing, banned phrases, template structure, link check, review-record gate), clickable map as home page, source inventory | All checks run in CI; map live; inventory maps every library document to map boxes |
-| 1 Core and lifecycle | Band 3 pages; band 2 phases and their workflows | All pages published with review records; retrospective held |
-| 2 Assurance and enablement | Bands 4 and 5 | As above |
-| 3 Context and adoption | Band 1 variants; adoption-path stages | As above; every map box links to a page |
+| 1 Core and lifecycle | Sections: core (band 3); lifecycle (band 2 phases, their workflows and the SAFe reference model, D-015) | Each section released; retrospective held |
+| 2 Assurance and enablement | Sections: enablement (band 4); assurance (band 5) | As above |
+| 3 Context and adoption | Sections: context (band 1); the adoption path | As above; every map box links to a page |
 
 Each wave ends with a retrospective recorded in `STATUS.md` and any rule or process change
 recorded in `DECISIONS.md`.
@@ -80,3 +99,5 @@ recorded in `DECISIONS.md`.
 - Every box on the map links to a published page.
 - Every page has a passing review record.
 - CI is green on `main`, and the release is tagged with a changelog entry.
+- Each section is tagged in turn (one minor version each); the site is v2.0.0 when every box on
+  the map has a page (D-016).
