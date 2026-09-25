@@ -299,8 +299,12 @@ def _headings(main_html: str) -> tuple[str, list[tuple[str, str, int]]]:
     return the "On this page" entries. Adding an id never changes the text."""
     taken = set(re.findall(r'\bid="([^"]+)"', main_html))
     items: list[tuple[str, str, int]] = []
+    h2_open = [False]  # an h3 nests under an h2 only within the same <section>
 
     def one(m: re.Match) -> str:
+        if m.group(0).startswith("<section"):
+            h2_open[0] = False
+            return m.group(0)
         level, attrs, inner = int(m.group(1)), m.group(2), m.group(3)
         found = re.search(r'\bid="([^"]+)"', attrs)
         if found:
@@ -312,14 +316,16 @@ def _headings(main_html: str) -> tuple[str, list[tuple[str, str, int]]]:
                 hid, n = f"{base}-{n}", n + 1
             taken.add(hid)
             attrs = f' id="{hid}"' + attrs
-        items.append((hid, html.unescape(re.sub(r"<[^>]+>", "", inner)).strip(), level))
+        shown = level if level == 2 or h2_open[0] else 2
+        h2_open[0] = h2_open[0] or level == 2
+        items.append((hid, html.unescape(re.sub(r"<[^>]+>", "", inner)).strip(), shown))
         return f"<h{level}{attrs}>{inner}</h{level}>"
 
     # headings inside a figure (diagram titles) or a route card are not page sections
     protected = re.compile(r"(<figure\b.*?</figure>|<nav class=\"routes\".*?</nav>|<a class=\"card\".*?</a>)", re.S)
     parts = protected.split(main_html)
     for i in range(0, len(parts), 2):
-        parts[i] = re.sub(r"<h([23])(\b[^>]*)>(.*?)</h\1>", one, parts[i], flags=re.S)
+        parts[i] = re.sub(r"<section\b[^>]*>|<h([23])(\b[^>]*)>(.*?)</h\1>", one, parts[i], flags=re.S)
     return "".join(parts), items
 
 
@@ -333,8 +339,9 @@ def _sidenav(page: str) -> str:
         pages = f'<div class="sidenav-title">{esc(here[1])}</div><ul class="sidenav-pages">' + "".join(
             f'<li><a href="{rel(href)}"' + (' aria-current="page"' if href == page else "") + f">{esc(label)}</a></li>"
             for href, label in here[2]) + "</ul>"
+    always = "" if here else " always"  # a page in no section (404) shows the sections instead
     return (f'<nav class="sidenav" id="sidenav" aria-label="Pages in this section">'
-            f'<div class="sidenav-sections"><div class="sidenav-title">Sections</div><ul>{sections}</ul></div>{pages}</nav>')
+            f'<div class="sidenav-sections{always}"><div class="sidenav-title">Sections</div><ul>{sections}</ul></div>{pages}</nav>')
 
 
 def _onpage(items: list[tuple[str, str, int]]) -> str:

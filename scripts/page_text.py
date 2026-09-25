@@ -8,6 +8,7 @@ without navigation chrome: elements marked data-chrome and the breadcrumb
     python scripts/page_text.py --write   # refresh scripts/tests/page_text_snapshot.json
 
 Refresh the snapshot only for a change that is meant to alter page text; a layout change never is.
+The guard compares text only: it does not see heading levels or other structure.
 """
 from __future__ import annotations
 

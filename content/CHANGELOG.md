@@ -9,7 +9,7 @@ Content edition history of The AI SDLC Map. Only reader-visible changes to the m
 - Terminology and reference notes speak of "this site"; terms introduced here are labelled "Coined here". The export example, Requisite variety, Harnessability and Guides and sensors entries say what the site itself does. The Harness entry also cites Böckeler's context-engineering article, for the context the agent reads.
 - The workflow catalog's introduction quotes the Workflow entry's definition. Two catalog notes are shortened.
 - Earlier entries in this changelog were reworded to match.
-- Pages use a documentation layout: a sticky header with section tabs and search, a left navigation listing the section's pages, an "On this page" list, breadcrumbs, and previous and next links. The home page keeps the full-width map and adds a section chooser. On small screens the navigation opens as a drawer. A skip link, labelled navigation landmarks and visible focus make every page usable by keyboard and screen reader. No page's text changed.
+- Pages use a documentation layout: a sticky header with section tabs and search, a left navigation listing the section's pages, an "On this page" list on pages with sections, breadcrumbs, and previous and next links. The home page keeps the full-width map and adds a section chooser. On small screens the navigation opens as a drawer. A skip link, labelled navigation landmarks and visible focus support keyboard and screen-reader use, checked with automated accessibility tests. No page's text changed.
 
 ## 1.2.1 — 2026-09-25
 

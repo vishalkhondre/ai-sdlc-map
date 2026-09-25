@@ -105,6 +105,7 @@ main:focus { outline: none; }
 .sidenav a[aria-current="page"] { background: var(--accent-bg); color: var(--accent-ink); font-weight: 600; }
 .sidenav-title, .onpage-title { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--muted); margin: 0 10px 8px; }
 .sidenav-sections { display: none; }
+.sidenav-sections.always { display: block; }
 .onpage .lvl3 a { padding-left: 22px; font-size: 13px; }
 .onpage a.on { color: var(--accent-ink); box-shadow: inset 2px 0 0 var(--accent); }
 .docs-home { grid-template-columns: minmax(0, 1fr); max-width: none; }
