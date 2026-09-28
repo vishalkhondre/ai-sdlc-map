@@ -69,8 +69,9 @@ the volume-limit rule, which caps the number of rows one export may return.
 The parts depend on one another through identifiers. The registry is the connecting structure:
 validators name the rules they enforce, skills name the rules they support, and evidence records
 name the rule checks that ran. In Böckeler's vocabulary, validators are computational sensors and a
-review skill, an agent that reads a change against the rules and proposes findings without
-blocking, is an inferential sensor.[^bockeler-sensors] Skills themselves are guides, which steer
+review skill, an agent that reads a change against the rules and proposes findings, is an
+inferential sensor.[^bockeler-sensors] That it proposes without blocking is this site's recommended
+practice. Skills themselves are guides, which steer
 the agent before it acts.[^bockeler-harness]
 
 ### Four layers

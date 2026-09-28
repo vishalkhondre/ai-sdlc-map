@@ -66,8 +66,8 @@ workflow already writes. Nothing moves into the shared layer until a workflow in
 Guidance on internal platforms points the same way. The Thoughtworks Technology Radar observes that
 teams often aim for too much of a platform vision too fast, and recommends growing a platform in
 increments[^tw-incremental-developer-platform] from what Team Topologies calls the thinnest viable
-platform, the smallest set of APIs, documentation and tools that speeds up the teams using
-it[^team-topologies-tvp]. DORA lists quality internal platforms among the capabilities that amplify
+platform: a platform kept no thicker than its users need, which can start as little more than a
+wiki page[^team-topologies-tvp]. DORA lists quality internal platforms among the capabilities that amplify
 the benefits of AI[^dora-ai-capabilities], so the risk lies in building shared parts ahead of the
 workflows that show what they must hold, not in having them. Growing the shared layer only from
 workflows that already run is this site's recommended practice.

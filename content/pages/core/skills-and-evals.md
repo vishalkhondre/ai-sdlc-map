@@ -51,7 +51,7 @@ guidance. A skill serves the guidance route, and it may also help the agent meet
 enforces. This site recommends a clear division of labour between validators and skills. When a
 validator can decide a rule, the validator carries it. A skill that touches the same rule teaches
 the agent why the rule exists and what a compliant change looks like, so the validator seldom has
-to fail.[^bockeler-sensors][^claude-skill-practices] A skill earns its place in work that turns on
+to fail.[^claude-skill-practices] A skill earns its place in work that turns on
 interpretation, where no deterministic check reaches.
 
 **Write the skill for on-demand loading.** Until the agent decides the skill applies, it sees only
@@ -122,10 +122,9 @@ a skill is reliable, its cases become a regression suite that is expected to pas
 time.[^anthropic-agent-evals]
 
 **Keep the review skill advisory.** A review skill reads a diff against the rules and reports
-findings tagged to rule identifiers. Böckeler's worked examples show inferential sensors addressing
-concerns such as semantic duplication only partially, where computational sensors catch duplicate
-code and coverage gaps reliably.[^bockeler-sensors] So the review skill proposes and a validator or
-a named person decides. It is evaluated like any other skill, with cases where it should raise a
+findings tagged to rule identifiers. Böckeler notes that inferential sensors can address concerns
+such as semantic duplication only partially.[^bockeler-harness] So, as this site's recommended
+practice, the review skill proposes and a validator or a named person decides. It is evaluated like any other skill, with cases where it should raise a
 finding and cases where it should stay quiet. Until those results show how often it is right and
 how often it raises a false alarm, its findings inform reviewers and nothing more; what weight they
 carry after that is set in the assurance band of the map. Every finding costs a human reviewer some
@@ -133,8 +132,9 @@ attention, so a noisy review skill is expensive. These are recommended practice.
 
 **Decide when a practice becomes a skill.** The usual trigger is repetition: the team finds itself
 typing the same guidance into agent sessions again and again.[^claude-skill-practices] Vendor
-guidance also suggests writing the evaluation cases first, from failures already seen, and the
-skill text after them.[^anthropic-agent-skills][^claude-skill-practices] Guidance that turns out to
+guidance suggests starting from where the agent struggles on representative tasks[^anthropic-agent-skills],
+and writing the evaluation cases first, from failures already seen, and the skill text after
+them.[^claude-skill-practices] Guidance that turns out to
 be a checkable rule goes to a validator, as described under routing above. This site recommends
 that someone answers for each skill: that person keeps its eval set current and removes the skill
 once nothing depends on it.

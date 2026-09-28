@@ -23,7 +23,7 @@ is used here in this narrow sense, which this site coined; the parts list is the
 recommended definition, not an industry standard.
 
 The idea has a long lineage. Lean value-stream mapping diagrams every step in the material and
-information flows needed to deliver a product or service[^lean-vsm], and lean practice gives the
+information flows needed to bring a product from order to delivery[^lean-vsm], and lean practice gives the
 whole stream an accountable manager who may not own the people and resources in it[^lean-vs-manager].
 DORA recommends value stream mapping to see how work flows from idea to production and where it
 stalls[^dora-vsm-guide]. A workflow is a smaller unit than a value stream: the single step in

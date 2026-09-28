@@ -17,7 +17,7 @@ Harness engineering is the discipline of deliberately designing and maintaining 
 around a coding agent: what the agent reads before it acts, what it is allowed to do, what a
 machine checks after it acts, and what a person still decides. The term was already in use before
 the vocabulary on this page took shape. One model vendor's published account of building software
-with agents popularised it,[^openai-harness] and Birgitta Böckeler's first memo on the subject
+with agents used it prominently,[^openai-harness] and Birgitta Böckeler's first memo on the subject
 responds to that account.[^bockeler-harness-memo] The vocabulary itself comes from Böckeler. She
 notes that *harness* has emerged as shorthand for everything in an agent except the model itself
 (Agent = Model + Harness), frames harness engineering within the bounded context of using a coding
@@ -65,13 +65,14 @@ does engineer around the model is harness.
 Harness engineering is wider than prompt engineering and context engineering, and contains the
 second. Prompt engineering is the craft of writing and organising instructions to a model; context
 engineering is curating and maintaining the whole set of information the model sees during
-inference, across turns.[^anthropic-context-engineering] Böckeler puts context engineering for
-coding agents as curating what the model sees so that the result is better.[^bockeler-context]
+inference, across turns.[^anthropic-context-engineering] Böckeler quotes Bharani Subramaniam's
+definition of context engineering: curating what the model sees so that you get a better
+result.[^bockeler-context]
 Harness engineering adds what the model is subject to but does not see: architectural constraints
 enforced by tools, periodic clean-up of the codebase, and the checks on its output. Böckeler's
 first note on the term lists context engineering as one part of the harness, next to architectural
 constraints and garbage collection of the codebase.[^bockeler-harness-memo] The vendor account that
-popularised the term describes the same work across one large repository: documentation kept in the
+used the term prominently describes the same work across one large repository: documentation kept in the
 repository as the agent's main source of knowledge, a short instruction file that points into it,
 and a layered architecture enforced mechanically by custom linters and structural tests, with
 recurring clean-up runs that look for drift.[^openai-harness]
@@ -88,7 +89,8 @@ feedforward: they steer the agent before it acts. Agent instruction files, skill
 code modifications are guides. Sensors are feedback: they observe what the agent produced and let
 it correct itself. Her examples of sensors include linters, structural tests, type checkers and AI
 code review.[^bockeler-harness] The Technology Radar's entry on feedback sensors gives a similar
-set: compilers, linters, type checkers, test suites and a reviewer agent.[^tw-radar-feedback-sensors]
+set: compilers, linters, structural tests and test suites, and it suggests a reviewer agent to run
+them.[^tw-radar-feedback-sensors]
 
 A harness needs both. Guides raise the chance that the first attempt is right, but they cannot
 anticipate everything. Sensors catch what the guides missed, but a harness made only of sensors
@@ -116,8 +118,8 @@ modification is a computational guide; an instruction file or a skill is an infe
 validator is a computational sensor; a review skill is an inferential sensor. Böckeler's worked
 examples of maintainability sensors on a real codebase show both kinds of sensor side by
 side.[^bockeler-sensors] She also groups what the controls regulate into maintainability,
-architecture fitness and behaviour, and calls behaviour, meaning functional correctness, the
-hardest to check.[^bockeler-harness] Architecture fitness is what evolutionary-architecture
+architecture fitness and behaviour, and calls behaviour, meaning functional correctness, "the
+elephant in the room", the category where good harnesses are still missing.[^bockeler-harness] Architecture fitness is what evolutionary-architecture
 practice calls fitness functions: architecture goals written as executable tests.[^fitness-function]
 
 Placement follows cost. Computational sensors are cheap and fast enough to run on every change,
@@ -130,10 +132,10 @@ fast.[^fowler-ci]
 Böckeler's distinction matters for where a gate belongs: a computational result is the same on
 every run, while an inferential one is not,[^bockeler-harness] so a model's verdict used as a gate
 could stop a change today and let the identical change through tomorrow. A review skill, an agent that reads the diff
-against the rules, still earns its place on questions no rule engine can settle. In Böckeler's
-worked examples, though, inferential sensors address semantic concerns such as duplication only
-partially,[^bockeler-sensors] so its findings go to the person reviewing the change rather than
-deciding the merge.
+against the rules, still earns its place on questions no rule engine can settle. Böckeler notes,
+though, that inferential sensors address semantic concerns such as duplication only
+partially,[^bockeler-harness] so this site recommends that its findings go to the person reviewing
+the change rather than deciding the merge.
 
 The same reasoning covers what the agent may touch. The agent runs under an identity whose
 permissions cover only what its task needs, so staying in scope does not depend on its obeying an
@@ -196,9 +198,9 @@ or asked about, and the loop sends each part of that lesson to its own destinati
 ### Harnessability and requisite variety
 
 Harnessability is Böckeler's word for how far a codebase supports a harness. A codebase written in
-a strongly typed, modular way gives the harness more handles to grip, and she argues that
-harnessability should be a first-class criterion in technology and architecture
-decisions.[^bockeler-harness] Boundaries between layers and modules that a tool can check, tests
+a strongly typed, modular way gives the harness more handles to grip. She notes that technology and
+architecture choices determine how governable a codebase will be, so teams may start choosing
+stacks partly on the harnesses available for them.[^bockeler-harness] Boundaries between layers and modules that a tool can check, tests
 strong enough to act as sensors and a local environment the agent can run all make sensors cheap to
 add. Where they are missing, for example in old code with little test coverage, or where a change
 reaches interfaces that other teams depend on, this site recommends that a person investigates the
@@ -295,7 +297,7 @@ this page defines the controls, not what their results mean for that decision. T
 - *Effective context engineering for AI agents*: prompt engineering and context engineering
   distinguished.[^anthropic-context-engineering]
 - A model vendor's engineering account of harness engineering in an agent-first codebase: the
-  account that popularised the term, repository knowledge and mechanically enforced
+  account that used the term prominently, repository knowledge and mechanically enforced
   architecture.[^openai-harness]
 - *Feedback sensors for coding agents*, Technology Radar Volume 34.[^tw-radar-feedback-sensors]
 - Yang et al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software

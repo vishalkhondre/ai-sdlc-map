@@ -164,9 +164,9 @@ one that might.
 
 **Demoting.** The route can also go down. A check found to be unreliable is treated as judgment
 until it is fixed, because a gate that raises false alarms trains people to override it. Checks that
-block need to be trusted: one large program-analysis platform put an analyser on probation, and
-could switch it off, once its effective false-positive rate, measured from developer feedback,
-reached about 10 per cent[^sadowski-tricorder].
+block need to be trusted: one large program-analysis platform put an analyser on probation once its
+not-useful rate, measured from developer feedback on its findings, reached 10 per cent, and could
+switch it off above 25 per cent[^sadowski-tricorder].
 
 **Changing.** A change to a rule is a reviewed change to the registry, made the way a change to code
 is made. The pull request shows the old and new statement and the reason, lists the validators and
