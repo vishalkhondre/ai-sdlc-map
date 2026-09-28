@@ -65,12 +65,12 @@ spec-kit:
   note: "An open-source toolkit whose commands include specify, plan, tasks and implement, with clarification, checklists and consistency analysis available as optional extra quality gates: the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
 
 ashby:
-  title: "An Introduction to Cybernetics (Law of Requisite Variety)"
-  author: "W. Ross Ashby"
-  date: "1956"
+  title: "Variety (cybernetics): law of requisite variety"
+  author: "Wikipedia contributors"
+  org: "Wikipedia"
   url: "https://en.wikipedia.org/wiki/Variety_(cybernetics)#Law_of_requisite_variety"
-  accessed: "2026-09-25"
-  note: "Cited by Böckeler for why a regulator needs as much variety as the system it governs; the reason narrowing what an agent may produce makes it easier to control."
+  accessed: "2026-09-26"
+  note: "Secondary source for W. Ross Ashby's law of requisite variety, from An Introduction to Cybernetics (1956): only variety can destroy variety, so a regulator needs at least as much variety as what it regulates. Cited by Böckeler; the reason narrowing what an agent may produce makes it easier to control."
 
 dora-metrics:
   title: "DORA Research"
@@ -84,9 +84,10 @@ safe-framework:
   title: "Planning Interval (PI)"
   author: "Scaled Agile, Inc."
   org: "Scaled Agile Framework (SAFe), framework.scaledagile.com"
+  date: "2025-02-25 (last updated)"
   url: "https://framework.scaledagile.com/planning-interval"
-  accessed: "2026-09-25"
-  note: "SAFe's definition of the Planning Interval, the cadence behind PI planning, system demo and Inspect & Adapt. SAFe is also the source of the portfolio, Agile Release Train and team levels and WSJF on the map's lifecycle band; cited as one framework that uses these terms, not as a requirement."
+  accessed: "2026-09-26"
+  note: "SAFe's definition of the Planning Interval: a cadence-based timebox, beginning with PI Planning, in which Agile Release Trains deliver value. SAFe is also the source of the portfolio, Agile Release Train and team levels and WSJF on the map's lifecycle band; cited as one framework that uses these terms, not as a requirement."
 
 aicpa-soc2:
   title: "2017 Trust Services Criteria (With Revised Points of Focus – 2022)"
@@ -98,19 +99,29 @@ aicpa-soc2:
 
 ibm-ai-lifecycle:
   title: "What Is the AI Lifecycle?"
-  author: "IBM"
+  author: "Dave Bergmann"
   org: "IBM Think"
   url: "https://www.ibm.com/think/topics/ai-lifecycle"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Describes the lifecycle of AI systems themselves, from dataset preparation and model training to deployment, monitoring and improvement. The terminology page separates this lifecycle for building AI systems from the AI-assisted software development lifecycle that this site describes."
 
 ibm-ai-dlc:
   title: "AI-DLC: The AI-Driven Development Lifecycle"
-  author: "IBM"
+  author: "Cole Stryker"
   org: "IBM Think"
+  date: "2026-08-04"
   url: "https://www.ibm.com/think/topics/ai-dlc"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Describes AI-DLC as a software development methodology built around AI as a collaborator in every step, and credits it to AWS (2025)."
+
+dora-2025-announcement:
+  title: "Announcing the 2025 DORA Report"
+  author: "Nathen Harvey, Derek DeBellis"
+  org: "Google Cloud Blog"
+  date: "2025-09-23"
+  url: "https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report"
+  accessed: "2026-09-26"
+  note: "Announcement of the 2025 report: AI adoption has a positive relationship with software delivery throughput and a negative one with stability; without robust control systems, such as strong automated testing, mature version control practices and fast feedback loops, an increase in change volume leads to instability."
 
 aws-ai-dlc:
   title: "SDLC Who? Meet AI-DLC: The New Build Loop"
@@ -179,16 +190,18 @@ dora-test-automation:
   title: "Capabilities: Test automation"
   author: "DORA (DevOps Research and Assessment)"
   org: "Google, published on dora.dev"
+  date: "2025-07-17"
   url: "https://dora.dev/capabilities/test-automation/"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Recommends that developers get feedback from automated tests in less than ten minutes, both on local workstations and from the continuous integration system."
 
 fowler-selftesting:
   title: "Self Testing Code"
   author: "Martin Fowler"
   org: "martinfowler.com (bliki)"
+  date: "2014-05-01"
   url: "https://martinfowler.com/bliki/SelfTestingCode.html"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Self-testing code: comprehensive automated tests written with the code, so that a single command runs them and a pass gives confidence that they would expose the bugs in the code."
 
 npm-doctor:
@@ -225,11 +238,11 @@ python-unittest:
 
 spotify-golden-paths:
   title: "How We Use Golden Paths to Solve Fragmentation in Our Software Ecosystem"
-  author: "Spotify Engineering"
+  author: "Gary Niemen"
   org: "Spotify Engineering blog"
-  date: "2020-08"
+  date: "2020-08-17"
   url: "https://engineering.atspotify.com/2020/08/how-we-use-golden-paths-to-solve-fragmentation-in-our-software-ecosystem"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Describes the Golden Path as the opinionated and supported path to build a system, adopted to reduce a fragmented tooling ecosystem."
 
 # Core section (1.4.0): rule registry
@@ -288,19 +301,19 @@ nygard-adr:
 tw-radar-adr:
   title: "Lightweight Architecture Decision Records"
   author: "Thoughtworks"
-  org: "Thoughtworks Technology Radar, Volume 17 (archived entry)"
-  date: "2017-11 (Adopt)"
+  org: "Thoughtworks Technology Radar, Volumes 17 and 18 (archived entry)"
+  date: "2017-11 and 2018-05 (Adopt; earlier Trial in Volumes 15 and 16)"
   url: "https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Radar technique in the Adopt ring recommending that architecture decision records, with their context and consequences, be kept in source control alongside the code rather than in a wiki."
 
 tw-radar-security-policy-as-code:
   title: "Security policy as code"
   author: "Thoughtworks"
   org: "Thoughtworks Technology Radar, Volume 23 (archived entry)"
-  date: "2020-10 (Trial)"
+  date: "2020-10 (Adopt; earlier Trial in Volumes 21 and 22)"
   url: "https://www.thoughtworks.com/radar/techniques/security-policy-as-code"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Radar technique describing security policies written as files under version control, validated automatically in the pipeline, deployed automatically and monitored."
 
 nist-800-37:
@@ -318,8 +331,8 @@ sadowski-tricorder:
   org: "Google; International Conference on Software Engineering (ICSE 2015)"
   date: "2015-05"
   url: "https://research.google/pubs/pub43322/"
-  accessed: "2026-09-25"
-  note: "Google's program-analysis platform, which keeps analyzers only while their effective false-positive rate, measured from developer feedback, stays low; analyzers around 10% are put on probation."
+  accessed: "2026-09-26"
+  note: "Google's program-analysis platform, which measures each analyzer's not-useful rate from developer feedback on its findings: a rate of 10% or more puts the analyzer on probation, and above 25% it may be turned off immediately."
 
 # Core section (1.4.0): validators
 ford-evolutionary-architectures:
@@ -334,9 +347,10 @@ ford-evolutionary-architectures:
 thoughtworks-radar-fitness:
   title: "Architectural fitness function"
   author: "Thoughtworks Technology Advisory Board"
-  org: "Thoughtworks Technology Radar"
+  org: "Thoughtworks Technology Radar, Volumes 17 and 18 (archived entry)"
+  date: "2017-11 and 2018-05 (Trial)"
   url: "https://www.thoughtworks.com/radar/techniques/architectural-fitness-function"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Radar entry restating the Building Evolutionary Architectures definition of an architectural fitness function and noting it may encompass existing verification criteria such as unit tests, metrics and monitors."
 
 fowler-nondeterminism:
@@ -585,11 +599,11 @@ sarif-2-1-0:
 
 nist-ssdf:
   title: "Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities"
-  author: "National Institute of Standards and Technology (NIST)"
+  author: "Murugiah Souppaya, Karen Scarfone, Donna Dodson"
   org: "NIST Special Publication 800-218"
   date: "2022-02"
   url: "https://csrc.nist.gov/pubs/sp/800/218/final"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Secure development practices, including configuring tools to generate artifacts of their support of secure development practices (PO.3.3), and archiving and protecting each release's supporting data and provenance (PS.3.1, PS.3.2). Version 1.2 (SP 800-218r1) was at initial public draft when accessed."
 
 json-schema-core:
@@ -620,12 +634,12 @@ fowler-tolerant-reader:
 
 # Core section (1.4.0): adapters
 cockburn-hexagonal:
-  title: "Hexagonal architecture"
+  title: "Hexagonal (Ports & Adapters) Architecture Explained"
   author: "Alistair Cockburn"
   org: "alistair.cockburn.us"
   date: "2005-09-04"
   url: "https://alistair.cockburn.us/hexagonal-architecture/"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "The ports-and-adapters pattern: an application driven equally by users, programs, automated tests or batch scripts and tested in isolation from its run-time devices and databases, with technology-specific adapters converting what arrives at each port. Also describes logic leaking across layer boundaries when nothing detects the violation."
 
 fowler-contract-test:
@@ -691,18 +705,20 @@ twelve-factor-backing-services:
 thoughtworks-pipelines-as-code:
   title: "Pipelines as code"
   author: "Thoughtworks"
-  org: "Thoughtworks Technology Radar"
+  org: "Thoughtworks Technology Radar, Volumes 15, 16 and 22 (archived entry)"
+  date: "2016-11 to 2020-05 (Adopt)"
   url: "https://www.thoughtworks.com/radar/techniques/pipelines-as-code"
-  accessed: "2026-09-25"
-  note: "A technique in the Adopt ring: delivery-pipeline configuration treated as code, kept under source control and modularised into reusable components with automated testing and deployment."
+  accessed: "2026-09-26"
+  note: "A technique rated Adopt in Radar Volumes 15, 16 and 22 (November 2016 to May 2020), no longer on the current edition: delivery-pipeline configuration treated as code, kept under source control and modularised into reusable components with automated testing and deployment."
 
 thoughtworks-generic-cloud:
   title: "Generic cloud usage"
   author: "Thoughtworks"
-  org: "Thoughtworks Technology Radar"
+  org: "Thoughtworks Technology Radar, Volumes 18 and 19 (archived entry)"
+  date: "2018-05 and 2018-11 (Hold)"
   url: "https://www.thoughtworks.com/radar/techniques/generic-cloud-usage"
-  accessed: "2026-09-25"
-  note: "A technique in the Hold ring: avoiding cloud lock-in at all costs by using only features common to every provider, which gives up each provider's distinctive benefits. About cloud platforms, not developer tooling."
+  accessed: "2026-09-26"
+  note: "A technique in the Hold ring in Radar Volumes 18 and 19, no longer on the current edition: avoiding cloud lock-in at all costs by using only features common to every provider, which gives up each provider's distinctive benefits. About cloud platforms, not developer tooling."
 
 junit-assumptions:
   title: "Assumptions (JUnit 5.9.0 API)"
@@ -741,12 +757,12 @@ dora-ai-capabilities:
   note: "Names seven capabilities that amplify the benefits of AI adoption, including strong version control practices, working in small batches and quality internal platforms."
 
 dora-vsm-guide:
-  title: "Value stream mapping for software delivery"
+  title: "How to use value stream mapping to improve software delivery"
   author: "Andrew Davis, Rob Edwards"
   org: "DORA, published on dora.dev"
-  date: "2024-08-19"
+  date: "2024-11-13 (last updated)"
   url: "https://dora.dev/guides/value-stream-management/"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "DORA's guide to value stream mapping: visualising the flow of work from idea to production with stakeholders from each part of the stream, to find bottlenecks."
 
 lean-vsm:
@@ -754,8 +770,8 @@ lean-vsm:
   author: "Lean Enterprise Institute"
   org: "Lean Enterprise Institute, Lean Lexicon"
   url: "https://www.lean.org/lexicon-terms/value-stream-mapping/"
-  accessed: "2026-09-25"
-  note: "Lean Lexicon definition: diagramming every step in the material and information flows needed to deliver a product or service."
+  accessed: "2026-09-26"
+  note: "Lean Lexicon definition: diagramming every step involved in the material and information flows needed to bring a product from order to delivery."
 
 lean-vs-manager:
   title: "Value-Stream Manager"
@@ -769,8 +785,9 @@ fowler-deployment-pipeline:
   title: "Deployment Pipeline"
   author: "Martin Fowler"
   org: "martinfowler.com (bliki)"
+  date: "2013-05-30"
   url: "https://martinfowler.com/bliki/DeploymentPipeline.html"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Defines a deployment pipeline as a build broken into stages, each giving more confidence at more cost in time, with early stages giving faster feedback."
 
 nist-ai-rmf:
@@ -831,8 +848,8 @@ github-status-checks:
   author: "GitHub"
   org: "GitHub Docs"
   url: "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks"
-  accessed: "2026-09-25"
-  note: "States that a job skipped by a conditional reports its status as Success, while a workflow skipped by path or branch filtering leaves required checks Pending. Cited for this platform's behaviour only."
+  accessed: "2026-09-26"
+  note: "States that a job skipped by a conditional reports its status as Success, while a workflow skipped by path or branch filtering or by its commit message leaves required checks Pending. Cited for this platform's behaviour only."
 
 # Core section (1.4.0): software factory
 cusumano-software-factories:
@@ -917,10 +934,10 @@ conway-committees:
 
 google-sre-postmortem:
   title: "Postmortem Culture: Learning from Failure"
-  author: "Google"
-  org: "The Site Reliability Workbook, sre.google"
+  author: "Rogers, Suriar, Lueder, Deo and Sudhakar (chapter authors)"
+  org: "Google, The Site Reliability Workbook, sre.google"
   url: "https://sre.google/workbook/postmortem-culture/"
-  accessed: "2026-09-25"
+  accessed: "2026-09-26"
   note: "Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that a postmortem's value depends on the learning it creates."
 
 tw-incremental-developer-platform:
@@ -936,5 +953,5 @@ team-topologies-tvp:
   author: "Matthew Skelton and Manuel Pais"
   org: "Team Topologies"
   url: "https://teamtopologies.com/key-concepts-content/what-is-a-thinnest-viable-platform-tvp"
-  accessed: "2026-09-25"
-  note: "Defines the thinnest viable platform as the smallest set of APIs, documentation and tools that speeds up the teams using it."
+  accessed: "2026-09-26"
+  note: "Describes the thinnest viable platform as the minimum a platform needs, kept no thicker than necessary; it can be as little as a wiki page."
