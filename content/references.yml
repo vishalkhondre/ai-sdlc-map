@@ -124,12 +124,13 @@ dora-2025-announcement:
   note: "Announcement of the 2025 report: AI adoption has a positive relationship with software delivery throughput and a negative one with stability; without robust control systems, such as strong automated testing, mature version control practices and fast feedback loops, an increase in change volume leads to instability."
 
 aws-ai-dlc:
-  title: "SDLC Who? Meet AI-DLC: The New Build Loop"
-  author: "AWS Builder Center"
-  org: "Amazon Web Services"
-  url: "https://builder.aws.com/content/376vNVPtBqlCvqIjHPub8iPBSxa/sdlc-who-meet-ai-dlc-the-new-build-loop"
-  accessed: "2026-09-25"
-  note: "AWS's account of the AI-Driven Development Lifecycle (AI-DLC): a loop in which AI plans and asks clarifying questions, and people approve, run through Inception, Construction and Operations phases."
+  title: "AI-Driven Development Life Cycle: Reimagining Software Engineering"
+  author: "Raja SP"
+  org: "AWS DevOps Blog, Amazon Web Services"
+  date: "2025-07-31"
+  url: "https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/"
+  accessed: "2026-09-26"
+  note: "AWS's account of the AI-Driven Development Life Cycle (AI-DLC): AI creates a plan, asks clarifying questions and implements only after human validation, across Inception, Construction and Operations phases."
 
 # Core section (1.4.0): harness engineering
 bockeler-harness-memo:
