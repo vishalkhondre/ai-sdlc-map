@@ -131,9 +131,10 @@ this site's own reading, not Böckeler's.
 The registry is the kit's connecting structure because every other part cites it by identifier.
 A validator declares the rule identifiers it enforces, and its result names them. A skill declares
 the rules it helps the agent keep. A review skill, an agent that reads a change against the
-applicable rules and proposes findings without blocking, tags each finding with a rule identifier.
-In Böckeler's vocabulary validators are computational sensors and review skills are inferential
-ones[^bockeler-sensors]. An evidence record lists which rule checks ran on a change and what each
+applicable rules and proposes findings, tags each finding with a rule identifier. In Böckeler's
+vocabulary validators are computational sensors and review skills are inferential
+ones[^bockeler-sensors]; as this site's recommended practice, a review skill proposes and does not
+block. An evidence record lists which rule checks ran on a change and what each
 returned.
 
 With those references in place, questions that are otherwise guesswork have answers read straight
@@ -164,9 +165,9 @@ one that might.
 
 **Demoting.** The route can also go down. A check found to be unreliable is treated as judgment
 until it is fixed, because a gate that raises false alarms trains people to override it. Checks that
-block need to be trusted: one large program-analysis platform put an analyser on probation, and
-could switch it off, once its effective false-positive rate, measured from developer feedback,
-reached about 10 per cent[^sadowski-tricorder].
+block need to be trusted: one large program-analysis platform put an analyser on probation once its
+not-useful rate, measured from developer feedback on its findings, reached 10 per cent, and could
+switch it off above 25 per cent[^sadowski-tricorder].
 
 **Changing.** A change to a rule is a reviewed change to the registry, made the way a change to code
 is made. The pull request shows the old and new statement and the reason, lists the validators and

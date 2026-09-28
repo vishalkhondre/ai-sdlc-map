@@ -129,9 +129,9 @@ that belongs in the core. This is recommended practice.
 
 Continuous integration expects anyone to be able to check out the sources on a clean machine and
 build and test the system with one command, and the same build to run after every push to the
-mainline[^fowler-ci]. The Thoughtworks Technology Radar places pipeline configuration treated as
-code, kept under source control and tested like any other code, in its Adopt
-ring[^thoughtworks-pipelines-as-code]. For a kit, the
+mainline[^fowler-ci]. The Thoughtworks Technology Radar placed pipeline configuration treated as
+code, kept under source control and tested like any other code, in its Adopt ring (Volume 22, May
+2020; the entry is no longer on the current Radar)[^thoughtworks-pipelines-as-code]. For a kit, the
 pipeline-runner adapter calls the same `verify` a developer runs. It adds scheduling and reporting,
 never extra checks or different thresholds, so a difference between a local result and a pipeline
 result points at the environment, not at the rules. Adapters do not remove every difference: the
@@ -209,8 +209,8 @@ whether a change may merge or release.
   translating. Sign: the adapter has tests about product behaviour, or it becomes the subject of
   coverage arguments.
 - **A lowest-common-denominator core.** The core's interface is cut down to what every tool
-  supports. Thoughtworks places generic cloud usage on Hold for the same reason in a different
-  setting: avoiding lock-in at all costs gives up each provider's distinctive
+  supports. Thoughtworks placed generic cloud usage on Hold (Volumes 18 and 19, 2018) for the same
+  reason in a different setting: avoiding lock-in at all costs gives up each provider's distinctive
   benefits[^thoughtworks-generic-cloud]. The comparison is an analogy. Sign: a core capability waits
   for the least capable tool.
 - **Absence read as a pass.** A tool is missing and the check quietly disappears. Sign: a check

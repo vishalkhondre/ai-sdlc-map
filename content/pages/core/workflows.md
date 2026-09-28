@@ -6,7 +6,7 @@ map_box: Workflows
 title: Workflows
 summary: A workflow is one delivery decision run end to end, with a trigger, an agent task, automated checks, a named human decision, an evidence record and one owner.
 key_terms: [workflow, three-roles, risk-tier, failure-path, evidence-handoff, could-not-run, evidence-record, gate, validator, review-skill, specification-readiness, independent-basis, harness-engineering, feedback-path, software-factory, export-example]
-sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, spec-kit, github-status-checks]
+sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, spec-kit, github-status-checks]
 related: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, software-factory]
 review_record: content/reviews/1.4.0-core.md
 ---
@@ -23,7 +23,7 @@ is used here in this narrow sense, which this site coined; the parts list is the
 recommended definition, not an industry standard.
 
 The idea has a long lineage. Lean value-stream mapping diagrams every step in the material and
-information flows needed to deliver a product or service[^lean-vsm], and lean practice gives the
+information flows needed to bring a product from order to delivery[^lean-vsm], and lean practice gives the
 whole stream an accountable manager who may not own the people and resources in it[^lean-vs-manager].
 DORA recommends value stream mapping to see how work flows from idea to production and where it
 stalls[^dora-vsm-guide]. A workflow is a smaller unit than a value stream: the single step in
@@ -51,7 +51,7 @@ sizes and robust testing[^dora-2024-report]. Its 2025 report, *State of AI-assis
 Development*, found AI adoption now goes with higher throughput but still with lower delivery
 stability, describes AI as an amplifier of a team's existing strengths and weaknesses, and names
 strong automated testing, mature version control practices and fast feedback loops as the
-control systems that stop a rise in change volume from turning into instability[^dora-2025-report].
+control systems that stop a rise in change volume from turning into instability[^dora-2025-report][^dora-2025-announcement].
 
 Those control systems need a place to attach. Without a defined workflow, a change advances on a
 status flag or a conversation, and a month later the team cannot reconstruct which checks ran or
@@ -299,7 +299,7 @@ workflow leaves, and the adoption path decides which workflow a team builds firs
 - Pipelines, continuous integration and test reliability: Martin Fowler on the deployment
   pipeline[^fowler-deployment-pipeline], continuous integration[^fowler-ci] and non-deterministic
   tests[^fowler-nondeterminism].
-- AI-assisted delivery: DORA's 2024 findings[^dora-2024-report], its 2025 report[^dora-2025-report],
+- AI-assisted delivery: DORA's 2024 findings[^dora-2024-report], its 2025 report and its announcement[^dora-2025-report][^dora-2025-announcement],
   its AI Capabilities Model[^dora-ai-capabilities] and its research programme[^dora-metrics].
 - Harness vocabulary: Birgitta Böckeler on harness engineering[^bockeler-harness] and on
   sensors[^bockeler-sensors], and one model vendor's account of harness engineering in an

@@ -111,7 +111,8 @@ standard defines.
 ### Agent findings and decisions
 
 A review skill, an agent that reads the change against the rules and reports what it finds, is an
-inferential control: it proposes and does not decide.[^bockeler-sensors] Its findings carry rule
+inferential control.[^bockeler-sensors] As this site's recommended practice, it proposes and does
+not decide: its findings carry rule
 IDs, so they sit beside the validator results for the same rules, but no finding changes a check's
 status or the overall status.
 

@@ -2,6 +2,17 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.4.1 — 2026-09-28
+
+Every reference on the site was read again at its source; sentences that said more than their source now say what it says.
+
+- Harness engineering: Böckeler notes that technology and architecture choices shape how governable a codebase is, rather than arguing that harnessability should be a first-class criterion; she calls behaviour "the elephant in the room" rather than the hardest to check; the context-engineering definition is credited to Bharani Subramaniam, whom she quotes; the Technology Radar's list of feedback sensors names structural tests, not type checkers; and the vendor account of harness engineering is described as a prominent use of the term, not the one that popularised it.
+- The partial reach of inferential sensors and the cost of computational sensors now cite Böckeler's harness article rather than her sensors article, and on every Core page the review skill's advisory role is labelled as this site's practice.
+- Skills with evals: vendor guidance starts from where the agent struggles on representative tasks; writing evaluation cases before the skill text cites only the guidance that says so; a skill explaining why a rule exists is labelled as this site's recommendation.
+- Rule registry: the analysis platform's two thresholds are given separately (probation at 10%, switch-off above 25%).
+- Workflows, Software factory and Adapters: the Lean definition of value-stream mapping, the thinnest viable platform as its page describes it, and two archived Technology Radar entries in the past tense with their volumes.
+- References: bylines, titles and dates corrected, including the volumes and rings of five archived Radar entries; the SAFe note describes only what its page covers; one reference added, DORA's 2025 announcement, for its wording on control systems; the AWS AI-DLC reference now points to the AWS DevOps blog post.
+
 ## 1.4.0 — 2026-09-25
 
 - A new Core section with nine reference pages, in reading order: Harness engineering, the Engineering Kit, the kit's five parts (Rule registry, Validators, Skills with evals, Evidence schema, Adapters), Workflows and the Software factory. Each page defines one part of the core band of the map, uses the customer-record export as its example, and names its sources. The Core section appears in the header tabs, the left navigation, search, the sitemap and the llms files.
