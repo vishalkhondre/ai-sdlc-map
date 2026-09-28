@@ -33,7 +33,7 @@ Update at the end of every session (see `CLAUDE.md`).
   the repository). Edition 1.2.1 backfilled access dates and corrected seven references.
 - **Current wave:** 0 Foundations closing; the Core plan is approved (D-018). Decisions D-018 to
   D-024 recorded 2026-09-25 (session 5).
-- **Core section (edition 1.4.0), awaiting the author's live review.** All nine
+- **Core section (editions 1.4.0 and 1.4.1), awaiting the author's live review.** All nine
   pages are written and wired in (map links for the kit's five parts, routing row, 95 references,
   10 terms). Review round 1: confidentiality REVISE (a vendor named in prose), accuracy REVISE
   (term origin, one overstated source, three titles/bylines), editorial REVISE (running-example
@@ -44,8 +44,10 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-1. Core section, edition 1.4.0: merged and deployed after three review rounds and confirmations
-   (all ACCEPT). The author reviews it live; follow-ups are 1.4.x; tag `v1.4.0` after approval.
+1. Core section: edition 1.4.0 merged and deployed; 1.4.1 applies the full reference check (every
+   source read directly in a separate session; claim wording, reference details and one URL
+   fixed; three reviewers ACCEPT). The author reviews it live and tags `v1.4.0` or `v1.4.1` after
+   approval.
 2. Keyed deny-list (D-023): `DENYLIST_KEY` is in place; write the one-off local hashing script for
    the author, then switch `scripts/denylist.py` to keyed hashes as a reviewed change.
 3. Diagrams for the Core pages the reviewers named (harness engineering, evidence schema,
@@ -63,10 +65,6 @@ Update at the end of every session (see `CLAUDE.md`).
 - **Purge request.** Ask GitHub Support to purge the unreferenced commits of the deleted working
   branch (the list is held for the author outside the repository).
 - **Core questions:** answered by the author (D-025).
-- **Network policy.** Most primary sources (martinfowler.com, thoughtworks.com, dora.dev, nist.gov,
-  arxiv.org and others) are blocked here; about 46 Core references are checked from search
-  results only. Allow those hosts in the environment's network settings, or re-check them from a
-  session that can reach them, before the release tag.
 - **The old repository.** It still holds employer names in plain text in a check script; the
   author removes them in the GitHub web editor or makes the repository private.
 
@@ -122,3 +120,4 @@ Raised during earlier releases; decide at the wave 0 retrospective (GR-5.3).
 | 3 | 2026-09-25 | Split the work (D-010): created and seeded `ai-sdlc-map` from the earlier repository without its chapter text; moved `CLAUDE.md` and `project/`; D-010, D-011 (confirmation reviews with `--prior`), D-012 (hashed deny-list); Q1 settled. Seed released as 1.0.0 (review REVISE then ACCEPT); fixed a search race that failed the first deploy; clickable map and routing row released as 1.1.0 (ACCEPT) | `role="group"` follow-up merged (PR #4). Author: delete the merged branches `claude/seed-site`, `claude/fix-search-race`, `claude/clickable-map`, `claude/map-links-a11y` and `claude/status-session-3` in GitHub (branch deletion is blocked from the session) |
 | 4 | 2026-09-25 | Renamed the site The AI SDLC Map (D-013) and released edition 1.2.0 (PR #6; three reviewers ACCEPT after one editorial REVISE); recorded D-014 to D-016 with ground rules v1.1 and the release workflow; read the source library for the inventory (kept outside the repository) | Wave 0 remainder (edition 1.2.1): access-date and outdated-terms checks, page templates and `check_pages.py`, nine agents and ten skills, deny-list D-017, `project/COVERAGE.md`; release workflow run by hand when tag pushes failed (PR #8); v1.2.0 released; 1.2.1 merged (PR #9); Core section plan proposed (`project/plans/core.md`). | See Next and For the author |
 | 5 | 2026-09-25 | Recorded D-018 to D-024 (PR #10); disconnected the site from the series (D-019); documentation layout with a page-text guard and axe checks (D-020, PR #13); Slate & Teal brand with bundled fonts, logo, favicon and social card (D-021, PR #14); released v1.3.0 through the Release workflow; pages tooling reviewed in three rounds and merged (PR #15); Core research (nine practice and nine evidence briefs, scratchpad only), nine pages written and integrated; review round 1 REVISE ×3 plus about 70 close paraphrases found by a library sweep; all pages revised | Core on `local/core-pages` (not pushed): re-sweep, review rounds 2–3, PR, merge. Keyed deny-list waits for `DENYLIST_KEY`. See For the author |
+| 6 | 2026-09-28 | Applied the author's answers (D-025) and the library-sweep rule (D-026); merged and deployed the Core section as edition 1.4.0 (PR #16) after the superseded draft branch was removed; applied the external reference check as edition 1.4.1 (claim fixes, reference details, the AWS AI-DLC link; three reviewers ACCEPT) | Author: live review, then tag; keyed deny-list hashing script; purge request for the old draft commits |
