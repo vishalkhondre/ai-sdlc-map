@@ -746,7 +746,7 @@ dora-2025-report:
   date: "2025-09"
   url: "https://dora.dev/dora-report-2025/"
   accessed: "2026-09-25"
-  note: "Describes AI's primary role as an amplifier of an organisation's existing strengths and dysfunctions. Reports that higher AI adoption is associated with higher software delivery throughput and with higher instability, and names control systems such as strong automated testing, mature version control practices and fast feedback loops."
+  note: "Describes AI's primary role as an amplifier of an organisation's existing strengths and dysfunctions. Reports that higher AI adoption is associated with higher software delivery throughput and with higher instability; the control-systems wording is in the announcement (dora-2025-announcement)."
 
 dora-ai-capabilities:
   title: "DORA AI Capabilities Model"
@@ -935,7 +935,7 @@ conway-committees:
 
 google-sre-postmortem:
   title: "Postmortem Culture: Learning from Failure"
-  author: "Rogers, Suriar, Lueder, Deo and Sudhakar (chapter authors)"
+  author: "Daniel Rogers, Murali Suriar, Sue Lueder, Pranjal Deo and Divya Sudhakar, with Gary O'Connor and Dave Rensin"
   org: "Google, The Site Reliability Workbook, sre.google"
   url: "https://sre.google/workbook/postmortem-culture/"
   accessed: "2026-09-26"

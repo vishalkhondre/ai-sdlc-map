@@ -131,9 +131,10 @@ this site's own reading, not Böckeler's.
 The registry is the kit's connecting structure because every other part cites it by identifier.
 A validator declares the rule identifiers it enforces, and its result names them. A skill declares
 the rules it helps the agent keep. A review skill, an agent that reads a change against the
-applicable rules and proposes findings without blocking, tags each finding with a rule identifier.
-In Böckeler's vocabulary validators are computational sensors and review skills are inferential
-ones[^bockeler-sensors]. An evidence record lists which rule checks ran on a change and what each
+applicable rules and proposes findings, tags each finding with a rule identifier. In Böckeler's
+vocabulary validators are computational sensors and review skills are inferential
+ones[^bockeler-sensors]; as this site's recommended practice, a review skill proposes and does not
+block. An evidence record lists which rule checks ran on a change and what each
 returned.
 
 With those references in place, questions that are otherwise guesswork have answers read straight

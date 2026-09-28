@@ -49,9 +49,10 @@ changed any of that.[^anthropic-agent-evals]
 **Route the rule first.** Every rule in the rule registry carries a route: gate, judgment or
 guidance. A skill serves the guidance route, and it may also help the agent meet a rule that a gate
 enforces. This site recommends a clear division of labour between validators and skills. When a
-validator can decide a rule, the validator carries it. A skill that touches the same rule teaches
-the agent why the rule exists and what a compliant change looks like, so the validator seldom has
-to fail.[^claude-skill-practices] A skill earns its place in work that turns on
+validator can decide a rule, the validator carries it. A skill that touches the same rule can show
+the agent what a compliant change looks like, through examples and a loop of validating and
+fixing,[^claude-skill-practices] and this site recommends that it also explain why the rule exists,
+so the validator seldom has to fail. A skill earns its place in work that turns on
 interpretation, where no deterministic check reaches.
 
 **Write the skill for on-demand loading.** Until the agent decides the skill applies, it sees only

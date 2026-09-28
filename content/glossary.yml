@@ -255,7 +255,7 @@
   source: bockeler-sensors
   definition: >-
     An agent that reads a diff against the applicable rules and produces findings tagged to rule
-    identifiers. It proposes; it cannot block. Böckeler's inferential sensors (AI security review,
+    identifiers. On this site it proposes and cannot block. Böckeler's inferential sensors (AI security review,
     modularity review) are the same kind of thing.
   counterpart: "review skill ↔ inferential sensor"
   match: ["review skill", "reviewing agent"]

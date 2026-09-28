@@ -4,10 +4,14 @@ Content edition history of The AI SDLC Map. Only reader-visible changes to the m
 
 ## 1.4.1 — 2026-09-28
 
-- Every reference on the site was read again at its source. Sentences that said more than their source now say what it says: Böckeler's harness article on harnessability and on behaviour ("the elephant in the room"); points about inferential sensors and review cost now cite the harness article rather than the sensors article; the review skill's advisory role is labelled as this site's practice; the context-engineering definition is credited to Bharani Subramaniam, whom Böckeler quotes; the Radar's list of feedback sensors; Tricorder's probation (10%) and switch-off (above 25%) thresholds; where vendor guidance on skills starts from; the Lean definition of value-stream mapping; the thinnest viable platform as Team Topologies describes it; and the vendor account of harness engineering as a prominent use of the term rather than the one that popularised it.
-- Reference details corrected: bylines (IBM Think, Spotify Engineering, NIST SSDF, the SRE workbook chapter), titles (DORA's value stream mapping guide, Cockburn's hexagonal architecture, the Wikipedia article cited for Ashby's law), dates, and the volumes and rings of five archived Technology Radar entries, including pipelines as code, which the Radar last rated Adopt in May 2020.
-- The SAFe reference note now describes only what its page covers, and DORA's 2025 announcement is cited for its wording on control systems.
-- The AWS AI-DLC reference now points to the AWS DevOps blog post by Raja SP.
+Every reference on the site was read again at its source; sentences that said more than their source now say what it says.
+
+- Harness engineering: Böckeler notes that technology and architecture choices shape how governable a codebase is, rather than arguing that harnessability should be a first-class criterion; she calls behaviour "the elephant in the room" rather than the hardest to check; the context-engineering definition is credited to Bharani Subramaniam, whom she quotes; the Technology Radar's list of feedback sensors names structural tests, not type checkers; and the vendor account of harness engineering is described as a prominent use of the term, not the one that popularised it.
+- The partial reach of inferential sensors and the cost of computational sensors now cite Böckeler's harness article rather than her sensors article, and on every Core page the review skill's advisory role is labelled as this site's practice.
+- Skills with evals: vendor guidance starts from where the agent struggles on representative tasks; writing evaluation cases before the skill text cites only the guidance that says so; a skill explaining why a rule exists is labelled as this site's recommendation.
+- Rule registry: the analysis platform's two thresholds are given separately (probation at 10%, switch-off above 25%).
+- Workflows, Software factory and Adapters: the Lean definition of value-stream mapping, the thinnest viable platform as its page describes it, and two archived Technology Radar entries in the past tense with their volumes.
+- References: bylines, titles and dates corrected, including the volumes and rings of five archived Radar entries; the SAFe note describes only what its page covers; one reference added, DORA's 2025 announcement, for its wording on control systems; the AWS AI-DLC reference now points to the AWS DevOps blog post.
 
 ## 1.4.0 — 2026-09-25
 

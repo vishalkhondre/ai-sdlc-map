@@ -66,8 +66,8 @@ Harness engineering is wider than prompt engineering and context engineering, an
 second. Prompt engineering is the craft of writing and organising instructions to a model; context
 engineering is curating and maintaining the whole set of information the model sees during
 inference, across turns.[^anthropic-context-engineering] Böckeler quotes Bharani Subramaniam's
-definition of context engineering: curating what the model sees so that you get a better
-result.[^bockeler-context]
+definition of context engineering: "curating what the model sees so that you get a better
+result".[^bockeler-context]
 Harness engineering adds what the model is subject to but does not see: architectural constraints
 enforced by tools, periodic clean-up of the codebase, and the checks on its output. Böckeler's
 first note on the term lists context engineering as one part of the harness, next to architectural
@@ -118,9 +118,9 @@ modification is a computational guide; an instruction file or a skill is an infe
 validator is a computational sensor; a review skill is an inferential sensor. Böckeler's worked
 examples of maintainability sensors on a real codebase show both kinds of sensor side by
 side.[^bockeler-sensors] She also groups what the controls regulate into maintainability,
-architecture fitness and behaviour, and calls behaviour, meaning functional correctness, "the
-elephant in the room", the category where good harnesses are still missing.[^bockeler-harness] Architecture fitness is what evolutionary-architecture
-practice calls fitness functions: architecture goals written as executable tests.[^fitness-function]
+architecture fitness and behaviour, and calls behaviour (functional correctness) "the
+elephant in the room": the category where good harnesses are still missing.[^bockeler-harness]
+Architecture fitness is what evolutionary-architecture practice calls fitness functions: architecture goals written as executable tests.[^fitness-function]
 
 Placement follows cost. Computational sensors are cheap and fast enough to run on every change,
 alongside the agent. Böckeler suggests running the fast checks while the agent works and before
@@ -302,7 +302,8 @@ this page defines the controls, not what their results mean for that decision. T
 - *Feedback sensors for coding agents*, Technology Radar Volume 34.[^tw-radar-feedback-sensors]
 - Yang et al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software
   Engineering*.[^swe-agent]
-- Ashby, *An Introduction to Cybernetics*: the law of requisite variety.[^ashby]
+- The law of requisite variety, from Ashby's *An Introduction to Cybernetics* (Wikipedia
+  article).[^ashby]
 - *Fitness function-driven development*: architecture goals as executable tests.[^fitness-function]
 - Fowler, *Continuous Integration*: the self-testing build underneath the harness.[^fowler-ci]
 - NIST SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and

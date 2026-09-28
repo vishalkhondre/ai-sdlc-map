@@ -209,8 +209,8 @@ whether a change may merge or release.
   translating. Sign: the adapter has tests about product behaviour, or it becomes the subject of
   coverage arguments.
 - **A lowest-common-denominator core.** The core's interface is cut down to what every tool
-  supports. Thoughtworks places generic cloud usage on Hold for the same reason in a different
-  setting: avoiding lock-in at all costs gives up each provider's distinctive
+  supports. Thoughtworks placed generic cloud usage on Hold (Volumes 18 and 19, 2018) for the same
+  reason in a different setting: avoiding lock-in at all costs gives up each provider's distinctive
   benefits[^thoughtworks-generic-cloud]. The comparison is an analogy. Sign: a core capability waits
   for the least capable tool.
 - **Absence read as a pass.** A tool is missing and the check quietly disappears. Sign: a check
