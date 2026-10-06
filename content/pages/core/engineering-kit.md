@@ -51,6 +51,8 @@ packaged and copied harnesses, so these benefits are recommended practice, not a
 
 ## How it works
 
+![The five parts say what the kit contains, the four layers say who may change what, and the three commands act on the repository, the machine and the change.](diagram:engineering-kit-parts)
+
 ### The five parts
 
 Each part has a page of its own. The table summarises them with the site's running example, a

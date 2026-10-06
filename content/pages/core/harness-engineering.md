@@ -168,6 +168,8 @@ started, not where it was noticed: if the requirement itself was wrong, stricter
 not have caught it. For a defect that reached production, the team traces it back to the earliest
 control that could have stopped it and changes that control, or adds one where none existed.
 
+![Guides steer the agent before it acts and sensors check its work after; a computational sensor can gate the merge while an inferential finding goes to the person reviewing, and a failure that recurs changes a guide or sensor upstream.](diagram:harness-steering-loop)
+
 The loop is run by people, and this site recommends naming who runs it. Each rule has an owner who
 can change it, and at the team's usual retrospective cadence someone looks back over recent
 failures and asks which control should change. People who review agent work are its main input,

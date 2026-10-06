@@ -521,8 +521,8 @@ def render_index() -> str:
 
 <section class="section" id="map">
 <div class="section-inner">
-<div class="section-head"><h2>The map</h2><p>Context sets the risk tier; the lifecycle says where the work runs; the core does the work; enablement makes it possible; assurance proves it. Underlined labels open the page that covers them; or start by purpose below the map.</p></div>
-{figure('ai-sdlc-map', 'The AI SDLC Map: five bands and the adoption path. Underlined labels are links to the page that covers them.', None, 'clickable', linked_map())}
+<div class="section-head"><h2>The map</h2><p>Context sets the risk tier; the lifecycle says where the work runs; the core does the work; enablement makes it possible; assurance proves it. Underlined labels are links to where each is covered. To start by purpose, use the routes below the map.</p></div>
+{figure('ai-sdlc-map', 'The AI SDLC Map: five bands and the adoption path. Underlined labels are links to where each is covered.', None, 'clickable', linked_map())}
 <nav class="routes" aria-label="Start by purpose">{routes()}</nav>
 </div>
 </section>

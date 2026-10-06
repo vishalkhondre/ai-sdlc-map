@@ -1,0 +1,89 @@
+<svg width="1200" height="940" viewBox="0 0 1200 940" xmlns="http://www.w3.org/2000/svg" font-family='"Liberation Sans","DejaVu Sans",Arial,sans-serif' data-references="bockeler-harness bockeler-sensors fowler-ci sarif-2-1-0 github-protected-branches github-checks-api gatekeeper-violations k8s-validating-admission-policy"><title>Validators: one rule, one entry point, four results</title><desc>A validator tied to a rule identifier, how it runs, and what its four results mean for a merge. Top row: three callers, the developer's machine, the agent's session and the CI (continuous integration) pipeline, all call the same validator through one entry point with pinned tool versions and one configuration; CI calls the check and never redefines it. The validator enforces rule R-042 from the rule registry, and every finding it reports carries that rule identifier. Below, a table: every run ends in exactly one of four results, tagged with the rule identifier. passed: the rule was evaluated and no violation was found. failed: a violation was found; the result gives the rule, the location, what is wrong and a link to the full report. skipped: the rule does not apply to this change, decided from a declared condition, never by guessing. could_not_run: the rule applies but no verdict was produced, because a tool was missing, an environment was unavailable, the run timed out after one retry, or the tool crashed. While the validator is report-only, it runs on every pull request and its findings are visible, but no result can stop a merge. Once it is required: passed does not block; failed blocks the merge; a change host may count skipped as satisfied, so it must mean only that the rule does not apply; could_not_run is no verdict, never a pass and never reported as skipped, and the assurance band of the map sets what it means for the merge. A footer notes that the validator only reports, and that the switch from report-only to required is itself a reviewed change, decided by the validator's owner from its record, not the calendar: where its failures pointed at real problems that people fixed, it becomes required; where they were mostly noise, it is corrected or retired.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.6"/></marker><marker id="r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#993C1D" stroke-width="1.6"/></marker></defs>
+<rect width="1200" height="940" fill="#fff"/>
+<text x="60" y="56" font-size="28" fill="#1f1f1c" font-weight="700" text-anchor="start">Validators: one rule, one entry point, four results</text>
+<text x="60" y="86" font-size="16" fill="#5F5E5A" font-weight="400" text-anchor="start">The validator only reports. Whether a result can stop a merge depends on its mode.</text>
+<rect x="60" y="122" width="260" height="56" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="80" y="156" font-size="17" fill="#04342C" font-weight="700" text-anchor="start">Developer's machine</text>
+<line x1="322" y1="150" x2="418" y2="160" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="60" y="194" width="260" height="56" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
+<text x="80" y="228" font-size="17" fill="#26215C" font-weight="700" text-anchor="start">Agent's session</text>
+<line x1="322" y1="222" x2="418" y2="200" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="60" y="266" width="260" height="56" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="80" y="300" font-size="17" fill="#2C2C2A" font-weight="700" text-anchor="start">CI pipeline</text>
+<line x1="322" y1="294" x2="418" y2="240" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="60" y="346" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="start">All three call the same entry point;</text>
+<text x="60" y="366" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="start">CI calls the check, never redefines it.</text>
+<rect x="424" y="122" width="380" height="200" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="444" y="150" font-size="14" fill="#993C1D" font-weight="700" text-anchor="start" letter-spacing="0.6">VALIDATOR</text>
+<text x="444" y="180" font-size="19" fill="#4A1B0C" font-weight="700" text-anchor="start">Access validator for R-042</text>
+<circle cx="450" cy="207" r="2.6" fill="#993C1D"/>
+<text x="462" y="212" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">One entry point</text>
+<circle cx="450" cy="229" r="2.6" fill="#993C1D"/>
+<text x="462" y="234" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Pinned tool versions</text>
+<circle cx="450" cy="251" r="2.6" fill="#993C1D"/>
+<text x="462" y="256" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">One configuration</text>
+<circle cx="450" cy="273" r="2.6" fill="#993C1D"/>
+<text x="462" y="278" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Same run locally, in the agent's</text>
+<text x="462" y="300" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">session and in CI</text>
+<rect x="900" y="122" width="240" height="200" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="920" y="150" font-size="14" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">RULE REGISTRY</text>
+<text x="920" y="180" font-size="19" fill="#2C2C2A" font-weight="700" text-anchor="start">Rule R-042</text>
+<text x="920" y="212" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Every query path serving</text>
+<text x="920" y="232" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">an export filters by the</text>
+<text x="920" y="252" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">records the caller is</text>
+<text x="920" y="272" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">allowed to read</text>
+<line x1="806" y1="222" x2="896" y2="222" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="851" y="212" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="middle">enforces</text>
+<line x1="614" y1="324" x2="614" y2="372" stroke="#993C1D" stroke-width="1.6" marker-end="url(#r)"/>
+<text x="630" y="354" font-size="15" fill="#5F5E5A" font-weight="400" text-anchor="start">Exactly one result per run, tagged with the rule identifier</text>
+<text x="64" y="400" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">RESULT</text>
+<text x="266" y="400" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">WHAT IT MEANS</text>
+<text x="638" y="400" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">WHILE REPORT-ONLY</text>
+<text x="870" y="400" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">ONCE REQUIRED</text>
+<rect x="60" y="416" width="190" height="92" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="78" y="469.0" font-size="19" fill="#04342C" font-weight="700" text-anchor="start">passed</text>
+<rect x="262" y="416" width="360" height="92" rx="12" fill="#fff" stroke="#888780" stroke-width="1.2"/>
+<text x="278" y="457.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Rule evaluated against the</text>
+<text x="278" y="477.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">change; no violation found</text>
+<rect x="866" y="416" width="274" height="92" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="882" y="467.0" font-size="17" fill="#04342C" font-weight="700" text-anchor="start">Does not block</text>
+<rect x="60" y="518" width="190" height="92" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="78" y="571.0" font-size="19" fill="#4A1B0C" font-weight="700" text-anchor="start">failed</text>
+<rect x="262" y="518" width="360" height="92" rx="12" fill="#fff" stroke="#888780" stroke-width="1.2"/>
+<text x="278" y="559.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Violation found: rule, location,</text>
+<text x="278" y="579.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">what is wrong, link to the report</text>
+<rect x="866" y="518" width="274" height="92" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="882" y="569.0" font-size="17" fill="#4A1B0C" font-weight="700" text-anchor="start">Blocks the merge</text>
+<rect x="60" y="620" width="190" height="92" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="78" y="673.0" font-size="19" fill="#2C2C2A" font-weight="700" text-anchor="start">skipped</text>
+<rect x="262" y="620" width="360" height="92" rx="12" fill="#fff" stroke="#888780" stroke-width="1.2"/>
+<text x="278" y="651.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Rule does not apply to this change,</text>
+<text x="278" y="671.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">from a declared condition, never</text>
+<text x="278" y="691.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">a guess</text>
+<rect x="866" y="620" width="274" height="92" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="882" y="651.0" font-size="15" fill="#2C2C2A" font-weight="400" text-anchor="start">A change host may count it as</text>
+<text x="882" y="671.0" font-size="15" fill="#2C2C2A" font-weight="400" text-anchor="start">satisfied, so it must mean only</text>
+<text x="882" y="691.0" font-size="15" fill="#2C2C2A" font-weight="400" text-anchor="start">that the rule does not apply</text>
+<rect x="60" y="722" width="190" height="92" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="78" y="775.0" font-size="19" fill="#4A1B0C" font-weight="700" text-anchor="start">could_not_run</text>
+<rect x="262" y="722" width="360" height="92" rx="12" fill="#fff" stroke="#888780" stroke-width="1.2"/>
+<text x="278" y="753.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Rule applies, no verdict: tool</text>
+<text x="278" y="773.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">missing, environment unavailable,</text>
+<text x="278" y="793.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">timed out after one retry, crashed</text>
+<rect x="866" y="722" width="274" height="92" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="882" y="753.0" font-size="15" fill="#4A1B0C" font-weight="400" text-anchor="start">No verdict: never a pass, never</text>
+<text x="882" y="773.0" font-size="15" fill="#4A1B0C" font-weight="400" text-anchor="start">reported as skipped; the assurance</text>
+<text x="882" y="793.0" font-size="15" fill="#4A1B0C" font-weight="400" text-anchor="start">band sets the merge decision</text>
+<rect x="634" y="416" width="220" height="398" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="652" y="555.0" font-size="16" fill="#2C2C2A" font-weight="400" text-anchor="start">Runs on every pull</text>
+<text x="652" y="577.0" font-size="16" fill="#2C2C2A" font-weight="400" text-anchor="start">request; findings are</text>
+<text x="652" y="599.0" font-size="16" fill="#2C2C2A" font-weight="400" text-anchor="start">visible to people</text>
+<text x="652" y="621.0" font-size="16" fill="#2C2C2A" font-weight="400" text-anchor="start"></text>
+<text x="652" y="643.0" font-size="16" fill="#2C2C2A" font-weight="400" text-anchor="start">Cannot stop a merge,</text>
+<text x="652" y="665.0" font-size="16" fill="#2C2C2A" font-weight="400" text-anchor="start">whatever the result</text>
+<line x1="60" y1="836" x2="1140" y2="836" stroke="#d3d1c7" stroke-width="1"/>
+<text x="60" y="860" font-size="15" fill="#5F5E5A" font-weight="400" text-anchor="start">Report-only to required: a reviewed change, decided by the validator's owner from its record, not the calendar.</text>
+<text x="60" y="884" font-size="15" fill="#5F5E5A" font-weight="400" text-anchor="start">Real problems that people fixed make it required; mostly noise means it is corrected or retired.</text>
+<text class="credit" data-references="bockeler-sensors" x="1160" y="928" font-size="14" fill="#5F5E5A" text-anchor="end">Validator: adapted from Böckeler’s computational sensors (martinfowler.com)</text>
+</svg>

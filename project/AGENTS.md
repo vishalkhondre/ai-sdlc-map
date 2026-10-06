@@ -46,12 +46,15 @@ structure: its lists, the order of its steps and its examples.
 2. **The researcher passes concepts only.** `source-researcher` gives `author` the concepts a
    page should cover and which of them are general practice, never the library's wording, lists,
    step order, sets of examples, figures or its own names for things.
-3. **The sweep runs before the first review.** After Write and before Check, `source-researcher`
-   compares every draft page with the library and reports passages that are close in wording,
+3. **The sweep runs before the first review, for every content change.** After Write and Diagram
+   and before Check, for a section and for every follow-up edition alike, `source-researcher`
+   compares every new or rewritten page passage, glossary entry and diagram with the library and reports passages that are close in wording,
    list, sequence, set of examples or structure. Close passages are cut, and rewritten only by an
    author who sees neither the old passage nor the sweep's notes; the sweep then runs again until
    it reports no close passage. Replacement text written by anyone who has read the library is
-   never used.
+   never used. The review record states the result in one line, `Library sweep: CLEAN` (or
+   `Library sweep: NOT NEEDED - <reason>` when no reader-visible text was written or rewritten),
+   and from edition 1.4.2 `release_content.py` refuses a record without it (D-027).
 4. **Nothing is pushed before the sweep passes.** Drafts stay on the local machine: no push to any
    remote branch and no pull request until the sweep is clean. The branch that is pushed holds the
    section as one commit on top of `main`, with a neutral message, so no earlier draft is in its

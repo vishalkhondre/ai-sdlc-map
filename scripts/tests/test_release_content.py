@@ -44,6 +44,29 @@ class Release(unittest.TestCase):
         self.write("content/reviews/fixture.md", "# Test-only review\n\nScope: fixture chapter.\n\nVerdict: ACCEPT\n")
         release.record_review(self.root, "content/reviews/fixture.md")
 
+    def test_from_1_4_2_the_report_states_the_library_sweep(self):
+        self.write("content/chapters/one.md", "# Corrected chapter\n")
+        self.write("content/VERSION", "1.4.2\n")
+        self.write("content/CHANGELOG.md", "# Changelog\n\n## 1.4.2\n\n- Correction.\n\n## 1.0.0\n\n- Original edition.\n")
+        report = "content/reviews/fixture.md"
+        for line in ("", "Library sweep: pending\n", "Library sweep: NOT NEEDED\n",
+                     "Library sweep: CLEAN\nLibrary sweep: CLEAN\n"):
+            self.write(report, f"# Test-only review\n\n{line}\nVerdict: ACCEPT\n")
+            with self.assertRaisesRegex(ValueError, "library sweep"):
+                release.record_review(self.root, report)
+        for line in ("Library sweep: CLEAN", "Library sweep: NOT NEEDED - a reference URL only"):
+            self.write(report, f"# Test-only review\n\n{line}\n\nVerdict: ACCEPT\n")
+            release.record_review(self.root, report)
+            self.assertEqual(release.check(self.root, self.base)["status"], "PASS")
+        self.write(report, "# Test-only review\n\nVerdict: ACCEPT\n")
+        with self.assertRaisesRegex(ValueError, "library sweep"):
+            release.check(self.root, self.base)
+
+    def test_earlier_editions_need_no_sweep_line(self):
+        self.content_change()
+        self.accept()
+        self.assertEqual(release.check(self.root, self.base)["status"], "PASS")
+
     def test_tooling_only_changes_need_no_edition_or_acceptance(self):
         self.write("scripts/tool.py", "print('tooling')\n")
         self.assertEqual(release.check(self.root, self.base)["status"], "PASS")

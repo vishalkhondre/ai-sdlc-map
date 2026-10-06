@@ -10,8 +10,9 @@ Fails (exit 1) when:
   5. a diagram embed ![..](diagram:id) points at an id that does not exist
   6. a chapter mentions a vendor name the site keeps out of the prose
  10. any text file under content/ contains a name on the confidentiality deny-list (GR-1.1). The
-     deny-list is stored as salted hashes in scripts/denylist.py (GR-1.4) and matches are reported
-     by position only
+     deny-list is stored as keyed hashes in scripts/denylist_keyed.txt (D-023; salted values in
+     scripts/denylist_salted.txt until the switch) (GR-1.4), and matches are reported by position only.
+     Without DENYLIST_KEY a local run skips it and says so; CI fails
   7. diagram text (every <text>, <title> and <desc> in content/diagrams/svg) contains a keep-out name or a
      product name: diagrams are not category pages, so they stay vendor-neutral (GR-3.3). Credit lines
      (<text class="credit">) may name a source, as chapter notes may, but never a keep-out name.
@@ -53,7 +54,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 
 # Vendor names kept out of chapter prose (they may appear in references.yml). Employer and
-# internal names are not listed here: they are on the hashed deny-list in scripts/denylist.py.
+# internal names are not listed here: they are on the hashed deny-list read by scripts/denylist.py.
 BANNED_IN_PROSE = [
     r"\bCursor\b", r"\bCopilot\b", r"\bLovable\b", r"\bClaude\b", r"\bChatGPT\b", r"\bGemini\b",
     r"\bAzure DevOps\b", r"\bJira\b",
@@ -332,7 +333,8 @@ def main() -> int:
         return 1
     n_notes = sum(len(v) for v in cited_by_chapter.values())
     print(f"Citation check passed: {len(chapters) - len(page_terms)} chapters, {len(page_terms)} pages, {n_notes} citations, "
-          f"{len(glossary)} terms, {len(refs)} references.")
+          f"{len(glossary)} terms, {len(refs)} references."
+          + ("" if denylist.ready() else " Deny-list NOT checked: DENYLIST_KEY is not set (D-023)."))
     return 0
 
 

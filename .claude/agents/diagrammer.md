@@ -14,10 +14,13 @@ Diagrams are code (D-008, GR-4.4).
 - SVG source in `content/diagrams/svg/`, or a generator beside it; never a hand-exported image.
 - Every diagram has a `<title>` and a `<desc>` that says in words what the figure shows.
 - Palette: purple = agent, coral = checks or blocked, teal = people or passing, grey = project
-  meaning, amber = context (band 1); exact values in the skill. It must read in light and dark themes.
+  meaning or neutral, amber = context (band 1); exact values in the skill. It must read in light and dark themes.
 - No product names in diagram text (D-009). List the references it relies on in
   `data-references`; a diagram no page embeds carries credit lines for borrowed terms.
 - Only draw what carries meaning the prose cannot carry as well.
+
+Never read the source library. Draw from the page and its public sources only; every new or
+changed diagram goes through the library sweep before review, like page text (D-026, D-027).
 
 Run `python scripts/check_citations.py` and `python site/generate.py`, then return to the
 orchestrating session.
