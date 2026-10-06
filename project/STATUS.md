@@ -34,8 +34,10 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-1. Edition 1.4.2: finish the pull request (sweep, three reviewers, record, merge), then the author
-   reviews it live and, on approval, tags `v1.4.2`.
+1. Edition 1.4.2: three reviewers ACCEPT and the record is bound; merge the pull request, then the
+   author reviews it live and, on approval, tags `v1.4.2`. A small follow-up edition can make the
+   harness page call the feedback path the site's extension of the steering loop in all three
+   places (editorial suggestion), and add the dotted precondition line to the workflow legend.
 2. Keyed deny-list (D-023): the author runs `scripts/denylist_rekey.py` (command in For the author)
    and pushes its result; a session then confirms CI is green with the key, and removes the salted
    fallback from `scripts/denylist.py` as a reviewed tooling change.
