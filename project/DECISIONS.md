@@ -111,6 +111,7 @@ model", its origin is not named, it is de-identified in full, the confidentialit
 it against GR-1, and the author confirms it is not recognisable before its section is released
 (GR-1.2). Rules out: SAFe-specific labels as the only lifecycle vocabulary, and any wording that
 lets a reader identify where the model came from.
+*The relabel ships inside the Lifecycle section's first edition, 1.5.0 (D-029).*
 
 ## D-016 · A tag and a GitHub Release for each approved section
 Decided 2026-09-25 by the author (Q4). `main` deploys continuously; a tag marks the author's
@@ -260,3 +261,21 @@ deny-list switch prepared (D-023); diagrams on five Core pages; the map's intro 
 wording; the adoption path's closing line restated as recommended practice (GR-2.3). Wave 0 is
 closed; open items now belong to the lifecycle, assurance and adoption sections. Rules out:
 carrying a wave-0 list forward without an owner.
+
+## D-029 · Lifecycle section plan approved, shipped as two editions
+Decided 2026-10-06 by the author (D-014). `project/plans/lifecycle.md` is approved with one change:
+the Lifecycle section ships as two editions, each deployed, reviewed live by the author and tagged
+separately. **1.5.0** has 12 pages: the generic level labels (the D-015 relabel), `lifecycle-levels`,
+`safe-reference-model`, the seven phase pages, `definition-of-ready-and-done`, `traceability-spine`
+and `inspect-and-adapt`. **1.6.0** has the seven workflow pages, each of which must add failure
+paths, evidence and measures beyond its catalog row. The paraphrase sweeps (D-026, D-027) are batched
+per edition, riskiest first, with a final full sweep of each edition. The workflow links on the map
+move to their pages in 1.6.0; Core pages gain back-links in 1.5.0 under a D-011 confirmation review;
+the SAFe reference model page uses a closed allow-list of what it may name, with forbidden names
+described by category only (GR-1.4), and the author reads its text in chat before its first push;
+every map box that shares a page has its own anchor; the W12 wording is left alone and listed on
+the backlog as a catalog consistency pass. GR-6.1 describes a section as one band with one
+approval: this decision is an exception for Lifecycle, and `GROUND-RULES.md` is not edited here.
+The author decides whether GR-6.1 should be amended to allow a section in parts. Rules out: pushing
+any Lifecycle page text before its edition's sweeps pass and, for 1.5.0, before the author has read
+the SAFe page.

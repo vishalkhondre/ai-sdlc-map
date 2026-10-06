@@ -61,7 +61,8 @@ of them should land on it directly.
 5. **Review** of the whole section (three reviewers, three rounds, then the author), merge as
    1.4.0, the author reviews it live, follow-ups as 1.4.x, tag at approval.
 
-The D-015 relabel of the lifecycle levels is a separate content edition, after this section.
+The D-015 relabel of the lifecycle levels ships inside the Lifecycle section's first edition, 1.5.0
+(D-029, `project/plans/lifecycle.md`), not as an edition of its own.
 
 ## Links and map changes
 
