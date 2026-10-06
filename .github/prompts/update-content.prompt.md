@@ -9,6 +9,11 @@ description: Research, author, verify and review a scoped update to The AI SDLC 
 2. Use external-researcher's responsibilities (.claude/agents) to gather an evidence brief,
    then author's responsibilities to update affected sources. These roles can be performed
    sequentially; for a whole section, follow .claude/skills/section-pipeline instead.
+   Before any review and before any push, run the library sweep (D-026, D-027): the
+   source-researcher compares every new or rewritten page passage, glossary entry and
+   diagram with the private source library; close passages are cut and rewritten by an
+   author who has seen neither them nor the sweep notes, and the sweep repeats until clean.
+   Only a change with no new or rewritten reader-visible text skips it.
 3. Have the command-capable caller run the citation gate, generator, diagram renderer,
    site tests and browser checks documented in README.md. Supply actual command output
    and the source fingerprint to the reviewers (confidentiality, accuracy, editorial). Missing execution is a blocker,
@@ -17,7 +22,9 @@ description: Research, author, verify and review a scoped update to The AI SDLC 
    minor additions, major restructuring), update VERSION and CHANGELOG.md, then obtain
    the final review of those exact sources. Save the real report under
    content/reviews/<edition>-<revision>.md. Include scope, source fingerprint,
-   evidence, findings and exactly one standalone Verdict: ACCEPT or Verdict: REVISE.
+   evidence, findings, one standalone `Library sweep: CLEAN` (or
+   `Library sweep: NOT NEEDED - <reason>`) line and exactly one standalone
+   Verdict: ACCEPT or Verdict: REVISE.
 5. Only after an actual ACCEPT, run:
    `python scripts/release_content.py record-review --report content/reviews/<report>.md`
    Then run `python scripts/release_content.py check --base <base-commit>`.

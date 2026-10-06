@@ -1,0 +1,78 @@
+<svg width="1200" height="1010" viewBox="0 0 1200 1010" xmlns="http://www.w3.org/2000/svg" font-family='"Liberation Sans","DejaVu Sans",Arial,sans-serif' data-references="bockeler-sensors cockburn-hexagonal fowler-ci fowler-selftesting dora-test-automation"><title>Engineering Kit: five parts, four layers, three commands</title><desc>The Engineering Kit in three views. Top: the five parts, which say what the kit contains: Rule registry, Validators, Skills with evals, Evidence schema and Adapters. They are joined through rule identifiers: validators, skills and evidence records name the rules in the registry. Left: the four layers, which say who may change what, stacked from the shared core at the top to project configuration at the bottom. Arrows between the layers show that each layer may narrow or supply values for the layer above it, and none may redefine it. Layer 1, Shared core, part of the kit's mechanism: the commands, the evidence schema, the result states, the rule-identifier scheme, and rules and validators that apply to every stack; changed by the kit's maintainers, through a versioned release. Layer 2, Technology profiles, kit mechanism: validators, pinned tool versions, skills, scaffolds and default thresholds for one supported stack; changed by the kit's maintainers, with the teams on that stack. Layer 3, Tool adapters, kit mechanism: one binding per tool the kit runs against; changed by the kit's maintainers, or a team that uses a tool nobody else does. Layer 4, Project configuration, shaded as project meaning: which rules apply, their thresholds, declared exceptions, the chosen profile and adapters, in a committed file reviewed like code; changed by the project. Right: the three commands and where each acts. init acts on the repository: it takes a technology profile and a list of adapters, writes the kit-owned files and a starting project configuration, records the kit version and every file it installed, then runs doctor and one verify. doctor acts on the machine where it runs: it checks that what the checks need is present, namely pinned tools, services and test environments, adapter credentials, a valid project configuration and kit-owned files that match the release; it runs no checks, and it names the checks that will return could_not_run. verify acts on the change: it runs every check the project configuration declares for the change and writes one evidence record in the kit's schema, and the same command runs on a developer's machine, in a coding agent's session and in the pipeline. A credit line names the sources of the adapted terms validator and adapter.</desc>
+<defs><marker id="up" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.6"/></marker></defs>
+<rect width="1200" height="1010" fill="#fff"/>
+<text x="40" y="56" font-size="30" fill="#1f1f1c" font-weight="700" text-anchor="start">Engineering Kit: five parts, four layers, three commands</text>
+<text x="40" y="88" font-size="16" fill="#5F5E5A" font-weight="400" text-anchor="start">The parts say what the kit contains, the layers say who may change what, and the commands act on the project.</text>
+<text x="40" y="132" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">FIVE PARTS: WHAT THE KIT CONTAINS</text>
+<rect x="40" y="146" width="208" height="58" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="144.0" y="182" font-size="18" fill="#1f1f1c" font-weight="700" text-anchor="middle">Rule registry</text>
+<rect x="268" y="146" width="208" height="58" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="372.0" y="182" font-size="18" fill="#1f1f1c" font-weight="700" text-anchor="middle">Validators</text>
+<rect x="496" y="146" width="208" height="58" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="600.0" y="182" font-size="18" fill="#1f1f1c" font-weight="700" text-anchor="middle">Skills with evals</text>
+<rect x="724" y="146" width="208" height="58" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="828.0" y="182" font-size="18" fill="#1f1f1c" font-weight="700" text-anchor="middle">Evidence schema</text>
+<rect x="952" y="146" width="208" height="58" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="1056.0" y="182" font-size="18" fill="#1f1f1c" font-weight="700" text-anchor="middle">Adapters</text>
+<text x="40" y="234" font-size="15" fill="#5F5E5A" font-weight="400" text-anchor="start">Joined through rule identifiers: validators, skills and evidence records name the rules in the registry.</text>
+<text x="40" y="286" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">FOUR LAYERS: WHO MAY CHANGE WHAT</text>
+<rect x="40" y="300" width="680" height="132" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="58" y="332" font-size="19" fill="#1f1f1c" font-weight="700" text-anchor="start">1  Shared core</text>
+<text x="702" y="332" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="end" letter-spacing="0.6">KIT MECHANISM</text>
+<text x="58" y="360" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">The commands, the evidence schema, the result states, the rule-identifier</text>
+<text x="58" y="381" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">scheme, and rules and validators that apply to every stack</text>
+<text x="58" y="414" font-size="15" fill="#1f1f1c" font-weight="600" text-anchor="start">Changed by: The kit's maintainers, through a versioned release</text>
+<line x1="80" y1="478" x2="80" y2="442" stroke="#888780" stroke-width="1.6" marker-end="url(#up)"/>
+<text x="98" y="459.0" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="start" font-style="italic">narrows or supplies values for the layer above; never redefines it</text>
+<rect x="40" y="476" width="680" height="132" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="58" y="508" font-size="19" fill="#1f1f1c" font-weight="700" text-anchor="start">2  Technology profiles</text>
+<text x="702" y="508" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="end" letter-spacing="0.6">KIT MECHANISM</text>
+<text x="58" y="536" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Validators, pinned tool versions, skills, scaffolds and default thresholds</text>
+<text x="58" y="557" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">for one supported stack</text>
+<text x="58" y="590" font-size="15" fill="#1f1f1c" font-weight="600" text-anchor="start">Changed by: The kit's maintainers, with the teams on that stack</text>
+<line x1="80" y1="654" x2="80" y2="618" stroke="#888780" stroke-width="1.6" marker-end="url(#up)"/>
+<text x="98" y="635.0" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="start" font-style="italic">narrows or supplies values for the layer above; never redefines it</text>
+<rect x="40" y="652" width="680" height="132" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="58" y="684" font-size="19" fill="#1f1f1c" font-weight="700" text-anchor="start">3  Tool adapters</text>
+<text x="702" y="684" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="end" letter-spacing="0.6">KIT MECHANISM</text>
+<text x="58" y="712" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">One binding per tool the kit runs against</text>
+<text x="58" y="766" font-size="15" fill="#1f1f1c" font-weight="600" text-anchor="start">Changed by: The kit's maintainers, or a team that uses a tool nobody else does</text>
+<line x1="80" y1="830" x2="80" y2="794" stroke="#888780" stroke-width="1.6" marker-end="url(#up)"/>
+<text x="98" y="811.0" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="start" font-style="italic">narrows or supplies values for the layer above; never redefines it</text>
+<rect x="40" y="828" width="680" height="132" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="58" y="860" font-size="19" fill="#2C2C2A" font-weight="700" text-anchor="start">4  Project configuration</text>
+<text x="702" y="860" font-size="14" fill="#2C2C2A" font-weight="700" text-anchor="end" letter-spacing="0.6">PROJECT MEANING</text>
+<text x="58" y="888" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Which rules apply, their thresholds, declared exceptions, the chosen</text>
+<text x="58" y="909" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">profile and adapters; a committed file, reviewed like code</text>
+<text x="58" y="942" font-size="15" fill="#2C2C2A" font-weight="600" text-anchor="start">Changed by: The project</text>
+<text x="760" y="286" font-size="14" fill="#5F5E5A" font-weight="700" text-anchor="start" letter-spacing="0.6">THREE COMMANDS: WHERE THEY ACT</text>
+<rect x="760" y="300" width="400" height="158" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="778" y="332" font-size="21" fill="#4A1B0C" font-weight="700" text-anchor="start" font-family='"Liberation Mono","DejaVu Sans Mono",monospace'>init</text>
+<text x="1142" y="332" font-size="15" fill="#993C1D" font-weight="700" text-anchor="end">on the repository</text>
+<text x="778" y="360" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Takes a technology profile and a list of adapters.</text>
+<text x="778" y="381" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Writes the kit-owned files and a starting project</text>
+<text x="778" y="402" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">configuration. Records the kit version and every</text>
+<text x="778" y="423" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">file it installed. Then runs doctor and one verify.</text>
+<rect x="760" y="505.0" width="400" height="178" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="778" y="537.0" font-size="21" fill="#4A1B0C" font-weight="700" text-anchor="start" font-family='"Liberation Mono","DejaVu Sans Mono",monospace'>doctor</text>
+<text x="1142" y="537.0" font-size="15" fill="#993C1D" font-weight="700" text-anchor="end">on the machine</text>
+<text x="778" y="565.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Checks that what the checks need is present:</text>
+<text x="778" y="586.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">pinned tools, services and test environments,</text>
+<text x="778" y="607.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">adapter credentials, a valid project configuration,</text>
+<text x="778" y="628.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">kit-owned files that match the release. Runs no</text>
+<text x="778" y="649.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">checks; names those that will be could_not_run.</text>
+<rect x="760" y="730.0" width="400" height="230" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="778" y="762.0" font-size="21" fill="#4A1B0C" font-weight="700" text-anchor="start" font-family='"Liberation Mono","DejaVu Sans Mono",monospace'>verify</text>
+<text x="1142" y="762.0" font-size="15" fill="#993C1D" font-weight="700" text-anchor="end">on the change</text>
+<text x="778" y="790.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">Runs every check the project configuration</text>
+<text x="778" y="811.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">declares for the change and writes one evidence</text>
+<text x="778" y="832.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">record in the kit's schema. The same command</text>
+<text x="778" y="853.0" font-size="15" fill="#1f1f1c" font-weight="400" text-anchor="start">runs on:</text>
+<rect x="782" y="865.0" width="15" height="15" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="806" y="878.0" font-size="15" fill="#04342C" font-weight="600" text-anchor="start">a developer's machine</text>
+<rect x="782" y="889.0" width="15" height="15" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
+<text x="806" y="902.0" font-size="15" fill="#26215C" font-weight="600" text-anchor="start">a coding agent's session</text>
+<rect x="782" y="913.0" width="15" height="15" rx="3" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="806" y="926.0" font-size="15" fill="#1f1f1c" font-weight="600" text-anchor="start">the pipeline</text>
+<text class="credit" data-references="bockeler-sensors cockburn-hexagonal" x="1160" y="990" font-size="14" fill="#5F5E5A" text-anchor="end">Validators: adapted from Böckeler’s computational sensors (martinfowler.com) · Tool adapters: adapted from Cockburn’s ports and adapters pattern</text>
+</svg>

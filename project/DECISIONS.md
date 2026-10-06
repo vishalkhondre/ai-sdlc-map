@@ -239,3 +239,24 @@ pushed, the branch is deleted, `git ls-remote` confirms no ref holds it, and the
 host to purge the unreferenced commits. Rules out: using replacement text written by anyone who has
 read the library.
 
+
+## D-027 · The library sweep is part of every content change
+Decided 2026-10-06 by the author, at the close of wave 0, after the sweep found about 70 close
+passages in the Core section's drafts (D-026). The sweep (step 5a of `section-pipeline`) runs for
+every content change, a whole section or a follow-up edition, before the first review and before
+any push, and covers new or rewritten page passages, glossary entries and diagrams. The review
+record states its result in one standalone line, `Library sweep: CLEAN`, or `Library sweep: NOT
+NEEDED - <reason>` when no reader-visible text was written or rewritten. From edition 1.4.2
+`scripts/release_content.py` refuses to record or accept a report without that line, and
+`scripts/tests/test_agents.py` fails if the step drops out of the pipeline, the update prompt,
+the site-builder skill, the diagrammer or the source researcher's skill (GR-5.3: a review-only
+rule becomes a check). Rules out: a follow-up edition or a diagram reaching review unswept.
+
+## D-028 · Wave 0 retrospective: foundations closed
+Decided 2026-10-06 by the author (GR-5.3, APPROACH.md Waves). Each open retrospective item was
+acted on, deferred to the section that owns it, or dropped; the list is in `STATUS.md` (Wave 0
+retrospective). Acted on in edition 1.4.2: the library sweep as a gate (D-027); the keyed
+deny-list switch prepared (D-023); diagrams on five Core pages; the map's intro and caption
+wording; the adoption path's closing line restated as recommended practice (GR-2.3). Wave 0 is
+closed; open items now belong to the lifecycle, assurance and adoption sections. Rules out:
+carrying a wave-0 list forward without an owner.

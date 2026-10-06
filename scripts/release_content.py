@@ -7,6 +7,11 @@ This record establishes freshness, not the reviewer's identity or human approval
 A confirmation review limited to a diff may build on an earlier full review (D-011): record it with
 `--prior <earlier report>`. The record then points to the earlier ACCEPT, which must still exist,
 still say ACCEPT and be unchanged; the confirmation report itself is what binds the current sources.
+
+From edition 1.4.2 the report must also state the library sweep (D-026, D-027) in exactly one
+standalone line: `Library sweep: CLEAN` once the source researcher's sweep of the changed pages,
+terms and diagrams reports no close passage, or `Library sweep: NOT NEEDED - <reason>` when no
+reader-visible text was written or rewritten (for example a reference's URL or date only).
 """
 from __future__ import annotations
 
@@ -20,6 +25,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RECORD = "content/release-review.json"
 SEMVER = re.compile(r"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)")
+SWEEP_FROM = (1, 4, 2)  # editions whose report must state the library sweep (D-027)
+SWEEP = re.compile(r"^Library sweep: (CLEAN|NOT NEEDED - \S.*)$", re.M)
 
 
 def git(root: Path, *args: str) -> str:
@@ -59,16 +66,23 @@ def report_path(root: Path, value: str) -> Path:
     return path
 
 
-def check_report(path: Path) -> None:
+def check_report(path: Path, sweep: bool = False) -> None:
     text = path.read_text(encoding="utf-8")
     verdicts = re.findall(r"^Verdict: (ACCEPT|REVISE)\s*$", text, re.M)
     if verdicts != ["ACCEPT"]:
         raise ValueError("Review report must contain exactly one standalone Verdict: ACCEPT line.")
+    if sweep and (len(SWEEP.findall(text)) != 1 or len(re.findall(r"^Library sweep:", text, re.M)) != 1):
+        raise ValueError("Review report must state the library sweep in one standalone line: "
+                         "'Library sweep: CLEAN' or 'Library sweep: NOT NEEDED - <reason>' (D-027).")
+
+
+def needs_sweep(root: Path) -> bool:
+    return edition((root / "content/VERSION").read_text(encoding="utf-8").strip()) >= SWEEP_FROM
 
 
 def record_review(root: Path, report: str, prior: list[str] | None = None) -> dict:
     path = report_path(root, report)
-    check_report(path)
+    check_report(path, needs_sweep(root))
     data = {"verdict": "ACCEPT", "source_sha256": fingerprint(root),
             "report": path.relative_to(root).as_posix(),
             "report_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
@@ -91,7 +105,7 @@ def check_review(root: Path) -> None:
     if data.get("verdict") != "ACCEPT" or data.get("source_sha256") != fingerprint(root):
         raise ValueError("Editorial acceptance is stale for these sources; request a fresh review.")
     path = report_path(root, data["report"])
-    check_report(path)
+    check_report(path, needs_sweep(root))
     if data.get("report_sha256") != hashlib.sha256(path.read_bytes()).hexdigest():
         raise ValueError("Editorial report changed after acceptance; request a fresh review.")
     for earlier in data.get("prior") or []:

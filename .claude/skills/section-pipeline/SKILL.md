@@ -19,12 +19,12 @@ and its skill, and never the practice brief.
 | 3 Research | `source-researcher` ║ `external-researcher` | practice brief (scratchpad only) ║ evidence brief and reference entries | — |
 | 4 Write | `author` | `content/pages/<band>/<id>.md` from its template | — |
 | 5 Diagram | `diagrammer` | diagrams as code, when they carry meaning | — |
-| 5a Sweep | `source-researcher` | every draft page compared with the library; close passages cut and rewritten by an author who sees neither the old text nor the notes; repeated until clean (D-026) | **no close passage; nothing pushed before this passes** |
+| 5a Sweep | `source-researcher` | every new or rewritten page passage, glossary entry and diagram compared with the library; close passages cut and rewritten by an author who sees neither the old text nor the notes; repeated until clean (D-026, D-027) | **no close passage; nothing pushed before this passes** |
 | 6 Check | `site-builder` | review record created with Scope and Limitations only; full validation (`CLAUDE.md`) green except the release gate | every other check passes |
 | 7 Review | main session starts `confidentiality-reviewer` ║ `accuracy-reviewer` ║ `editorial-reviewer`, fresh contexts | three reports | all ACCEPT; three rounds, then the author |
 | 8 Record | `site-builder` | `content/reviews/<edition>-<section>.md`, bound by `record-review` | `release_content.py check` |
 | 9 Merge | `site-builder` | pull request merged, deployed live | CI green |
-| 10 Author review | the author | follow-up PRs, each through steps 4–9 (patch editions) | — |
+| 10 Author review | the author | follow-up PRs, each through steps 4–9, the sweep (5a) included (patch editions) | — |
 | 11 Release | on the author's instruction | tag `v<content/VERSION>`; the release workflow publishes notes and a PDF | author approval |
 
 ## Rules that hold at every step
@@ -44,7 +44,10 @@ and its skill, and never the practice brief.
 ## The assembled record
 
 `content/reviews/<edition>-<section>.md`: a Scope and a Limitations paragraph, then each
-reviewer's report under its own heading (every round kept), then a Result line and exactly one
-standalone `Verdict: ACCEPT`, written only when every reviewer's latest report says ACCEPT. Bind it:
+reviewer's report under its own heading (every round kept), then a Result line, the sweep line and
+exactly one standalone `Verdict: ACCEPT`, written only when every reviewer's latest report says
+ACCEPT. The sweep line (D-027) is `Library sweep: CLEAN`, or `Library sweep: NOT NEEDED - <reason>`
+when no reader-visible text was written or rewritten; from edition 1.4.2 `record-review` and CI
+refuse a record without it. Bind it:
 
     python scripts/release_content.py record-review --report content/reviews/<file>.md

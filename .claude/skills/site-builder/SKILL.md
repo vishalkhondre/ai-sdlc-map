@@ -36,8 +36,9 @@ python scripts/check_browser.py
    rerun validation and return the fix range for confirmation (D-011). Three rounds at most; then
    the author decides.
 3. Add each reviewer's report to the record as it arrives.
-4. When all three ACCEPT, assemble the record (see `section-pipeline`) and bind it with
-   `record-review`.
+4. When all three ACCEPT, assemble the record (see `section-pipeline`), with the sweep line the
+   orchestrating session gives you (`Library sweep: CLEAN`, or `NOT NEEDED - <reason>`; D-027),
+   and bind it with `record-review`. Never write the sweep line without the sweep's clean report.
 
 ## Pull request
 

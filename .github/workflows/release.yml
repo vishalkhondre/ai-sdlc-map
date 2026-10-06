@@ -52,6 +52,7 @@ jobs:
   validate:
     needs: precheck
     uses: ./.github/workflows/validate.yml
+    secrets: inherit  # DENYLIST_KEY for the keyed deny-list (D-023)
 
   release:
     needs: validate

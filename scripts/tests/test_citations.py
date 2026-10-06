@@ -1,6 +1,5 @@
 """Regressions for the citation gate: canonical overrides and diagram text."""
 import contextlib
-import hashlib
 import importlib.util
 import io
 import shutil
@@ -189,15 +188,17 @@ class DenyList(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             gate = load_gate(temporary)
             fixture = "Zqfixturename"  # stands in for a real name, which must never appear in the repository
-            hashes = gate.denylist.HASHES
-            gate.denylist.HASHES = hashes | {hashlib.sha256((gate.denylist.SALT + fixture.lower()).encode()).hexdigest()}
+            saved = gate.denylist.MODE, gate.denylist.SALT, gate.denylist.HASHES
+            # Salted mode with a test salt, so the test runs the same before and after the keyed switch
+            gate.denylist.MODE, gate.denylist.SALT = "salted", "invented-test-salt"
+            gate.denylist.HASHES = frozenset({gate.denylist.digest(fixture)})
             try:
                 self.assertEqual(run(gate)[0], 0)
                 glossary = gate.CONTENT / "glossary.yml"
                 glossary.write_text(glossary.read_text(encoding="utf-8") + f"# note: {fixture}\n", encoding="utf-8")
                 result, output = run(gate)
             finally:
-                gate.denylist.HASHES = hashes
+                gate.denylist.MODE, gate.denylist.SALT, gate.denylist.HASHES = saved
             self.assertEqual(result, 1)
             self.assertIn("content/glossary.yml:", output)
             self.assertIn("confidentiality deny-list", output)

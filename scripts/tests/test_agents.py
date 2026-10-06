@@ -54,5 +54,16 @@ class Roster(unittest.TestCase):
             self.assertFalse(re.search(r"^Verdict:", text, re.M), name)
 
 
+    def test_the_library_sweep_is_part_of_every_content_change(self):
+        """D-026, D-027: the sweep stays in the pipeline, the follow-up path and the record format."""
+        pipeline = (ROOT / ".claude/skills/section-pipeline/SKILL.md").read_text(encoding="utf-8")
+        self.assertRegex(pipeline, r"\| 5a Sweep \| `source-researcher` \|")
+        self.assertIn("the sweep (5a) included", pipeline)
+        self.assertIn("Library sweep: CLEAN", pipeline)
+        for path in (".github/prompts/update-content.prompt.md", ".claude/skills/site-builder/SKILL.md", "project/AGENTS.md"):
+            self.assertIn("Library sweep: CLEAN", (ROOT / path).read_text(encoding="utf-8"), path)
+        for path in (".claude/agents/diagrammer.md", ".claude/skills/source-researcher/SKILL.md"):
+            self.assertIn("D-027", (ROOT / path).read_text(encoding="utf-8"), path)
+
 if __name__ == "__main__":
     unittest.main()

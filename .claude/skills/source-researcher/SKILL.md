@@ -38,8 +38,12 @@ cautions: anything that would be recognisable if written closely
 
 ## The paraphrase sweep (D-026)
 
-Before a section's first review, compare every draft page with the library and report each passage
+Before the first review of every content change (a whole section or a follow-up edition), compare
+every new or rewritten page passage, glossary entry and diagram (its text, its structure and the
+order of its steps) with the library and report each passage
 that is close in wording, list, sequence, set of examples or structure, with page and lines and a
 one-line topic. Do not write replacement text: close passages are cut and rewritten by an author
 who has not read the library. Repeat the sweep until it reports nothing close. Never quote the
-library or name its documents in the report.
+library or name its documents in the report. End the report with one line, `Sweep result: CLEAN`
+or `Sweep result: <n> close passages`; the orchestrating session copies a clean result into the
+review record as `Library sweep: CLEAN` (D-027).

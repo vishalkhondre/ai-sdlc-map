@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     uses: ./.github/workflows/validate.yml
+    secrets: inherit  # DENYLIST_KEY for the keyed deny-list (D-023)
 
   deploy:
     needs: build
