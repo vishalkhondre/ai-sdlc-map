@@ -48,10 +48,12 @@ Update at the end of every session (see `CLAUDE.md`).
 - **Keyed deny-list (D-023).** In a local clone, with the names in a file outside the repository
   (one name per line, two-word names with one space), run:
 
-      git fetch origin claude/zen-mccarthy-kge7f5 && git checkout claude/zen-mccarthy-kge7f5
+      git checkout main && git pull && git checkout -b denylist-keyed
       python scripts/denylist_rekey.py --terms ~/denylist-terms.txt
       git add scripts/denylist_keyed.txt scripts/denylist_salted.txt
-      git commit -m "Keyed deny-list values (D-023)" && git push
+      git commit -m "Keyed deny-list values (D-023)" && git push -u origin denylist-keyed
+
+  then open a pull request from `denylist-keyed`; CI runs the check with the key.
 
   It asks for `DENYLIST_KEY` without showing it, refuses to write anything unless the file covers
   every current value, writes only hashes and a key check, and deletes the salted list. If the
