@@ -6,10 +6,10 @@ Content edition history of The AI SDLC Map. Only reader-visible changes to the m
 
 Diagrams on five Core pages, and two wording fixes on the home page.
 
-- Harness engineering: a diagram of guides and sensors, computational and inferential controls, who decides, and the steering loop by which a recurring failure changes a guide or a sensor.
+- Harness engineering: a diagram of guides and sensors, computational and inferential controls, who decides, and the feedback path, this site's extension of Böckeler's steering loop, by which a recurring failure changes a guide or a sensor.
 - Evidence schema: a diagram of the fields of one evidence record, the kind of writer allowed to fill each, and how the overall status is derived from check results and decisions, never from agent findings.
 - Engineering Kit: a diagram of the kit's five parts, its four layers and who may change each, and where the three commands, init, doctor and verify, act.
-- Workflows: a diagram of one workflow run from trigger to evidence record, with the agent, the checks and the people kept apart and each failure path naming who acts next.
+- Workflows: a diagram of one workflow run from trigger to evidence record, with the agent, the checks and the people kept apart, the input check before the run shown as a precondition, and each failure path naming who acts next.
 - Validators: a diagram of one validator called the same way from a developer's machine, an agent's session and CI, its four results, and what each means while the validator is report-only and once it is required.
 - Each new diagram has a text description and a credit line for the terms it borrows, and can be downloaded as SVG or PNG.
 - Home page: the map's introduction and caption say that underlined labels are links to where each item is covered. The adoption path's closing line states its order as a recommendation: build the floor and the first workflow before adding skills, agents and platforms.

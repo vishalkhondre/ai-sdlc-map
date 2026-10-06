@@ -89,7 +89,11 @@ def ready() -> bool:
 
 
 def digest(value: str) -> str:
-    return keyed_digest(KEY, value) if MODE == "keyed" else salted_digest(SALT, value)
+    if MODE == "keyed":
+        if KEY is None:
+            raise RuntimeError("Deny-list: keyed values need DENYLIST_KEY; call ready() first (D-023).")
+        return keyed_digest(KEY, value)
+    return salted_digest(SALT, value)
 
 
 def _hit(value: str) -> bool:

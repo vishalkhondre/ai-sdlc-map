@@ -15,8 +15,13 @@ import denylist  # noqa: E402
 TEST_KEY = "invented-test-key"
 
 
-def hashed(*names):
-    return frozenset(denylist.digest(n) for n in names)
+TEST_SALT = "invented-test-salt"
+
+
+def salted(*names):
+    """Patches that put the module in salted mode with the given names listed, whatever is committed."""
+    return [mock.patch.object(denylist, "MODE", "salted"), mock.patch.object(denylist, "SALT", TEST_SALT),
+            mock.patch.object(denylist, "HASHES", frozenset(denylist.salted_digest(TEST_SALT, n) for n in names))]
 
 
 def keyed(*names, key=TEST_KEY):
@@ -41,12 +46,12 @@ class Patched:
 
 class DenyList(unittest.TestCase):
     def test_words_match_whatever_their_case(self):
-        with mock.patch.object(denylist, "HASHES", hashed("zorblax")):
+        with Patched(salted("zorblax")):
             self.assertEqual(denylist.matches("a Zorblax b\nZORBLAX zorblax"), [(1, 3), (2, 1), (2, 9)])
             self.assertEqual(denylist.matches("zorblaxes"), [])
 
     def test_two_word_names_match_as_a_pair_only(self):
-        with mock.patch.object(denylist, "HASHES", hashed("quiet harbour")):
+        with Patched(salted("quiet harbour")):
             self.assertEqual(len(denylist.matches("the Quiet Harbour team")), 1)
             self.assertEqual(len(denylist.matches("quiet-harbour and quiet\nharbour")), 2)
             self.assertEqual(denylist.matches("quiet, harbour; quiet night"), [])
@@ -118,6 +123,18 @@ class Rekey(unittest.TestCase):
         self.assertNotIn("zorblax", written.lower())
         self.assertNotIn(TEST_KEY, written)
         self.assertEqual(self.keyed_matches("zorblax, the quiet harbour, newname"), "keyed [(1, 1), (1, 14), (1, 29)]")
+
+    def test_after_the_switch_a_run_without_the_key_warns_and_skips(self):
+        self.assertEqual(self.rekey("zorblax\nquiet harbour\n").returncode, 0)
+        code = "import denylist; print(denylist.MODE, denylist.matches('zorblax'))"
+        env = {k: v for k, v in os.environ.items() if k not in ("DENYLIST_KEY", "CI")}
+        env["PYTHONPATH"] = str(self.scripts)
+        result = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, cwd=self.outside)
+        self.assertEqual(result.stdout.strip(), "keyed []", result.stderr)
+        self.assertIn("DENYLIST_KEY is not set", result.stderr)
+        result = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                                env={**env, "CI": "true"}, cwd=self.outside)
+        self.assertNotEqual(result.returncode, 0)
 
     def test_a_list_that_drops_a_current_name_writes_nothing(self):
         result = self.rekey("zorblax\n")

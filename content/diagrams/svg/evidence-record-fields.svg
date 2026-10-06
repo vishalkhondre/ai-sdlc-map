@@ -29,8 +29,7 @@
 <rect x="60" y="453" width="250" height="112" rx="10" fill="#fff" stroke="#5F5E5A" stroke-width="1.6"/>
 <text x="78" y="483" font-size="17" fill="#1f1f1c" font-weight="700" text-anchor="start">The kit</text>
 <text x="78" y="507" font-size="14.5" fill="#1f1f1c" font-weight="400" text-anchor="start">from the change and the</text>
-<rect x="78" y="523" width="182" height="26" rx="13" fill="#F1EFE8" stroke="#888780" stroke-width="1.2"/>
-<text x="169" y="541" font-size="14" fill="#2C2C2A" font-weight="600" text-anchor="middle">project configuration</text>
+<text x="78" y="529" font-size="14.5" fill="#1f1f1c" font-weight="400" text-anchor="start">project configuration</text>
 <rect x="326" y="583" width="494" height="132" rx="10" fill="#fff" stroke="#993C1D" stroke-width="1.4"/>
 <text x="344" y="610" font-size="17" fill="#4A1B0C" font-weight="700" text-anchor="start">Check results</text>
 <text x="344" y="634" font-size="14.5" fill="#1f1f1c" font-weight="400" text-anchor="start">For each expected check: rule ID, status, the reason</text>

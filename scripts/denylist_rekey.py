@@ -42,7 +42,12 @@ def main() -> int:
     terms = args.terms.resolve()
     if terms.is_relative_to(denylist.HERE.parent):
         raise SystemExit("Keep the terms file outside the repository (GR-1.3, GR-1.4).")
-    key = os.environ.get("DENYLIST_KEY", "").strip() or getpass.getpass("DENYLIST_KEY (not shown): ").strip()
+    key = os.environ.get("DENYLIST_KEY", "").strip()
+    if not key:
+        key = getpass.getpass("DENYLIST_KEY (not shown): ").strip()
+        # The first run has no key-check value to compare with, so a typing mistake is caught here.
+        if denylist.SALTED_FILE.exists() and getpass.getpass("DENYLIST_KEY again: ").strip() != key:
+            raise SystemExit("The two keys differ; nothing was written.")
     if not key:
         raise SystemExit("No key given.")
     listed = names(terms)
