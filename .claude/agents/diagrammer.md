@@ -19,5 +19,8 @@ Diagrams are code (D-008, GR-4.4).
   `data-references`; a diagram no page embeds carries credit lines for borrowed terms.
 - Only draw what carries meaning the prose cannot carry as well.
 
+Never read the source library. Draw from the page and its public sources only; every new or
+changed diagram goes through the library sweep before review, like page text (D-026, D-027).
+
 Run `python scripts/check_citations.py` and `python site/generate.py`, then return to the
 orchestrating session.

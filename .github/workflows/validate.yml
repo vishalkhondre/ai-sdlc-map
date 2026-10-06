@@ -27,6 +27,8 @@ jobs:
           pip install -r scripts/requirements.txt
           python -m playwright install --with-deps chromium
       - name: Citation and terminology gate
+        env:
+          DENYLIST_KEY: ${{ secrets.DENYLIST_KEY }}  # keyed deny-list (D-023)
         run: python scripts/check_citations.py
       - name: Page template gate
         run: python scripts/check_pages.py
@@ -44,6 +46,8 @@ jobs:
       - name: Render diagram PNGs and reference-sheet PDF
         run: python scripts/render_diagrams.py
       - name: Site tests
+        env:
+          DENYLIST_KEY: ${{ secrets.DENYLIST_KEY }}
         run: python -m unittest discover -s scripts/tests -v
       - name: Browser interaction regression checks
         run: python scripts/check_browser.py

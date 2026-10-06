@@ -102,6 +102,8 @@ benefit of AI[^dora-ai-capabilities].
 
 Every workflow splits its work three ways and keeps the three apart.
 
+![One workflow run moves from trigger to evidence record, with the agent, the checks and the people kept apart, and each failure path sends the work back or out to whoever acts next.](diagram:workflow-anatomy)
+
 - **The agent** takes on high-volume work where an imperfect first attempt is cheap to correct,
   such as searching the codebase, writing code and tests, and summarising a diff for review.
   Its output feeds a decision someone else makes.

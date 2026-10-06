@@ -135,6 +135,8 @@ observed it is marked as manual and names who entered it. A wrong machine field 
 new run, not by editing the record. Applying this boundary to validators, agents and people is
 recommended practice.
 
+![Each field of an evidence record has one kind of writer, and the kit derives the overall status from the check results and decisions, never from agent findings.](diagram:evidence-record-fields)
+
 ### Overall status
 
 The overall status is derived from the results and decisions by a rule the schema version states.

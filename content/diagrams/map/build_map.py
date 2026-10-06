@@ -159,8 +159,8 @@ PATH_DESC = (
     "Five adoption stages left to right: 0 Deterministic floor, 1 One workflow, 2 Second workflow and hand-off, "
     "3 Feedback path proven, 4 Factory emerges. For each stage the diagram lists what to build, what to measure, "
     "a suggested condition for moving on, and a failure pattern to watch for. "
-    "The order is the point: skills, agents and platforms added before the floor and the first workflow tend to "
-    "become sprawl. A credit line in the footer names the sources of borrowed terms."
+    "The order is the point: build the floor and the first workflow before adding skills, agents and "
+    "platforms. A credit line in the footer names the sources of borrowed terms."
 )
 
 
@@ -392,7 +392,7 @@ def page_path() -> str:
                 s.append(f'<line x1="{x + 14}" y1="{yy - 12}" x2="{x + cw - 14}" y2="{yy - 12}" stroke="{LINE}" stroke-width="1"/>')
     s.append(credit(1540, H - 10, "Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect & Adapt: SAFe term (Scaled Agile, Inc.)",
                     ["bockeler-harness", "bockeler-sensors", "safe-framework"], 11, "end"))
-    s.append(t(800, H - 36, "The order is the point. Skills, agents and platforms added before the floor and the first workflow tend to become the sprawl they were meant to prevent.", 14, MUTE, anchor="middle", italic=True))
+    s.append(t(800, H - 36, "The order is the point: build the floor and the first workflow before adding skills, agents and platforms.", 14, MUTE, anchor="middle", italic=True))
     s.append("</svg>")
     return "\n".join(s)
 

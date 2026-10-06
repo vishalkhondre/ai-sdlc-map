@@ -190,7 +190,7 @@ class DenyList(unittest.TestCase):
             gate = load_gate(temporary)
             fixture = "Zqfixturename"  # stands in for a real name, which must never appear in the repository
             hashes = gate.denylist.HASHES
-            gate.denylist.HASHES = hashes | {hashlib.sha256((gate.denylist.SALT + fixture.lower()).encode()).hexdigest()}
+            gate.denylist.HASHES = hashes | {gate.denylist.digest(fixture)}
             try:
                 self.assertEqual(run(gate)[0], 0)
                 glossary = gate.CONTENT / "glossary.yml"

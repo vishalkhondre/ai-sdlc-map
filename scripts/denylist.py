@@ -1,43 +1,105 @@
-"""Confidentiality deny-list (GR-1.1), stored as salted hashes so it does not reveal what it
-protects (GR-1.4).
+"""Confidentiality deny-list (GR-1.1), stored as hashes so it does not reveal what it protects
+(GR-1.4).
 
-Each word of the text, and each pair of neighbouring words, is lower-cased, hashed with the salt
-and compared against HASHES, so a name is caught whatever its capitalisation and a two-word name
-is caught as a pair. A match is reported by position only. Add a name by appending
-sha256(SALT + name.lower()) to HASHES (a two-word name with one space), never the name itself.
+Each word of the text, and each pair of neighbouring words, is lower-cased, hashed and compared
+against the list, so a name is caught whatever its capitalisation and a two-word name is caught as
+a pair. A match is reported by position only.
+
+The list is keyed (D-023): `denylist_keyed.txt` holds HMAC-SHA-256 values made with the secret
+`DENYLIST_KEY`, so a reader who guesses a name cannot confirm it. Without the key a local run warns
+and skips the check, and a run in CI fails. The file's `key-check` line catches a wrong key, which
+would otherwise match nothing. `scripts/denylist_rekey.py` writes the file from a list of names
+that stays outside the repository. Until that file exists, the salted values of D-012 and D-017 in
+`denylist_salted.txt` are used.
 """
 from __future__ import annotations
 
 import hashlib
+import hmac
+import os
 import re
+import sys
+from pathlib import Path
 
-SALT = "c56125cd97e1c5f5f18fbb21d181de3c"
-HASHES = frozenset({
-    "064b3b80a32aeb7dae1fd8dcd4fd8809c14813254afcd7208c2f498a6d782f0c",
-    "0fb5a37ce126e3a60ffcc059fe4524ecdaa2cab167b99fdd3b780c7980bf7d4c",
-    "1a458901542710ca75d6b022bededadfa472f6589199a89e1b60683e11d0ed54",
-    "2aab8e1b460435acf09c639d64cc7fc5db48c133b7ec8cfab13b01822a32e308",
-    "39baabaa5fceea7d8469d971ca6a3d5524cd8b4040f9fc8c68dbac480f6f6926",
-    "3ba8ebccf08dba2aa0b48484c49fdb6ca0f5e86f8ee363139f56ca7d538c2caf",
-    "664e3e295920b6e8eca53481b1a1f88a8281a4100f789db8958d0a3bb0d4614f",
-    "66d1b881b81434850f649e4f1af84d284b64a0590d86182be8871bc987cadb40",
-    "6c89047a003f9e954c81e80e06baa992e475a315f48ec2b8515fca5abb400c8b",
-    "6de9782dbc5f76fe4f4befe673f9ff95a28c9d4c45eca999996b352d10b345b5",
-    "724bbf3c5221dd1c09002eec3f073823667aba76c70f4b554d7f3b98427e524c",
-    "7c32e601a01aba0364d1325ce0ed3ff26e70a51959370d9b2b27f42d88c93dc2",
-    "ab18f6e849aed50e7f1e98ec78e38985f9e4628dbc475ae41a216de0a63eefcc",
-    "acc4ecffac622a130a2337efe22031d0c652ff4d76dcc9d2fcc81a5e106717c9",
-})
+HERE = Path(__file__).resolve().parent
+KEYED_FILE = HERE / "denylist_keyed.txt"
+SALTED_FILE = HERE / "denylist_salted.txt"
+KEY_CHECK_MESSAGE = "ai-sdlc-map deny-list key check"
 WORD = re.compile(r"[A-Za-z0-9]+")
 SEPARATOR = re.compile(r"\s+|[-_]")  # between the two words of a pair, including a wrapped YAML line
 
 
+def _read(path: Path) -> tuple[dict[str, str], frozenset[str]]:
+    """(header fields, hashes) of a deny-list file: '# comments', 'name value' fields, one hash per line."""
+    fields, hashes = {}, set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if re.fullmatch(r"[0-9a-f]{64}", line):
+            hashes.add(line)
+        else:
+            name, _, value = line.partition(" ")
+            fields[name] = value.strip()
+    return fields, frozenset(hashes)
+
+
+def keyed_digest(key: str, value: str) -> str:
+    return hmac.new(key.encode(), value.lower().encode(), hashlib.sha256).hexdigest()
+
+
+def salted_digest(salt: str, value: str) -> str:
+    return hashlib.sha256((salt + value.lower()).encode()).hexdigest()
+
+
+def key_check(key: str) -> str:
+    return keyed_digest(key, KEY_CHECK_MESSAGE)
+
+
+if KEYED_FILE.exists():
+    MODE = "keyed"
+    _fields, HASHES = _read(KEYED_FILE)
+    KEY_CHECK = _fields.get("key-check", "")
+    SALT = None
+else:
+    MODE = "salted"
+    _fields, HASHES = _read(SALTED_FILE)
+    KEY_CHECK = None
+    SALT = _fields["salt"]
+KEY = os.environ.get("DENYLIST_KEY", "").strip() or None
+_warned = False
+
+
+def ready() -> bool:
+    """True when the check can run. Keyed without a key: False locally (with one warning), an
+    error in CI. A key that does not match the file's key-check line is always an error."""
+    global _warned
+    if MODE == "salted":
+        return True
+    if KEY is None:
+        if os.environ.get("CI"):
+            raise SystemExit("Deny-list: DENYLIST_KEY is not set; the check cannot run in CI (D-023).")
+        if not _warned:
+            print("warning: DENYLIST_KEY is not set; the deny-list check is skipped (D-023).", file=sys.stderr)
+            _warned = True
+        return False
+    if not hmac.compare_digest(key_check(KEY), KEY_CHECK or ""):
+        raise SystemExit("Deny-list: DENYLIST_KEY does not match the key-check line of denylist_keyed.txt (D-023).")
+    return True
+
+
+def digest(value: str) -> str:
+    return keyed_digest(KEY, value) if MODE == "keyed" else salted_digest(SALT, value)
+
+
 def _hit(value: str) -> bool:
-    return hashlib.sha256((SALT + value.lower()).encode()).hexdigest() in HASHES
+    return digest(value) in HASHES
 
 
 def matches(text: str) -> list[tuple[int, int]]:
-    """(line, column) of every word, or word pair, in text whose salted hash is on the deny-list."""
+    """(line, column) of every word, or word pair, in text whose hash is on the deny-list."""
+    if not ready():
+        return []
     found = []
     words = list(WORD.finditer(text))
     for i, m in enumerate(words):

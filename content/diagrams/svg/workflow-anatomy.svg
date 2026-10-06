@@ -1,0 +1,105 @@
+<svg width="1200" height="772" viewBox="0 0 1200 772" xmlns="http://www.w3.org/2000/svg" font-family='"Liberation Sans","DejaVu Sans",Arial,sans-serif' data-references="bockeler-harness bockeler-sensors openai-harness nist-ai-rmf nist-800-53 fowler-ci dora-ai-capabilities"><title>Anatomy of one workflow run: trigger, agent task, checks, human decision, evidence record and owner, with its failure paths</title><desc>One workflow run, read left to right in five boxes joined by arrows. Trigger (grey, workflow part): starts the run, which reads upstream records and the rules that apply. Agent task (purple, agent): writes code and tests; a review skill proposes findings tagged to rules; it never decides. Checks (coral, checks): validators the change's risk tier selects; only an explicit pass counts as a pass. Human decision (teal, people): a named person decides whether the change is ready, and the call is recorded by name. Evidence record (grey, record): checks, findings and decisions tied to the exact revision; the next workflow reads it. A dashed coral loop runs from Checks back to Agent task, labelled: violation, back to implementation, then the checks rerun. Below the run, dashed coral arrows lead out to five failure paths, each naming who acts next. From Trigger, Inputs missing: inputs are missing or the change is too large to examine in full, so the run stops and states what it is waiting for. From Agent task, Requirement ambiguous: the specification's owner answers and the specification is updated; nobody settles it in code. From Checks, Check could not run: it reports could_not_run, which is neither a pass nor a defect, so the run shows no positive status and whoever maintains the runner fixes it. From Human decision, Exception requested: whoever holds that decision right decides, and a granted exception is recorded with an owner, a reason and an expiry. Also from Human decision, Finding rejected: the reviewer records the rejection and its reason, so the review skill can be tuned against real misses. A grey arrow runs from the evidence record to the Feedback path band (grey): a defect found later is traced back to the run that should have caught it, and the record keeps where each return started, so a platform fix is not mistaken for a coding one. An arrow runs from the feedback path to the Owner band (teal, people): the one person accountable for the workflow itself receives the finding, which becomes a new test or a sharper rule. A legend gives the colours: purple agent, which proposes and never decides; coral checks, with dashed lines for failure paths; teal people, who make the named decisions; grey workflow parts and records. A credit line names the source of borrowed terms.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.6"/></marker><marker id="r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#993C1D" stroke-width="1.6"/></marker><marker id="t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#0F6E56" stroke-width="1.6"/></marker></defs>
+<rect width="1200" height="772" fill="#fff"/>
+<text x="60" y="54" font-size="28" fill="#1f1f1c" font-weight="700">One workflow run, end to end</text>
+<text x="60" y="84" font-size="16" fill="#5F5E5A">Agent, checks and people stay apart. Each failure path names who acts next; the fix is made where the problem started.</text>
+<rect x="60" y="106" width="22" height="16" rx="4" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
+<text x="90" y="119" font-size="14" fill="#26215C">Agent: proposes, never decides</text>
+<rect x="330" y="106" width="22" height="16" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="360" y="119" font-size="14" fill="#4A1B0C">Checks; dashed lines are failure paths</text>
+<rect x="660" y="106" width="22" height="16" rx="4" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="690" y="119" font-size="14" fill="#04342C">People: named decisions</text>
+<rect x="900" y="106" width="22" height="16" rx="4" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="930" y="119" font-size="14" fill="#2C2C2A">Workflow parts and records</text>
+<path d="M554 198V168H424V194" fill="none" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#r)"/>
+<text x="489" y="158" font-size="14" fill="#993C1D" font-weight="700" text-anchor="middle">Violation: back to implementation, then the checks rerun</text>
+<rect x="60" y="200" width="192" height="150" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="76" y="226" font-size="14" fill="#5F5E5A" font-weight="700" letter-spacing="0.6">START</text>
+<text x="76" y="252" font-size="18" fill="#2C2C2A" font-weight="700">Trigger</text>
+<text x="76" y="278" font-size="14" fill="#2C2C2A">Starts the run, which</text>
+<text x="76" y="297" font-size="14" fill="#2C2C2A">reads upstream records</text>
+<text x="76" y="316" font-size="14" fill="#2C2C2A">and the rules that</text>
+<text x="76" y="335" font-size="14" fill="#2C2C2A">apply</text>
+<line x1="254" y1="275" x2="279" y2="275" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="282" y="200" width="192" height="150" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
+<text x="298" y="226" font-size="14" fill="#534AB7" font-weight="700" letter-spacing="0.6">AGENT</text>
+<text x="298" y="252" font-size="18" fill="#26215C" font-weight="700">Agent task</text>
+<text x="298" y="278" font-size="14" fill="#26215C">Writes code and tests;</text>
+<text x="298" y="297" font-size="14" fill="#26215C">a review skill proposes</text>
+<text x="298" y="316" font-size="14" fill="#26215C">findings tagged to</text>
+<text x="298" y="335" font-size="14" fill="#26215C">rules. It never decides</text>
+<line x1="476" y1="275" x2="501" y2="275" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="504" y="200" width="192" height="150" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="520" y="226" font-size="14" fill="#993C1D" font-weight="700" letter-spacing="0.6">CHECKS</text>
+<text x="520" y="252" font-size="18" fill="#4A1B0C" font-weight="700">Checks</text>
+<text x="520" y="278" font-size="14" fill="#4A1B0C">Validators the change's</text>
+<text x="520" y="297" font-size="14" fill="#4A1B0C">risk tier selects. Only</text>
+<text x="520" y="316" font-size="14" fill="#4A1B0C">an explicit pass counts</text>
+<text x="520" y="335" font-size="14" fill="#4A1B0C">as a pass</text>
+<line x1="698" y1="275" x2="723" y2="275" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="726" y="200" width="192" height="150" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="742" y="226" font-size="14" fill="#0F6E56" font-weight="700" letter-spacing="0.6">PEOPLE</text>
+<text x="742" y="252" font-size="18" fill="#04342C" font-weight="700">Human decision</text>
+<text x="742" y="278" font-size="14" fill="#04342C">A named person decides</text>
+<text x="742" y="297" font-size="14" fill="#04342C">whether the change is</text>
+<text x="742" y="316" font-size="14" fill="#04342C">ready; the call is</text>
+<text x="742" y="335" font-size="14" fill="#04342C">recorded by name</text>
+<line x1="920" y1="275" x2="945" y2="275" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="948" y="200" width="192" height="150" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="964" y="226" font-size="14" fill="#5F5E5A" font-weight="700" letter-spacing="0.6">RECORD</text>
+<text x="964" y="252" font-size="18" fill="#2C2C2A" font-weight="700">Evidence record</text>
+<text x="964" y="278" font-size="14" fill="#2C2C2A">Checks, findings and</text>
+<text x="964" y="297" font-size="14" fill="#2C2C2A">decisions, tied to the</text>
+<text x="964" y="316" font-size="14" fill="#2C2C2A">exact revision; the</text>
+<text x="964" y="335" font-size="14" fill="#2C2C2A">next workflow reads it</text>
+<line x1="156" y1="352" x2="156" y2="401" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#r)"/>
+<line x1="378" y1="352" x2="378" y2="401" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#r)"/>
+<line x1="600" y1="352" x2="600" y2="401" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#r)"/>
+<line x1="822" y1="352" x2="822" y2="401" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#r)"/>
+<line x1="902" y1="352" x2="986" y2="401" stroke="#993C1D" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#r)"/>
+<rect x="60" y="405" width="192" height="140" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="76" y="430" font-size="14" fill="#993C1D" font-weight="700">Inputs missing</text>
+<text x="76" y="454" font-size="14" fill="#1f1f1c">or the change is too</text>
+<text x="76" y="473" font-size="14" fill="#1f1f1c">large to examine in</text>
+<text x="76" y="492" font-size="14" fill="#1f1f1c">full: the run stops</text>
+<text x="76" y="511" font-size="14" fill="#1f1f1c">and states what it is</text>
+<text x="76" y="530" font-size="14" fill="#1f1f1c">waiting for</text>
+<rect x="282" y="405" width="192" height="140" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="298" y="430" font-size="14" fill="#993C1D" font-weight="700">Requirement ambiguous</text>
+<text x="298" y="454" font-size="14" fill="#1f1f1c">The specification's</text>
+<text x="298" y="473" font-size="14" fill="#1f1f1c">owner answers and the</text>
+<text x="298" y="492" font-size="14" fill="#1f1f1c">specification is</text>
+<text x="298" y="511" font-size="14" fill="#1f1f1c">updated; nobody</text>
+<text x="298" y="530" font-size="14" fill="#1f1f1c">settles it in code</text>
+<rect x="504" y="405" width="192" height="140" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="520" y="430" font-size="14" fill="#993C1D" font-weight="700">Check could not run</text>
+<text x="520" y="454" font-size="14" fill="#1f1f1c">Reports could_not_run:</text>
+<text x="520" y="473" font-size="14" fill="#1f1f1c">no positive status, and</text>
+<text x="520" y="492" font-size="14" fill="#1f1f1c">whoever maintains the</text>
+<text x="520" y="511" font-size="14" fill="#1f1f1c">runner fixes it</text>
+<rect x="726" y="405" width="192" height="140" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="742" y="430" font-size="14" fill="#993C1D" font-weight="700">Exception requested</text>
+<text x="742" y="454" font-size="14" fill="#1f1f1c">Whoever holds that</text>
+<text x="742" y="473" font-size="14" fill="#1f1f1c">decision right decides;</text>
+<text x="742" y="492" font-size="14" fill="#1f1f1c">a granted exception is</text>
+<text x="742" y="511" font-size="14" fill="#1f1f1c">recorded with an owner,</text>
+<text x="742" y="530" font-size="14" fill="#1f1f1c">a reason and an expiry</text>
+<rect x="948" y="405" width="192" height="140" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="964" y="430" font-size="14" fill="#993C1D" font-weight="700">Finding rejected</text>
+<text x="964" y="454" font-size="14" fill="#1f1f1c">The reviewer records</text>
+<text x="964" y="473" font-size="14" fill="#1f1f1c">the rejection and its</text>
+<text x="964" y="492" font-size="14" fill="#1f1f1c">reason, so the review</text>
+<text x="964" y="511" font-size="14" fill="#1f1f1c">skill can be tuned</text>
+<text x="964" y="530" font-size="14" fill="#1f1f1c">against real misses</text>
+<path d="M1142 275H1166V611H1146" fill="none" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="60" y="580" width="1080" height="62" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="76" y="606" font-size="14" fill="#5F5E5A" font-weight="700" letter-spacing="0.6">FEEDBACK PATH</text>
+<text x="232" y="606" font-size="14" fill="#2C2C2A">A defect found later is traced back to the run that should have caught it.</text>
+<text x="232" y="628" font-size="14" fill="#2C2C2A">The record keeps where each return started, so a platform fix is not mistaken for a coding one.</text>
+<line x1="600" y1="644" x2="600" y2="668" stroke="#0F6E56" stroke-width="1.6" marker-end="url(#t)"/>
+<rect x="60" y="672" width="1080" height="62" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="76" y="698" font-size="14" fill="#0F6E56" font-weight="700" letter-spacing="0.6">OWNER</text>
+<text x="232" y="698" font-size="14" fill="#04342C">The one person accountable for the workflow itself receives the finding.</text>
+<text x="232" y="720" font-size="14" fill="#04342C">It becomes a new test or a sharper rule.</text>
+<text class="credit" data-references="bockeler-harness bockeler-sensors" x="1140" y="760" font-size="14" fill="#5F5E5A" text-anchor="end">Validator, review skill and feedback path: after Böckeler (martinfowler.com)</text>
+</svg>
