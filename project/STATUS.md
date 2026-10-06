@@ -30,7 +30,8 @@ Update at the end of every session (see `CLAUDE.md`).
   (D-017); the source coverage table (`project/COVERAGE.md`; the inventory itself stays outside
   the repository). Edition 1.2.1 backfilled access dates and corrected seven references.
 - **Current wave:** wave 0 Foundations is closed (D-028). Wave 1 continues with the lifecycle
-  section; the Core section is released.
+  section; the Core section is released. **Lifecycle plan approved 2026-10-06 (D-029):** edition
+  1.5.0 (12 pages) and edition 1.6.0 (7 workflow pages), each tagged separately.
 
 ## Next (in order)
 
@@ -41,12 +42,23 @@ Update at the end of every session (see `CLAUDE.md`).
 2. Keyed deny-list (D-023): the author runs `scripts/denylist_rekey.py` (command in For the author)
    and pushes its result; a session then confirms CI is green with the key, and removes the salted
    fallback from `scripts/denylist.py` as a reviewed tooling change.
-3. Relabel the map's lifecycle levels generically (D-015), as a content edition of its own.
-4. Lifecycle section plan (architect): phases, their workflows and the SAFe reference model
-   (D-015), carrying the deferred retrospective items listed below.
+3. **Lifecycle section (D-029), two editions; plan in `project/plans/lifecycle.md`.** 1.5.0 (12
+   pages, includes the D-015 relabel) first: briefs and the public-skeleton research are under
+   way; page work stays on a local branch that is not pushed until the sweeps pass and the author
+   has read the SAFe reference model page in chat. Then 1.6.0 (the seven workflow pages). The
+   deferred retrospective items for this section are listed below.
+
+## Backlog
+
+- Catalog consistency pass (W12 wording): the W12 row says "definition of ready" while the map
+  and adoption path place it at Specification (D-029, question 8).
 
 ## For the author
 
+- **GR-6.1 and D-029.** Lifecycle ships as two editions, an exception to "a section is one band".
+  `GROUND-RULES.md` is unchanged; say whether to amend GR-6.1.
+- **Lifecycle plan pull request:** review and merge. The SAFe page text is shown in chat before it
+  is pushed.
 - **Keyed deny-list (D-023).** In a local clone, with the names in a file outside the repository
   (one name per line, two-word names with one space), run:
 
@@ -96,7 +108,7 @@ Each open item, with its outcome (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | closed (D-028) | — | — |
-| 1 Core and lifecycle | Core released (`v1.4.1`); 1.4.2 adds diagrams; lifecycle not started | 9 (core) | 9 |
+| 1 Core and lifecycle | Core released (`v1.4.1`); 1.4.2 adds diagrams; lifecycle planned (D-029), 1.5.0 in progress | 9 (core) | 9 |
 | 2 Assurance and enablement | not started | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
@@ -111,3 +123,4 @@ Each open item, with its outcome (GR-5.3).
 | 5 | 2026-09-25 | Recorded D-018 to D-024 (PR #10); disconnected the site from the series (D-019); documentation layout with a page-text guard and axe checks (D-020, PR #13); Slate & Teal brand with bundled fonts, logo, favicon and social card (D-021, PR #14); released v1.3.0 through the Release workflow; pages tooling reviewed in three rounds and merged (PR #15); Core research (nine practice and nine evidence briefs, scratchpad only), nine pages written and integrated; review round 1 REVISE ×3 plus about 70 close paraphrases found by a library sweep; all pages revised | Core on `local/core-pages` (not pushed): re-sweep, review rounds 2–3, PR, merge. Keyed deny-list waits for `DENYLIST_KEY`. See For the author |
 | 6 | 2026-09-28 | Applied the author's answers (D-025) and the library-sweep rule (D-026); merged and deployed the Core section as edition 1.4.0 (PR #16) after the superseded draft branch was removed; applied the external reference check as edition 1.4.1 (claim fixes, reference details, the AWS AI-DLC link; three reviewers ACCEPT) | Author: live review, then tag; keyed deny-list hashing script; purge request for the old draft commits |
 | 7 | 2026-10-06 | Closed wave 0: STATUS brought up to date (Core released as `v1.4.1`); the library sweep made a gate on every content change (D-027); the keyed deny-list switch built and tested, waiting for the author's hashing run (D-023); wave 0 retrospective held (D-028); diagrams on five Core pages and the home-page wording fixes as edition 1.4.2 | Leftover branch could not be deleted from the session. Author: run the rekey command; live review of 1.4.2, then tag |
+| 8 | 2026-10-06 | Planned the Lifecycle section (architect); the author approved it as two editions (D-029) and answered eight questions; updated the Core plan and this file; opened the plan pull request; started the 1.5.0 briefs and public-skeleton research | Page work on a local branch, nothing pushed; SAFe page text to the author in chat before its first push; see Next item 3 |

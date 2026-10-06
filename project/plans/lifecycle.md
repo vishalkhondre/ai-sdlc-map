@@ -1,13 +1,18 @@
 # Section plan: Lifecycle (band 2)
 
-Proposed by the architect, 2026-10-06. **Awaiting the author's approval (GR-6.1).** No page brief is
-written and no page is started until the plan is approved.
+Proposed by the architect, 2026-10-06. **Approved by the author with changes, 2026-10-06 (D-029);**
+the changes are applied below. The author's answers to the eight open questions are at the end of
+this file.
 
-- **Section:** lifecycle, band 2 of the map ("where it runs").
-- **Edition:** 1.5.0 when the section merges; follow-ups before approval are 1.5.x; the tag is
-  created at approval (D-016). `release/sections.yml` gains a `"1.5"` entry naming the section and
-  its pages. This numbering assumes the D-015 relabel ships inside this edition (open question 1);
-  if it ships first as its own edition, the relabel is 1.5.0 and this section is 1.6.0.
+- **Section:** lifecycle, band 2 of the map ("where it runs"), **delivered as two editions** (D-029):
+  - **1.5.0, 12 pages:** the generic level labels (D-015 relabel), `lifecycle-levels`,
+    `safe-reference-model`, the seven phase pages, `definition-of-ready-and-done`,
+    `traceability-spine`, `inspect-and-adapt`.
+  - **1.6.0, 7 pages:** the seven workflow pages.
+  - Each edition is merged, deployed, reviewed live by the author and tagged separately. Follow-ups
+    before a tag are patch editions of that minor (1.5.x, 1.6.x); the tag is created at approval
+    (D-016). `release/sections.yml` gains a `"1.5"` entry when 1.5.0 merges and a `"1.6"` entry when
+    1.6.0 merges, each naming that edition's pages.
 - **Sources:** `project/COVERAGE.md` rates 18 of the 22 band-2 boxes as covered by the source
   library and four as thin (Portfolio, Deploy, Operate and the deploy verification workflow). Every page cites public sources for its claims (GR-2). The library
   informs practice only (GR-1.2), and this plan builds each page's structure from public sources
@@ -15,7 +20,13 @@ written and no page is started until the plan is approved.
   Borrowed terms keep their credit: SAFe terms (Scaled Agile, Inc.), the Definition of Done
   (Scrum Guide), WSJF (Reinertsen, through SAFe), Inspect & Adapt (SAFe); terms this site coins are
   marked *coined* (GR-2.2).
-- **Page count:** 19 pages for 22 boxes plus the SAFe reference model (D-015). Core had 9.
+- **Page count:** 19 pages for 22 boxes plus the SAFe reference model (D-015): 12 in 1.5.0 and 7 in
+  1.6.0. Core had 9.
+- **Each edition is complete on its own (GR-4.1).** Until 1.6.0, the seven workflow labels on the map
+  and the "Workflows in this phase" lists of the phase pages link to the workflow catalog rows; in
+  1.6.0 those links move to the workflow pages. 1.6.0 therefore edits pages published in 1.5.0 (the
+  phase pages, the map, the Core back-links): those edits are checked by a confirmation review
+  (D-011), and by a sweep of the changed passages.
 
 ## Boundary with the other sections
 
@@ -40,6 +51,9 @@ they own.
 
 ## Pages
 
+**Edition 1.5.0:** rows 1 to 9 and 17 to 19 (12 pages). **Edition 1.6.0:** rows 10 to 16 (7 pages).
+Row numbers keep the architect's original numbering, which the scope cells cross-refer to.
+
 | # | Page id | Type | Map box | Coverage | Scope | Leaves to others |
 |---|---|---|---|---|---|---|
 | 1 | `lifecycle-levels` | Concept | Portfolio · Train · Team (three labels, three anchors) | Portfolio thin; Train, Team covered | One lifecycle at three altitudes (generic labels, D-015): what a portfolio decides (initiatives, prioritisation, budgets), what a train decides (features, a planning cycle, an integrated demo), what a team decides (stories, iterations, readiness and done); what flows down (intent, rules) and up (evidence, lessons); which phases and workflows run at which level. SAFe cited as one framework that uses these levels. Portfolio relies mainly on public sources. | The SAFe mapping (page 2); cadence and decision rights (enablement) |
@@ -61,6 +75,17 @@ they own.
 | 17 | `definition-of-ready-and-done` | Concept | Definition of Ready / Done (the DoR and DoD tags) | covered | What each is, who owns it, how it is written so a machine can check part of it; two layers of readiness (specification, task); done at story, increment and release; how agents change both. | Workflow detail (pages 11, 15); templates (assurance) |
 | 18 | `traceability-spine` | Concept | Traceability spine | covered | The chain requirement, spec, task, test, change, release, incident; how identifiers link each pair; orphan checks; what breaks when a link is missing; rule IDs as link keys. | Record fields (Core `evidence-schema`); audit and validity per revision (assurance) |
 | 19 | `inspect-and-adapt` | Role or practice | Inspect & Adapt | covered | The checkpoint where evidence from the spine and from incident feedback is reviewed and a workflow is added or tightened; what it inspects, who attends and decides, what shifts with agents, warning signs. | Calendar and cadence (enablement: operating model) |
+
+**Acceptance criterion for the workflow pages (author, D-029).** Each of the seven must add failure
+paths, evidence and measures beyond its catalog row: a row names the evidence in one cell and has no
+failure paths or measures. The page states the failure paths (including `could_not_run`), the
+evidence record it writes and who reads it, and the measures with a baseline. The editorial
+reviewer checks this per page and returns REVISE for a page that only restates the row.
+
+**Anchors (author, D-029).** Every map box that shares a page has its own anchor: the three level
+labels on `lifecycle-levels` (Portfolio, Train, Team), Develop, Build and QA on `develop-build-qa`,
+and the DoR and DoD tags on `definition-of-ready-and-done`. Each anchor is a heading, so its slug
+is stable, and the link check covers it (GR-4.3).
 
 ### What was merged, what was kept apart, and why
 
@@ -152,14 +177,28 @@ reach later pages.
 ### (b) Sweep per batch, highest risk first
 
 The sweep runs on batches as soon as they are written, not once at the end. Writing order follows
-risk, so the first sweeps happen while most pages are still unwritten.
+risk, so the first sweeps happen while most pages are still unwritten. Each edition is swept
+separately, in the same way: riskiest batch first, then a final full sweep of the edition's pages
+on final text (D-029).
+
+**Edition 1.5.0**
 
 | Batch | Pages | Why this order | Sweeps |
 |---|---|---|---|
 | A | `safe-reference-model`, `definition-of-ready-and-done`, `traceability-spine`, `inspect-and-adapt`, `lifecycle-levels` | highest risk: D-015 page and the three practice concepts whose lists and sequences a library document is likely to hold | two independent sweep runs even when the first is clean (a second researcher context, aimed at list, order and examples), then a re-sweep after every rewrite |
 | B | the seven phase pages | each has a "Traditional" and an "AI-assisted" list and a gates list, the shapes most likely to follow a library's | same as A; the thin pages (`deploy`, `operate`) get the restricted library pass |
-| C | the seven workflow pages | the template fixes the sections, so structure risk is low, but the checks, failure-path and measure lists are not | one sweep, a re-sweep after any rewrite; `deploy-verification` gets the restricted pass |
-| D | all 19, on final text | catches anything changed by cross-page edits | one run, hash-checked (see below) |
+| D1 | all 12, on final text, with the map text and diagram text | catches anything changed by cross-page edits | one run, hash-checked (see below) |
+
+**Edition 1.6.0**
+
+| Batch | Pages | Why this order | Sweeps |
+|---|---|---|---|
+| W1 | `pull-request-verification`, `incident-feedback`, `release-readiness`, `spec-readiness` | the four covered workflows with the longest check, failure-path and measure lists, and the two the adoption path builds first | two independent sweep runs even when the first is clean, then a re-sweep after every rewrite |
+| W2 | `intake-and-triage`, `design-conformance`, `deploy-verification` | the template fixes the sections, so structure risk is low, but the checks, failure-path and measure lists are not; `deploy-verification` is thin | one sweep, a re-sweep after any rewrite; `deploy-verification` gets the restricted pass |
+| D2 | all 7, plus every passage of a 1.5.0 page that 1.6.0 changes | catches anything changed by cross-page edits | one run, hash-checked |
+
+The 1.6.0 pages are written after 1.5.0 is merged, so the process lessons from 1.5.0 reach their
+briefs (the main session carries categories and counts only, never passages).
 
 The main session keeps a **sweep ledger** in the scratchpad: page, sha256 of the page text at sweep
 time, batch, round, result. It holds hashes and verdicts, never passages. Before any push the session
@@ -184,8 +223,10 @@ library, including the source researcher, never writes replacement text.
 A page passes when a fresh sweep run reports no close passage in any of five categories (wording,
 list membership and order, step sequence, set of examples, heading structure) for the page text
 whose hash is in the ledger. For batch A pages the criterion needs two consecutive clean runs from
-two researcher contexts. The section passes when the batch D run is clean for all 19 pages and every
-ledger hash matches. Nothing is pushed, and no pull request is opened, before then.
+two researcher contexts (the same applies to batch W1). An edition passes when its final run (D1 or
+D2) is clean for all its pages and every ledger hash matches. Nothing of that edition is pushed, and
+no pull request is opened for it, before then. The plan's own pull request carries no page text and
+is not subject to the sweep; the page work stays on a local branch that is never pushed (D-026).
 
 ### (e) The SAFe reference model
 
@@ -206,10 +247,14 @@ ledger hash matches. Nothing is pushed, and no pull request is opened, before th
 - **The author's recognisability check (D-015, GR-1.2).** The author reads the page and answers three
   questions: would anyone who knows the originating organisation recognise it; does any term, number,
   sequence, event name or role split lie outside public SAFe; does any sentence read as a description
-  of how one organisation works. The plan recommends the author does this on the local file **before
-  the first push**, because after a merge the text is public and in history. The author's confirmation
-  is recorded in a pull-request comment and a line in `STATUS.md`; the release tag then records
-  approval of the section as D-016 sets out.
+  of how one organisation works. **The author reads the page text in chat before its first push**
+  (D-029), because after a merge the text is public and in history. The main session shows the full
+  page text once it has passed the sweep and before any push of edition 1.5.0, and pushes nothing until
+  the author answers. The author's confirmation is recorded in a pull-request comment and a line in
+  `STATUS.md`; the release tag then records approval of the edition as D-016 sets out.
+- **Forbidden names by category only (D-029).** The brief lists what the page may not name by
+  category (no cadence or count SAFe does not publish, no tooling, no organisation structure, no
+  account of how any organisation applies SAFe), never by name (GR-1.4).
 
 ### (f) The running example
 
@@ -248,33 +293,43 @@ cold:
 - After the third failing round the page goes to the author with three options: cut the failing
   passages without replacement where the template minimum still holds; the author rewrites the
   passage personally; or the box is merged into a neighbouring page.
-- If two or more pages of batch A, or four of batch B or C, reach a third round, the work stops and
+- If two or more pages of batch A or W1, or four of batch B, or three of W1 and W2 together, reach a
+  third round, the work stops and
   the architect re-plans the grain with the author, because repeated failure suggests the page's
   shape follows a library document.
 - Sweep runs compare at most four pages each, so the comparison stays thorough.
 
 ## Order of work
 
-0. **Approval of this plan.** Then the architect writes the briefs (scratchpad), step 1 of
-   "Library check".
-1. **Outline pass** (public skeleton), then the library concept diff, then evidence briefs, in
-   parallel by batch, starting with batch A.
-2. **Batch A written, swept twice, rewritten, re-swept.** The author reads `safe-reference-model` on
-   the local file before anything is pushed (open question 4). Batches B and C follow, with the
-   architect's briefs for them tightened by the process lessons from A.
+0. **Plan approved (D-029); plan pull request** (this file, D-029, STATUS; no page text). The page
+   work happens on a local branch that is never pushed.
+   **Edition 1.5.0**
+1. **Briefs** (architect, scratchpad), then the **outline pass** (public skeleton) by the
+   external-researcher, the architect fixing the skeleton in each brief, then the library concept
+   diff and the evidence briefs, in parallel by batch, starting with batch A.
+2. **Batch A written, swept twice, rewritten, re-swept.** Batch B follows, with the briefs tightened
+   by the process lessons from A.
 3. **Diagrams** (diagrammer), up to five: the levels against the phases, the traceability spine as an
    identifier chain, the Definition of Ready and Done gates along the lifecycle, deploy against
    release, and the SAFe mapping. Each has a text alternative and both themes (GR-4.4). Diagram text is
    swept with the page.
-4. **Map and routes** once every page exists: `build_map.py`, `links.yml`, `toc.yml` (a `lifecycle`
-   list), `release/sections.yml`, glossary entries, the routing row, and the back-links from Core.
-5. **Batch D sweep** on final text, ledger check, then the branch is rebuilt as **one commit on top of
-   `main`** with a neutral message, and only then pushed. `check_citations.py`, `check_pages.py` and
-   the other checks run before the push as well.
-6. **Review** in fresh contexts, split by group (concepts and levels; phases; workflows) so no
-   reviewer reads 19 pages at once: three reviewers, three rounds, then the author. A review-round
-   revision is swept on its changed passages before it is pushed.
-7. **Merge as 1.5.0**, the author reviews it live, follow-ups as 1.5.x, tag at approval.
+4. **Map and routes**: the relabel (D-015), the new links, `toc.yml` (a `lifecycle` list),
+   `release/sections.yml` (`"1.5"`), glossary entries, the routing row, and the Core back-links.
+5. **Sweep D1** on final text, ledger check. **The author reads the SAFe reference model page in
+   chat.** Then the branch is rebuilt as **one commit on top of `main`** with a neutral message, and
+   only then pushed. `check_citations.py`, `check_pages.py` and the other checks run before the push.
+6. **Review** in fresh contexts, split by group (concepts and levels; phases) so no reviewer reads 12
+   pages at once: three reviewers, three rounds, then the author. The Core back-links go through a
+   D-011 confirmation review. A review-round revision is swept on its changed passages before it is
+   pushed.
+7. **Merge as 1.5.0**, the author reviews it live, follow-ups as 1.5.x, tag `v1.5.x` at approval.
+   **Edition 1.6.0** (starts after 1.5.0 is merged; it need not wait for the 1.5 tag)
+8. Briefs, outline pass, library concept diff and evidence briefs for the seven workflow pages,
+   batch W1 first; write, sweep (W1 twice, then W2), rewrite, re-sweep.
+9. **Map and pages:** the seven workflow links move to their pages; the phase pages' workflow lists
+   link to them; the Core back-links to the workflow pages; `release/sections.yml` (`"1.6"`).
+10. **Sweep D2**, one commit on top of `main`, push, review (three reviewers; confirmation review for
+    the edited 1.5.0 pages and Core), merge as 1.6.0, the author reviews it live, tag at approval.
 
 ## Links and map changes
 
@@ -296,21 +351,27 @@ All map changes need the author's approval (ASSUMPTIONS A2); none adds a box.
   text each, and a link needs a label of its own, so each is split into a linked label and a plain note.
   The DoR and DoD tags are 16 px high, below the 24 px minimum target size, so the site-builder gives
   them a larger hit area or moves the link to a label beside them.
-- **Moved links.** The seven workflow labels move from `workflow-catalog.html#W..` to their workflow
-  pages. Each workflow page links back to its catalog row, and the catalog row stays.
+- **Moved links (1.6.0 only, D-029).** In 1.5.0 the seven workflow labels keep their links to
+  `workflow-catalog.html#W..`. In 1.6.0 they move to the workflow pages. Each workflow page links
+  back to its catalog row, and the catalog row stays.
+- **Edition split of the map changes.** 1.5.0: the relabel, the nine phase links, the three level
+  anchors, the Develop, Build and QA anchors, the DoR and DoD tags, the spine and Inspect & Adapt
+  labels. 1.6.0: the seven workflow links only.
 - **SAFe reference model: no new box.** It is reached from `lifecycle-levels`, from the section
   navigation and from the glossary entries for the SAFe terms. If the author wants a map entry, that
   is a new box and needs a separate approval.
-- **Core back-links** (both ways, as D-018 does): Core `workflows`, `software-factory`,
-  `harness-engineering` and `evidence-schema` gain links in "Related" and one or two sentences that
-  point to the pull-request verification, incident feedback and traceability pages. These edits change
-  the hash of published pages, so they go through a confirmation review under D-011 (open question 7).
+- **Core back-links** (both ways, as D-018 does; approved for 1.5.0, D-029): Core `workflows`,
+  `software-factory`, `harness-engineering` and `evidence-schema` gain links in "Related" and one or
+  two sentences that point to the traceability spine, Inspect & Adapt, the levels and the DoR/DoD
+  pages in 1.5.0. The links to the pull-request verification and incident feedback workflow pages
+  are added in 1.6.0, the same kind of change under the same confirmation review. These edits change
+  the hash of published pages, so they go through a confirmation review under D-011.
 - **Glossary (about ten new entries):** definition of ready, definition of done, traceability spine,
   inspect and adapt (SAFe), planning interval (SAFe), WSJF (Reinertsen via SAFe), agile release train
   (SAFe), portfolio, train and team levels (this site's generic labels, marked *coined*), deploy
   versus release. Each carries its attribution.
-- **Routing row:** "Run a workflow" gains the seven workflow pages; "Understand" gains the levels and
-  traceability pages.
+- **Routing row:** "Understand" gains the levels and traceability pages in 1.5.0; "Run a workflow"
+  gains the seven workflow pages in 1.6.0.
 
 ## Related pages outside the section
 
@@ -327,6 +388,9 @@ When a later section publishes a page that owns a boundary row, the lifecycle pa
 that section's edition.
 
 ## Cost and size
+
+The table below is for the whole section; about two thirds of it falls in 1.5.0 (12 pages, the
+SAFe page, the diagrams and the Core confirmation review) and one third in 1.6.0 (7 pages).
 
 | Step | Runs | Rounds |
 |---|---|---|
@@ -374,12 +438,18 @@ and the author adds them to `content/references.yml` as for Core.
 - **Overlap with later bands.** Inspect & Adapt, roles, metrics and templates each have a box in a
   later band. The boundary table assigns each; reviewers check for restatement (GR-4.2 stays satisfied
   by a one-sentence definition, not by repetition).
-- **Size.** 19 pages in one review. The review is split by group, and the section can be released only
-  when all pages are accepted (D-014).
+- **Size.** 12 pages in the first review and 7 in the second (D-029), split by group, and each
+  edition can be released only when all its pages are accepted (D-014).
+- **Edits to published pages in 1.6.0.** 1.6.0 changes phase pages, the map and Core pages that
+  1.5.0 published, possibly before the 1.5 tag exists. Each such change is swept and goes through a
+  confirmation review, so the author's live review of 1.5.0 is not invalidated silently.
+- **Rule text.** GR-6.1 describes a section as one band and one approval. D-029 is an exception by
+  the author's decision, and `GROUND-RULES.md` is not edited; the author decides whether to amend
+  GR-6.1 (see D-029).
 - **Anchor links.** The level, phase and DoR/DoD map links point to heading anchors; a changed heading
   slug breaks them (GR-4.3). The link check catches this at build time.
 
-## Open questions for the author
+## Open questions (as put to the author; answers follow)
 
 1. **Does the D-015 relabel ship inside this edition, or as its own edition first?** STATUS "Next"
    item 5 and the Core plan say a content edition of its own. **Recommendation: inside 1.5.0.** The
@@ -423,3 +493,21 @@ and the author adds them to `content/references.yml` as for Core.
 8. **DoR in the catalog.** The W12 row reads "definition of ready", and the map and adoption path
    place it at Specification. **Recommendation: no catalog change.** The DoR page presents two layers
    (specification readiness, task readiness) so both statements hold.
+
+## Decisions taken by the author (D-029)
+
+Approved 2026-10-06 with one change: Lifecycle ships as two editions, each deployed, reviewed live
+and tagged separately.
+
+1. The D-015 relabel ships inside 1.5.0. `STATUS.md` and the Core plan are updated to match.
+2. All seven workflow pages are written, in 1.6.0. Each must add failure paths, evidence and
+   measures beyond its catalog row.
+3. Phase pages carry short prose from public standards and do not copy catalog rows (agreed).
+4. The SAFe reference model page has a closed allow-list of what it may name; what it may not name is
+   described by category only. The author reads the page text in chat before its first push.
+5. One page for Develop, Build and QA and one for the three levels, with an anchor per map box.
+6. The map changes are approved; the workflow links move to their pages in 1.6.0. Band 4's SAFe
+   words stay until the enablement section.
+7. Core pages gain back-links in 1.5.0, with a D-011 confirmation review.
+8. No catalog change for the W12 wording; "catalog consistency pass (W12 wording)" is on the backlog
+   in `STATUS.md`.
