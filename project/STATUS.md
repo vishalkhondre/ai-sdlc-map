@@ -49,7 +49,11 @@ Update at the end of every session (see `CLAUDE.md`).
    blocks the SAFe, DORA, Scrum Guide, Fowler, SRE and NIST sites, so every outline rests on
    search results; the author is opening the network (hosts: scaledagileframework.com,
    framework.scaledagile.com, dora.dev, scrumguides.org, martinfowler.com, sre.google,
-   csrc.nist.gov). Next: direct-read the sources, finalise the skeletons, write batch A, sweep.
+   csrc.nist.gov). The author chose a separate session with network access for the direct-read
+   check: it follows `project/handover/lifecycle-1.5-source-check-worklist.md` and writes
+   `project/handover/lifecycle-1.5-source-check-results.md` on a branch. Then: finalise the
+   skeletons, write batch A, sweep. The briefs, skeletons and library diffs exist only in the
+   scratchpad of the session that made them (GR-1.3, D-026) and cannot be handed over in git.
    Page work stays on a local branch that is not pushed until the sweeps pass and the author
    has read the SAFe reference model page in chat. Decided: one sentence on AI-Native SAFe, add
    the superseded NIST SP 800-61 Rev. 2 and ISO/IEC/IEEE 12207:2017 to `outdated_terms.yml` once
