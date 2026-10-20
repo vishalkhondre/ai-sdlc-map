@@ -7,8 +7,9 @@ Update at the end of every session (see `CLAUDE.md`).
 - **Repository (D-010, D-019):** `vishalkhondre/ai-sdlc-map` builds *The AI SDLC Map* (D-013) at
   `vishalkhondre.github.io/ai-sdlc-map/`. It stands on its own: it does not link to or mention the
   earlier narrative series (D-019).
-- **Live: Core released.** The author approved the Core section and it is tagged `v1.4.1` (GitHub
-  Release with its PDF snapshot); released tags are `v1.2.0`, `v1.3.0` and `v1.4.1`. The site is
+- **Live: edition 1.4.2, released.** The author approved the Core section (`v1.4.1`) and edition
+  1.4.2 (`v1.4.2`, 2026-10-06), each a GitHub Release with its PDF snapshot; released tags are
+  `v1.2.0`, `v1.3.0`, `v1.4.1` and `v1.4.2`. The site is
   The AI SDLC Map, with the subtitle "The AI-assisted software lifecycle, from spec to software
   factory, on one page." Home page: the clickable five-band map, the purpose routing row and the
   adoption path; nine Core reference pages; the workflow catalog, terminology and references.
@@ -35,17 +36,24 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-1. Edition 1.4.2: three reviewers ACCEPT and the record is bound; merge the pull request, then the
-   author reviews it live and, on approval, tags `v1.4.2`. A small follow-up edition can make the
-   harness page call the feedback path the site's extension of the steering loop in all three
-   places (editorial suggestion), and add the dotted precondition line to the workflow legend.
+1. A small follow-up edition (optional): make the harness page call the feedback path the site's
+   extension of the steering loop in all three places (editorial suggestion on 1.4.2), and add the
+   dotted precondition line to the workflow diagram's legend.
 2. Keyed deny-list (D-023): the author runs `scripts/denylist_rekey.py` (command in For the author)
    and pushes its result; a session then confirms CI is green with the key, and removes the salted
    fallback from `scripts/denylist.py` as a reviewed tooling change.
 3. **Lifecycle section (D-029), two editions; plan in `project/plans/lifecycle.md`.** 1.5.0 (12
-   pages, includes the D-015 relabel) first: briefs and the public-skeleton research are under
-   way; page work stays on a local branch that is not pushed until the sweeps pass and the author
-   has read the SAFe reference model page in chat. Then 1.6.0 (the seven workflow pages). The
+   pages, includes the D-015 relabel) first. Done (scratchpad only): the 12 briefs, the public
+   skeletons and evidence briefs, the library concept diffs (re-shaped skeletons for the
+   traceability spine, DoR/DoD and Inspect & Adapt). Blocked: the environment's network policy
+   blocks the SAFe, DORA, Scrum Guide, Fowler, SRE and NIST sites, so every outline rests on
+   search results; the author is opening the network (hosts: scaledagileframework.com,
+   framework.scaledagile.com, dora.dev, scrumguides.org, martinfowler.com, sre.google,
+   csrc.nist.gov). Next: direct-read the sources, finalise the skeletons, write batch A, sweep.
+   Page work stays on a local branch that is not pushed until the sweeps pass and the author
+   has read the SAFe reference model page in chat. Decided: one sentence on AI-Native SAFe, add
+   the superseded NIST SP 800-61 Rev. 2 and ISO/IEC/IEEE 12207:2017 to `outdated_terms.yml` once
+   their references exist. Then 1.6.0 (the seven workflow pages). The
    deferred retrospective items for this section are listed below.
 
 ## Backlog
@@ -108,7 +116,7 @@ Each open item, with its outcome (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | closed (D-028) | — | — |
-| 1 Core and lifecycle | Core released (`v1.4.1`); 1.4.2 adds diagrams; lifecycle planned (D-029), 1.5.0 in progress | 9 (core) | 9 |
+| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2` with diagrams); lifecycle planned (D-029), 1.5.0 in progress | 9 (core) | 9 |
 | 2 Assurance and enablement | not started | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
@@ -122,5 +130,5 @@ Each open item, with its outcome (GR-5.3).
 | 4 | 2026-09-25 | Renamed the site The AI SDLC Map (D-013) and released edition 1.2.0 (PR #6; three reviewers ACCEPT after one editorial REVISE); recorded D-014 to D-016 with ground rules v1.1 and the release workflow; read the source library for the inventory (kept outside the repository) | Wave 0 remainder (edition 1.2.1): access-date and outdated-terms checks, page templates and `check_pages.py`, nine agents and ten skills, deny-list D-017, `project/COVERAGE.md`; release workflow run by hand when tag pushes failed (PR #8); v1.2.0 released; 1.2.1 merged (PR #9); Core section plan proposed (`project/plans/core.md`). | See Next and For the author |
 | 5 | 2026-09-25 | Recorded D-018 to D-024 (PR #10); disconnected the site from the series (D-019); documentation layout with a page-text guard and axe checks (D-020, PR #13); Slate & Teal brand with bundled fonts, logo, favicon and social card (D-021, PR #14); released v1.3.0 through the Release workflow; pages tooling reviewed in three rounds and merged (PR #15); Core research (nine practice and nine evidence briefs, scratchpad only), nine pages written and integrated; review round 1 REVISE ×3 plus about 70 close paraphrases found by a library sweep; all pages revised | Core on `local/core-pages` (not pushed): re-sweep, review rounds 2–3, PR, merge. Keyed deny-list waits for `DENYLIST_KEY`. See For the author |
 | 6 | 2026-09-28 | Applied the author's answers (D-025) and the library-sweep rule (D-026); merged and deployed the Core section as edition 1.4.0 (PR #16) after the superseded draft branch was removed; applied the external reference check as edition 1.4.1 (claim fixes, reference details, the AWS AI-DLC link; three reviewers ACCEPT) | Author: live review, then tag; keyed deny-list hashing script; purge request for the old draft commits |
-| 7 | 2026-10-06 | Closed wave 0: STATUS brought up to date (Core released as `v1.4.1`); the library sweep made a gate on every content change (D-027); the keyed deny-list switch built and tested, waiting for the author's hashing run (D-023); wave 0 retrospective held (D-028); diagrams on five Core pages and the home-page wording fixes as edition 1.4.2 | Leftover branch could not be deleted from the session. Author: run the rekey command; live review of 1.4.2, then tag |
+| 7 | 2026-10-06 | Closed wave 0: STATUS brought up to date (Core released as `v1.4.1`); the library sweep made a gate on every content change (D-027); the keyed deny-list switch built and tested, waiting for the author's hashing run (D-023); wave 0 retrospective held (D-028); diagrams on five Core pages and the home-page wording fixes as edition 1.4.2 | 1.4.2 merged (PR #18) and released as `v1.4.2` on the author's instruction, through the Release workflow (tag pushes are refused by tag protection; the first run's release job failed on a one-off Chromium screenshot error and passed on re-run). Leftover branch could not be deleted from the session. Author: run the rekey command |
 | 8 | 2026-10-06 | Planned the Lifecycle section (architect); the author approved it as two editions (D-029) and answered eight questions; updated the Core plan and this file; opened the plan pull request; started the 1.5.0 briefs and public-skeleton research | Page work on a local branch, nothing pushed; SAFe page text to the author in chat before its first push; see Next item 3 |
