@@ -276,6 +276,7 @@ described by category only (GR-1.4), and the author reads its text in chat befor
 every map box that shares a page has its own anchor; the W12 wording is left alone and listed on
 the backlog as a catalog consistency pass. GR-6.1 describes a section as one band with one
 approval: this decision is an exception for Lifecycle, and `GROUND-RULES.md` is not edited here.
-The author decides whether GR-6.1 should be amended to allow a section in parts. Rules out: pushing
+The author decides whether GR-6.1 should be amended to allow a section in parts (settled 2026-11-20:
+GR-6.1 stays as written; this decision holds the exception). Rules out: pushing
 any Lifecycle page text before its edition's sweeps pass and, for 1.5.0, before the author has read
 the SAFe page.

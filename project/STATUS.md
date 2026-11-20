@@ -23,7 +23,8 @@ Update at the end of every session (see `CLAUDE.md`).
   section, `.github/workflows/release.yml`). Session 5 recorded D-018 to D-024: Core plan
   approved, disconnect from the series, documentation layout, Slate & Teal brand, the "draft"
   rule, keyed deny-list, tag protection (ground rules v1.2). Later: D-025 (Core answers), D-026
-  (library sweep), D-027 (sweep as a gate on every content change), D-028 (wave 0 closed).
+  (library sweep), D-027 (sweep as a gate on every content change), D-028 (wave 0 closed), D-029
+  (Lifecycle approved as two editions).
 - **Wave 0 foundations in place:** checks for GR-2.5 access dates and superseded terms
   (`scripts/outdated_terms.yml`); six page templates (`templates/pages/`) and the page gate
   (`scripts/check_pages.py`, in CI); the nine agents and their skills plus `section-pipeline`
@@ -31,8 +32,12 @@ Update at the end of every session (see `CLAUDE.md`).
   (D-017); the source coverage table (`project/COVERAGE.md`; the inventory itself stays outside
   the repository). Edition 1.2.1 backfilled access dates and corrected seven references.
 - **Current wave:** wave 0 Foundations is closed (D-028). Wave 1 continues with the lifecycle
-  section; the Core section is released. **Lifecycle plan approved 2026-10-06 (D-029):** edition
-  1.5.0 (12 pages) and edition 1.6.0 (7 workflow pages), each tagged separately.
+  section; the Core section is released. **Lifecycle plan approved 2026-10-06 (D-029, merged in
+  PR #19):** edition 1.5.0 (12 pages) and edition 1.6.0 (7 workflow pages), each reviewed live and
+  tagged separately.
+- **GR-6.1 stays as written (author, 2026-11-20).** D-029 records the two-edition split as an
+  exception for Lifecycle, so `GROUND-RULES.md` is not amended. Revisit only if another band needs
+  to ship in parts.
 
 ## Next (in order)
 
@@ -43,22 +48,21 @@ Update at the end of every session (see `CLAUDE.md`).
    and pushes its result; a session then confirms CI is green with the key, and removes the salted
    fallback from `scripts/denylist.py` as a reviewed tooling change.
 3. **Lifecycle section (D-029), two editions; plan in `project/plans/lifecycle.md`.** 1.5.0 (12
-   pages, includes the D-015 relabel) first. Done (scratchpad only): the 12 briefs, the public
-   skeletons and evidence briefs, the library concept diffs (re-shaped skeletons for the
-   traceability spine, DoR/DoD and Inspect & Adapt). Blocked: the environment's network policy
-   blocks the SAFe, DORA, Scrum Guide, Fowler, SRE and NIST sites, so every outline rests on
-   search results; the author is opening the network (hosts: scaledagileframework.com,
-   framework.scaledagile.com, dora.dev, scrumguides.org, martinfowler.com, sre.google,
-   csrc.nist.gov). The author chose a separate session with network access for the direct-read
-   check: it follows `project/handover/lifecycle-1.5-source-check-worklist.md` and writes
-   `project/handover/lifecycle-1.5-source-check-results.md` on a branch. Then: finalise the
-   skeletons, write batch A, sweep. The briefs, skeletons and library diffs exist only in the
-   scratchpad of the session that made them (GR-1.3, D-026) and cannot be handed over in git.
-   Page work stays on a local branch that is not pushed until the sweeps pass and the author
-   has read the SAFe reference model page in chat. Decided: one sentence on AI-Native SAFe, add
-   the superseded NIST SP 800-61 Rev. 2 and ISO/IEC/IEEE 12207:2017 to `outdated_terms.yml` once
-   their references exist. Then 1.6.0 (the seven workflow pages). The
-   deferred retrospective items for this section are listed below.
+   pages, includes the D-015 relabel) first, then 1.6.0 (the seven workflow pages).
+   1. Source check by direct reading: `project/handover/lifecycle-1.5-source-check-worklist.md`,
+      results in `project/handover/lifecycle-1.5-source-check-results.md` on a branch, reviewed by
+      the author. The environment's allow-list now covers the SAFe, DORA, Scrum Guide, Fowler, SRE
+      and NIST hosts; `openai.com` and `iso.org` are listed but answer plain requests with a
+      Cloudflare challenge, so ISO catalogue pages are not readable from a session.
+   2. Finalise the skeletons from the checked sources, write batch A, run the sweep. The briefs,
+      skeletons and library diffs from session 8 exist only in that session's scratchpad (GR-1.3,
+      D-026) and cannot be handed over in git; a new session rebuilds them from the plan.
+   3. Page work stays on a local branch that is not pushed until the sweeps pass and the author
+      has read the SAFe reference model page in chat. Decided: one sentence on AI-Native SAFe; add
+      the superseded NIST SP 800-61 Rev. 2 and ISO/IEC/IEEE 12207:2017 to `outdated_terms.yml`
+      once their references exist.
+   4. 1.5.0: review, merge, author's live review, tag. Then 1.6.0 on the same steps. The deferred
+      retrospective items for this section are listed below.
 
 ## Backlog
 
@@ -67,10 +71,8 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## For the author
 
-- **GR-6.1 and D-029.** Lifecycle ships as two editions, an exception to "a section is one band".
-  `GROUND-RULES.md` is unchanged; say whether to amend GR-6.1.
-- **Lifecycle plan pull request:** review and merge. The SAFe page text is shown in chat before it
-  is pushed.
+- **SAFe reference model page (D-029).** Its text is shown in chat for the author to read before it
+  is first pushed.
 - **Keyed deny-list (D-023).** In a local clone, with the names in a file outside the repository
   (one name per line, two-word names with one space), run:
 
@@ -120,7 +122,7 @@ Each open item, with its outcome (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | closed (D-028) | — | — |
-| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2` with diagrams); lifecycle planned (D-029), 1.5.0 in progress | 9 (core) | 9 |
+| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2` with diagrams); Lifecycle plan approved (D-029): 1.5.0 (12 pages) in progress, 1.6.0 (7 pages) planned | 9 (core) + 12 (1.5.0) + 7 (1.6.0) | 9 |
 | 2 Assurance and enablement | not started | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
@@ -136,3 +138,4 @@ Each open item, with its outcome (GR-5.3).
 | 6 | 2026-09-28 | Applied the author's answers (D-025) and the library-sweep rule (D-026); merged and deployed the Core section as edition 1.4.0 (PR #16) after the superseded draft branch was removed; applied the external reference check as edition 1.4.1 (claim fixes, reference details, the AWS AI-DLC link; three reviewers ACCEPT) | Author: live review, then tag; keyed deny-list hashing script; purge request for the old draft commits |
 | 7 | 2026-10-06 | Closed wave 0: STATUS brought up to date (Core released as `v1.4.1`); the library sweep made a gate on every content change (D-027); the keyed deny-list switch built and tested, waiting for the author's hashing run (D-023); wave 0 retrospective held (D-028); diagrams on five Core pages and the home-page wording fixes as edition 1.4.2 | 1.4.2 merged (PR #18) and released as `v1.4.2` on the author's instruction, through the Release workflow (tag pushes are refused by tag protection; the first run's release job failed on a one-off Chromium screenshot error and passed on re-run). Leftover branch could not be deleted from the session. Author: run the rekey command |
 | 8 | 2026-10-06 | Planned the Lifecycle section (architect); the author approved it as two editions (D-029) and answered eight questions; updated the Core plan and this file; opened the plan pull request; started the 1.5.0 briefs and public-skeleton research | Page work on a local branch, nothing pushed; SAFe page text to the author in chat before its first push; see Next item 3 |
+| 9 | 2026-11-20 | Merged the Lifecycle plan pull request (PR #19); recorded that GR-6.1 stays as written (D-029 holds the exception); brought the wave tracker and Next to the two-edition plan; started the 1.5.0 source check (its results go in their own pull request) | See Next item 3 |
