@@ -2188,3 +2188,30 @@ All other sources in the slice (csrc.nist.gov, nvlpubs.nist.gov, doi.org, swehb.
 | perry-2023 | https://doi.org/10.1145/3576915.3623157 | doi.org (ACM) | HTTP 403; arXiv 2211.03622 read as substitute |
 | pearce-copilot | https://doi.org/10.1109/SP46214.2022.9833571 | ieeexplore.ieee.org | redirect ends at https://ieeexplore.ieee.org/document/9833571/, HTTP 202 with empty body (no text); arXiv 2108.09293 read as substitute |
 | reinertsen-flow-2009 (authoritative record) | reinertsenassociates.com, celeritaspub.com, celeritaspublishing.com, reinertsen.com | various | TLS verify failure / 502 / DNS failure; worldcat.org HTTP 429; openlibrary.org connection reset; Library of Congress catalogue returned an empty page |
+
+## G. Author to confirm
+
+Added 2026-11-20 on the author's instruction. Each item is a claim a script could not read or read
+only in part. Pages for edition 1.5.0 are written conservatively, as the last column says, until the
+author reads the source in a browser and confirms or corrects the claim. No search result or mirror
+stands in for any of them (`project/handover/KICKOFF.md`, part b).
+
+| Item | Claim (claim ids) | URL | Until confirmed, pages say |
+|---|---|---|---|
+| Definition of Ready: origin | First allusions early 2008 and a first formal description in October 2008 (Kronfält, "Ready-ready", `kronfalt-ready-2008#1`, `#2`); a READY state added by Sutherland on 4 July 2009 and the Jakobsen and Sutherland reference (`sutherland-ready-2009#1` to `#3`) | http://scrumftw.blogspot.com/2008/10/ready-ready-definition-of-ready-for.html ; http://jeffsutherland.com/scrum/2009/07/ready-dynamic-model-of-scrum.html | Nothing about who first used the term or when. The Definition of Ready rests on the Scrum Guide (which does not define it) and the Agile Alliance glossary page only. |
+| Definition of Ready: ETVX ancestry | ETVX (entry, task, validation, exit) described in "A programming process architecture", IBM Systems Journal, 1985 (`radice-etvx-1985#1`, `#2`) | https://dl.acm.org/doi/10.1147/sj.242.0079 | Not cited. The Agile Alliance page's own sentence about ETVX is not repeated as a finding. |
+| Definition of Ready: Scrum.org view | Overeem, 2016-09-05, on why the Scrum Guide leaves out a Definition of Ready (`overeem-dor#1`) | https://www.scrum.org/resources/blog/why-isnt-definition-ready-described-scrum-guide | Not cited. The page says only that the Scrum Guide does not define the term. |
+| Definition of Ready: Agile Alliance wording | The page's criteria are "generally based on the INVEST matrix"; the words "checklist" and "not in the Scrum Guide" are not on the page (`agile-alliance-dor#1`, `#3`, PARTLY) | https://agilealliance.org/glossary/definition-of-ready/ | Only the page's own wording; no attribution of a "checklist" or of the Scrum Guide's silence to the Agile Alliance. |
+| ISO/IEC/IEEE 12207 | A second edition published April 2026 replaces the 2017 edition; its title and catalogue number (`iso-12207#1` to `#3`) | https://www.iso.org/standard/63712.html ; https://www.iso.org/standard/90219.html | No ISO claim; the standard is not cited on any 1.5.0 page. |
+| ISO/IEC/IEEE 29148 | The characteristics of a well-formed requirement, their number and order, and the separate set-level list (`iso-29148#1` to `#4`) | https://www.iso.org/standard/72089.html | No ISO claim; the standard is not cited on any 1.5.0 page. |
+| ISO/IEC/IEEE 14764 | Four or five maintenance types in the 2022 edition, and whether an "additive" type exists (`iso-14764#1` to `#3`) | https://www.iso.org/standard/80710.html | No ISO claim; the standard is not cited on any 1.5.0 page. |
+| SAFe wording, term 9 Strategic Themes | "Portfolio vision" and "decision criteria for the portfolio backlog" are not on the page | https://framework.scaledagile.com/strategic-themes/ | The glossary or page sentence quoted in part C. |
+| SAFe wording, term 13 Epic | Defined at `/epic/`, not at the listed portfolio-backlog page | https://framework.scaledagile.com/epic/ | The `/epic/` sentence quoted in part C. |
+| SAFe wording, term 25 Problem-solving workshop | The glossary-term wording differs from the drafted claim | https://framework.scaledagile.com/blog/glossary_term/problem-solving-workshop | The glossary sentence quoted in part C. |
+| SAFe wording, term 28 Product Management | "Desirable, viable, feasible, and sustainable solutions"; defined at its own page, not the ART page | https://framework.scaledagile.com/product-management/ | The definition-page wording quoted in part C. |
+| SAFe wording, term 30 Business Owners | Responsibility is "return on investment (ROI), governance, and compliance"; "fitness for use" is not on the page | https://framework.scaledagile.com/business-owners/ | The definition-page wording quoted in part C. |
+| SAFe wording, term 36 Team Backlog Refinement | "Continuously" is not on the page; the glossary calls refinement "a periodic activity" | https://framework.scaledagile.com/team-backlog-refinement/ | The page's own sentence quoted in part C. |
+| SAFe wording, term 39 Product Owner | "Content authority" is not on the page | https://framework.scaledagile.com/product-owner/ | The definition-page wording quoted in part C. |
+| SAFe wording, term 40 Scrum Master/Team Coach | "Helps remove impediments" is not in the definition sentence | https://framework.scaledagile.com/scrum-master-team-coach/ | The definition-page wording quoted in part C. |
+| Other unreadable sources | Every source listed in part F (for example Humble and Farley chapter 10, `humble-farley-cd#6`; Reinertsen, `reinertsen-flow-2009#2` to `#4`; Cooper stage-gate; Petrovic and the ACM-hosted papers) | as listed in part F | The claim is not on a page. A book is cited only for what its table of contents shows. |
+
