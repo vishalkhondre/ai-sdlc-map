@@ -280,3 +280,17 @@ The author decides whether GR-6.1 should be amended to allow a section in parts 
 GR-6.1 stays as written; this decision holds the exception). Rules out: pushing
 any Lifecycle page text before its edition's sweeps pass and, for 1.5.0, before the author has read
 the SAFe page.
+
+## D-030 · Lifecycle pages link to catalog rows and Core pages, never restate them
+Decided 2026-11-21 by the author, after the library sweep of the Lifecycle 1.5.0 batch A pages
+(D-026, D-027) found close passages in two rounds, many where a page restated a workflow catalog row
+or a Core page. A Lifecycle page states its own concept and links to the catalog row
+(`workflow-catalog.html#Wnn`) or the Core page for anything those already say: a row's decision,
+trigger, agent task, checks, people, evidence or traditional counterpart, and a Core page's
+definitions. The grain of the batch A pages shrinks with it: list-shaped passages (readiness layers,
+reviewer-load items, per-level intake entries, event-walk steps) are cut without replacement wherever
+the page template's minimum still holds. A catalog-row diagnostic sweep checks whether the closeness
+starts in the published rows; any row found close is logged in `STATUS.md` as a 1.4.x finding for a
+separate fix edition, and the live catalog is not changed by the Lifecycle edition. Rules out:
+restating a catalog row or a Core passage on a Lifecycle page, and fixing a published row inside a
+section edition.
