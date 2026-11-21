@@ -17,7 +17,27 @@ adapters: "adapters.html"
 Workflows: "workflows.html"
 Software factory: "software-factory.html"
 
-# Band 2 · lifecycle: the workflow in each phase, in the workflow catalog
+# Band 2 · lifecycle: the levels, the phases, the DoR and DoD tags, the traceability spine and
+# Inspect & Adapt (D-029). Every map box that shares a page opens its own anchor; anchors are the
+# ids Python-Markdown's toc extension gives the headings (no prefix).
+Portfolio: "lifecycle-levels.html#portfolio"
+Train: "lifecycle-levels.html#train"
+Team: "lifecycle-levels.html#team"
+Idea: "idea.html"
+Specification: "specification.html"
+Design: "design.html"
+Develop: "develop-build-qa.html#develop"
+Build: "develop-build-qa.html#build"
+QA: "develop-build-qa.html#qa"
+Deploy: "deploy.html"
+Release: "release.html"
+Operate: "operate.html"
+DoR: "definition-of-ready-and-done.html#definition-of-ready"
+DoD: "definition-of-ready-and-done.html#definition-of-done"
+TRACEABILITY SPINE: "traceability-spine.html"
+Inspect & Adapt: "inspect-and-adapt.html"
+
+# Band 2 · lifecycle: the workflow in each phase, in the workflow catalog (until 1.6.0, D-029)
 intake & triage: "workflow-catalog.html#W01"
 spec readiness: "workflow-catalog.html#W04"
 design conformance: "workflow-catalog.html#W08"

@@ -146,6 +146,6 @@
 <line x1="1268" y1="589" x2="1520" y2="589" stroke="#d3d1c7" stroke-width="1"/>
 <text x="1270" y="601" font-size="11" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
 <text x="1270" y="621" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Building the platform before the</text><text x="1270" y="639" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">workflows exist.</text>
-<text class="credit" data-references="bockeler-harness bockeler-sensors safe-framework" x="1540" y="780" font-size="11" fill="#888780" text-anchor="end">Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect &amp; Adapt: SAFe term (Scaled Agile, Inc.)</text>
+<text class="credit" data-references="bockeler-harness bockeler-sensors safe-framework safe-inspect-and-adapt" x="1540" y="780" font-size="11" fill="#888780" text-anchor="end">Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect &amp; Adapt: SAFe term (Scaled Agile, Inc.)</text>
 <text x="800" y="754" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="middle" font-style="italic">The order is the point: build the floor and the first workflow before adding skills, agents and platforms.</text>
 </svg>

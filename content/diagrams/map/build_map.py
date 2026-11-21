@@ -65,6 +65,11 @@ def para(x, y, text, width, size=14, fill=INK, lh=None, weight=400):
     return s, y + len(wrap(text, width, size)) * lh
 
 
+def hit(x, y, w, h):
+    """An invisible rectangle that widens a small label's link target (WCAG 2.5.8: 24 px minimum)."""
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="#fff" fill-opacity="0" stroke="none"/>'
+
+
 def linked(label: str, markup: str) -> str:
     """Wrap a box and its label in a link when links.yml lists the label; otherwise leave it plain."""
     href = LINKS.get(label)
@@ -142,14 +147,14 @@ MAP_DESC = (
     "A one-page map of the AI-assisted software lifecycle in five bands. "
     "1 Context: project, product and flow type set the risk tier (HIL is hardware-in-the-loop testing, "
     "OTA over-the-air updates, CVE a published vulnerability). "
-    "2 Lifecycle: SAFe levels (portfolio, Agile Release Train, team; WSJF is weighted shortest job first, "
-    "PI a planning interval), phases from idea to operate with the workflow in each, Definition of Ready (DoR) "
+    "2 Lifecycle: portfolio, train and team levels, phases from idea to operate with the workflow in each, "
+    "Definition of Ready (DoR) "
     "and Definition of Done (DoD), and a traceability spine from requirement to incident. Incident feedback "
     "loops back to change what Specification asks. "
     "3 Core: harness engineering as the discipline, the Engineering Kit as the artefact, workflows as the unit of work, "
     "and the software factory as the operating state that emerges. "
     "4 Enablement: agent runtime and tools (MCP is the Model Context Protocol), people and roles "
-    "(PO / PM: product owner / product manager), and the operating model. "
+    "(PO / PM: product owner / product manager), and the operating model (PI is a planning interval). "
     "5 Assurance: evidence and traceability, standards and AI governance (templates include ADRs, "
     "architecture decision records), and measurement. "
     "A footer shows the adoption path: deterministic floor, one workflow, a second workflow with hand-off, "
@@ -169,7 +174,7 @@ def page_map(links: dict[str, str] | None = None) -> str:
     LINKS.clear()
     LINKS.update(links or {})
     LINKED.clear()
-    W, H = 1600, 1152
+    W, H = 1600, 1170
     s = [svg_open(W, H, "The AI SDLC Map", MAP_DESC, ["aicpa-soc2", "dora-metrics"]),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
          t(60, 58, "The AI SDLC Map", 34, INK, 700),
@@ -199,12 +204,13 @@ def page_map(links: dict[str, str] | None = None) -> str:
 
     # ---------------- band 2: lifecycle
     y0, h = 280, 210
-    s.append(band_label(y0, h, "2", "LIFECYCLE", "where it runs", ["SAFe levels, phases, the workflow in each phase, Definition of Ready / Done, and the traceability spine underneath."], "grey"))
+    s.append(band_label(y0, h, "2", "LIFECYCLE", "where it runs", ["Portfolio, train and team levels, phases, the workflow in each phase, Definition of Ready / Done, and the traceability spine underneath."], "grey"))
     s.append(r(250, y0, 1290, h, "#fff", C["grey"][0], 1.3, 12))
-    levels = [("Portfolio", "epics · WSJF · lean budgets", 264, 390), ("Agile Release Train", "features · PI planning · system demo", 662, 450), ("Team", "stories · iterations · DoR / DoD", 1120, 406)]
+    levels = [("Portfolio", "initiatives · prioritisation · budgets", 264, 390), ("Train", "features · planning cycle · integrated demo", 662, 450), ("Team", "stories · iterations · DoR / DoD", 1120, 406)]
     for i, (n, sub, x, w) in enumerate(levels):
-        s.append(r(x, y0 + 12, w, 32, C["grey"][1], C["grey"][0], 1.1, 16))
-        s.append(t(x + 14, y0 + 33, n, 13.5, C["grey"][2], 700) + t(x + w - 14, y0 + 33, sub, 12, MUTE, anchor="end"))
+        # each level opens its own anchor on the levels page (D-029)
+        s.append(linked(n, r(x, y0 + 12, w, 32, C["grey"][1], C["grey"][0], 1.1, 16)
+                        + t(x + 14, y0 + 33, n, 13.5, C["grey"][2], 700) + t(x + w - 14, y0 + 33, sub, 12, MUTE, anchor="end")))
         if i < 2:
             s.append(f'<line x1="{x + w + 2}" y1="{y0 + 28}" x2="{levels[i + 1][2] - 4}" y2="{y0 + 28}" stroke="{FAINT}" stroke-width="1.4" marker-end="url(#a)"/>')
     phases = ["Idea", "Specification", "Design", "Develop", "Build", "QA", "Deploy", "Release", "Operate"]
@@ -215,13 +221,15 @@ def page_map(links: dict[str, str] | None = None) -> str:
     s.append(f'<path d="M{px[8] + pw / 2} {py} L{px[8] + pw / 2} {py - 12} L{px[1] + pw / 2} {py - 12} L{px[1] + pw / 2} {py - 3}" fill="none" stroke="{C["coral"][0]}" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#r)"/>')
     s.append(r(700, py - 20, 360, 16, "#fff", "#fff", 0, 3) + t(880, py - 8, "incident feedback changes what Specification asks", 11.5, C["coral"][0], 600, "middle", italic=True))
     for i, p in enumerate(phases):
-        s.append(r(px[i], py, pw, 44, "#faf9f5", "#b4b2a9", 1.3, 8))
+        box = r(px[i], py, pw, 44, "#faf9f5", "#b4b2a9", 1.3, 8)
         if p == "QA":
-            s.append(t(px[i] + pw / 2, py + 20, "QA", 14.5, INK, 700, "middle") + t(px[i] + pw / 2, py + 36, "security · performance", 10.5, MUTE, anchor="middle"))
+            s.append(linked(p, box + t(px[i] + pw / 2, py + 20, "QA", 14.5, INK, 700, "middle") + t(px[i] + pw / 2, py + 36, "security · performance", 10.5, MUTE, anchor="middle")))
         else:
-            s.append(t(px[i] + pw / 2, py + 27, p, 14.5, INK, 700, "middle"))
+            s.append(linked(p, box + t(px[i] + pw / 2, py + 27, p, 14.5, INK, 700, "middle")))
     for i, tag in [(1, "DoR"), (7, "DoD")]:
-        s.append(r(px[i] + pw - 38, py - 8, 34, 16, C["teal"][0], C["teal"][0], 0, 8) + t(px[i] + pw - 21, py + 4, tag, 10.5, "#fff", 700, "middle"))
+        # the tag is 16 high; an invisible 40 x 24 hit area around it meets the 24 px minimum target size
+        s.append(linked(tag, hit(px[i] + pw - 41, py - 12, 40, 24)
+                        + r(px[i] + pw - 38, py - 8, 34, 16, C["teal"][0], C["teal"][0], 0, 8) + t(px[i] + pw - 21, py + 4, tag, 10.5, "#fff", 700, "middle")))
     wy = py + 52
     wfs = [(0, 0, "intake & triage"), (1, 1, "spec readiness"), (2, 2, "design conformance"), (3, 5, "pull-request verification  ·  security & performance checks by tier"), (6, 6, "deploy verification"), (7, 7, "release readiness"), (8, 8, "incident feedback")]
     for a, b, lab in wfs:
@@ -237,8 +245,17 @@ def page_map(links: dict[str, str] | None = None) -> str:
         cx = px[0] + 40 + i * ((px[8] + pw - px[0] - 80) / 6)
         s.append(f'<circle cx="{cx}" cy="{sy}" r="5" fill="#fff" stroke="{C["teal"][0]}" stroke-width="2"/>')
         s.append(t(cx, sy + 20, n, 12, C["teal"][2], 600, "middle"))
-    s.append(t(px[0], sy - 8, "TRACEABILITY SPINE · linked by rule IDs", 10.5, C["teal"][0], 700, spacing=0.5))
-    s.append(t(px[8] + pw, sy - 8, "Inspect & Adapt each PI: which workflow to add or tighten next", 11.5, MUTE, anchor="end", italic=True))
+    # Each of these two lines is a linked label plus a plain note, since a link needs a label of its
+    # own. Positions follow Liberation Sans (metric-compatible with Arial), the first font in FONT;
+    # the spine note leaves room for the wider DejaVu fallback, and the Inspect & Adapt label is
+    # anchored at its end, so it grows away from its note.
+    s.append(linked("TRACEABILITY SPINE", hit(px[0] - 4, sy - 24, 135, 24)
+                    + t(px[0], sy - 8, "TRACEABILITY SPINE", 10.5, C["teal"][0], 700, spacing=0.5)))
+    s.append(t(px[0] + 132, sy - 8, "· linked by rule IDs", 10.5, C["teal"][0], 700, spacing=0.5))
+    ia_end = px[8] + pw - 299  # where the note "each planning cycle: ..." begins, less one space
+    s.append(linked("Inspect & Adapt", hit(ia_end - 88, sy - 24, 91, 24)
+                    + t(ia_end, sy - 8, "Inspect & Adapt", 11.5, MUTE, anchor="end", italic=True)))
+    s.append(t(ia_end + 3.2, sy - 8, "each planning cycle: which workflow to add or tighten next", 11.5, MUTE, italic=True))
 
     # ---------------- band 3: core
     y0, h = 510, 118
@@ -320,6 +337,9 @@ def page_map(links: dict[str, str] | None = None) -> str:
     s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle terms: SAFe (Scaled Agile, Inc.) · "
                     "Architecture decision records (ADRs): after Nygard · Adapters: after Cockburn (ports and adapters)",
                     ["spec-kit", "safe-framework", "nygard-adr", "cockburn-hexagonal"]))
+    s.append(credit(60, fy + 100, "Agile Release Train (ART), System Demo and Inspect & Adapt: SAFe terms (Scaled Agile, Inc.) · "
+                    "Definition of Done: after the Scrum Guide (Schwaber and Sutherland)",
+                    ["safe-art", "safe-system-demo", "safe-inspect-and-adapt", "scrum-guide-2020"]))
     s.append(t(1540, fy + 64, "Detail: the adoption-path companion diagram.  The AI SDLC Map · vishalkhondre.github.io/ai-sdlc-map", 12, FAINT, anchor="end"))
     s.append("</svg>")
     return "\n".join(s)
@@ -391,7 +411,7 @@ def page_path() -> str:
             if idx < 3:
                 s.append(f'<line x1="{x + 14}" y1="{yy - 12}" x2="{x + cw - 14}" y2="{yy - 12}" stroke="{LINE}" stroke-width="1"/>')
     s.append(credit(1540, H - 10, "Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect & Adapt: SAFe term (Scaled Agile, Inc.)",
-                    ["bockeler-harness", "bockeler-sensors", "safe-framework"], 11, "end"))
+                    ["bockeler-harness", "bockeler-sensors", "safe-framework", "safe-inspect-and-adapt"], 11, "end"))
     s.append(t(800, H - 36, "The order is the point: build the floor and the first workflow before adding skills, agents and platforms.", 14, MUTE, anchor="middle", italic=True))
     s.append("</svg>")
     return "\n".join(s)

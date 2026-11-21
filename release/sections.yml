@@ -14,3 +14,7 @@
 "1.4":
   section: "Core: harness engineering, the Engineering Kit and its parts, workflows, the software factory"
   pages: [index.html, harness-engineering.html, engineering-kit.html, rule-registry.html, validators.html, skills-and-evals.html, evidence-schema.html, adapters.html, workflows.html, software-factory.html]
+
+"1.5":
+  section: "Lifecycle, part one: the generic levels and SAFe reference model, the seven phase pages, Definition of Ready and Done, the traceability spine and Inspect and Adapt"
+  pages: [index.html, lifecycle-levels.html, safe-reference-model.html, idea.html, specification.html, design.html, develop-build-qa.html, deploy.html, release.html, operate.html, definition-of-ready-and-done.html, traceability-spine.html, inspect-and-adapt.html]

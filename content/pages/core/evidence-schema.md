@@ -6,8 +6,8 @@ map_box: Engineering Kit · evidence schema
 title: Evidence schema
 summary: The fixed, versioned shape of what every run records (revisions, kit version, expected checks and their results, agent findings, decisions and an overall status) and who is allowed to write each field.
 key_terms: [evidence-record, could-not-run, validator, rule-registry, review-skill, evidence-handoff, engineering-kit, mechanism-vs-meaning, workflow, export-example]
-sources: [slsa-provenance, slsa-build-requirements, slsa-verifying, slsa-vsa, in-toto-attestation, in-toto-spec, in-toto-usenix, sarif-2-1-0, nist-ssdf, aicpa-soc2, json-schema-core, semver, fowler-tolerant-reader, bockeler-harness, bockeler-sensors]
-related: [engineering-kit, validators, rule-registry, skills-and-evals, workflows, adapters]
+sources: [slsa-provenance, slsa-build-requirements, slsa-verifying, slsa-vsa, in-toto-attestation, in-toto-spec, in-toto-usenix, sarif-2-1-0, nist-ssdf, aicpa-soc2, json-schema-core, semver, fowler-tolerant-reader, bockeler-harness, bockeler-sensors, safe-inspect-and-adapt, scrum-guide-2020]
+related: [engineering-kit, validators, rule-registry, skills-and-evals, workflows, adapters, traceability-spine, definition-of-ready-and-done, inspect-and-adapt]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -212,9 +212,9 @@ appears in the public standards. in-toto fixes a common statement layer that bin
 a predicate of a named type, so any consumer can parse any attestation and pick out the types it
 understands.[^in-toto-attestation] SLSA verifiers check provenance by comparing named fields
 against expected values,[^slsa-verifying] which works only when every producer fills the same
-fields. Where a project needs extra data, SLSA's convention of prefixed extension fields that
-readers may ignore is one workable pattern,[^slsa-provenance] provided no extension is needed to
-derive the overall status. A change to what the evidence requires goes through the kit's own
+fields. Where a project needs extra data, one workable pattern is additional fields that readers
+may ignore, as SLSA provenance requires its consumers to ignore fields they do not
+recognise,[^slsa-provenance] provided no such field is needed to derive the overall status. A change to what the evidence requires goes through the kit's own
 change process and a new schema version, not a local setting. No public source states this rule
 for an engineering kit; it is this site's recommended practice.
 
@@ -222,7 +222,7 @@ for an engineering kit; it is this site's recommended practice.
 
 The evidence schema is one of the five parts of the Engineering Kit box in the core band, the band
 that does the work. The other four parts feed it. The [rule registry](rule-registry.html) supplies
-the IDs that every expected check, result, finding and decision carries.
+the IDs that every expected check, result and finding carries.
 [Validators](validators.html) write the results, including could_not_run.
 [Skills with evals](skills-and-evals.html) include the review skill that writes agent
 findings. [Adapters](adapters.html) carry the record between the kit and the pipeline runner and
@@ -235,7 +235,8 @@ each time it runs, and later workflows read earlier ones, which the glossary cal
 [evidence hand-off](glossary.html#evidence-handoff). The [software factory](software-factory.html)
 depends on that shared shape: workflows can share evidence only when they write it the same way.
 The assurance band covers how records are read for audit, traceability and release, and how long
-evidence stays valid for a revision.
+evidence stays valid for a revision. The chain of linked records from requirement to incident is
+covered on the [Traceability spine](traceability-spine.html) page.
 
 ## Pitfalls
 
@@ -268,6 +269,12 @@ evidence stays valid for a revision.
 - [Software factory](software-factory.html): the operating state that shared evidence makes
   possible.
 - [Harness engineering](harness-engineering.html): the discipline the kit and its schema serve.
+- [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
+  incident.
+- [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
+  exit criteria for an item of work[^scrum-guide-2020].
+- [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence
+  is read together[^safe-inspect-and-adapt].
 - [Terminology](glossary.html#evidence-record) and the [workflow catalog](workflow-catalog.html).
 
 ## Sources
@@ -286,6 +293,8 @@ evidence stays valid for a revision.
   Versioning[^semver] and Fowler's Tolerant Reader[^fowler-tolerant-reader].
 - Computational and inferential controls, and the validator and review-skill vocabulary:
   Böckeler[^bockeler-harness][^bockeler-sensors].
+- Definition of Done: Schwaber and Sutherland, *The 2020 Scrum Guide*[^scrum-guide-2020].
+- Inspect and Adapt: Scaled Agile, Inc., *Inspect and Adapt*[^safe-inspect-and-adapt].
 - The difference between records and logs, expected checks in the same record, report links, the
   per-check could_not_run status, coded decision reasons, one kind of writer per field and the fixed schema are this site's
   recommended practice; no public source states them.

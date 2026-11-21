@@ -6,8 +6,8 @@ map_box: Harness engineering
 title: Harness engineering
 summary: The discipline of designing and maintaining what a coding agent reads, what it may do, what a machine checks and what a person decides, and of improving those controls each time a failure recurs.
 key_terms: [harness, harness-engineering, guides-and-sensors, two-kinds-of-machinery, steering-loop, feedback-path, harnessability, requisite-variety, harness-template, gate, validator, skill, review-skill, harness-evaluation, rule-registry, engineering-kit, workflow, software-factory, export-example]
-sources: [bockeler-harness, bockeler-harness-memo, bockeler-sensors, bockeler-context, openai-harness, anthropic-context-engineering, tw-radar-feedback-sensors, swe-agent, ashby, fitness-function, fowler-ci, nist-800-53]
-related: [engineering-kit, validators, skills-and-evals, rule-registry, workflows, software-factory]
+sources: [bockeler-harness, bockeler-harness-memo, bockeler-sensors, bockeler-context, openai-harness, anthropic-context-engineering, tw-radar-feedback-sensors, swe-agent, ashby, fitness-function, fowler-ci, nist-800-53, safe-inspect-and-adapt, scrum-guide-2020]
+related: [engineering-kit, validators, skills-and-evals, rule-registry, workflows, software-factory, inspect-and-adapt, definition-of-ready-and-done, traceability-spine]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -240,7 +240,9 @@ this site's name. On the map's adoption path, the "Feedback path proven" stage, 
 proven, links to this section.
 
 On the lifecycle side, specifications and plans are where most guides are written and where a
-gate's rule is first stated, even though the gate itself runs after implementation. On the
+gate's rule is first stated, even though the gate itself runs after implementation. The periodic
+review of delivery evidence across workflows is covered on the
+[Inspect and Adapt](inspect-and-adapt.html)[^safe-inspect-and-adapt] page. On the
 enablement side, the agent runtime supplies the tools, sandboxes and permissions that the harness
 configures. The assurance band reads what the sensors record to decide whether a change is ready;
 this page defines the controls, not what their results mean for that decision. The
@@ -280,6 +282,12 @@ this page defines the controls, not what their results mean for that decision. T
 - [Software factory](software-factory.html): the operating state that appears when workflows share
   rules, evidence and feedback.
 - [Workflow catalog](workflow-catalog.html): the list of workflows.
+- [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence
+  is read together.
+- [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
+  exit criteria for an item of work[^scrum-guide-2020].
+- [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
+  incident.
 - Terminology: [harness engineering](glossary.html#harness-engineering),
   [steering loop](glossary.html#steering-loop), [feedback path](glossary.html#feedback-path),
   [guides and sensors](glossary.html#guides-and-sensors),
@@ -310,3 +318,5 @@ this page defines the controls, not what their results mean for that decision. T
 - Fowler, *Continuous Integration*: the self-testing build underneath the harness.[^fowler-ci]
 - NIST SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and
   Organizations*: the least-privilege control.[^nist-800-53]
+- Scaled Agile, Inc., *Inspect and Adapt*: Inspect and Adapt.[^safe-inspect-and-adapt]
+- Schwaber and Sutherland, *The 2020 Scrum Guide*: the Definition of Done.[^scrum-guide-2020]
