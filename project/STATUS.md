@@ -64,6 +64,37 @@ Update at the end of every session (see `CLAUDE.md`).
    4. 1.5.0: review, merge, author's live review, tag. Then 1.6.0 on the same steps. The deferred
       retrospective items for this section are listed below.
 
+## 1.4.x findings from the D-030 catalog diagnostic (2026-11-21)
+
+The Lifecycle 1.5.0 batch A sweep stopped at round 2 (D-030). On the author's instruction a diagnostic
+sweep compared the published rows and passages the batch A pages had restated with the source library.
+Locations and verdicts only; the findings name nothing from the library (GR-1.2). They are fixed in a
+**separate 1.4.x fix edition** through the full pipeline (sweep, fresh-author rewrite, three reviewers,
+D-011 confirmation review); the Lifecycle edition does not change any of them.
+
+| Published item | Fields or heading | Verdict | GR |
+|---|---|---|---|
+| Catalog W01 | agent, checks, people | close | 1.2 (and 1.1 / D-017, see note) |
+| Catalog W08 | agent, checks, people, evidence, notes | close | 1.2 (and 1.1 / D-017) |
+| Catalog W12 | decision, agent, checks, people | close | 1.2 (and 1.1 / D-017) |
+| Catalog W22 | people, notes | close | 1.2; people field also 1.1 (domain fingerprint) |
+| Catalog W25 | people | close | 1.2 (and 1.1 / D-017) |
+| Catalog W28 | agent | close | 1.2 |
+| Core `workflows` | "Risk tiers: same definition, different cost" | close | 1.2 |
+| Core `software-factory` | "Three things are shared" (Rules bullet); "Production feedback reaches specification" | close | 1.2 |
+| Glossary `review-fatigue` | the entry | close | 1.2 |
+
+Borderline, to be checked in the same edition: catalog W04, W13, W17, W23, W26 and the borderline
+fields of the rows above; Core `workflows` (Guardrails row, Failure paths, What a workflow hands on,
+Pitfalls), `software-factory` (People keep the decisions, Pitfalls), `harness-engineering` (feedback-path
+destination list), `rule-registry` (entry and identifiers), `validators` (From report-only to required);
+glossary `feedback-path`. Clean: W27, W30, W35; `rule-registry` "How the rest of the kit refers to rules";
+`evidence-schema` revisions and agent findings.
+
+Note (GR-1.1, D-017): ordinary words that the library uses as its own names appear in close and
+borderline fields of W01, W08, W12, W22 and W25. The hashed deny-list cannot catch them; the
+confidentiality review of the fix edition reads those fields as a public reader would.
+
 ## Backlog
 
 - Catalog consistency pass (W12 wording): the W12 row says "definition of ready" while the map
@@ -71,6 +102,8 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## For the author
 
+- **1.4.x findings (above).** Decide when the fix edition runs; it changes live catalog rows, Core
+  passages and one glossary entry, so it may precede or follow 1.5.0.
 - **SAFe reference model page (D-029).** Its text is shown in chat for the author to read before it
   is first pushed.
 - **Keyed deny-list (D-023).** In a local clone, with the names in a file outside the repository
