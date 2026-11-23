@@ -43,7 +43,7 @@ defining a vision, roadmap, and set of features for a solution"[^safe-continuous
 treats it as one of four aspects of its Continuous Delivery Pipeline, alongside continuous
 integration, continuous deployment and release on demand[^safe-cdp]. Its unit at this altitude is
 the feature, which it defines as "solution functionality that delivers business value, fulfills a
-stakeholder need, and is sized to be delivered by an Agile Release Train[^safe-art] within a PI", where a PI is
+stakeholder need, and is sized to be delivered by an Agile Release Train within a PI"[^safe-art], where a PI is
 SAFe's Planning Interval[^safe-framework][^safe-features]. This is one framework's account, not a definition of the
 Idea phase.
 
@@ -66,7 +66,7 @@ standard defines them.
 
 ## AI-assisted practice
 
-No public study measures how well a coding agent sorts or sizes incoming work. Where this section describes what an agent does at Idea, it is recommended practice and not a
+No public study was found that measures how well a coding agent sorts or sizes incoming work. Where this section describes what an agent does at Idea, it is recommended practice and not a
 research finding; the claims that rest on research are cited to DORA.
 
 **What moves to an agent.** Drafting. The agent reads a request as it was written and proposes a

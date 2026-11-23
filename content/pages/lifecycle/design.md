@@ -84,8 +84,8 @@ made at design time be checked on every later change.
 
 ## AI-assisted practice
 
-What changes first is who writes the first version. No public study measures how well coding
-agents design, or whether a set of checks chosen by an agent is the right one, so this section
+What changes first is who writes the first version. No public study was found that measures how
+well coding agents design, so this section
 describes recommended practice, not a finding. In that practice an agent prepares first versions of
 the phase's written material, such as candidate decision records, first answers to the
 threat-modeling questions and proposed interface or schema changes, each for a person to accept or
@@ -168,10 +168,6 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
 
 ## Pitfalls
 
-- **A tier chosen to keep the checks few.** The change is labelled lighter than what it touches.
-  Sign: the plan lists data or rules that none of the declared checks mention. The
-  [risk-tier guidance](workflows.html#risk-tiers-same-definition-different-cost) says how a tier is
-  set.
 - **The agent's summary taken as the design review.** Sign: the review record holds the agent's
   summary and an approval, and nothing of the reviewer's own. See the pitfalls in
   [Workflows](workflows.html#pitfalls).
@@ -192,11 +188,11 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
 
 - [Specification](specification.html): the phase before Design, whose accepted specification is
   Design's input.
-- [Develop, Build and QA](develop-build-qa.html): the phase after Design, where the declared checks
-  run.
+- [Develop, Build and QA](develop-build-qa.html): the phase after Design, where the checks run.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entrance and
-  exit criteria around the phases. The Definition of Done is the Scrum Guide's term for the state of
-  the Increment when it meets the quality measures required for the product[^scrum-guide-2020].
+  exit criteria around the phases. The Definition of Done is the Scrum Guide's formal description of
+  the state of the Increment when it meets the quality measures required for the
+  product[^scrum-guide-2020].
 - [Workflows](workflows.html): the decision unit, the three roles and how
   [risk tiers](workflows.html#risk-tiers-same-definition-different-cost) work.
 - [Rule registry](rule-registry.html): rules and their routes.

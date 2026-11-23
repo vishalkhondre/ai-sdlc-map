@@ -6,7 +6,7 @@ map_box: Operate
 title: Operate
 summary: The phase in which released software runs in production and is kept in service, where it is monitored, its incidents are handled and reviewed, vulnerabilities and usage are answered, and lessons travel back to earlier work.
 key_terms: [feedback-path, steering-loop, harness, software-factory, evidence-handoff, rule-registry, workflow, three-roles, harness-evaluation, export-example]
-sources: [sre-book-monitoring, sre-book-being-on-call, sre-book-managing-incidents, google-sre-postmortem, nist-800-61r3, nist-ssdf, dora-monitoring-observability, dora-customer-feedback, dora-metrics, dora-2025-announcement, google-agentic-sre, ahmed-incident-llm, chen-rcacopilot, bockeler-harness, safe-inspect-and-adapt]
+sources: [sre-book-monitoring, sre-book-being-on-call, sre-book-managing-incidents, google-sre-postmortem, nist-800-61r3, nist-ssdf, dora-monitoring-observability, dora-customer-feedback, dora-metrics, dora-2025-announcement, google-agentic-sre, ahmed-incident-llm, chen-rcacopilot, bockeler-harness, safe-inspect-and-adapt, safe-framework]
 related: [harness-engineering, software-factory, workflows, evidence-schema, rule-registry, validators, specification, deploy, release, inspect-and-adapt, traceability-spine]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
@@ -24,9 +24,9 @@ is where the lifecycle's loop closes. On the map, a dashed arrow leaves the Oper
 to Specification, carrying the idea that incident feedback changes what Specification asks. The
 phase produces incident records and their reviews, responses to vulnerabilities and to how the
 product is used, and lessons that travel back upstream along the
-[feedback path](glossary.html#feedback-path). The map labels the box Operate and nothing more;
-keeping released software in service, which the workflow catalog's name for the phase, "Operate &
-sustain", makes explicit, belongs here as well.
+[feedback path](glossary.html#feedback-path). The map labels the box Operate and nothing more.
+The workflow catalog calls the phase "Operate & sustain": keeping released software in service
+belongs here as well.
 
 ## Traditional practice
 
@@ -92,7 +92,7 @@ Much of it is not prompted by a new feature. The SSDF's first response practice 
 identify and confirm vulnerabilities on an ongoing basis,[^nist-ssdf] so a release that passed
 every check when it shipped can still need a change long afterwards, and the vulnerability response
 workflow ([W29](workflow-catalog.html#W29)) handles that change. Usage evidence of the kind above
-is the other steady source of upkeep. At the end of a component's life the work is to retire it and
+is another steady source of upkeep. At the end of a component's life the work is to retire it and
 the data it holds, through decommission and data disposal ([W31](workflow-catalog.html#W31)).
 
 ## AI-assisted practice
@@ -183,7 +183,7 @@ labelled "incident feedback", because it starts the loop back to Specification. 
 carries follow the feedback path defined on [harness engineering](harness-engineering.html). Its
 records are read again at the site's [inspect and adapt](inspect-and-adapt.html) checkpoint, where
 owners check whether each lesson landed; the name comes from SAFe, which uses it for an event held
-at the end of each PI, its planning cycle.[^safe-inspect-and-adapt] The
+at the end of each Planning Interval (PI).[^safe-inspect-and-adapt][^safe-framework] The
 [traceability spine](traceability-spine.html) carries the link from the release to the incident and
 back to the requirement.
 
@@ -230,9 +230,8 @@ are divided between titles belongs to the operating model in the enablement band
 - **Actions with no owner.** The review lists what should change but names nobody to change it,
   and such actions are less likely to be resolved.[^google-sre-postmortem] Sign: actions from
   earlier incidents still open.
-- **A lesson that stops at the code.** The code is patched, and the question that would have
-  exposed the problem before it was built is never added to the specification. Sign: the next
-  change of the same kind meets the same miss. See
+- **A lesson that stops at the code.** Sign: the next change of the same kind meets the same miss.
+  See
   [software factory](software-factory.html#production-feedback-reaches-specification).
 - **An agent that can change production unchecked.** An agent acts on production outside the
   controls that bind people; Google's account relies on consistent controls to prevent unwanted
@@ -297,5 +296,6 @@ are divided between titles belongs to the operating model in the enablement band
 - Ahmed and colleagues, ICSE 2023, and Chen and colleagues, an arXiv preprint: language models for
   incident root-cause analysis.[^ahmed-incident-llm][^chen-rcacopilot]
 - Birgitta Böckeler on the steering loop.[^bockeler-harness]
-- Scaled Agile, Inc. on SAFe's Inspect and Adapt event.[^safe-inspect-and-adapt]
+- Scaled Agile, Inc. on SAFe's Inspect and Adapt event and the Planning
+  Interval.[^safe-inspect-and-adapt][^safe-framework]
 - Statements marked as recommended practice are this site's own and are not findings of any study.

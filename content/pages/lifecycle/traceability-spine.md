@@ -93,7 +93,7 @@ the [evidence schema](evidence-schema.html) page.
 | Requirement to spec | The acceptance-criterion identifier. Each criterion in the spec has its own, and names the requirement it answers | [Specification readiness](workflow-catalog.html#W04) | A requirement that no criterion answers, so nothing later in the chain can point back to it |
 | Spec to task | The criterion identifier, carried on each task | [Task traceability and test planning](workflow-catalog.html#W12) | Planned work whose purpose cannot be looked up in the spec, which is how scope creep enters |
 | Task to test | The criterion identifier, carried on each test and on its recorded result | Task traceability and test planning; [Acceptance-test generation and execution](workflow-catalog.html#W17) | A criterion that is built but never shown to hold, because no recorded result names it |
-| Test to change | The change revision, which every recorded result names alongside its rule ID; the change in turn cites its task | [Task execution loop](workflow-catalog.html#W13); [Pull-request verification](workflow-catalog.html#W23) | A pass that cannot be tied to the code that merges, because it names another revision or none |
+| Test to change | The change revision named on the evidence record that holds each result; the change in turn cites its task | [Task execution loop](workflow-catalog.html#W13); [Pull-request verification](workflow-catalog.html#W23) | A pass that cannot be tied to the code that merges, because it names another revision or none |
 | Change to release | The revisions of the changes the release candidate contains | [Release readiness](workflow-catalog.html#W25) | A release whose contents nobody can list by revision |
 | Release to incident | The identifier of the release that was running, recorded on the incident record | [Deployment and post-deploy verification](workflow-catalog.html#W26); [Incident remediation](workflow-catalog.html#W27); [Incident-to-development feedback](workflow-catalog.html#W28) | An incident that cannot be matched to a release, so the trail back to the requirement starts from guesswork |
 
@@ -169,7 +169,8 @@ recommendation.
 The running example is a hypothetical feature that lets users export customer records. Its open
 decisions are which records, which fields, how large an export may be, what happens on failure, and
 how the feature is audited. The walk below names the artefact and the identifier at each step,
-using classes of artefact rather than invented identifiers.
+using classes of artefact rather than invented identifiers, except the revision shown on the
+evidence schema page.
 
 1. **Requirement to spec.** The need that users export only the records they may read is answered
    by the spec's acceptance criterion on who may export which records, and that criterion's

@@ -6,7 +6,7 @@ map_box: Develop · Build · QA
 title: Develop, Build and QA
 summary: Develop, Build and QA are the three phases in which one change is made, assembled and tested under one set of checks and one evidence record; they end in the merge decision, and agents, deterministic checks and people each have a distinct part along the way.
 key_terms: [deterministic-gate, engineering-kit, gate, validator, review-skill, skill, could-not-run, evidence-record, independent-basis, guides-and-sensors, risk-tier, harness-engineering, workflow, three-roles, review-fatigue, feedback-path, export-example]
-sources: [google-eng-practices-small-cls, google-eng-practices-review, fowler-selftesting, fowler-ci, dora-test-automation, nist-ssdf, sre-book-release-engineering, fowler-deployment-pipeline, humble-farley-cd, safe-continuous-integration, slsa-provenance, slsa-build-track-basics, istqb-ctfl-4, fowler-test-pyramid, istqb-rbt, nist-ir-8397, owasp-asvs, owasp-wstg, owasp-secrets-management, istqb-stress-testing, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2024-highlights, dora-2025-report, dora-2025-announcement, dora-ai-capabilities-impact, perry-2023, konstantinou-test-oracles, metr-reward-hacking, anthropic-claude-37-system-card, dora-small-batches, safe-built-in-quality, istqb-acceptance-criteria, scrum-guide-2020]
+sources: [google-eng-practices-small-cls, google-eng-practices-review, fowler-selftesting, fowler-ci, dora-test-automation, nist-ssdf, sre-book-release-engineering, fowler-deployment-pipeline, humble-farley-cd, safe-continuous-integration, slsa-provenance, slsa-build-track-basics, istqb-ctfl-4, fowler-test-pyramid, istqb-rbt, nist-ir-8397, owasp-asvs, owasp-secrets-management, istqb-stress-testing, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2024-highlights, dora-2025-report, dora-2025-announcement, dora-ai-capabilities-impact, perry-2023, konstantinou-test-oracles, metr-reward-hacking, anthropic-claude-37-system-card, dora-small-batches, safe-built-in-quality, istqb-acceptance-criteria, scrum-guide-2020]
 related: [engineering-kit, validators, skills-and-evals, workflows, evidence-schema, harness-engineering, rule-registry, adapters, design, deploy, definition-of-ready-and-done, traceability-spine]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
@@ -69,10 +69,7 @@ libraries".[^sre-book-release-engineering]
 Builds run inside a deployment pipeline, which Fowler describes as "breaking up your build into
 stages. Each stage provides increasing confidence, usually at the cost of extra
 time."[^fowler-deployment-pipeline] Jez Humble and David Farley's *Continuous Delivery* gives the
-subject chapters titled "Anatomy of the Deployment Pipeline" and "Commit Testing Stage". Its freely
-readable sample chapter has a section headed "Only Build Your Binaries Once", and says that a
-pipeline instance "is created upon every check-in" and that the commit stage "should ideally take
-less than five minutes".[^humble-farley-cd] SAFe places this work in continuous integration,
+subject a chapter titled "Commit Testing Stage".[^humble-farley-cd] SAFe places this work in continuous integration,
 where "new functionality is developed, tested, integrated, and validated in preparation for
 deployment and release".[^safe-continuous-integration]
 
@@ -103,9 +100,8 @@ protections; "black box" test cases; code-based structural test cases; historica
 fuzzing; web application scanners; and addressing included code. It states that it "does not
 address the totality of software verification".[^nist-ir-8397] OWASP's Application Security
 Verification Standard leaves the choice of verification level to an organisation's analysis of its
-own risks.[^owasp-asvs] The OWASP Web Security Testing Guide identifies each of its test scenarios
-in the form WSTG-category-number.[^owasp-wstg] For credentials, OWASP advises centralising the storage, provisioning, auditing, rotation and
-management of secrets, and applying least privilege to them.[^owasp-secrets-management]
+own risks.[^owasp-asvs] For credentials, OWASP advises centralising the storage, provisioning,
+auditing, rotation and management of secrets, and applying least privilege to them.[^owasp-secrets-management]
 
 Performance testing examines behaviour under load. The ISTQB glossary defines stress testing as "a
 type of performance testing to evaluate a system or component at or beyond the limits of its
@@ -225,7 +221,7 @@ evidence) is in the [workflow catalog](workflow-catalog.html) and is not repeate
 ## Gates and evidence
 
 A task enters the stretch once it meets the team's Definition of Ready, which is set before
-development starts. The Scrum Guide defines the Definition of Done for the Increment, as a formal
+development starts. The Scrum Guide defines the Definition of Done for the Increment as a formal
 description of its state when it meets the quality measures required for the
 product[^scrum-guide-2020]. Applying a Definition of Done to each story at the close of this stretch
 is this site's recommended practice. The
@@ -244,10 +240,8 @@ The build leaves evidence of its own. Provenance generated by the build platform
 SLSA's Build track and the SSDF's provenance task,[^slsa-build-track-basics][^nist-ssdf] records how
 the tested output was produced.
 
-The stretch is left through one exit: the merge decision, recorded against the exact revision it
-describes. Each workflow's catalog row names the record it leaves. A new revision gets a new
-record, and the earlier one stays as history, since a result for an earlier revision says nothing
-reliable about the code as it is now, as the [Workflows](workflows.html) page explains.
+The stretch is left through one exit: the merge decision. Each workflow's catalog row names the
+record it leaves, and the [Workflows](workflows.html) page explains how that record is handed on.
 
 ## Roles
 
@@ -315,9 +309,9 @@ Who decides at the human step of each workflow is named in that workflow's catal
 
 - Development and review: Google's engineering practices, Fowler, DORA and NIST
   SSDF.[^google-eng-practices-small-cls][^google-eng-practices-review][^fowler-selftesting][^fowler-ci][^dora-test-automation][^nist-ssdf]
-- Builds and pipelines: the SRE book, Fowler, Humble and Farley (table of contents and sample
-  chapter only), SAFe and SLSA.[^sre-book-release-engineering][^fowler-deployment-pipeline][^humble-farley-cd][^safe-continuous-integration][^safe-built-in-quality][^slsa-provenance][^slsa-build-track-basics]
-- Testing and security verification: ISTQB, Fowler, NIST IR 8397 and OWASP.[^istqb-ctfl-4][^istqb-rbt][^istqb-stress-testing][^fowler-test-pyramid][^nist-ir-8397][^owasp-asvs][^owasp-wstg][^owasp-secrets-management]
+- Builds and pipelines: the SRE book, Fowler, Humble and Farley (table of contents
+  only), SAFe and SLSA.[^sre-book-release-engineering][^fowler-deployment-pipeline][^humble-farley-cd][^safe-continuous-integration][^safe-built-in-quality][^slsa-provenance][^slsa-build-track-basics]
+- Testing and security verification: ISTQB, Fowler, NIST IR 8397 and OWASP.[^istqb-ctfl-4][^istqb-rbt][^istqb-stress-testing][^fowler-test-pyramid][^nist-ir-8397][^owasp-asvs][^owasp-secrets-management]
 - Harness vocabulary: Böckeler.[^bockeler-harness][^bockeler-sensors]
 - AI-assisted delivery: DORA's research and guidance; Perry and colleagues, Konstantinou and
   colleagues, METR and a model developer's system card on AI-written code and tests.[^dora-2024-report][^dora-2024-highlights][^dora-2025-report][^dora-2025-announcement][^dora-ai-capabilities-impact][^dora-small-batches][^perry-2023][^konstantinou-test-oracles][^metr-reward-hacking][^anthropic-claude-37-system-card]

@@ -200,7 +200,7 @@ are recommended practice.
 ### What does not change
 
 The checkpoint's purpose is the Scrum Guide's: inspection without adaptation is
-pointless.[^scrum-guide-2020] A report that produces no change has failed whoever prepared it.
+pointless.[^scrum-guide-2020] A checkpoint that produces no change has not done its job.
 
 ## Warning signs
 

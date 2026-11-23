@@ -546,7 +546,7 @@
     job duration, from relative user and business value, time criticality, risk reduction and/or
     opportunity enablement, and job size. Credited to the Scaled Agile Framework (Scaled Agile, Inc.),
     whose WSJF page opens with an epigraph attributed to Don Reinertsen, The Principles of Product
-    Development Flow. This site credits WSJF to SAFe, which credits Reinertsen, and does not cite the
+    Development Flow. This site credits WSJF to SAFe and does not cite the
     book.
   match: ["WSJF"]
 
@@ -602,6 +602,7 @@
   term: Continuous Delivery Pipeline
   attribution: adopted
   source: safe-cdp
+  also: [fowler-deployment-pipeline]
   definition: >-
     SAFe's name for the workflows, activities, and automation needed to guide new functionality from
     ideation to an on-demand release of value. It has four aspects, in order: continuous exploration,

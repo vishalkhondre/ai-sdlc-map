@@ -50,17 +50,17 @@ with four activities: Deploy, Verify, Monitor and Respond[^safe-continuous-deplo
   exponentially until all clusters are updated"[^sre-book-release-engineering]. The same chapter
   says a rollout should fit the risk profile of the service[^sre-book-release-engineering].
 
-**Rollback.** Rolling back returns an environment to what ran there before the deployment. Each
-strategy above carries its own form of it: in blue-green deployment the router is switched back to
+**Rollback.** Rolling back returns an environment to what ran there before the deployment. Blue-green
+deployment and canary release each carry their own form of it: in blue-green deployment the router is switched back to
 the environment that was live before[^fowler-blue-green], and in a canary release users are
 rerouted to the old version[^fowler-canary-release]. Google's SRE book counts rolling back features
 that demonstrate problems among the work release engineers and site reliability engineers share,
 beside canarying changes and pushing out new releases without interrupting
 services[^sre-book-release-engineering]. Data limits a rollback, because the previous revision may
-not run on a schema changed for the new one; the data changes paragraph below gives Martin Fowler's
-advice on that point. Configuration is the other limit: it varies across deploys while code does
-not[^twelve-factor-config], so returning to an earlier revision does not by itself return the
-configuration that ran with it.
+not run on a schema changed for the new one[^fowler-blue-green]; the data changes paragraph below
+gives Martin Fowler's advice on that point. Configuration is the other limit: the Twelve-Factor App
+keeps it strictly separate from code[^twelve-factor-config], so returning to an earlier code revision
+does not by itself return the configuration that ran with it.
 
 **Configuration and secrets.** The Twelve-Factor App calls for "strict separation of config from
 code", notes that "Config varies substantially across deploys, code does not", and stores config in
@@ -110,8 +110,7 @@ task in this phase's workflow is set in the deployment and post-deploy verificat
 **What moves to a deterministic check.** Whatever must not be wrong goes to a deterministic gate,
 a tool that answers the same way every run. SAFe lists Verify as the activity after
 Deploy[^safe-continuous-deployment]; which checks this phase runs is set in the same catalog row.
-The rule that matters most here is the one the site applies everywhere: only an explicit pass
-counts as a pass. A required check that produced no result is `could_not_run`, a result of its own
+A required check that produced no result is `could_not_run`, a result of its own
 that, like a failure, prevents a positive overall status (see
 [Evidence schema](evidence-schema.html#check-results)), and silence from a health signal is never
 read as health.
@@ -141,8 +140,7 @@ only.
 
 ## Gates and evidence
 
-**Entry.** The revision's evidence is current: the record names the exact revision, and a new
-revision needs a new record (see [Workflows](workflows.html) and
+**Entry.** The revision's evidence is current (see [Workflows](workflows.html) and
 [Evidence schema](evidence-schema.html)). Release readiness
 ([W25](workflow-catalog.html#W25)) is settled for that same revision, and that row lists what it
 checks. As recommended practice, a deployment that is not ready does not start, and its record

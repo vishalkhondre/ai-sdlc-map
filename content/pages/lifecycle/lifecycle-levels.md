@@ -7,7 +7,7 @@ title: "Lifecycle levels: portfolio, train and team"
 summary: One delivery lifecycle runs at three altitudes, a portfolio that decides what to fund, a train that decides what to plan and demonstrate, and a team that decides what to build and when it is ready and done, with intent and rules flowing down and evidence and lessons flowing up.
 key_terms: [lifecycle-levels, agile-release-train, planning-interval, wsjf, workflow, software-factory, feedback-path, steering-loop, evidence-handoff, evidence-record, rule-registry, specification-readiness, risk-tier, export-example]
 sources: [safe-portfolio, safe-lpm-discipline, safe-lean-budgets, safe-guardrails, safe-strategic-themes, safe-epic, safe-wsjf, safe-cost-of-delay, safe-art, safe-agile-teams, safe-features, safe-framework, safe-pi-planning, safe-glossary, safe-inspect-and-adapt, safe-story, safe-iteration-planning, safe-iterations, scrum-guide-2020, dora-small-batches, dora-wip-limits, dora-customer-feedback, dora-ai-capabilities-impact, dora-2025-announcement, bockeler-harness, oasis-soa-rm, safe-system-demo]
-related: [safe-reference-model, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, idea, specification, design, develop-build-qa, deploy, release, operate, workflows, software-factory, rule-registry, evidence-schema]
+related: [safe-reference-model, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, idea, specification, design, develop-build-qa, deploy, release, operate, workflows, software-factory, rule-registry, evidence-schema, harness-engineering, engineering-kit]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -44,8 +44,8 @@ an altitude that does not match its size.
 Two flows hold the levels together, and each fails in a recognisable way. When intent and rules do
 not flow down, each level re-decides what a higher level has already settled, because it has no
 record of that decision and no shared rule to read. When evidence and lessons do not flow up, higher
-levels decide on status updates instead of records, and the same miss recurs in later work. The first
-failure follows from the way the [rule registry](rule-registry.html) is shared, as the
+levels decide on status updates instead of records, and the same miss recurs in later work. The reasoning
+behind the first follows from how the [rule registry](rule-registry.html) is shared, as the
 [Software factory](software-factory.html) page describes; the second follows from the lessons that
 never close described there. Both readings are recommended practice, drawn from how
 workflows hand work on, not a measured finding.

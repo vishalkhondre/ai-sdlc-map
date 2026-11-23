@@ -15,11 +15,8 @@ review_record: content/reviews/1.5.0-lifecycle.md
 
 Release is the phase of the AI SDLC (the software development lifecycle with AI agents doing part
 of the work) in which a team decides that a change is fit to reach its users, and records that
-decision. The decision rests on evidence gathered for one candidate at one exact revision. Where
-exposing a change to users is a separate act from deploying it, the phase also covers the choice to
-switch the deployed change on for them. The evidence check comes first and precedes deployment;
-exposure can coincide with deployment or follow it. Deploying puts a revision into an environment
-and releasing exposes its behaviour to users; the two can happen at the same moment or apart, as
+decision. The decision rests on evidence gathered for one candidate at one exact revision.
+Deploying puts a revision into an environment and releasing exposes its behaviour to users; the two can happen at the same moment or apart, as
 the glossary entry [deploy versus release](glossary.html#deploy-versus-release) and the
 [Deploy](deploy.html) page set out with their sources.
 
@@ -98,11 +95,8 @@ reading a model-drafted changelog before anyone else does[^keep-a-changelog-2]. 
 prepares for a candidate is set in the release readiness row
 ([W25](workflow-catalog.html#W25)).
 
-Checks take what a tool can decide the same way every time. At release the property that matters
-most is scope: evidence names the revision it covers, so a result recorded for an earlier revision
-says nothing reliable about the code as it is now, and a new revision needs new records. The
-decision then reads evidence rather than asking around, the evidence hand-off described on the
-[Workflows](workflows.html) page. The checks that run before the decision are listed in the same
+Checks take what a tool can decide the same way every time. The decision then reads evidence, the
+evidence hand-off described on the [Workflows](workflows.html) page. The checks that run before the decision are listed in the same
 catalog row.
 
 Everything an agent prepares at release is material for the decision, never part of it. The agent
@@ -145,14 +139,10 @@ workflow reads another's records is set out on the [Workflows](workflows.html) p
 Release has one gate at entry and one at exit, and it leaves one record.
 
 **Entry.** A named candidate, fixed at one revision. Everything the phase examines is tied to that
-revision. If the candidate changes, the records gathered for the earlier revision stay as history
-and new ones are needed, because evidence carries its scope and expires when the revision changes,
-as the [Workflows](workflows.html) page explains.
+revision, as the [Workflows](workflows.html) page explains.
 
 **Exit.** The named person who owns the decision has made it, on evidence for that revision, and
-the record carries the decision. Only an explicit pass counts as a pass: a required check that
-could not run is a result of its own and, like a failure, prevents a positive overall status, as
-the [Evidence schema](evidence-schema.html#check-results) page sets out. The exit is also where the
+the record carries the decision. The exit is also where the
 release-level Definition of Done is met; the DoD tag on the map marks it, and what the definition
 contains and who owns it are set out under
 [Definition of Done](definition-of-ready-and-done.html#definition-of-done). When the candidate meets

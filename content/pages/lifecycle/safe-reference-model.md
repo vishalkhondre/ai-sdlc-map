@@ -215,7 +215,7 @@ completeness of a work product or increment of value"[^safe-glossary]. The Scrum
 a formal description of the state of the increment[^scrum-guide-2020]. Both treat done as a defined
 state that work either meets or does not. The site's Definition of Done, which it takes from the Scrum
 Guide, applies that state at three points: a story, an increment and a release. The map places its tag
-at Release, and the [Definition of Ready and Done](definition-of-ready-and-done.html#definition-of-done)
+at Release, and the [Definition of Ready and Done](definition-of-ready-and-done.html#done-at-three-levels)
 page sets out each point.
 
 Built-in quality is, in SAFe's words, "a set of practices to help ensure that the outputs of Agile

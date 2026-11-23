@@ -852,6 +852,7 @@ github-status-checks:
   title: "Troubleshooting required status checks"
   author: "GitHub"
   org: "GitHub Docs"
+  date: "not printed"
   url: "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks"
   accessed: "2026-11-23"
   note: "States that a job skipped by a conditional reports its status as Success, while a workflow skipped by path or branch filtering or by its commit message leaves required checks Pending. Cited for this platform's behaviour only."

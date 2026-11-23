@@ -110,8 +110,7 @@ decision is written under that person's name (see [Evidence schema](evidence-sch
 site's running example, a hypothetical feature that lets users export customer records, the
 specification does not yet say which roles may export which records. That question is recorded as
 open and settled before planning, within the access rule R-042, by the people the
-[Specification readiness](workflow-catalog.html#W04) row names
-([Software factory](software-factory.html)). An agent handed that specification with the
+[Specification readiness](workflow-catalog.html#W04) row names. An agent handed that specification with the
 access rule still open stops and asks rather than choosing a rule, which is one of the evaluation
 cases on [Skills with evals](skills-and-evals.html).
 
@@ -165,8 +164,6 @@ roles that take part in the phase are these.
 - **Developers.** Responsible for sizing the items they will work on[^scrum-guide-2020].
 - **Rule owner.** The owner of a rule the specification touches, such as the access rule R-042;
   rules and their owners are kept in the [Rule registry](rule-registry.html).
-- **QA or test lead.** As recommended practice, flags acceptance criteria whose
-  testability[^istqb-testability] is in doubt before the gate.
 
 ## Pitfalls
 
