@@ -3,11 +3,11 @@ id: lifecycle-levels
 type: concept
 band: lifecycle
 map_box: Portfolio · Train · Team
-title: Lifecycle levels, portfolio, train and team
+title: "Lifecycle levels: portfolio, train and team"
 summary: One delivery lifecycle runs at three altitudes, a portfolio that decides what to fund, a train that decides what to plan and demonstrate, and a team that decides what to build and when it is ready and done, with intent and rules flowing down and evidence and lessons flowing up.
 key_terms: [lifecycle-levels, agile-release-train, planning-interval, wsjf, workflow, software-factory, feedback-path, steering-loop, evidence-handoff, evidence-record, rule-registry, specification-readiness, risk-tier, export-example]
 sources: [safe-portfolio, safe-lpm-discipline, safe-lean-budgets, safe-guardrails, safe-strategic-themes, safe-epic, safe-wsjf, safe-cost-of-delay, safe-art, safe-agile-teams, safe-features, safe-framework, safe-pi-planning, safe-glossary, safe-inspect-and-adapt, safe-story, safe-iteration-planning, safe-iterations, scrum-guide-2020, dora-small-batches, dora-wip-limits, dora-customer-feedback, dora-ai-capabilities-impact, dora-2025-announcement, bockeler-harness, oasis-soa-rm, safe-system-demo]
-related: [safe-reference-model, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, idea, specification, design, develop-build-qa, release, operate, workflows, software-factory, rule-registry, evidence-schema]
+related: [safe-reference-model, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, idea, specification, design, develop-build-qa, deploy, release, operate, workflows, software-factory, rule-registry, evidence-schema]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -29,7 +29,8 @@ a common funding and governance model"[^safe-portfolio]. It defines an Agile Rel
 more solutions in a development value stream"[^safe-art], and an Agile Team as "a cross-functional
 group of typically ten or fewer individuals with all the skills necessary to define, build, test,
 and deliver value to their customer"[^safe-agile-teams]. The worked mapping from this site's labels
-to SAFe's terms is on the [SAFe reference model](safe-reference-model.html)[^oasis-soa-rm] page.
+to SAFe's terms, a reference model in the OASIS sense,[^oasis-soa-rm] is on the
+[SAFe reference model](safe-reference-model.html) page.
 
 ## Why it matters
 
@@ -60,14 +61,12 @@ such where it appears, and not a research finding.
 ## How it works
 
 Each level is described by what it decides, in SAFe's public wording where a definition exists.
-Two things then connect the levels, what flows down and up and the size of the work item, and the
-customer-record export shows the flows in one story.
+Two things then connect the levels: what flows down and up, and the size of the work item. The
+customer-record export then shows the flows in one story.
 
 ### Portfolio
 
-A portfolio decides which initiatives to fund, in what order, and the budget behind them. This
-sub-section rests on public sources alone: no public study covers portfolio decisions with agents,
-and the SAFe text below is the evidence used.
+A portfolio decides which initiatives to fund, in what order, and the budget behind them.
 
 SAFe's definition of a Portfolio is given above[^safe-portfolio]. Its budgeting follows from that
 definition: the available portfolio budget is "directly allocated to these value streams rather
@@ -79,21 +78,28 @@ strategic themes as portfolio-level business objectives that provide competitive
 and strategic advantage, and as what connects the enterprise strategy to a
 portfolio[^safe-strategic-themes].
 
-The unit of decision is the epic. An epic is "a significant solution development
-initiative"[^safe-epic].
+What a portfolio funds and orders is the epic, which SAFe calls "a significant solution development
+initiative"[^safe-epic]. Ordering epics uses weighted shortest job first (WSJF). In SAFe, WSJF "is
+estimated as the relative cost of delay divided by the relative job duration"[^safe-wsjf]. Its
+inputs are relative user and business value, time criticality, risk reduction and opportunity
+enablement, and job size[^safe-wsjf]. Cost of Delay is the money or value lost by delaying or not
+doing a job for a time period, relative to other jobs[^safe-cost-of-delay]. SAFe's WSJF page opens
+with an epigraph attributed to Don Reinertsen's *The Principles of Product Development
+Flow*[^safe-wsjf].
 
-Ordering uses weighted shortest job first (WSJF). In SAFe, WSJF "is estimated as the relative cost
-of delay divided by the relative job duration"[^safe-wsjf]. Its inputs are relative user and
-business value, time criticality, risk reduction and opportunity enablement, and job size[^safe-wsjf].
-Cost of Delay is the money or value lost by delaying or not doing a job for a time period, relative
-to other jobs[^safe-cost-of-delay]. The SAFe page opens with an epigraph attributed to Don
-Reinertsen's *The Principles of Product Development Flow*[^safe-wsjf]; this site credits the idea
-to Reinertsen only in that sense.
+No public study covers portfolio decisions with agents, so what this page says about agents at
+this level is recommended practice. Here an agent prepares and people decide. An agent can gather
+the evidence records of earlier work that bear on a candidate initiative, so that a funding
+discussion reads records rather than status reports, but it does not fund, order or budget
+anything; those decisions stay with named people. Two catalog workflows sit closest to these
+decisions, [Intake and classification (W01)](workflow-catalog.html#W01) and
+[Usage and feedback intake (W30)](workflow-catalog.html#W30), and their rows say what the agent
+and the people do in each.
 
 ### Train
 
 A train decides which features go into which planning cycle, and what the integrated demonstration
-shows. SAFe's definition of an ART is given above[^safe-art]. This page names roles by title only.
+shows. SAFe's definition of an ART is given above[^safe-art].
 
 A Feature is "solution functionality that delivers business value, fulfills a stakeholder need, and
 is sized to be delivered by an Agile Release Train within a PI"[^safe-features]. The Planning Interval
@@ -123,11 +129,16 @@ meets the quality measures required for the product"[^scrum-guide-2020]. The Gui
 term "Definition of Ready". SAFe's glossary defines the Definition of Done as specifying "the
 requirements for completeness of a work product or increment of value"[^safe-glossary]. The page
 [Definition of Ready and Definition of Done](definition-of-ready-and-done.html) treats both terms.
-What each role does at this level is covered in the enablement band.
 
 ### What flows down and up
 
-Rules flow down as one [rule registry](rule-registry.html); see
+Two things flow down. Intent flows down as the work item narrows: a portfolio funds an initiative,
+a train plans the features cut from it, and a team builds the stories cut from those features. In
+SAFe's terms that intent starts with the strategic themes described above, which connect the
+enterprise strategy to a portfolio[^safe-strategic-themes]. Keeping each story linked to
+its feature and each feature to its initiative, so that a team can see which funded intent its work
+serves and does not re-decide it, is recommended practice. Rules flow down as one
+[rule registry](rule-registry.html) shared by every level; see
 [Software factory](software-factory.html#three-things-are-shared).
 
 Two things flow up. Evidence flows up as the evidence record; see
@@ -135,11 +146,14 @@ Two things flow up. Evidence flows up as the evidence record; see
 [Harness engineering](harness-engineering.html#the-steering-loop-and-the-feedback-path). The
 [Inspect and Adapt](inspect-and-adapt.html) page covers the checkpoint where they are collected. In
 SAFe, improvement backlog items from Inspect and Adapt go into the ART Backlog for consideration in
-the next PI Planning event[^safe-inspect-and-adapt]. For what users do, DORA places customer
+the next PI Planning event[^safe-inspect-and-adapt].
+
+Signals from users flow up too, from outside the delivery work itself. DORA places customer
 feedback in a wider group of capabilities, with visibility of work in the value stream, working in
 small batches and team experimentation, that together represent a lean approach to product
 management and, applied together, help predict software delivery and organisational
-performance[^dora-customer-feedback].
+performance[^dora-customer-feedback]. In this site's workflow catalog, the workflow that handles
+those signals is [Usage and feedback intake (W30)](workflow-catalog.html#W30).
 
 ### The size of the work item at each level
 
@@ -164,12 +178,19 @@ recommended practice.
 
 The customer-record export is a hypothetical feature that lets users export customer records. Its
 open decisions are which records, which fields, how large exports behave, what happens on failure
-and what is audited. The example does not size the export or place it in a planning cycle, and it
-assigns no decision to a level beyond what the sections above support. It shows the flows.
+and what is audited. The example does not size the export, place it in a planning cycle or assign
+any decision to a level. It shows what travels between the levels.
 
-Rules come down; see [Rule registry](rule-registry.html). Evidence goes up; see
-[Evidence schema](evidence-schema.html#the-customer-record-export). Lessons go back; see
-[Software factory](software-factory.html#the-running-example-across-workflows).
+Intent comes down with the feature: its open decisions, such as which fields an export includes,
+are answered against the purpose the feature was approved for rather than re-decided at each step.
+Rules come down as registry entries: the access rule R-042 and the volume-limit rule R-017 live in
+the [rule registry](rule-registry.html), and the workflows that handle the export read them from
+there. Evidence goes up as a record: the pull-request run records R-042 as `failed` and R-017 as
+`could_not_run` in its [evidence record](evidence-schema.html#the-customer-record-export), and once
+the fixes land and the checks run again, release readiness reads the new record instead of asking
+again. Lessons go back after a scheduled full export times out in production: a readiness question
+asking every export-like specification for its largest export changes what later export-like
+features are asked ([Software factory](software-factory.html#the-running-example-across-workflows)).
 
 ## Where it sits on the map
 
@@ -183,8 +204,8 @@ test, change and release to incident, and a line naming Inspect & Adapt. The map
 above the phases without assigning any phase or workflow to a level.
 
 The phase boxes link to their pages: [Idea](idea.html), [Specification](specification.html),
-[Design](design.html), [Develop, Build and QA](develop-build-qa.html), [Release](release.html) and
-[Operate](operate.html). The spine links to [Traceability spine](traceability-spine.html), the
+[Design](design.html), [Develop, Build and QA](develop-build-qa.html), [Deploy](deploy.html),
+[Release](release.html) and [Operate](operate.html). The spine links to [Traceability spine](traceability-spine.html), the
 readiness and done tags to [Definition of Ready and Definition of Done](definition-of-ready-and-done.html)
 and the Inspect & Adapt line to [Inspect and Adapt](inspect-and-adapt.html).
 
@@ -210,8 +231,9 @@ workflows, rules and records that the levels share.
   given summaries of them. Sign: portfolio reviews read status updates, not records. The
   [Workflows](workflows.html#pitfalls) page names the same failure at workflow scale as hand-off by
   conversation; the portfolio-review sign is recommended practice.
-- **Lessons stay where they were learned.** The [Software factory](software-factory.html#pitfalls)
-  page calls this lessons that never close.
+- **Lessons stay where they were learned.** A lesson changes the work of the team that found it and
+  goes no further. Sign: the same kind of miss in a later feature. The
+  [Software factory](software-factory.html#pitfalls) page calls this lessons that never close.
 - **Agent output outruns the level that must judge it.** Generation is cheap and review is not.
   Sign: batches of generated change larger than a reviewer can read. DORA's warning about code that
   is hard to review and test[^dora-ai-capabilities-impact] and its advice on small
@@ -229,16 +251,16 @@ workflows, rules and records that the levels share.
   phases.
 - [Inspect and Adapt](inspect-and-adapt.html): the checkpoint where lessons flow up.
 - The phases: [Idea](idea.html), [Specification](specification.html), [Design](design.html),
-  [Develop, Build and QA](develop-build-qa.html), [Release](release.html) and
-  [Operate](operate.html).
+  [Develop, Build and QA](develop-build-qa.html), [Deploy](deploy.html), [Release](release.html)
+  and [Operate](operate.html).
 - [Workflows](workflows.html) and [Software factory](software-factory.html): the unit of work and
   the operating state that share rules, evidence and feedback across the levels.
 - [Rule registry](rule-registry.html), [Evidence schema](evidence-schema.html),
   [Harness engineering](harness-engineering.html) and [Engineering Kit](engineering-kit.html): where
   the rules and records that flow between levels are defined.
-- [Workflow catalog](workflow-catalog.html): the entries [W01](workflow-catalog.html#W01),
-  [W04](workflow-catalog.html#W04), [W08](workflow-catalog.html#W08) and
-  [W30](workflow-catalog.html#W30).
+- [Workflow catalog](workflow-catalog.html): the entries
+  [Intake and classification (W01)](workflow-catalog.html#W01) and
+  [Usage and feedback intake (W30)](workflow-catalog.html#W30), named in the sections above.
 - Terminology: [lifecycle levels](glossary.html#lifecycle-levels),
   [Agile Release Train](glossary.html#agile-release-train),
   [Planning Interval](glossary.html#planning-interval), [WSJF](glossary.html#wsjf),
@@ -260,3 +282,7 @@ workflows, rules and records that the levels share.
   feedback[^dora-customer-feedback], the AI capabilities post[^dora-ai-capabilities-impact] and the
   2025 report announcement[^dora-2025-announcement].
 - Böckeler on harness engineering and the steering loop[^bockeler-harness].
+- The sense in which this site uses "reference model": OASIS[^oasis-soa-rm].
+- Carrying intent from initiative to story, what an agent does at portfolio level, and applying
+  the batch-size and work-in-process tests at every level are this site's recommended practice;
+  no public source states them.

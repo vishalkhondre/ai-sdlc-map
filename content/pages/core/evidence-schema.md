@@ -272,7 +272,8 @@ covered on the [Traceability spine](traceability-spine.html) page.
 - [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
   incident.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
-  exit criteria for an item of work[^scrum-guide-2020].
+  exit criteria for an item of work, including the Definition of Done from the Scrum
+  Guide[^scrum-guide-2020].
 - [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence
   is read together[^safe-inspect-and-adapt].
 - [Terminology](glossary.html#evidence-record) and the [workflow catalog](workflow-catalog.html).

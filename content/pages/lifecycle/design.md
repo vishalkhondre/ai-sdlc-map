@@ -4,27 +4,27 @@ type: phase
 band: lifecycle
 map_box: Design
 title: Design
-summary: Design settles how a specified change is built and what it is held to, turning its risk tier into concrete checks and named reviewers; an agent prepares the written design, while trade-off judgments stay with people.
+summary: Design settles how a specified change is to be built and records the decisions and trade-offs behind that approach; an agent prepares first versions of the written design, while trade-off judgments stay with people.
 key_terms: [ai-sdlc, risk-tier, rule-registry, rule-route, gate, fitness-function, architecture-decision-record, project-configuration, consumer-driven-contract, contract-test, workflow, three-roles, evidence-record, export-example]
-sources: [sei-atam, sei-atam-2000, nygard-adr, threat-modeling-manifesto, owasp-threat-modeling-cs, nist-ssdf, fowler-evodb, fowler-blue-green, robinson-cdc, fowler-contract-test, istqb-rbt, owasp-asvs, ford-evolutionary-architectures, fitness-function, spec-kit-sdd, bockeler-harness, safe-system-architect, safe-art, scrum-guide-2020]
-related: [specification, develop-build-qa, definition-of-ready-and-done, workflows, rule-registry, engineering-kit, harness-engineering, evidence-schema]
+sources: [bockeler-sensors, sei-atam, sei-atam-2000, nygard-adr, threat-modeling-manifesto, owasp-threat-modeling-cs, nist-ssdf, fowler-evodb, fowler-blue-green, robinson-cdc, fowler-contract-test, istqb-rbt, owasp-asvs, ford-evolutionary-architectures, fitness-function, spec-kit-sdd, bockeler-harness, safe-system-architect, safe-art, scrum-guide-2020]
+related: [specification, develop-build-qa, definition-of-ready-and-done, workflows, rule-registry, engineering-kit, harness-engineering, evidence-schema, validators]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
 ## Purpose
 
 Design is the phase in which an accepted specification becomes a plan for building it. The phase
-settles how the change is to be built and what it is held to on its way to release, and its output
-is that plan, which also commits the change to the checks it must pass and the named people who must
-approve it. The decision is taken in the catalog's
-[Plan and architecture conformance](workflow-catalog.html#W08) workflow.
+chooses a technical approach, weighs what that approach trades away, and records the decisions taken
+so that a later reader can see what was chosen and why. Its central decision is design conformance
+([W08](workflow-catalog.html#W08)), which the workflow catalog titles Plan and architecture
+conformance.
 
-In the AI SDLC (the software development lifecycle with AI agents doing part of the work), Design is
-also where a change's [risk tier](glossary.html#risk-tier) stops being a label and turns into a
-definite set of checks and reviewers (see
-[Workflows](workflows.html#risk-tiers-same-definition-different-cost)). Settling the approach in the
-plan is recommended practice, since whatever the plan leaves open, an agent building from it decides
-on its own.
+In the AI SDLC (the software development lifecycle with AI agents doing part of the work), the plan
+is also what an agent builds from. Whatever the plan leaves open, an agent building from it decides
+on its own, so settling the approach in the plan is recommended practice. The site's account of
+[risk tiers](glossary.html#risk-tier), which the phase works with, is under
+[Risk tiers: same definition, different cost](workflows.html#risk-tiers-same-definition-different-cost)
+on the Workflows page.
 
 ## Traditional practice
 
@@ -86,13 +86,13 @@ made at design time be checked on every later change.
 
 What changes first is who writes the first version. No public study measures how well coding
 agents design, or whether a set of checks chosen by an agent is the right one, so this section
-describes recommended practice, not a finding. In that practice the agent drafts the written
-material of the phase from the specification and the codebase: a plan, candidate decision records,
-first answers to the threat-modeling questions, and proposed interface or schema changes, each for a
-person to accept or reject. The agent's part in the central decision is set out in
-[its catalog row](workflow-catalog.html#W08); what follows is how the work divides among the site's
-[three roles](workflows.html#the-three-roles-agent-checks-and-people) of agent, checks and
-people.
+describes recommended practice, not a finding. In that practice an agent prepares first versions of
+the phase's written material, such as candidate decision records, first answers to the
+threat-modeling questions and proposed interface or schema changes, each for a person to accept or
+reject. The agent's part in the central decision belongs to design conformance
+([W08](workflow-catalog.html#W08)) and is not restated here; what follows is how the work divides
+among the site's [three roles](workflows.html#the-three-roles-agent-checks-and-people) of agent,
+checks and people.
 
 **Constraints on the drafting.** Rules can bind the agent while it writes. One open-source
 spec-driven toolkit gives the agent a constitution of principles that includes a simplicity gate and
@@ -100,10 +100,20 @@ an anti-abstraction gate, and states that the model "cannot proceed without eith
 gates or documenting justified exceptions" in a section that tracks complexity[^spec-kit-sdd]. A
 departure then has to be argued in writing instead of entering the plan unnoticed.
 
+**What moves to a deterministic check.** A design decision that can be stated precisely can be
+checked by a machine on every later change instead of being remembered. Fitness functions turn an
+architectural goal into such a check[^ford-evolutionary-architectures][^fitness-function], and in
+consumer-driven contracts the consumers' stated expectations of an interface become tests the
+provider is run against[^robinson-cdc]. As recommended practice, each design decision that can be
+written as a check is written as one, so that the decision holds whether or not an agent that later
+builds from the plan has read the reasoning behind it. In the customer-record export, the
+volume-limit rule R-017 is checked by a 50k-row load scenario rather than left to a sentence in the
+plan (see [Validators](validators.html)).
+
 **What stays with a person.** Whether an approach is right, given what it trades away, has no
-mechanical test. Böckeler notes that inferential sensors, which use a model to judge the work,
-address semantic concerns only partially[^bockeler-harness], so an agent's review of a design is advice to the person
-who decides and never an approval (see [Workflows](workflows.html)). The catalog keeps the
+mechanical test. Birgitta Böckeler notes that inferential sensors, which use a model to judge the
+work, address semantic concerns only partially[^bockeler-harness], so an agent's review of a design
+is advice to the person who decides and never an approval (see [Workflows](workflows.html)). The catalog keeps the
 trade-off decision as a judgment-only workflow,
 [Design and architecture review](workflow-catalog.html#W24), which stays with a person. As
 recommended practice, an agent that drafted a plan counts as involved in the design in the sense of
@@ -114,7 +124,8 @@ SSDF task PW.2.1[^nist-ssdf], so it cannot serve as the independent reviewer of 
 The workflow catalog uses its own phase names. The rows for this phase sit under the catalog's
 phase 2, "Plan & design":
 
-- [Plan and architecture conformance](workflow-catalog.html#W08): the phase's central decision.
+- [Plan and architecture conformance](workflow-catalog.html#W08): the phase's central decision,
+  which the map draws as the bar labelled "design conformance".
 - [API contract design](workflow-catalog.html#W09),
   [Data model and migration plan](workflow-catalog.html#W10) and
   [Security design review](workflow-catalog.html#W11): specialist decisions within the phase.
@@ -129,13 +140,12 @@ One further decision about design sits elsewhere in the catalog.
 
 **Entry.** Design starts from a specification that has passed its readiness decision,
 [Specification readiness](workflow-catalog.html#W04). The [Specification](specification.html) page
-describes that phase, and the [Definition of Ready and Definition of Done](definition-of-ready-and-done.html)[^scrum-guide-2020]
-page describes the criteria behind it. A plan written against a specification that has not passed
-inherits its open questions.
+describes that phase and the readiness criteria behind it. A plan written against a specification
+that has not passed inherits its open questions.
 
-**Exit.** The phase is left when the plan, with the checks and reviewers it commits the change to,
-is committed and has passed the checks set out in [its catalog row](workflow-catalog.html#W08). The
-exit leaves an evidence record in the common shape the [Evidence schema](evidence-schema.html) sets.
+**Exit.** The phase ends with the design conformance decision ([W08](workflow-catalog.html#W08)),
+taken by a named person; what that decision covers is set out in its catalog row. The exit leaves an
+evidence record in the common shape the [Evidence schema](evidence-schema.html) sets.
 
 **Decision records.** A significant design decision leaves an architecture decision record; when a
 later change reverses it, the old record stays, marked superseded[^nygard-adr].
@@ -158,14 +168,10 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
 
 ## Pitfalls
 
-- **A tier chosen to keep the checks few.** The change is labelled lighter than what it touches,
-  so fewer checks and reviewers apply. Sign: the plan lists data or rules that none of the declared
-  checks mention. The [risk-tier guidance](workflows.html#risk-tiers-same-definition-different-cost)
-  says how a tier is set.
-- **A boundary the plan leaves out.** Work crosses into a component the plan never names, so no
-  declared check covers it. In the export, large result sets are assembled by a background worker
-  that can run a broader query than the request path, so a plan for the export names the worker as
-  well as the request path. Sign: code paths in the change that appear nowhere in the plan.
+- **A tier chosen to keep the checks few.** The change is labelled lighter than what it touches.
+  Sign: the plan lists data or rules that none of the declared checks mention. The
+  [risk-tier guidance](workflows.html#risk-tiers-same-definition-different-cost) says how a tier is
+  set.
 - **The agent's summary taken as the design review.** Sign: the review record holds the agent's
   summary and an approval, and nothing of the reviewer's own. See the pitfalls in
   [Workflows](workflows.html#pitfalls).
@@ -186,15 +192,18 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
 
 - [Specification](specification.html): the phase before Design, whose accepted specification is
   Design's input.
-- [Develop, build and QA](develop-build-qa.html): the phase after Design, where the declared checks
+- [Develop, Build and QA](develop-build-qa.html): the phase after Design, where the declared checks
   run.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entrance and
-  exit criteria around the phases.
+  exit criteria around the phases. The Definition of Done is the Scrum Guide's term for the state of
+  the Increment when it meets the quality measures required for the product[^scrum-guide-2020].
 - [Workflows](workflows.html): the decision unit, the three roles and how
   [risk tiers](workflows.html#risk-tiers-same-definition-different-cost) work.
 - [Rule registry](rule-registry.html): rules and their routes.
 - [Engineering Kit](engineering-kit.html): the project configuration that holds which checks run.
 - [Harness engineering](harness-engineering.html): computational and inferential controls.
+- [Validators](validators.html): the deterministic checks that hold design decisions on later
+  changes.
 - [Evidence schema](evidence-schema.html): the fixed shape of every evidence record.
 - Workflow catalog rows [W08](workflow-catalog.html#W08), [W12](workflow-catalog.html#W12) and
   [W24](workflow-catalog.html#W24).
@@ -215,4 +224,7 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
   Wang[^fitness-function].
 - Agents and controls: an open-source spec-driven toolkit[^spec-kit-sdd] and Birgitta Böckeler on
   harness engineering[^bockeler-harness].
-- SAFe: Scaled Agile's System Architect page[^safe-system-architect].
+- SAFe: Scaled Agile's System Architect page[^safe-system-architect] and its Agile Release Train
+  page[^safe-art].
+- Definition of Done: the 2020 Scrum Guide by Ken Schwaber and Jeff Sutherland[^scrum-guide-2020].
+- Validators: this site's adaptation of Birgitta Böckeler's computational sensors[^bockeler-sensors].

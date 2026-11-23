@@ -30,7 +30,7 @@ November 2026. The Core SAFe articles used here print no version number, and thi
 SAFe's configurations page is titled "SAFe 6.0 Configurations" and describes its contents as the
 latest version of SAFe[^safe-configurations].
 
-One note on AI-Native SAFe, and no more. AI-Native SAFe builds on Core SAFe, which continues alongside
+One note on AI-Native SAFe. AI-Native SAFe builds on Core SAFe, which continues alongside
 it[^safe-framework-home]. In AI-Native SAFe, a two-hour Sense and Respond event at the boundary of
 every iteration replaces the Core SAFe event Inspect and Adapt, and also includes the activities that
 were in the System Demo[^safe-ai-native-sense-and-respond]. Both events are described below. Every
@@ -86,8 +86,8 @@ and timeboxes, and the four aspects of SAFe's Continuous Delivery Pipeline. It t
 that sit at each level only as far as the levels need them.
 
 SAFe's Planning Interval (PI) is "a cadence-based timebox in which Agile Release Trains deliver
-continuous value to customers in alignment with PI Objectives"[^safe-framework]. Three cadence
-figures appear on this page. Each is typical; none is a default or a requirement.
+continuous value to customers in alignment with PI Objectives"[^safe-framework]. The three Core SAFe
+cadence figures below are typical; none is a default or a requirement.
 
 - A Planning Interval is typically 8 to 12 weeks. SAFe calls 8 to 12 weeks a good starting point and
   describes the pattern it gives for a PI as a suggestion rather than a strict rule[^safe-framework].
@@ -103,14 +103,14 @@ says nothing about the order of events inside an iteration.
 
 The table sets each SAFe level against the generic label this site gives the same altitude and the
 decision on this site that lines up with it. The labels link to the sections of the
-[lifecycle levels](lifecycle-levels.html) page. Workflow identifiers such as W01 refer to rows of the
-[workflow catalog](workflow-catalog.html).
+[lifecycle levels](lifecycle-levels.html) page. Each decision is named as in the
+[workflow catalog](workflow-catalog.html), and its identifier links to its row there.
 
 | SAFe level | Label on this site | What SAFe places at the level | Decision on this site that lines up with it |
 |---|---|---|---|
-| Portfolio, a set of value streams under "a common funding and governance model"[^safe-portfolio] | [Portfolio](lifecycle-levels.html#portfolio): initiatives, prioritisation, budgets | Funding and prioritisation: Lean budgets and their guardrails, Strategic Themes, the Portfolio Backlog of epics, and WSJF[^safe-lean-budgets][^safe-portfolio-backlog][^safe-wsjf] | [W01](workflow-catalog.html#W01) |
-| Agile Release Train, a "long-lived team of Agile teams"[^safe-art] | [Train](lifecycle-levels.html#train): features, planning cycle, integrated demo | Features delivered within a Planning Interval, with PI Planning, PI Objectives, the ART backlog, the System Demo and Inspect and Adapt[^safe-features][^safe-framework] | [W04](workflow-catalog.html#W04); [W08](workflow-catalog.html#W08) |
-| Agile Team, a cross-functional group with the skills to define, build, test and deliver value[^safe-agile-teams] | [Team](lifecycle-levels.html#team): stories, iterations, readiness and done | Stories, the Team Backlog, the iteration, Iteration Planning and Team Backlog Refinement[^safe-story][^safe-team-backlog][^safe-iteration-planning] | [W12](workflow-catalog.html#W12) |
+| Portfolio, a set of value streams under "a common funding and governance model"[^safe-portfolio] | [Portfolio](lifecycle-levels.html#portfolio): initiatives, prioritisation, budgets | Funding and prioritisation: Lean budgets and their guardrails, Strategic Themes, the Portfolio Backlog of epics, and WSJF[^safe-lean-budgets][^safe-guardrails][^safe-strategic-themes][^safe-portfolio-backlog][^safe-wsjf] | Intake and classification ([W01](workflow-catalog.html#W01)) |
+| Agile Release Train, a "long-lived team of Agile teams"[^safe-art] | [Train](lifecycle-levels.html#train): features, planning cycle, integrated demo | Features delivered within a Planning Interval, with PI Planning, PI Objectives, the ART backlog, the System Demo and Inspect and Adapt[^safe-features][^safe-framework][^safe-pi-objectives][^safe-art-backlog][^safe-system-demo][^safe-inspect-and-adapt] | Specification readiness ([W04](workflow-catalog.html#W04)); plan and architecture conformance ([W08](workflow-catalog.html#W08)) |
+| Agile Team, a cross-functional group with the skills to define, build, test and deliver value[^safe-agile-teams] | [Team](lifecycle-levels.html#team): stories, iterations, readiness and done | Stories, the Team Backlog, the iteration, Iteration Planning and Team Backlog Refinement[^safe-story][^safe-team-backlog][^safe-iteration-planning] | Task traceability and test planning ([W12](workflow-catalog.html#W12)) |
 
 The decision in the last column sits beside the level's work. The site does not assign workflows to
 levels, as the [lifecycle levels](lifecycle-levels.html) page states, so the column says which
@@ -129,8 +129,8 @@ first) is estimated as the relative cost of delay divided by the relative job du
 user and business value, time criticality, risk reduction and/or opportunity enablement, and job
 size[^safe-wsjf]. Cost of Delay is the money or value lost by delaying or not
 doing a job for a time period, relative to other jobs[^safe-cost-of-delay]. SAFe's WSJF page opens
-with an epigraph credited to Don Reinertsen's *The Principles of Product Development
-Flow*[^safe-wsjf]; this site credits WSJF to SAFe, which credits Reinertsen. On this site's side, the decision that lines up with this level is [W01](workflow-catalog.html#W01). The join is recommended practice. Both the SAFe items and the intake
+with an epigraph attributed to Don Reinertsen's *The Principles of Product Development
+Flow*[^safe-wsjf], and this site credits WSJF to SAFe. On this site's side, the decision that lines up with this level is intake and classification ([W01](workflow-catalog.html#W01)). The join is recommended practice. Both the SAFe items and the intake
 decision concern which work is taken up and how it is classified, and the map labels the level
 "initiatives · prioritisation · budgets".
 
@@ -142,8 +142,8 @@ goals that teams and trains intend to achieve in the upcoming PI and are either 
 uncommitted"[^safe-pi-objectives]. The ART backlog is "a Kanban system used to capture and manage the
 features and enablers that enhance the solution"[^safe-art-backlog]. The System Demo and Inspect and
 Adapt are set against pages of this site in the events table below. On this site's side, the
-decisions that line up with this level are [W04](workflow-catalog.html#W04) and
-[W08](workflow-catalog.html#W08). Their pages are [Specification](specification.html) and
+decisions that line up with this level are specification readiness ([W04](workflow-catalog.html#W04))
+and plan and architecture conformance ([W08](workflow-catalog.html#W08)). Their pages are [Specification](specification.html) and
 [Design](design.html). The join is recommended practice and is stated only for the records these
 decisions leave, which the site offers to a planning event.
 
@@ -153,7 +153,7 @@ iteration[^safe-story]. The Team Backlog is "a Kanban system that is used to cap
 user stories and enablers intended to enhance the solution"[^safe-team-backlog]. The team level is where stories are taken from
 that backlog into an iteration: in Iteration Planning "the team defines, organizes, and commits to the
 work for the next iteration"[^safe-iteration-planning]. On this site's side, the decision that lines up with this level
-is [W12](workflow-catalog.html#W12). The map labels the level
+is task traceability and test planning ([W12](workflow-catalog.html#W12)). The map labels the level
 "stories · iterations · DoR / DoD". The join is recommended practice.
 
 The model maps decisions, not roles. SAFe defines roles of its own[^safe-art]. This site names the
@@ -171,12 +171,12 @@ record of this site.
 
 | SAFe event | In SAFe's words | Lines up with on this site | Why the join holds |
 |---|---|---|---|
-| System Demo | "provides stakeholders an integrated view of new features for the most recent iteration delivered by all the teams on the ART"[^safe-system-demo] | [Release](release.html); [W25](workflow-catalog.html#W25) | Both bring the results of several changes together before a decision. The join is loose: the demo shows working features to stakeholders. |
-| Iteration | "a standard, fixed-duration timebox during which Agile Teams and ARTs individually and collectively deliver incremental customer value while working towards the PI objectives"[^safe-iterations] | [Develop, Build and QA](develop-build-qa.html) | The iteration is the container and the three phases are the path one change takes inside it. The site draws one workflow ([W23](workflow-catalog.html#W23)) across the three phases. |
-| Inspect and Adapt | "a significant event held at the end of each PI", "structured into three parts: the PI System Demo, a quantitative and qualitative measurement review, and a retrospective and problem-solving workshop"[^safe-inspect-and-adapt]. The workshop is "a structured approach to identifying the root cause and actions to address systemic problems"[^safe-problem-solving-workshop]. Its output is "improvement backlog items that go into the ART Backlog for consideration in the next PI Planning event"[^safe-inspect-and-adapt], and the ART backlog is a Kanban system for the features and enablers that enhance the solution[^safe-art-backlog] | [Inspect and Adapt](inspect-and-adapt.html); [W28](workflow-catalog.html#W28) | Both turn what was learned into changes to a backlog: SAFe's improvement backlog items on one side, and on this site's side a decision on which workflow to add or tighten next. |
-| Team Backlog Refinement | "an event that helps Agile Teams clarify and prepare upcoming stories and features"[^safe-team-backlog-refinement] | [Specification](specification.html); [W04](workflow-catalog.html#W04) | The clarifying and preparing that SAFe's sentence names is the work that answers [W04](workflow-catalog.html#W04). |
-| PI Planning | "a cadence-based event for the entire ART that aligns teams and stakeholders to a shared mission and vision", typically two days long, with outputs of "committed PI objectives from the Agile Teams and an ART planning board that reflects feature delivery dates and dependencies"[^safe-pi-planning]. PI Objectives "summarize the business and technical goals that teams and trains intend to achieve in the upcoming PI and are either committed or uncommitted"[^safe-pi-objectives] | [Specification](specification.html); [W04](workflow-catalog.html#W04); [Design](design.html); [W08](workflow-catalog.html#W08) | PI Planning ends in commitments, and [W04](workflow-catalog.html#W04) and [W08](workflow-catalog.html#W08) are the decisions on this site that come before work is committed to. |
-| Iteration Planning | "the team defines, organizes, and commits to the work for the next iteration", in about 90 minutes for a two-week iteration[^safe-iteration-planning]. Iteration Goals are "a high-level summary of the business and technical goals that an Agile Team agrees to accomplish in an Iteration"[^safe-glossary] | [Definition of Ready and Done](definition-of-ready-and-done.html); [W12](workflow-catalog.html#W12) | Both concern which work a team takes on. |
+| System Demo | "provides stakeholders an integrated view of new features for the most recent iteration delivered by all the teams on the ART"[^safe-system-demo] | [Release](release.html); release readiness ([W25](workflow-catalog.html#W25)) | Both bring the results of several changes together before a decision. The join is loose: the demo shows working features to stakeholders. |
+| Iteration | "a standard, fixed-duration timebox during which Agile Teams and ARTs individually and collectively deliver incremental customer value while working towards the PI objectives"[^safe-iterations] | [Develop, Build and QA](develop-build-qa.html) | The iteration is the container and the three phases are the path one change takes inside it. The site draws one workflow, pull-request verification ([W23](workflow-catalog.html#W23)), across the three phases. |
+| Inspect and Adapt | "a significant event held at the end of each PI", "structured into three parts: the PI System Demo, a quantitative and qualitative measurement review, and a retrospective and problem-solving workshop"[^safe-inspect-and-adapt]. The workshop is "a structured approach to identifying the root cause and actions to address systemic problems"[^safe-problem-solving-workshop]. Its output is "improvement backlog items that go into the ART Backlog for consideration in the next PI Planning event"[^safe-inspect-and-adapt], and the ART backlog is a Kanban system for the features and enablers that enhance the solution[^safe-art-backlog] | [Inspect and Adapt](inspect-and-adapt.html); incident-to-development feedback ([W28](workflow-catalog.html#W28)) | Both turn what was learned into changes to a backlog: SAFe's improvement backlog items on one side, and on this site's side a decision on which workflow to add or tighten next. |
+| Team Backlog Refinement | "an event that helps Agile Teams clarify and prepare upcoming stories and features"[^safe-team-backlog-refinement] | [Specification](specification.html); specification readiness ([W04](workflow-catalog.html#W04)) | The clarifying and preparing that SAFe's sentence names is the work that answers the specification readiness decision. |
+| PI Planning | "a cadence-based event for the entire ART that aligns teams and stakeholders to a shared mission and vision", typically two days long, with outputs of "committed PI objectives from the Agile Teams and an ART planning board that reflects feature delivery dates and dependencies"[^safe-pi-planning]. PI Objectives "summarize the business and technical goals that teams and trains intend to achieve in the upcoming PI and are either committed or uncommitted"[^safe-pi-objectives] | [Specification](specification.html); specification readiness ([W04](workflow-catalog.html#W04)); [Design](design.html); plan and architecture conformance ([W08](workflow-catalog.html#W08)) | PI Planning ends in commitments, and specification readiness and plan and architecture conformance are the decisions on this site that come before work is committed to. |
+| Iteration Planning | "the team defines, organizes, and commits to the work for the next iteration", in about 90 minutes for a two-week iteration[^safe-iteration-planning]. Iteration Goals are "a high-level summary of the business and technical goals that an Agile Team agrees to accomplish in an Iteration"[^safe-glossary] | [Definition of Ready and Done](definition-of-ready-and-done.html); task traceability and test planning ([W12](workflow-catalog.html#W12)) | Both concern which work a team takes on. |
 
 The lengths in the table are SAFe's typical figures and not defaults; the Pitfalls section returns to
 this.
@@ -191,21 +191,20 @@ Build, QA, Deploy, Release and Operate.
 
 | SAFe aspect | In SAFe's words | Phases on this site | Decision that lines up with it |
 |---|---|---|---|
-| Continuous exploration | "continually exploring the market and customer needs, defining a vision, roadmap, and set of features for a solution"[^safe-continuous-exploration] | [Idea](idea.html), [Specification](specification.html) | [W01](workflow-catalog.html#W01) and [W04](workflow-catalog.html#W04) |
-| Continuous integration | "new functionality is developed, tested, integrated, and validated in preparation for deployment and release"[^safe-continuous-integration] | [Develop, Build and QA](develop-build-qa.html) | [W23](workflow-catalog.html#W23) |
-| Continuous deployment | "automates the migration of new functionality from a staging environment to production, where it is made available for release"[^safe-continuous-deployment] | [Deploy](deploy.html) | [W26](workflow-catalog.html#W26) |
-| Release on demand | "releases new functionality immediately or incrementally based on business and customer needs"[^safe-release-on-demand] | [Release](release.html) | [W25](workflow-catalog.html#W25) |
+| Continuous exploration | "continually exploring the market and customer needs, defining a vision, roadmap, and set of features for a solution"[^safe-continuous-exploration] | [Idea](idea.html), [Specification](specification.html) | Intake and classification ([W01](workflow-catalog.html#W01)) and specification readiness ([W04](workflow-catalog.html#W04)) |
+| Continuous integration | "new functionality is developed, tested, integrated, and validated in preparation for deployment and release"[^safe-continuous-integration] | [Develop, Build and QA](develop-build-qa.html) | Pull-request verification ([W23](workflow-catalog.html#W23)) |
+| Continuous deployment | "automates the migration of new functionality from a staging environment to production, where it is made available for release"[^safe-continuous-deployment] | [Deploy](deploy.html) | Deployment and post-deploy verification ([W26](workflow-catalog.html#W26)) |
+| Release on demand | "releases new functionality immediately or incrementally based on business and customer needs"[^safe-release-on-demand] | [Release](release.html) | Release readiness ([W25](workflow-catalog.html#W25)) |
 
-Two phases need a word. SAFe's four aspects include none named for design, and the table does not
-force a row for it; [Design](design.html) sits between the first two aspects on this site's side.
-SAFe's page on continuous deployment names four practices, Deploy, Verify, Monitor and
-Respond[^safe-continuous-deployment]. Verify lines up with W26, and Monitor and Respond line up with
-the [Operate](operate.html) phase. Only the names are mapped.
+Two phases have no row. SAFe's four aspects include none named for design or for operation, and the
+table does not force a row for either. On this site's side, [Design](design.html) sits between the
+first two aspects, and [Operate](operate.html) follows the last.
 
 SAFe separates deployment from release. It states that "it's optimal to separate the deployment
 process from releasing"[^safe-continuous-deployment] and that releases are "decoupled from the work to
 deploy the functionality"[^safe-release-on-demand]. This site draws the same line: Deploy and Release
-are separate phases with separate decisions (W26 and W25), and the [Deploy](deploy.html) page sets out
+are separate phases with separate decisions, deployment and post-deploy verification
+([W26](workflow-catalog.html#W26)) and release readiness ([W25](workflow-catalog.html#W25)), and the [Deploy](deploy.html) page sets out
 the difference between deploying a build and releasing a change. The join of aspects to phases is this
 site's recommended mapping.
 
@@ -226,20 +225,16 @@ practice, is the set of [validators](validators.html)[^bockeler-sensors] that ru
 [Develop, Build and QA](develop-build-qa.html), each leaving an [evidence record](evidence-schema.html).
 
 The entrance to the work is set out on this site's side by the
-[Definition of Ready](definition-of-ready-and-done.html#definition-of-ready). The map places its tag
-at Specification, where specification readiness ([W04](workflow-catalog.html#W04)) sits, and
-[W12](workflow-catalog.html#W12) is covered on the [Design](design.html) page. The events
-table sets two events against these decisions: Team Backlog Refinement against W04, because both
-concern whether upcoming work is clear enough to plan, and Iteration Planning against W12, because
-both concern which work a team takes on. Both joins are recommended practice.
+[Definition of Ready](definition-of-ready-and-done.html#definition-of-ready).
 
 ### The export feature through the model
 
-The customer-record export is the site's [running example](software-factory.html#the-running-example-across-workflows).
+The customer-record export is a hypothetical feature that lets users export customer records. It is
+the site's [running example](software-factory.html#the-running-example-across-workflows).
 
 The linked page follows the export through each workflow, and this page adds only where those
 workflows sit against SAFe: the export's open readiness question, which roles may export which
-records, is settled at [W04](workflow-catalog.html#W04), the decision the events table sets beside
+records, is settled at specification readiness ([W04](workflow-catalog.html#W04)), the decision the events table sets beside
 Team Backlog Refinement and PI Planning. That placement is this site's recommended mapping, not a
 statement from SAFe.
 
@@ -275,14 +270,15 @@ bands therefore meets both vocabularies on the map, and this page is the join be
   for a Planning Interval and describes its pattern for a PI as a suggestion rather than a strict
   rule[^safe-framework]. Sign: a calendar is fixed at the typical length of a PI, a planning event or
   an iteration planning meeting, with no reason recorded for the choice.
-
 - **Forcing one workflow per SAFe event.** SAFe defines events by their purpose and timebox, for
   example PI Planning as "a cadence-based event for the entire ART"[^safe-pi-planning] and Inspect and
   Adapt as "a significant event held at the end of each PI"[^safe-inspect-and-adapt]. One event can
-  line up with several decisions (see [Workflows](workflows.html)), as PI Planning does with W04 and W08 in the events table, and
-  decisions such as W23 and W26 line up with a pipeline aspect and with no event. Sign: a workflow is
-  named after a meeting, or a decision with no meeting has no workflow.
-
+  line up with several decisions (see [Workflows](workflows.html)), as PI Planning does with
+  specification readiness ([W04](workflow-catalog.html#W04)) and plan and architecture conformance
+  ([W08](workflow-catalog.html#W08)) in the events table, and decisions such as pull-request
+  verification ([W23](workflow-catalog.html#W23)) and deployment and post-deploy verification
+  ([W26](workflow-catalog.html#W26)) line up with a pipeline aspect and with no event. Sign: a
+  workflow is named after a meeting, or a decision with no meeting has no workflow.
 - **Reading "done" as "released".** The Scrum Guide says an item that does not meet the Definition of
   Done "cannot be released or even presented at the Sprint Review"[^scrum-guide-2020]. Meeting it is a
   condition for a release decision, not the decision, and SAFe keeps deployment and release apart
@@ -305,11 +301,13 @@ bands therefore meets both vocabularies on the map, and this page is the join be
 - [Software factory](software-factory.html).
 - [Harness engineering](harness-engineering.html), [Evidence schema](evidence-schema.html) and
   [Rule registry](rule-registry.html).
-- [Workflow catalog](workflow-catalog.html): rows [W01](workflow-catalog.html#W01),
-  [W04](workflow-catalog.html#W04), [W08](workflow-catalog.html#W08),
-  [W12](workflow-catalog.html#W12), [W23](workflow-catalog.html#W23),
-  [W25](workflow-catalog.html#W25), [W26](workflow-catalog.html#W26) and
-  [W28](workflow-catalog.html#W28).
+- [Workflow catalog](workflow-catalog.html): rows intake and classification
+  ([W01](workflow-catalog.html#W01)), specification readiness ([W04](workflow-catalog.html#W04)),
+  plan and architecture conformance ([W08](workflow-catalog.html#W08)), task traceability and test
+  planning ([W12](workflow-catalog.html#W12)), pull-request verification
+  ([W23](workflow-catalog.html#W23)), release readiness ([W25](workflow-catalog.html#W25)),
+  deployment and post-deploy verification ([W26](workflow-catalog.html#W26)) and
+  incident-to-development feedback ([W28](workflow-catalog.html#W28)).
 - [Terminology](glossary.html#reference-model): the reference model, the SAFe terms and their credits.
 
 ## Sources

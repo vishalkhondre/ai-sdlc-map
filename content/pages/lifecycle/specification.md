@@ -45,7 +45,9 @@ it[^scrum-guide-2020].
 
 A user story can be judged against INVEST, the acronym Bill Wake published on his own site in August
 2003: a story should be Independent, Negotiable, Valuable, Estimable, Small and
-Testable[^wake-invest].
+Testable[^wake-invest]. DORA's guidance on working in small batches makes a similar point about
+size, advising that work be broken "into work units that can be completed independently and in
+short timeframes"[^dora-small-batches].
 
 Each story is paired with acceptance criteria, which the ISTQB glossary defines as "the criteria that
 a work product must satisfy to be accepted by the stakeholders"[^istqb-acceptance-criteria]. Whether a
@@ -106,9 +108,10 @@ What stays with a person is intent. An agent can find that a question is open; i
 business wants. As recommended practice, the agent proposes and a named person decides, and the
 decision is written under that person's name (see [Evidence schema](evidence-schema.html)). In the
 site's running example, a hypothetical feature that lets users export customer records, the
-specification does not yet say which roles may export which records: the product owner answers before
-planning, and the security owner, who owns the access rule R-042, confirms that the answer stays
-within it ([Software factory](software-factory.html)). An agent handed that specification with the
+specification does not yet say which roles may export which records. That question is recorded as
+open and settled before planning, within the access rule R-042, by the people the
+[Specification readiness](workflow-catalog.html#W04) row names
+([Software factory](software-factory.html)). An agent handed that specification with the
 access rule still open stops and asks rather than choosing a rule, which is one of the evaluation
 cases on [Skills with evals](skills-and-evals.html).
 
@@ -160,8 +163,8 @@ roles that take part in the phase are these.
 - **Product owner.** Accountable for effective Product Backlog management, including creating and
   clearly communicating backlog items[^scrum-guide-2020].
 - **Developers.** Responsible for sizing the items they will work on[^scrum-guide-2020].
-- **Engineering or security owner.** The owner of a rule the specification touches, such as the
-  access rule R-042; rules and their owners are kept in the [Rule registry](rule-registry.html).
+- **Rule owner.** The owner of a rule the specification touches, such as the access rule R-042;
+  rules and their owners are kept in the [Rule registry](rule-registry.html).
 - **QA or test lead.** As recommended practice, flags acceptance criteria whose
   testability[^istqb-testability] is in doubt before the gate.
 
@@ -221,4 +224,4 @@ roles that take part in the phase are these.
 - Spec-driven development: an open-source spec-driven toolkit and its description of the
   method[^spec-kit][^spec-kit-sdd], and Birgitta Böckeler on degrees of commitment to a
   specification[^bockeler-sdd].
-- Batch size and AI: DORA's page on working in small batches[^dora-small-batches].
+- Batch size: DORA's page on working in small batches[^dora-small-batches].

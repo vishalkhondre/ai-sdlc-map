@@ -60,6 +60,7 @@ spec-kit:
   title: "Spec Kit"
   author: "not printed"
   org: "GitHub (github/spec-kit repository)"
+  date: "not printed"
   url: "https://github.com/github/spec-kit"
   accessed: "2026-11-20"
   note: "Open-source toolkit; github.com refuses plain requests, so the README was read from https://raw.githubusercontent.com/github/spec-kit/main/README.md (same file). The README's minimal flow is constitution, specify, plan, tasks, implement and converge. The project's command reference (https://github.github.io/spec-kit/reference/agentic-sdd.html) labels clarify, analyze and checklist each an optional quality gate, and describes converge as assessing implementation against the artifacts and appending remaining work. This is the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
@@ -75,7 +76,7 @@ ashby:
 dora-metrics:
   title: "DORA's software delivery performance metrics"
   author: "Nathen Harvey"
-  org: "DORA (a program run by Google Cloud), published on dora.dev"
+  org: "DORA, published on dora.dev"
   date: "last updated 2026-01-05 (as printed)"
   url: "https://dora.dev/guides/dora-metrics/"
   accessed: "2026-11-20"
@@ -851,8 +852,8 @@ github-status-checks:
   title: "Troubleshooting required status checks"
   author: "GitHub"
   org: "GitHub Docs"
-  url: "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks"
-  accessed: "2026-09-26"
+  url: "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks"
+  accessed: "2026-11-23"
   note: "States that a job skipped by a conditional reports its status as Success, while a workflow skipped by path or branch filtering or by its commit message leaves required checks Pending. Cited for this platform's behaviour only."
 
 # Core section (1.4.0): software factory
@@ -903,8 +904,9 @@ morris-humans-agents-loops:
 
 dora-customer-feedback:
   title: "Customer feedback"
-  author: "not printed"
-  org: "DORA (a program run by Google Cloud)"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "not printed"
   url: "https://dora.dev/capabilities/customer-feedback/"
   accessed: "2026-11-20"
   note: "Capability page; no date printed. Places customer feedback in a wider group of capabilities, with visibility of work in the value stream, working in small batches and team experimentation, that together represent a lean approach to product management and, applied together, help predict software delivery performance and organizational performance. The page does not say this of customer feedback alone."
@@ -1126,8 +1128,8 @@ scrum-guide-2020:
 
 dora-small-batches:
   title: "Working in small batches"
-  author: "not printed"
-  org: "DORA (a program run by Google Cloud)"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
   date: "last updated 2025-12-08 (as printed)"
   url: "https://dora.dev/capabilities/working-in-small-batches/"
   accessed: "2026-11-20"
@@ -1135,8 +1137,9 @@ dora-small-batches:
 
 dora-wip-limits:
   title: "Work in process limits"
-  author: "not printed"
-  org: "DORA (a program run by Google Cloud)"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "not printed"
   url: "https://dora.dev/capabilities/wip-limits/"
   accessed: "2026-11-20"
   note: "Capability page (tab title 'DORA | Capabilities: Work in process limits'). Says research shows WIP limits help drive improvements in software delivery performance, particularly when combined with visual displays and feedback loops from monitoring. The page's own title is 'Work in process limits', not 'WIP limits'."
@@ -1253,8 +1256,9 @@ safe-art-backlog:
   title: "ART and Solution Train Backlogs"
   author: "not printed"
   org: "Scaled Agile, Inc."
+  date: "last updated 2025-01-21 (as printed)"
   url: "https://framework.scaledagile.com/art-and-solution-train-backlogs/"
-  accessed: "2026-11-20"
+  accessed: "2026-11-23"
   note: "Defines the ART backlog as a Kanban system used to capture and manage the features and enablers that enhance the solution and extend its Architectural Runway. Partly behind SAFe's login wall."
 
 safe-team-backlog-refinement:
@@ -1693,6 +1697,7 @@ dora-continuous-delivery:
   title: "Continuous delivery"
   author: "DORA (DevOps Research and Assessment)"
   org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Continuous delivery')"
+  date: "not printed"
   url: "https://dora.dev/capabilities/continuous-delivery/"
   accessed: "2026-11-20"
   note: "Defines continuous delivery as the ability to release changes of all kinds on demand quickly, safely and sustainably, including releasing software and making changes to production in a low-risk way at any time, including during normal business hours, without impacting users. Carries the 'core' tag; no date printed."
@@ -1746,6 +1751,7 @@ dora-monitoring-observability:
   title: "Monitoring and observability"
   author: "DORA (DevOps Research and Assessment)"
   org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Monitoring and observability')"
+  date: "not printed"
   url: "https://dora.dev/capabilities/monitoring-and-observability/"
   accessed: "2026-11-20"
   note: "Distinguishes monitoring (tooling or a technical solution that lets teams watch and understand the state of their systems) from observability (lets teams actively debug their system) and says a comprehensive monitoring and observability solution, with a number of other technical practices, contributes positively to continuous delivery. Carries the 'core' tag; no date printed."

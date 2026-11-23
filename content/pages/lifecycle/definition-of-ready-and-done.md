@@ -29,8 +29,8 @@ only a user story, and says so where it does.
 
 The Scrum Guide does not use the term. It neither defines nor forbids a Definition of Ready. What it
 says is that Product Backlog items that the Scrum Team can complete within one Sprint "are deemed
-ready for selection in a Sprint Planning event", and that such items are usually the result of
-refining[^scrum-guide-2020]. Refinement, in the Guide's words, is "an ongoing activity to add details,
+ready for selection in a Sprint Planning event", and that such items "usually acquire this degree of
+transparency after refining activities"[^scrum-guide-2020]. Refinement, in the Guide's words, is "an ongoing activity to add details,
 such as a description, order, and size"[^scrum-guide-2020]. A Definition of Ready is therefore a team
 practice, written down so that "ready" means the same thing to everyone who relies on it. No source
 cited on this page prescribes what the criteria contain, and this page does not either: the contents
@@ -103,9 +103,16 @@ product "must mutually define and comply with the same Definition of Done"[^scru
 For readiness the Guide names no owner of a definition, because it names no definition. It does say who
 is accountable for what makes an item ready for selection. The Product Owner is accountable for
 effective Product Backlog management, which includes creating and clearly communicating the items, and
-the Developers who will do the work are responsible for the sizing[^scrum-guide-2020]. On this site,
-see [W04](workflow-catalog.html#W04), [W12](workflow-catalog.html#W12) and
-[W25](workflow-catalog.html#W25).
+the Developers who will do the work are responsible for the sizing[^scrum-guide-2020].
+
+On this site, as recommended practice, each definition has one named owner who answers for its
+wording and can change it, and that owner is a person, never the agent whose work the definition
+judges. The definitions are applied inside workflows, each with an accountable owner of its own
+(see [Workflows](workflows.html)): readiness in specification readiness
+([W04](workflow-catalog.html#W04)) and in task traceability and test planning
+([W12](workflow-catalog.html#W12)), and release-level done in release readiness
+([W25](workflow-catalog.html#W25)). Who decides in each of those workflows is set in its catalog
+row; owning a definition means keeping it current, while the workflow's deciders apply it.
 
 Public practice already sets different criteria for different levels of work. Bill Wake's 2003 article
 proposes INVEST for stories (Independent, Negotiable, Valuable, Estimable, Small, Testable) and SMART
@@ -117,7 +124,8 @@ the contents of a definition.
 
 **Criteria a machine can check.** A criterion is machine-checkable when a tool can decide it from the
 record alone. The catalog rows state which parts of each readiness decision have that form; see
-[W04](workflow-catalog.html#W04) and [W12](workflow-catalog.html#W12). What a tool cannot decide stays
+specification readiness ([W04](workflow-catalog.html#W04)) and task traceability and test planning
+([W12](workflow-catalog.html#W12)). What a tool cannot decide stays
 with a person: whether the intent is right. The identifiers in those checks are the chain
 described on the [Traceability spine](traceability-spine.html) page, which connects criteria, tasks,
 tests and results.
@@ -125,8 +133,8 @@ tests and results.
 Public sources show how criteria are written so that gaps can be found. The templates of an
 open-source spec-driven toolkit mandate [NEEDS CLARIFICATION] markers in place of guesses, and include
 checklists that act as "unit tests" for the specification[^spec-kit-sdd]. As recommended practice, a
-marker left in a specification fails the readiness check in [W04](workflow-catalog.html#W04), so a
-tool can find it and the item is not ready. A 2025 industrial study of language models on real-world
+marker left in a specification fails the readiness check in specification readiness
+([W04](workflow-catalog.html#W04)), so a tool can find it and the item is not ready. A 2025 industrial study of language models on real-world
 requirements reports that giving ten worked examples in the prompt classified ambiguous requirements better than
 giving none[^requirements-ambiguity-llm]. An agent can therefore flag ambiguity for a person to
 resolve, and it does not replace the person who settles what is meant.
@@ -150,7 +158,7 @@ the third is this site's recommended practice.
    A 2014 testing syllabus adds that each test level has its own definition of done[^istqb-agile-tester-2014],
    so unit, integration and acceptance testing can each carry criteria of their own.
 3. **Release.** As recommended practice, a release candidate has a done decision of its own; see
-   [W25](workflow-catalog.html#W25) and [evidence hand-off](glossary.html#evidence-handoff). The
+   release readiness ([W25](workflow-catalog.html#W25)) and [evidence hand-off](glossary.html#evidence-handoff). The
    [Release](release.html) page describes the phase.
 
 The separation of done from released rests on the Scrum Guide. An item that does not meet the
@@ -162,7 +170,8 @@ own owner.
 
 ### How agents change both
 
-For readiness, see the agent task in [W04](workflow-catalog.html#W04); the study cited above
+For readiness, see the agent task in specification readiness
+([W04](workflow-catalog.html#W04)); the study cited above
 investigates this task[^requirements-ambiguity-llm]. A person still resolves the intent, because the
 agent can raise a question and cannot know what the business wants.
 
@@ -188,9 +197,11 @@ agents, so this is guidance, not a finding.
 
 The lessons also flow back. The Scrum Guide has the Retrospective inspect "individuals, interactions,
 processes, tools, and their Definition of Done"[^scrum-guide-2020]. On this site the corresponding
-checkpoint is [Inspect and adapt](inspect-and-adapt.html)[^safe-inspect-and-adapt], and the route by which an incident changes
-a readiness criterion is the feedback path[^bockeler-harness]; see
-[Harness engineering](harness-engineering.html).
+checkpoint takes its name from SAFe's Inspect and Adapt event[^safe-inspect-and-adapt]; see
+[Inspect and Adapt](inspect-and-adapt.html). The route by which an incident changes a readiness
+criterion is the feedback path, which this site adapts from Birgitta Böckeler's steering
+loop[^bockeler-harness]. Sending a lesson to a readiness criterion is this site's own extension of
+that loop, not part of Böckeler's account; see [Harness engineering](harness-engineering.html).
 
 ### The export example
 
@@ -198,19 +209,29 @@ The running example is a hypothetical feature that lets users export customer re
 decisions are which records, which fields, large exports, failure and audit. It shows both definitions
 at work.
 
-**Readiness.** See [Software factory](software-factory.html) and the failure paths in
-[Workflows](workflows.html).
+**Readiness.** For the export, the Definition of Ready checks that the specification settles the
+questions its rules depend on before planning starts. The plainest is which roles may export which
+records, the question the access rule R-042 turns on: while the specification leaves it open, the
+item is not ready, however complete the rest of it looks. [Software factory](software-factory.html)
+follows the item from that point.
 
-**A request to depart from a rule.** See the exception path for R-017 and R-042 in
-[Workflows](workflows.html). A readiness criterion that the limit is respected is therefore different
-in kind from one that an exception may waive.
+**A rule open to exception and one that is not.** The two rules behave differently when a change
+asks to depart from them. R-017's row limit for large exports is open to exception, and R-042, as an
+access rule, is not; see the failure paths in [Workflows](workflows.html#failure-paths). A readiness
+criterion tied to R-042 is therefore met only as written. One tied to R-017 is met either by staying
+within the limit or by a recorded exception, so the record has to show which of the two applies.
 
-**Readiness changing.** See the production incident in [Software factory](software-factory.html). The
-readiness criteria changed because of the incident: that is the Definition of Ready changing through
-the feedback path[^bockeler-harness].
+**Readiness changing.** In a hypothetical production incident, a scheduled full export within
+R-017's limit, but far larger than the load scenario, times out. Afterwards the readiness check asks
+every export-like specification for the largest export it expects. The Definition of Ready has
+changed through the feedback path; [Software factory](software-factory.html) gives the incident in
+full.
 
-**Done.** See [Evidence schema](evidence-schema.html) and the failure paths in
-[Workflows](workflows.html).
+**Done.** For the export change, done means the verification record for the exact revision shows an
+explicit pass for every check the change requires, among them the access check for R-042 and the
+R-017 load scenario. On the first pull request the access check failed and the load scenario returned
+`could_not_run`; neither result is a pass, so the change is not done until both checks run again
+and pass. [Evidence schema](evidence-schema.html) describes the record.
 
 ## Where it sits on the map
 
@@ -221,8 +242,9 @@ day; the [Lifecycle levels](lifecycle-levels.html#team) page describes it. The a
 "Specification readiness as the Definition of Ready" as a step.
 
 The workflow catalog holds the decision behind each tag. Specification readiness
-([W04](workflow-catalog.html#W04)) sits under the DoR tag. Between the two tags, [Develop, build and QA](develop-build-qa.html) holds the verification that
-produces the evidence a done decision reads, among them acceptance-test execution
+([W04](workflow-catalog.html#W04)) sits under the DoR tag. Between the two tags,
+[Develop, Build and QA](develop-build-qa.html) holds the verification that
+produces the evidence a done decision reads, among them acceptance-test generation and execution
 ([W17](workflow-catalog.html#W17)) and pull-request verification
 ([W23](workflow-catalog.html#W23)). Release readiness ([W25](workflow-catalog.html#W25)) sits under the
 DoD tag. The core band explains the machinery they share: [Workflows](workflows.html) for the
@@ -232,14 +254,16 @@ decision unit, the [Rule registry](rule-registry.html) for the rules a check cit
 the page on [checks that enforce rules](validators.html) for how a result such as `could_not_run`
 is reported.
 
-SAFe, a reference model[^oasis-soa-rm] that the lifecycle band maps onto, appears here only through its glossary
-wording for the Definition of Done, quoted above. The [SAFe reference model](safe-reference-model.html)
-page gives the wider mapping.
+SAFe, cited as one framework that uses these altitudes of work (the map's portfolio, train and team
+levels), appears here only through its glossary wording for the Definition of Done, quoted above.
+The [SAFe reference model](safe-reference-model.html) page gives this site's wider mapping of the
+lifecycle onto SAFe.
 
 ## Pitfalls
 
 - **Readiness stated but not checked.** The definition exists as a document and nothing applies it.
-  Sign: items start with open mandatory questions; see [W04](workflow-catalog.html#W04).
+  Sign: items start with open mandatory questions; see specification readiness
+  ([W04](workflow-catalog.html#W04)).
 - **Done reduced to "the tests pass".** Tests and code come from the same incomplete reading of the
   specification, so both share its mistake. Sign: the tests mirror what the implementation does, and a
   defect that traces back to the specification passes every test. Generated tests tend to capture the
@@ -260,19 +284,20 @@ page gives the wider mapping.
 - [Specification](specification.html): the phase where the Definition of Ready tag sits.
 - [Design](design.html): the phase where tasks and their traceability are set up.
 - [Release](release.html): the phase where the Definition of Done tag sits.
-- [Develop, build and QA](develop-build-qa.html): where the evidence for done is produced.
+- [Develop, Build and QA](develop-build-qa.html): where the evidence for done is produced.
 - [Lifecycle levels](lifecycle-levels.html#team): the Team level, where both definitions apply.
 - [Traceability spine](traceability-spine.html): the identifier chain that connects criteria, tasks,
   tests and results.
-- [Inspect and adapt](inspect-and-adapt.html): the checkpoint where a definition is reviewed and changed.
+- [Inspect and Adapt](inspect-and-adapt.html): the checkpoint where a definition is reviewed and changed.
 - [SAFe reference model](safe-reference-model.html): the mapping of the lifecycle onto SAFe.
 - [Workflows](workflows.html): the decision unit that each readiness and done check belongs to.
 - [Rule registry](rule-registry.html), [Evidence schema](evidence-schema.html),
   [Software factory](software-factory.html) and [checks that enforce rules](validators.html): the
   shared machinery behind the checks.
-- Workflow catalog rows [W04](workflow-catalog.html#W04), [W12](workflow-catalog.html#W12),
-  [W17](workflow-catalog.html#W17), [W23](workflow-catalog.html#W23) and
-  [W25](workflow-catalog.html#W25).
+- Workflow catalog rows: specification readiness ([W04](workflow-catalog.html#W04)), task
+  traceability and test planning ([W12](workflow-catalog.html#W12)), acceptance-test generation and
+  execution ([W17](workflow-catalog.html#W17)), pull-request verification
+  ([W23](workflow-catalog.html#W23)) and release readiness ([W25](workflow-catalog.html#W25)).
 - Terminology: [Definition of Ready](glossary.html#definition-of-ready),
   [Definition of Done](glossary.html#definition-of-done),
   [Specification readiness](glossary.html#specification-readiness),
@@ -295,4 +320,9 @@ page gives the wider mapping.
 - Checks an agent can shape: METR's report on reward hacking[^metr-reward-hacking], one model
   vendor's system card[^anthropic-claude-37-system-card] and a preprint on LLM-generated
   test oracles[^konstantinou-test-oracles].
-- Feedback path and steering loop: Birgitta Böckeler on harness engineering[^bockeler-harness].
+- Steering loop: Birgitta Böckeler on harness engineering[^bockeler-harness]. The feedback path is
+  this site's adaptation of it, and its readiness destination is this site's own extension, not
+  Böckeler's.
+- The name of the checkpoint: SAFe's Inspect and Adapt page[^safe-inspect-and-adapt].
+- The sense of "reference model" in the name of the SAFe reference model page: the OASIS Reference
+  Model for Service Oriented Architecture[^oasis-soa-rm].

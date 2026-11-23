@@ -752,8 +752,9 @@
   attribution: coined
   definition: >-
     The map's name for the chain of seven kinds of artefact (requirement, spec, task, test, change,
-    release, incident), each linked to the next by an identifier, with rule IDs as the keys that tie
-    checks, findings and decisions to the chain. The idea is requirements traceability, the ability to
-    describe and follow the life of a requirement forwards and backwards (Gotel and Finkelstein, 1994).
-    The word "spine" and the extension of the chain to the incident are this site's.
+    release, incident), each linked to the next by an identifier. Rule IDs tie checks and findings to
+    the chain, and decisions are tied to it through the checks and findings they read. The name, and
+    the extension of the chain to the incident, are this site's, built on requirements traceability as
+    Gotel and Finkelstein (1994) describe it: the ability to describe and follow the life of a
+    requirement forwards and backwards.
   match: ["traceability spine"]

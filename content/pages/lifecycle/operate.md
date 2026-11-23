@@ -4,7 +4,7 @@ type: phase
 band: lifecycle
 map_box: Operate
 title: Operate
-summary: The phase in which released software runs in production, where it is monitored, its incidents are handled and reviewed, vulnerabilities and usage are answered, and each lesson goes back to the earlier stage where the gap began.
+summary: The phase in which released software runs in production and is kept in service, where it is monitored, its incidents are handled and reviewed, vulnerabilities and usage are answered, and lessons travel back to earlier work.
 key_terms: [feedback-path, steering-loop, harness, software-factory, evidence-handoff, rule-registry, workflow, three-roles, harness-evaluation, export-example]
 sources: [sre-book-monitoring, sre-book-being-on-call, sre-book-managing-incidents, google-sre-postmortem, nist-800-61r3, nist-ssdf, dora-monitoring-observability, dora-customer-feedback, dora-metrics, dora-2025-announcement, google-agentic-sre, ahmed-incident-llm, chen-rcacopilot, bockeler-harness, safe-inspect-and-adapt]
 related: [harness-engineering, software-factory, workflows, evidence-schema, rule-registry, validators, specification, deploy, release, inspect-and-adapt, traceability-spine]
@@ -13,18 +13,20 @@ review_record: content/reviews/1.5.0-lifecycle.md
 
 ## Purpose
 
-Operate is the phase in which a released change runs in production and the team learns from how
-it behaves. It decides two things. While an incident is open, it decides how to restore service.
-Once the incident is over, it decides what the incident teaches and which earlier part of the
-lifecycle that lesson should change.
+Operate is the phase in which a released change runs in production and the team keeps it in
+service: it watches how the software behaves, responds when it fails and learns from each failure.
+The decisions taken here belong to the workflows listed below; the two at the centre of the phase
+are incident remediation ([W27](workflow-catalog.html#W27)) and incident-to-development feedback
+([W28](workflow-catalog.html#W28)), and their catalog rows state them.
 
 In the AI SDLC (the software development lifecycle with AI agents doing part of the work), Operate
 is where the lifecycle's loop closes. On the map, a dashed arrow leaves the Operate box and returns
 to Specification, carrying the idea that incident feedback changes what Specification asks. The
 phase produces incident records and their reviews, responses to vulnerabilities and to how the
-product is used, and, over time, changes to the questions specifications must answer, to the
-checks every change passes and to the evaluation cases agents are tested against. Maintenance sits
-in the same box on the map, because work on software does not stop at release.
+product is used, and lessons that travel back upstream along the
+[feedback path](glossary.html#feedback-path). The map labels the box Operate and nothing more;
+keeping released software in service, which the workflow catalog's name for the phase, "Operate &
+sustain", makes explicit, belongs here as well.
 
 ## Traditional practice
 
@@ -78,14 +80,20 @@ Identify Their Root Causes".[^nist-ssdf]
 
 ### Usage, recovery and maintenance
 
-Production also shows how the product is actually used. DORA places customer feedback in a wider
-group of capabilities, with visibility of work, small batches and team experimentation, that
-together help predict software delivery performance and organisational
-performance.[^dora-customer-feedback] Recovery is measured as well: DORA's current guide lists
-failed deployment recovery time among its five software delivery performance metrics, in the
-throughput group.[^dora-metrics] How such measures are defined and read belongs to the assurance
-band, not to this page. Maintenance runs alongside all of this for as long as the software is in
-service.
+Production also shows how people use the product. DORA places customer feedback in a wider group
+of capabilities, with visibility of work, small batches and team experimentation, that together
+help predict software delivery performance and organisational performance.[^dora-customer-feedback]
+Recovery is measured as well: DORA's current guide lists failed deployment recovery time among its
+five software delivery performance metrics, in the throughput group.[^dora-metrics] How such
+measures are defined and read belongs to the assurance band, not to this page.
+
+Keeping software in service is work in its own right, and it lasts as long as the software runs.
+Much of it is not prompted by a new feature. The SSDF's first response practice asks producers to
+identify and confirm vulnerabilities on an ongoing basis,[^nist-ssdf] so a release that passed
+every check when it shipped can still need a change long afterwards, and the vulnerability response
+workflow ([W29](workflow-catalog.html#W29)) handles that change. Usage evidence of the kind above
+is the other steady source of upkeep. At the end of a component's life the work is to retire it and
+the data it holds, through decommission and data disposal ([W31](workflow-catalog.html#W31)).
 
 ## AI-assisted practice
 
@@ -124,10 +132,11 @@ Google's account says its approach relies on "having consistent controls to prev
 mutations of production state".[^google-agentic-sre] DORA's 2025 research makes the general point:
 without robust control systems, such as strong automated testing, mature version control practices
 and fast feedback loops, an increase in change volume leads to instability.[^dora-2025-announcement]
-In operations this means three things. An agent acts on production only through permissions granted
-for its task, which the agent runtime in the enablement band supplies. Every action it takes is
-recorded. And a change written during an incident, by a person or an agent, reaches production
-through the same pipeline and the same checks as any other change.
+In operations, as recommended practice, this means that an agent acts on production only through
+permissions granted for its task, which the agent runtime in the enablement band supplies, and
+that every action it takes is recorded. A fix written during an incident, by a person or an agent,
+is held to the checks the incident remediation row ([W27](workflow-catalog.html#W27)) lists, like
+any other change.
 
 ### What stays with people
 
@@ -136,17 +145,18 @@ the process, specifically for higher-risk services and features".[^google-agenti
 book's rule that only the operations team modifies the system during an incident[^sre-book-managing-incidents]
 extends to agents: an agent that may act on production works inside that team's line of command,
 not beside it. People hold the decisions that need context the agent lacks: how to respond while
-the incident is open, whether a proposed cause is the real one, and which earlier control the
-lesson should change.
+the incident is open, whether a proposed cause is the real one, and what the lesson should change.
 
 ### Where the lesson goes
 
-Once an incident closes, its lesson travels the feedback path, this site's name for the loop
-Böckeler calls the steering loop, in which people improve an agent's guides and checks whenever an
-issue recurs.[^bockeler-harness] Where each kind of lesson lands is defined on
+Once an incident closes, its lesson travels the feedback path, this site's extension of the loop
+Birgitta Böckeler calls the steering loop, in which people improve an agent's guides and checks
+whenever an issue recurs.[^bockeler-harness] Where each kind of lesson lands is defined on
 [harness engineering](harness-engineering.html), and the route from production back to
-specification on [software factory](software-factory.html). Operate supplies the starting point:
-the incident, its review and the evidence the release left behind.
+specification under
+[Production feedback reaches specification](software-factory.html#production-feedback-reaches-specification)
+on the Software factory page. Operate supplies the starting point: the incident, its review and the
+evidence the release left behind.
 
 In the customer-record export, a hypothetical feature that lets users export customer records, the
 incident that reaches Operate is the one those pages describe: a scheduled full export, within the
@@ -164,16 +174,18 @@ lifecycle, such as change control and exceptions, belong to no single phase.
 - [Incident-to-development feedback](workflow-catalog.html#W28): the lesson once it has closed.
 - [Vulnerability response](workflow-catalog.html#W29): security weaknesses found in what is
   running.
-- [Usage and feedback intake](workflow-catalog.html#W30): what real use says about the product.
+- [Usage and feedback intake](workflow-catalog.html#W30): feedback from the people who use the
+  product.
 - [Decommission and data disposal](workflow-catalog.html#W31): the end of a component's life.
 
-Incident-to-development feedback is the workflow the map draws on the Operate box, because it
-starts the loop back to Specification. It turns a closed incident into a change upstream, and the
-changes it can make follow the feedback path[^bockeler-harness] defined on
-[harness engineering](harness-engineering.html). Its records are read again at
-[inspect and adapt](inspect-and-adapt.html)[^safe-inspect-and-adapt], the checkpoint at the end of a planning cycle where
-owners check whether each lesson landed. The [traceability spine](traceability-spine.html) carries
-the link from the release to the incident and back to the requirement.
+Incident-to-development feedback is the workflow the map draws on the Operate box, as the bar
+labelled "incident feedback", because it starts the loop back to Specification. The lessons it
+carries follow the feedback path defined on [harness engineering](harness-engineering.html). Its
+records are read again at the site's [inspect and adapt](inspect-and-adapt.html) checkpoint, where
+owners check whether each lesson landed; the name comes from SAFe, which uses it for an event held
+at the end of each PI, its planning cycle.[^safe-inspect-and-adapt] The
+[traceability spine](traceability-spine.html) carries the link from the release to the incident and
+back to the requirement.
 
 ## Gates and evidence
 
@@ -186,11 +198,11 @@ review can tell which version of the software was running when the incident bega
 Inside the phase there are two kinds of gate. While an incident is open, the gate is on what may
 change production: the SRE book confines changes to the operations team,[^sre-book-managing-incidents]
 and the controls described above under AI-assisted practice apply to any agent working in that
-team. After the incident, the gate is on closure itself. As recommended practice, an incident
-counts as closed only when its review has produced actions, each action names one owner and the
-stage it changes, and the review is linked to the release it concerns. The single owner follows
-the workbook's observation that action items without clear owners are less likely to be
-resolved.[^google-sre-postmortem]
+team. After the incident, the gate is on closure itself. The SRE workbook observes that action
+items without clear owners are less likely to be resolved,[^google-sre-postmortem] so, as
+recommended practice, a review stays open while any of its actions has no named owner. Where each
+lesson lands is set out on the Software factory page, under
+[Production feedback reaches specification](software-factory.html#production-feedback-reaches-specification).
 
 Security work closes the same way: NIST's profile sends lessons learned to its Improvement
 category,[^nist-800-61r3] and SSDF practice RV.3 asks for the root causes of each
@@ -218,9 +230,10 @@ are divided between titles belongs to the operating model in the enablement band
 - **Actions with no owner.** The review lists what should change but names nobody to change it,
   and such actions are less likely to be resolved.[^google-sre-postmortem] Sign: actions from
   earlier incidents still open.
-- **The fix at the place the failure showed.** The code is patched and the specification question
-  that let the gap through stays unasked. Sign: the next change of the same kind meets the same
-  miss. See [software factory](software-factory.html).
+- **A lesson that stops at the code.** The code is patched, and the question that would have
+  exposed the problem before it was built is never added to the specification. Sign: the next
+  change of the same kind meets the same miss. See
+  [software factory](software-factory.html#production-feedback-reaches-specification).
 - **An agent that can change production unchecked.** An agent acts on production outside the
   controls that bind people; Google's account relies on consistent controls to prevent unwanted
   mutations of production state.[^google-agentic-sre] Sign: production changes with no recorded
@@ -240,8 +253,8 @@ are divided between titles belongs to the operating model in the enablement band
 ## Related
 
 - [Specification](specification.html): where the loop from Operate lands, as a readiness question.
-- [Release](release.html) and [Deploy](deploy.html): the phases before this one, and where a
-  return to an earlier version is decided.
+- [Release](release.html) and [Deploy](deploy.html): the phases before this one; a return to an
+  earlier version is decided in Deploy.
 - [Inspect and adapt](inspect-and-adapt.html): the checkpoint that reads whether incident lessons
   landed.
 - [Traceability spine](traceability-spine.html): the chain from requirement to incident.
@@ -255,7 +268,7 @@ are divided between titles belongs to the operating model in the enablement band
 - [Workflow catalog](workflow-catalog.html#W28): incident-to-development feedback, with
   [W27](workflow-catalog.html#W27), [W29](workflow-catalog.html#W29),
   [W30](workflow-catalog.html#W30) and [W31](workflow-catalog.html#W31).
-- Terminology: [feedback path](glossary.html#feedback-path)[^bockeler-harness],
+- Terminology: [feedback path](glossary.html#feedback-path),
   [evidence hand-off](glossary.html#evidence-handoff) and
   [three roles](glossary.html#three-roles).
 
@@ -283,5 +296,6 @@ are divided between titles belongs to the operating model in the enablement band
   to improve operations* (28 May 2026): one operator's account.[^google-agentic-sre]
 - Ahmed and colleagues, ICSE 2023, and Chen and colleagues, an arXiv preprint: language models for
   incident root-cause analysis.[^ahmed-incident-llm][^chen-rcacopilot]
-- Böckeler on the steering loop.[^bockeler-harness]
+- Birgitta Böckeler on the steering loop.[^bockeler-harness]
+- Scaled Agile, Inc. on SAFe's Inspect and Adapt event.[^safe-inspect-and-adapt]
 - Statements marked as recommended practice are this site's own and are not findings of any study.

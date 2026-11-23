@@ -6,7 +6,7 @@ map_box: Inspect & Adapt
 title: Inspect and Adapt
 summary: The periodic checkpoint where the evidence delivery produced, from the traceability spine and from incident feedback, is read together and a workflow is added or tightened as a result.
 key_terms: [inspect-and-adapt, feedback-path, steering-loop, software-factory, could-not-run, failure-path, evidence-handoff, evidence-record, workflow, harness-engineering, export-example]
-sources: [safe-inspect-and-adapt, safe-ia-facilitators-guide, safe-rte, safe-iteration-retrospective, safe-glossary, safe-ai-native-sense-and-respond, safe-framework-home, safe-framework, scrum-guide-2020, agile-manifesto-principles, google-sre-postmortem, nist-800-61r3, google-agentic-sre, dora-2025-announcement, dora-ai-capabilities-impact, bockeler-harness, ahmed-incident-llm, chen-rcacopilot, bockeler-sensors, safe-art, oasis-soa-rm, safe-system-demo]
+sources: [safe-inspect-and-adapt, safe-ia-facilitators-guide, safe-rte, safe-iteration-retrospective, safe-glossary, safe-ai-native-sense-and-respond, safe-framework-home, safe-framework, scrum-guide-2020, agile-manifesto-principles, google-sre-postmortem, nist-800-61r3, google-agentic-sre, dora-2025-announcement, dora-ai-capabilities-impact, bockeler-harness, ahmed-incident-llm, chen-rcacopilot, bockeler-sensors, safe-art, oasis-soa-rm, safe-system-demo, safe-pi-planning]
 related: [traceability-spine, operate, specification, definition-of-ready-and-done, lifecycle-levels, safe-reference-model, harness-engineering, software-factory, workflows]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
@@ -28,14 +28,13 @@ cadence-based timebox in which Agile Release Trains deliver value.[^safe-inspect
 SAFe structures the event "into three parts": the PI System Demo[^safe-system-demo], a quantitative and qualitative
 measurement review, and a retrospective and problem-solving workshop.[^safe-inspect-and-adapt]
 SAFe defines the System Demo as an integrated view of the new features of the most recent
-iteration, delivered by all the teams on the Agile Release Train (ART)[^safe-art].[^safe-glossary] The event's
-output is "improvement backlog items that go into the ART Backlog for consideration in the next PI
-Planning event".[^safe-inspect-and-adapt] SAFe gives the cadence as typical, not fixed: it states
-that a Planning Interval is typically an 8 to 12-week timebox and calls that "a suggestion rather
-than a strict rule".[^safe-framework] This page uses the name and the purpose of the event, not
-its calendar. How often the checkpoint runs, and how it fits team cadences, belongs to the
-operating model in the enablement section. This page makes no claim about who used the phrase
-first.
+iteration, delivered by all the teams on the Agile Release Train (ART).[^safe-glossary][^safe-art]
+The event's output is "improvement backlog items that go into the ART Backlog for consideration in
+the next PI Planning event".[^safe-inspect-and-adapt] SAFe gives the cadence as typical, not fixed:
+it calls a Planning Interval of 8 to 12 weeks a good starting point, and the pattern of iterations
+within it "a suggestion rather than a strict rule".[^safe-framework] This page uses the name and
+the purpose of the event, not its calendar. How often the checkpoint runs, and how it fits team
+cadences, belongs to the operating model in the enablement section.
 
 The idea sits on older foundations. The last of the twelve principles behind the Agile Manifesto
 reads, "At regular intervals, the team reflects on how to become more effective, then tunes and
@@ -67,17 +66,21 @@ reports on delivery without changing a workflow, a rule or a check has not done 
 The checkpoint reads four kinds of evidence, and each has a page behind it.
 
 - **Incident feedback records, and which conversion landed.** The checkpoint reads whether each
-  conversion (see [W28](workflow-catalog.html#W28)) arrived where it was sent.
+  conversion arrived where it was sent (see incident-to-development feedback,
+  [W28](workflow-catalog.html#W28)).
 - **Orphans and missing links on the spine, and `could_not_run` results by cause.** The
   [traceability spine](traceability-spine.html) is checked for artefacts with no link on one side.
   Results that could not run are read by cause, as the [workflows](workflows.html) page
   describes.
-- **Exceptions.** See [software factory](software-factory.html).
+- **Exceptions.** The checkpoint reads where exceptions to rules cluster. A single exception is a
+  decision about one change; the same exception granted to change after change suggests that the
+  rule, and not the changes, needs another look, which is for the rule's named owner to settle (see
+  [software factory](software-factory.html) and [rule registry](rule-registry.html)).
 - **Report-only checks.** The checkpoint reads which of them have earned the right to become
   required (see [software factory](software-factory.html)).
 
-Incident feedback is described in detail in the workflow catalog entry W28. This page names no
-measures: the checkpoint reads them, and the assurance section defines them.
+The checkpoint also reads delivery measures; their definitions belong to the assurance band of the
+map.
 
 ### Who attends and decides
 
@@ -85,9 +88,10 @@ Attendance follows the workflows under review, and each person is present by tit
 
 - **The owner of each workflow under review.** See [workflows](workflows.html).
 - **The named owner of each rule under discussion.** See [rule registry](rule-registry.html).
-- **The people who decide in the workflows concerned.** See [W04](workflow-catalog.html#W04),
-  [W25](workflow-catalog.html#W25), [W26](workflow-catalog.html#W26) and
-  [W27](workflow-catalog.html#W27).
+- **The people who decide in the workflows concerned.** Each catalog row names its deciders, for
+  example specification readiness ([W04](workflow-catalog.html#W04)), release readiness
+  ([W25](workflow-catalog.html#W25)), deployment and post-deploy verification
+  ([W26](workflow-catalog.html#W26)) and incident remediation ([W27](workflow-catalog.html#W27)).
 
 SAFe has the Release Train Engineer facilitate its event. The facilitator's guide says the three
 parts are "typically facilitated by the Release Train Engineer (RTE)",[^safe-ia-facilitators-guide]
@@ -102,9 +106,10 @@ The checkpoint may add a workflow or tighten one that already runs. The change i
 the feedback path (see [harness engineering](harness-engineering.html)).
 
 A report-only check becoming required is a further change it may make. The merge, release and
-deployment decisions keep the deciders the workflow catalog names (see
-[W25](workflow-catalog.html#W25)). As recommended practice, the checkpoint changes the
-workflows around those decisions, not who holds them.
+deployment decisions keep the deciders the workflow catalog names (see pull-request verification
+([W23](workflow-catalog.html#W23)), release readiness ([W25](workflow-catalog.html#W25)) and
+deployment and post-deploy verification ([W26](workflow-catalog.html#W26))). As recommended
+practice, the checkpoint changes the workflows around those decisions, not who holds them.
 
 ### What it produces and where the output goes
 
@@ -112,10 +117,10 @@ The output is the set of conversions and tightened workflows the checkpoint deci
 one named owner and the workflow it lands in. Google's Site Reliability Workbook notes that
 postmortem action items with little or no ownership are less likely to be resolved, and that the
 value of a postmortem is proportional to the learning it creates.[^google-sre-postmortem] Each
-item goes to the place that holds the thing it changes: a rule to the rule registry, an
-evaluation case to the evaluation set, a readiness question to the specification readiness
-workflow, a gate to the validators[^bockeler-sensors]. Other frameworks make the same move. SAFe sends improvement
-items to the ART backlog,[^safe-inspect-and-adapt] and the Scrum Guide says impactful improvements
+item goes to the place that holds the thing it changes. For lessons from incidents, the
+destinations are those of incident-to-development feedback ([W28](workflow-catalog.html#W28)) and
+of the [feedback path](glossary.html#feedback-path). Other frameworks make the same move. SAFe
+sends improvement items to the ART backlog,[^safe-inspect-and-adapt] and the Scrum Guide says impactful improvements
 "may even be added to the Sprint Backlog for the next Sprint".[^scrum-guide-2020] In incident
 response, NIST SP 800-61 Revision 3 (April 2025) says that lessons learned from performing all
 activities in all of the CSF 2.0 Functions are fed into Improvement (the ID.IM category).[^nist-800-61r3]
@@ -123,19 +128,23 @@ activities in all of the CSF 2.0 Functions are fed into Improvement (the ID.IM c
 ### In the customer-record export
 
 The customer-record export is a hypothetical feature that lets users export customer records.
-After a hypothetical production incident, three changes follow upstream (see
+After a hypothetical production incident in which a scheduled full export times out, three
+changes follow upstream: to the load scenario tied to the volume-limit rule R-017, to the agent's
+evaluation set, and to what readiness asks of export-like specifications (see
 [software factory](software-factory.html)).
 
 At the checkpoint the owners read whether those three landed. For the load scenario, the question
 is whether it ran or returned `could_not_run`. On the export's first pull request the R-017 load
 scenario returned `could_not_run` (see [workflows](workflows.html)); a repeat for the same cause is
 a checkpoint item and not a coding defect. For the evaluation case, the question is whether it
-exists and passes (see [evaluation rerun](workflow-catalog.html#W35)). For the readiness change,
+exists and passes (see evaluation rerun, [W35](workflow-catalog.html#W35)). For the readiness change,
 the question is whether the next export-like specification was asked the new question. This
 reading of the three changes is recommended practice.
 
-Exceptions are read the same way (see [workflows](workflows.html) and
-[software factory](software-factory.html)).
+Exceptions are read the same way. If the export keeps needing exceptions to R-017's row limit,
+the checkpoint treats that as a question about the limit for the owner of R-017, not as one more
+request to grant. R-042 gives no such reading, because an access rule is not open to exception
+(see the failure paths in [workflows](workflows.html#failure-paths)).
 
 ## What shifts with agents
 
@@ -146,7 +155,9 @@ particular, so the statements below are recommended practice unless a source is 
 ### What an agent prepares
 
 Agents are described as consolidating and summarising incident data, creating handoff documents
-and automatically creating drafts of incident postmortems.[^google-agentic-sre] See [W28](workflow-catalog.html#W28).
+and automatically creating drafts of incident postmortems.[^google-agentic-sre] On this site, the
+workflow that carries incident lessons back to development is incident-to-development feedback
+([W28](workflow-catalog.html#W28)).
 Research points the same way for root-cause work. A study presented at ICSE 2023 evaluated large language models for helping engineers find the root cause of production incidents
 and recommend mitigations, over more than 40,000 incidents.[^ahmed-incident-llm] A preprint
 describes a system that routes an incident to a handler, aggregates diagnostic information,
@@ -159,9 +170,14 @@ proposed root cause enters the checkpoint as a hypothesis the owner tests, not a
 
 Google's account of agents in incident management says that an agentic approach does not
 necessarily imply removing people from the process, specifically for higher-risk services and
-features.[^google-agentic-sre] The same holds here (see [rule registry](rule-registry.html),
-[workflows](workflows.html), [W25](workflow-catalog.html#W25) and
-[W28](workflow-catalog.html#W28)).
+features.[^google-agentic-sre] At this checkpoint, what stays with people is the judgement it
+exists for: choosing which change to make, naming the person who owns it, and accepting or
+rejecting what an agent proposes. An agent's summary or proposed root cause is material for that
+judgement, never a decision in itself. A change to a rule stays with the rule's named owner (see
+[rule registry](rule-registry.html)), and the decisions inside each workflow, such as release
+readiness ([W25](workflow-catalog.html#W25)) or incident-to-development feedback
+([W28](workflow-catalog.html#W28)), keep the deciders their catalog rows name. These statements
+are recommended practice.
 
 ### What is new to inspect
 
@@ -211,19 +227,23 @@ The checkpoint has become a report with no consequences when these signs appear.
 - [Operate](operate.html): where incidents and their feedback arise.
 - [Specification](specification.html): where a misunderstood requirement turns into a readiness
   question.
-- [Definition of ready and done](definition-of-ready-and-done.html): the criteria a conversion may
-  tighten.
-- [Lifecycle levels](lifecycle-levels.html): the levels at which the checkpoint can run.
-- [SAFe reference model](safe-reference-model.html): the SAFe event and where it sits in that
-  model[^oasis-soa-rm].
+- [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the criteria a
+  conversion may tighten.
+- [Lifecycle levels](lifecycle-levels.html): the portfolio, train and team levels of work, and the
+  lessons that flow up from them to this checkpoint.
+- [SAFe reference model](safe-reference-model.html): this site's mapping of the lifecycle onto SAFe,
+  including where SAFe's event sits.
 - [Harness engineering](harness-engineering.html): the discipline whose steering loop this
   checkpoint reviews.
 - [Software factory](software-factory.html): the operating state that the feedback path makes
   possible.
 - [Workflows](workflows.html): the unit of work whose owner attends.
-- [Workflow catalog](workflow-catalog.html#W28): incident-to-development feedback, with
-  [W27](workflow-catalog.html#W27), [W04](workflow-catalog.html#W04),
-  [W35](workflow-catalog.html#W35) and [W25](workflow-catalog.html#W25).
+- Workflow catalog rows: incident-to-development feedback ([W28](workflow-catalog.html#W28)),
+  incident remediation ([W27](workflow-catalog.html#W27)), specification readiness
+  ([W04](workflow-catalog.html#W04)), evaluation rerun ([W35](workflow-catalog.html#W35)), release
+  readiness ([W25](workflow-catalog.html#W25)), pull-request verification
+  ([W23](workflow-catalog.html#W23)) and deployment and post-deploy verification
+  ([W26](workflow-catalog.html#W26)).
 - [Rule registry](rule-registry.html), [Evidence schema](evidence-schema.html),
   [Skills with evals](skills-and-evals.html) and [Validators](validators.html): where a
   conversion lands.
@@ -239,7 +259,8 @@ The checkpoint has become a report with no consequences when these signs appear.
   parts and its output.[^safe-inspect-and-adapt] SAFe's facilitator's guide for the event, and its
   pages on the Release Train Engineer, the Iteration Retrospective and the System Demo
   entry.[^safe-ia-facilitators-guide][^safe-rte][^safe-iteration-retrospective][^safe-glossary]
-  SAFe's Planning Interval page for the typical timebox.[^safe-framework]
+  SAFe's Planning Interval page for the typical timebox,[^safe-framework] and its PI Planning page
+  for the name of the planning event that receives the event's output.[^safe-pi-planning]
 - SAFe's Sense and Respond page and framework home page, for the single note on AI-Native
   SAFe.[^safe-ai-native-sense-and-respond][^safe-framework-home]
 - The 2020 Scrum Guide on the empirical pillars and the Sprint Retrospective,[^scrum-guide-2020]
@@ -250,5 +271,9 @@ The checkpoint has become a report with no consequences when these signs appear.
 - Research on language models for incident root-cause analysis.[^ahmed-incident-llm][^chen-rcacopilot]
 - AI adoption and delivery: DORA's 2025 announcement and its AI Capabilities Model
   article.[^dora-2025-announcement][^dora-ai-capabilities-impact]
-- Böckeler on the steering loop.[^bockeler-harness]
+- Birgitta Böckeler on the steering loop, which this site adapts as the feedback
+  path,[^bockeler-harness] and on computational sensors, which this site calls
+  validators.[^bockeler-sensors]
+- The sense of "reference model" in the name of the SAFe reference model page: the OASIS Reference
+  Model for Service Oriented Architecture.[^oasis-soa-rm]
 - Statements marked as recommended practice are this site's own and are not findings of any study.

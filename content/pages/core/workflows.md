@@ -242,8 +242,9 @@ applies, its [Validators](validators.html) are the checks, its
 share rules, evidence and feedback.
 
 Outside the core band, the lifecycle band places each workflow in its phase, through the
-[workflow catalog](workflow-catalog.html). Readiness and completion criteria are covered on the
-[Definition of Ready and Definition of Done](definition-of-ready-and-done.html)[^scrum-guide-2020] page, and the links
+[workflow catalog](workflow-catalog.html). Readiness criteria, and the Definition of Done from the
+Scrum Guide[^scrum-guide-2020], are covered on the
+[Definition of Ready and Definition of Done](definition-of-ready-and-done.html) page, and the links
 between records from requirement to incident on the [Traceability spine](traceability-spine.html)
 page. The assurance band reads the evidence records a workflow leaves, and the adoption path
 decides which workflow a team builds first.
@@ -298,7 +299,7 @@ decides which workflow a team builds first.
 - [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
   incident.
 - [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which a workflow is added
-  or tightened[^safe-inspect-and-adapt].
+  or tightened, named after an event the Scaled Agile Framework (SAFe) holds[^safe-inspect-and-adapt].
 - [Lifecycle levels](lifecycle-levels.html): the portfolio, train and team levels at which the
   lifecycle runs.
 - [Workflow in the terminology](glossary.html#workflow): the short definition and its

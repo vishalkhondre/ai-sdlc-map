@@ -4,7 +4,7 @@ type: phase
 band: lifecycle
 map_box: Develop · Build · QA
 title: Develop, Build and QA
-summary: The three phases in which one change is made, assembled and tested under one set of checks and one evidence record, ending in the decision whether the change is ready to merge, and what agents, deterministic checks and people each do along the way.
+summary: Develop, Build and QA are the three phases in which one change is made, assembled and tested under one set of checks and one evidence record; they end in the merge decision, and agents, deterministic checks and people each have a distinct part along the way.
 key_terms: [deterministic-gate, engineering-kit, gate, validator, review-skill, skill, could-not-run, evidence-record, independent-basis, guides-and-sensors, risk-tier, harness-engineering, workflow, three-roles, review-fatigue, feedback-path, export-example]
 sources: [google-eng-practices-small-cls, google-eng-practices-review, fowler-selftesting, fowler-ci, dora-test-automation, nist-ssdf, sre-book-release-engineering, fowler-deployment-pipeline, humble-farley-cd, safe-continuous-integration, slsa-provenance, slsa-build-track-basics, istqb-ctfl-4, fowler-test-pyramid, istqb-rbt, nist-ir-8397, owasp-asvs, owasp-wstg, owasp-secrets-management, istqb-stress-testing, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2024-highlights, dora-2025-report, dora-2025-announcement, dora-ai-capabilities-impact, perry-2023, konstantinou-test-oracles, metr-reward-hacking, anthropic-claude-37-system-card, dora-small-batches, safe-built-in-quality, istqb-acceptance-criteria, scrum-guide-2020]
 related: [engineering-kit, validators, skills-and-evals, workflows, evidence-schema, harness-engineering, rule-registry, adapters, design, deploy, definition-of-ready-and-done, traceability-spine]
@@ -16,7 +16,7 @@ review_record: content/reviews/1.5.0-lifecycle.md
 Develop, Build and QA are the phases in which one change is made, assembled into something that
 runs, and tested. In the AI SDLC (the software development lifecycle with AI agents doing part of
 the work), the three share a page because, for a single change, they share one set of checks, one
-evidence record and one decision at the end: whether the change is ready to merge, which the
+evidence record and one decision at the end, the merge decision, which the
 [Workflows](workflows.html) page gives as its example of a workflow. The map draws one workflow
 bar across all three labels, "pull-request verification · security & performance checks by tier",
 for the same reason.
@@ -103,10 +103,8 @@ protections; "black box" test cases; code-based structural test cases; historica
 fuzzing; web application scanners; and addressing included code. It states that it "does not
 address the totality of software verification".[^nist-ir-8397] OWASP's Application Security
 Verification Standard leaves the choice of verification level to an organisation's analysis of its
-own risks.[^owasp-asvs] The OWASP Web Security Testing Guide, "created by the collaborative efforts
-of security professionals and dedicated volunteers", identifies each test scenario in the form
-WSTG-category-number.[^owasp-wstg]
-For credentials, OWASP advises centralising the storage, provisioning, auditing, rotation and
+own risks.[^owasp-asvs] The OWASP Web Security Testing Guide identifies each of its test scenarios
+in the form WSTG-category-number.[^owasp-wstg] For credentials, OWASP advises centralising the storage, provisioning, auditing, rotation and
 management of secrets, and applying least privilege to them.[^owasp-secrets-management]
 
 Performance testing examines behaviour under load. The ISTQB glossary defines stress testing as "a
@@ -189,11 +187,12 @@ and attributes the behaviour to reward hacking during training.[^anthropic-claud
 The [Harness engineering](harness-engineering.html) page draws the conclusion: an agent must not be
 able to satisfy a sensor by changing it.
 
-Security and performance checks follow the change's risk tier, which is worked out again for each
-revision. In the site's running example, the customer-record export, the access validator for rule
-R-042 fails on the first pull request because a background worker's query reads records outside the
-caller's scope; a review skill's finding on the same query sits beside that failure as advice only.
-A change to the export button's label runs the same workflow with fewer checks.
+Security and performance checks follow the change's [risk tier](glossary.html#risk-tier). In the
+site's running example, the customer-record export, the access validator for rule R-042 fails on
+the first pull request because a background worker's query reads records outside the caller's
+scope; a review skill's finding on the same query sits beside that failure as advice only.
+The [Workflows](workflows.html#risk-tiers-same-definition-different-cost) page sets this beside a
+change to the export button's label.
 
 A required check that cannot produce a verdict is a result of its own, never a pass. In the same
 example, the 50k-row load scenario for the volume-limit rule R-017 reports
@@ -226,28 +225,29 @@ evidence) is in the [workflow catalog](workflow-catalog.html) and is not repeate
 ## Gates and evidence
 
 A task enters the stretch once it meets the team's Definition of Ready, which is set before
-development starts; the [Definition of Ready and Done](definition-of-ready-and-done.html) page
-covers it, together with the story-level Definition of Done[^scrum-guide-2020] that is applied here. SAFe describes
-built-in quality as "a set of practices to help ensure that the outputs of Agile teams in business
-and technology domains meet appropriate quality standards throughout the process of creating
-customer value".[^safe-built-in-quality]
+development starts. The Scrum Guide defines the Definition of Done for the Increment, as a formal
+description of its state when it meets the quality measures required for the
+product[^scrum-guide-2020]. Applying a Definition of Done to each story at the close of this stretch
+is this site's recommended practice. The
+[Definition of Ready and Done](definition-of-ready-and-done.html) page covers both.
 
-Inside the stretch, every gate runs through the verify command, which is the same command on a
-developer's machine, in an agent's session and in the pipeline
-([Engineering Kit](engineering-kit.html)). The checks a revision needs follow its risk tier. The
-[Evidence schema](evidence-schema.html) page fixes what each run records: the checks expected before
-any result arrives, one of four results for each (passed, failed, skipped or could_not_run), and an
-overall status that the kit derives, which could_not_run, like a failure, keeps from being positive.
+The gates in this stretch check each change as it is made, not only once the work is finished. In
+that they put into practice what SAFe calls built-in quality, "a set of practices to help ensure
+that the outputs of Agile teams in business and technology domains meet appropriate quality
+standards throughout the process of creating customer value".[^safe-built-in-quality] Inside the
+stretch, every gate runs through the verify command, which is the same command on a developer's
+machine, in an agent's session and in the pipeline ([Engineering Kit](engineering-kit.html)). The
+checks a revision needs follow its risk tier. What each run records, and how its overall status
+follows from the results, is fixed on the [Evidence schema](evidence-schema.html) page.
 
 The build leaves evidence of its own. Provenance generated by the build platform, in line with
 SLSA's Build track and the SSDF's provenance task,[^slsa-build-track-basics][^nist-ssdf] records how
 the tested output was produced.
 
 The stretch is left through one exit: the merge decision, recorded against the exact revision it
-describes. Each workflow's catalog row names the record it leaves, and pull-request verification
-reads those records rather than running their checks again. A new revision gets a new record, and
-the earlier one stays as history, since a result for an earlier revision says nothing reliable about
-the code as it is now, as the [Workflows](workflows.html) page explains.
+describes. Each workflow's catalog row names the record it leaves. A new revision gets a new
+record, and the earlier one stays as history, since a result for an earlier revision says nothing
+reliable about the code as it is now, as the [Workflows](workflows.html) page explains.
 
 ## Roles
 
@@ -258,7 +258,7 @@ change and the reviewer who examines it,[^google-eng-practices-small-cls][^googl
 and both accountabilities hold when an agent writes the code.
 
 - **The developer** who directs the agent is the author of the change and answers for it.
-- **The reviewer** decides whether the change is ready to merge, on what a tool cannot judge.
+- **The reviewer** takes the merge decision on what a tool cannot judge.
 - **Rule owners**, recorded in the [Rule registry](rule-registry.html), own what a rule means and
   any exception to it. In the export example, a request to exceed R-017's row limit is pending with
   the security owner while the record's overall status is blocked; R-042 is not open to exception.
@@ -278,8 +278,8 @@ Who decides at the human step of each workflow is named in that workflow's catal
   card.[^metr-reward-hacking][^anthropic-claude-37-system-card] Sign: one change that edits both a
   check and the code it checks.
 - **Silence read as success.** A required check never reports, and the change merges anyway. Sign:
-  no list of expected checks recorded before the results, as the [Workflows](workflows.html) page
-  describes.
+  a merged change whose record holds no result for a check its tier requires; the
+  [Workflows](workflows.html) page covers the case.
 - **A flaky check re-run until it passes.** The pass after a retry is counted like any other, and
   the check stops meaning anything. Sign: one check failing and passing on the same revision, a
   pattern the [Validators](validators.html) page covers.
@@ -287,9 +287,10 @@ Who decides at the human step of each workflow is named in that workflow's catal
   and integrate safely",[^dora-small-batches] and that AI can generate code in blocks that are hard
   to review and test.[^dora-ai-capabilities-impact] Sign: large diffs approved with few comments.
 - **Reviewers doing a tool's job.** Review threads fill with comments a check could make, and
-  review fatigue follows. Each recurring comment belongs on the feedback path, the site's extension
-  of Böckeler's steering loop,[^bockeler-harness] as a rule and then a gate; that is why the export's
-  R-042 validator covers background workers. Sign: the same comment on many changes.
+  review fatigue follows. A recurring comment belongs on the
+  [feedback path](glossary.html#feedback-path), the site's extension of Böckeler's steering
+  loop,[^bockeler-harness] and the export's R-042 validator covers background workers for that
+  reason. Sign: the same comment on many changes.
 - **Local and pipeline results that differ.** The pipeline runs its own version of a check. With one
   verify command and one set of inputs, a difference points at the environment, not the rules
   ([Engineering Kit](engineering-kit.html)). Sign: changes that pass locally and fail in the

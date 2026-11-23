@@ -66,8 +66,7 @@ standard defines them.
 
 ## AI-assisted practice
 
-This site found no public study that measures how well a coding agent sorts or sizes incoming
-work. Where this section describes what an agent does at Idea, it is recommended practice and not a
+No public study measures how well a coding agent sorts or sizes incoming work. Where this section describes what an agent does at Idea, it is recommended practice and not a
 research finding; the claims that rest on research are cited to DORA.
 
 **What moves to an agent.** Drafting. The agent reads a request as it was written and proposes a
@@ -95,8 +94,7 @@ batches help in "ensuring that speed translates to product performance rather th
 instability"[^dora-ai-capabilities-impact], and its capability page reports that working in small
 batches amplifies the positive impact of AI adoption on product performance[^dora-small-batches].
 Keeping each change within what one reviewer can read in full is recommended practice, not a
-measured finding; the [Workflows](workflows.html) page sets out the reasoning. At Idea, that
-practice starts as a limit on the size of what is admitted.
+measured finding; the [Workflows](workflows.html) page sets out the reasoning.
 
 **Why the user need matters more.** The same model reports that "in the absence of a user-centric
 focus, AI adoption can have a negative impact on team performance"[^dora-ai-capabilities-intro].
@@ -112,7 +110,8 @@ run end to end with a named owner; each catalog row gives that decision and its 
 page does not repeat them.
 
 - [Intake and classification](workflow-catalog.html#W01): the decision at the centre of this
-  phase, and the one every later phase builds on.
+  phase, and the one every later phase builds on. The map draws it as the bar labelled
+  "intake & triage".
 - [Security discovery and baseline](workflow-catalog.html#W02): in the same catalog phase,
   alongside intake.
 
@@ -125,9 +124,8 @@ workflow is given in its [catalog row](workflow-catalog.html#W01).
 **Exit.** An item leaves Idea when the checks named in its catalog row have passed and the intake
 decision is recorded under the name of the person who took it. As recommended practice, an agent's
 proposal on its own never moves an item on, and the size it carries is one the people who will do
-the work have accepted[^scrum-guide-2020]. Idea is also the earliest point at which a change's
-[risk tier](glossary.html#risk-tier) can be estimated; here it is a proposal, not a setting, and
-the [Workflows](workflows.html) page describes how the tier is set and revisited.
+the work have accepted[^scrum-guide-2020]. How a change's [risk tier](glossary.html#risk-tier) is
+set and revisited is described on the [Workflows](workflows.html) page.
 
 **Evidence.** The run leaves an [evidence record](evidence-schema.html), the one shape every
 workflow on this site writes. That page fixes its fields and who may write each of them; this page
@@ -138,8 +136,9 @@ decision in conversation. Whether the phase works over time is measured under as
 export customer records, the item leaves Idea with its main questions still open: which records,
 which fields, how large exports behave, what happens on failure and what is audited. Settling them
 is Specification's work. What is already visible is that the feature reads customer data and falls
-under an access rule, R-042, so once its tier is set it calls for more checks and reviewers than a
-change to the export button's label would; the [Workflows](workflows.html) page gives both cases.
+under an access rule, R-042, so it is not a light change; the
+[Workflows](workflows.html#risk-tiers-same-definition-different-cost) page compares it with a change
+to the export button's label.
 
 ## Roles
 
@@ -165,10 +164,6 @@ in the enablement band, under people and roles.
   theirs, the commitment rests on a number nobody doing the work agreed to; treating that as a
   pitfall in the agent case is recommended practice. Sign: sizes are recorded before any developer
   has seen the item.
-- **An early tier left low and never revisited.** A change is estimated as low risk at intake for
-  convenience, and the estimate travels unchanged into later phases. Sign: the tier recorded at
-  intake is the tier recorded at release, even when the change grew to touch customer data. The
-  [Workflows](workflows.html) page explains why the tier is worked out again for each revision.
 - **Oversized items admitted whole.** A request large enough to fill several changes enters as one
   item, and every later phase inherits its size. DORA notes that "large changes are difficult to
   review, test, and integrate safely"[^dora-small-batches]. Sign: items that cannot be completed

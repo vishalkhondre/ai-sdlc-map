@@ -219,7 +219,8 @@ where a team tests whether it has reached this state; that stage sets the criter
 - [Lifecycle levels](lifecycle-levels.html): the portfolio, train and team levels at which the
   lifecycle runs.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
-  exit criteria for an item of work[^scrum-guide-2020].
+  exit criteria for an item of work, including the Definition of Done from the Scrum
+  Guide[^scrum-guide-2020].
 - [Terminology](glossary.html#software-factory): the glossary entry and the credit for each term.
 
 ## Sources
@@ -242,5 +243,5 @@ where a team tests whether it has reached this state; that stage sets the criter
   Conway on organisations and system design[^conway-committees].
 - Bainbridge, and Lee and colleagues, on automation and critical
   thinking[^bainbridge-ironies][^lee-genai-critical-thinking].
-- Scaled Agile, Inc., *Inspect and Adapt*: Inspect and Adapt[^safe-inspect-and-adapt].
+- Scaled Agile, Inc., *Inspect and Adapt*: SAFe's Inspect and Adapt event[^safe-inspect-and-adapt].
 - Schwaber and Sutherland, *The 2020 Scrum Guide*: the Definition of Done[^scrum-guide-2020].

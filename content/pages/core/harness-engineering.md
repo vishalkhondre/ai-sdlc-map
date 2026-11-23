@@ -285,7 +285,8 @@ this page defines the controls, not what their results mean for that decision. T
 - [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence
   is read together.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
-  exit criteria for an item of work[^scrum-guide-2020].
+  exit criteria for an item of work, including the Definition of Done from the Scrum
+  Guide[^scrum-guide-2020].
 - [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
   incident.
 - Terminology: [harness engineering](glossary.html#harness-engineering),
@@ -318,5 +319,5 @@ this page defines the controls, not what their results mean for that decision. T
 - Fowler, *Continuous Integration*: the self-testing build underneath the harness.[^fowler-ci]
 - NIST SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and
   Organizations*: the least-privilege control.[^nist-800-53]
-- Scaled Agile, Inc., *Inspect and Adapt*: Inspect and Adapt.[^safe-inspect-and-adapt]
+- Scaled Agile, Inc., *Inspect and Adapt*: SAFe's Inspect and Adapt event.[^safe-inspect-and-adapt]
 - Schwaber and Sutherland, *The 2020 Scrum Guide*: the Definition of Done.[^scrum-guide-2020]
