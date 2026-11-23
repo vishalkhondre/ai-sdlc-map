@@ -35,34 +35,44 @@ Update at the end of every session (see `CLAUDE.md`).
   section; the Core section is released. **Lifecycle plan approved 2026-10-06 (D-029, merged in
   PR #19):** edition 1.5.0 (12 pages) and edition 1.6.0 (7 workflow pages), each reviewed live and
   tagged separately.
+- **Edition 1.5.0, Lifecycle part one (session 10): merged and deployed, awaiting the author's live
+  review (PR #24).** Twelve pages (the generic levels and the SAFe reference model, the seven phase
+  pages, Definition of Ready and Done, the traceability spine, Inspect and Adapt), the D-015 map
+  relabel and links, 98 new references, 22 glossary entries and the Core back-links. Built under
+  `project/handover/KICKOFF.md` and D-030 (pages link to catalog rows and Core pages, never restate
+  them); library sweep CLEAN; three reviewers on two page groups, three rounds, all six latest
+  verdicts ACCEPT (review record `content/reviews/1.5.0-lifecycle.md`). The author confirmed the SAFe
+  reference model page is not recognisable before its first push (D-015; recorded on PR #24).
 - **GR-6.1 stays as written (author, 2026-11-20).** D-029 records the two-edition split as an
   exception for Lifecycle, so `GROUND-RULES.md` is not amended. Revisit only if another band needs
   to ship in parts.
 
 ## Next (in order)
 
-1. A small follow-up edition (optional): make the harness page call the feedback path the site's
+1. **Author's live review of edition 1.5.0.** Follow-ups come as patch editions 1.5.x through the
+   same pipeline (sweep of every changed passage, reviewers); tag `v1.5.x` on the author's
+   instruction (D-016). Open non-blocking review suggestions that a 1.5.x could take, all recorded
+   in the review record: on safe-reference-model the one-sentence Ready paragraph and the Sources
+   list rendered as bare footnote numbers; a heading for "how criteria are written" and a
+   back-reference on definition-of-ready-and-done; bare "See ..." warning signs on inspect-and-adapt;
+   naming the rule IDs in the traceability walk; the System Demo quote cited to two different SAFe
+   pages; uniform "no public study" wording across the phase pages; `could-not-run` left in
+   release's key terms; "Program Board" as an outdated term in `scripts/outdated_terms.yml`.
+2. **1.4.x fix edition** for the catalog diagnostic findings (below): six catalog rows, three Core
+   passages and one glossary entry close to the library. The author decides when it runs.
+3. **Edition 1.6.0** (the seven workflow pages, D-029): not started. Briefs, outline pass, library
+   concept pass, writing, sweeps (W1 twice, then W2), the workflow links moving to their pages, a
+   confirmation review of the edited 1.5.0 pages and Core, then review. Carry D-030 and the 1.5.0
+   lessons (categories only): close passages clustered in lists, role-per-gate splits, ordered
+   layers and restatements of catalog rows.
+4. **Optional diagrams (1.5.x):** none were added in 1.5.0; the traceability chain and deploy versus
+   release are the strongest candidates, if the author wants them after the live review.
+5. A small follow-up edition (optional): make the harness page call the feedback path the site's
    extension of the steering loop in all three places (editorial suggestion on 1.4.2), and add the
    dotted precondition line to the workflow diagram's legend.
-2. Keyed deny-list (D-023): the author runs `scripts/denylist_rekey.py` (command in For the author)
+6. Keyed deny-list (D-023): the author runs `scripts/denylist_rekey.py` (command in For the author)
    and pushes its result; a session then confirms CI is green with the key, and removes the salted
    fallback from `scripts/denylist.py` as a reviewed tooling change.
-3. **Lifecycle section (D-029), two editions; plan in `project/plans/lifecycle.md`.** 1.5.0 (12
-   pages, includes the D-015 relabel) first, then 1.6.0 (the seven workflow pages).
-   1. Source check by direct reading: `project/handover/lifecycle-1.5-source-check-worklist.md`,
-      results in `project/handover/lifecycle-1.5-source-check-results.md` on a branch, reviewed by
-      the author. The environment's allow-list now covers the SAFe, DORA, Scrum Guide, Fowler, SRE
-      and NIST hosts; `openai.com` and `iso.org` are listed but answer plain requests with a
-      Cloudflare challenge, so ISO catalogue pages are not readable from a session.
-   2. Finalise the skeletons from the checked sources, write batch A, run the sweep. The briefs,
-      skeletons and library diffs from session 8 exist only in that session's scratchpad (GR-1.3,
-      D-026) and cannot be handed over in git; a new session rebuilds them from the plan.
-   3. Page work stays on a local branch that is not pushed until the sweeps pass and the author
-      has read the SAFe reference model page in chat. Decided: one sentence on AI-Native SAFe; add
-      the superseded NIST SP 800-61 Rev. 2 and ISO/IEC/IEEE 12207:2017 to `outdated_terms.yml`
-      once their references exist.
-   4. 1.5.0: review, merge, author's live review, tag. Then 1.6.0 on the same steps. The deferred
-      retrospective items for this section are listed below.
 
 ## 1.4.x findings from the D-030 catalog diagnostic (2026-11-21)
 
@@ -99,13 +109,27 @@ confidentiality review of the fix edition reads those fields as a public reader 
 
 - Catalog consistency pass (W12 wording): the W12 row says "definition of ready" while the map
   and adoption path place it at Specification (D-029, question 8).
+- Plan departure to record: `project/plans/lifecycle.md` row 1 scopes `lifecycle-levels` to "which
+  phases and workflows run at which level"; the page assigns none, because no public source does
+  (GR-2.3) and D-030 rules out restating catalog rows. The plan text is to be updated with the
+  1.6.0 briefs.
+- Tooling: `check_citations.py` asks a page to cite a glossary term's source even when the term
+  appears only inside a linked page title (for example "reference model" in "SAFe reference
+  model"); consider an exception (editorial suggestion, 1.5.0 review).
 
 ## For the author
 
 - **1.4.x findings (above).** Decide when the fix edition runs; it changes live catalog rows, Core
   passages and one glossary entry, so it may precede or follow 1.5.0.
-- **SAFe reference model page (D-029).** Its text is shown in chat for the author to read before it
-  is first pushed.
+- **Live review of edition 1.5.0** (PR #24, now on the site): approve for the `v1.5.x` tag, or list
+  follow-ups.
+- **Author to confirm** (unchanged since PR #23): the items in section G of
+  `project/handover/lifecycle-1.5-source-check-results.md` (Definition of Ready origin, the three ISO
+  claims, the eight PARTLY SAFe terms, the other unreadable sources). The pages stay conservative
+  until a browser read confirms them.
+- **Deploy page names SAFe's four continuous-deployment activities** (Deploy, Verify, Monitor,
+  Respond), cited to SAFe; the closed allow-list governs only the SAFe reference model page, where
+  they were cut. Say if they should come off the Deploy page too.
 - **Keyed deny-list (D-023).** In a local clone, with the names in a file outside the repository
   (one name per line, two-word names with one space), run:
 
@@ -155,7 +179,7 @@ Each open item, with its outcome (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | closed (D-028) | — | — |
-| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2` with diagrams); Lifecycle plan approved (D-029): 1.5.0 (12 pages) in progress, 1.6.0 (7 pages) planned | 9 (core) + 12 (1.5.0) + 7 (1.6.0) | 9 |
+| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2` with diagrams); Lifecycle (D-029): 1.5.0 merged and deployed, awaiting live review; 1.6.0 (7 pages) not started | 9 (core) + 12 (1.5.0) + 7 (1.6.0) | 21 |
 | 2 Assurance and enablement | not started | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
@@ -172,3 +196,4 @@ Each open item, with its outcome (GR-5.3).
 | 7 | 2026-10-06 | Closed wave 0: STATUS brought up to date (Core released as `v1.4.1`); the library sweep made a gate on every content change (D-027); the keyed deny-list switch built and tested, waiting for the author's hashing run (D-023); wave 0 retrospective held (D-028); diagrams on five Core pages and the home-page wording fixes as edition 1.4.2 | 1.4.2 merged (PR #18) and released as `v1.4.2` on the author's instruction, through the Release workflow (tag pushes are refused by tag protection; the first run's release job failed on a one-off Chromium screenshot error and passed on re-run). Leftover branch could not be deleted from the session. Author: run the rekey command |
 | 8 | 2026-10-06 | Planned the Lifecycle section (architect); the author approved it as two editions (D-029) and answered eight questions; updated the Core plan and this file; opened the plan pull request; started the 1.5.0 briefs and public-skeleton research | Page work on a local branch, nothing pushed; SAFe page text to the author in chat before its first push; see Next item 3 |
 | 9 | 2026-11-20 | Merged the Lifecycle plan pull request (PR #19); recorded that GR-6.1 stays as written (D-029 holds the exception); brought the wave tracker and Next to the two-edition plan; started the 1.5.0 source check (its results go in their own pull request) | See Next item 3 |
+| 10 | 2026-11-20 to 2026-11-23 | KICKOFF.md, the author-to-confirm list, D-030 and the 1.4.x catalog diagnostic findings (PR #23, merged); built edition 1.5.0: briefs, public skeletons from the source check, library concept pass, batch A (three sweep rounds and the D-030 shrink) and batch B (three rounds), map relabel and links, references and glossary, Core back-links, final sweep D1 clean; the author read the SAFe reference model page in chat; three review rounds (round 3 footnote fix after the cap with the author's approval); review record bound; PR #24 merged and deployed | Author: live review of 1.5.0, then tag; see Next |
