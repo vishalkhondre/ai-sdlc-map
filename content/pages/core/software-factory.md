@@ -6,8 +6,8 @@ map_box: Software factory
 title: Software factory
 summary: The operating state that appears when delivery workflows share one set of rules, one evidence format and one feedback path, so that what production teaches changes what the next specification asks.
 key_terms: [software-factory, workflow, evidence-handoff, feedback-path, steering-loop, harness, harness-template, rule-registry, evidence-record, engineering-kit, harness-engineering, validator, specification-readiness, three-roles, skill-erosion, export-example]
-sources: [cusumano-software-factories, greenfield-software-factories, shapiro-five-levels, willison-software-factory, morris-humans-agents-loops, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2025-report, dora-ai-capabilities, dora-customer-feedback, tw-incremental-developer-platform, team-topologies-tvp, google-sre-postmortem, conway-committees, bainbridge-ironies, lee-genai-critical-thinking]
-related: [workflows, harness-engineering, engineering-kit, rule-registry, evidence-schema, validators, skills-and-evals, adapters]
+sources: [cusumano-software-factories, greenfield-software-factories, shapiro-five-levels, willison-software-factory, morris-humans-agents-loops, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-customer-feedback, tw-incremental-developer-platform, team-topologies-tvp, google-sre-postmortem, conway-committees, bainbridge-ironies, lee-genai-critical-thinking, safe-inspect-and-adapt, scrum-guide-2020]
+related: [workflows, harness-engineering, engineering-kit, rule-registry, evidence-schema, validators, skills-and-evals, adapters, traceability-spine, inspect-and-adapt, lifecycle-levels, definition-of-ready-and-done]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -43,11 +43,13 @@ rule. Evidence written in one format cannot be read by the next workflow unless 
 across by hand.
 
 Research on AI adoption suggests why the connections matter more as agents do more of the work.
-DORA's 2025 research describes AI's main role as an amplifier that magnifies the strengths of
-high-performing organisations and the dysfunctions of struggling ones, and associates higher AI
-adoption with increases in both software delivery throughput and
-instability[^dora-2025-report]. Its 2024 research associated higher adoption with lower delivery
-throughput and stability, and suggested larger batch sizes as a reason[^dora-2024-report]. DORA
+DORA's 2025 research describes AI's primary role as an amplifier that magnifies an organisation's
+existing strengths and weaknesses[^dora-2025-report]. DORA's announcement of that report observes
+a positive relationship between AI adoption and software delivery throughput, and a continuing
+negative relationship with software delivery stability[^dora-2025-announcement]. Its 2024 research
+found that AI adoption negatively affects software delivery stability and throughput, and reminded
+teams that fundamentals such as small batch sizes and robust testing remain
+crucial[^dora-2024-report]. DORA
 also groups customer feedback with value-stream visibility, small batches and team
 experimentation as capabilities that help predict delivery and organisational
 performance[^dora-customer-feedback]. None of this is a finding about software factories: no
@@ -159,7 +161,10 @@ state and draws it with a dashed border, because it emerges from the other three
 being built beside them. It is distinct from the operating model box in the enablement band, which
 covers team cadence and decision rights. In the lifecycle band, the map places each workflow in its
 phase, draws the loop by which incident feedback changes what specification asks, and runs a
-traceability spine from requirement to incident, linked by rule identifiers. The enablement band
+traceability spine from requirement to incident, linked by rule identifiers. The spine and the
+periodic review of delivery evidence are covered on the
+[Traceability spine](traceability-spine.html) and [Inspect and Adapt](inspect-and-adapt.html)[^safe-inspect-and-adapt]
+pages. The enablement band
 holds the runtime and tools, the people and roles, and that operating model, all of which the
 factory depends on. The assurance band holds the evidence record on every run and the measurement
 that shows whether the connections help. The adoption path's final stage, "Factory emerges", is
@@ -185,8 +190,8 @@ where a team tests whether it has reached this state; that stage sets the criter
   to the shared rules.
 - **Reading the factory as unattended throughput.** Treating human decision points as the
   bottleneck to remove turns the factory into the lights-out sense this site does not mean, and
-  larger batches of generated work were DORA's suggested reason for lower stability as AI adoption
-  rose[^dora-2024-report]. The sign is a proposal to waive a check or drop an approval to keep up
+  DORA's 2024 research, which found that AI adoption negatively affects delivery stability, reminds
+  teams that small batch sizes and robust testing remain crucial[^dora-2024-report]. The sign is a proposal to waive a check or drop an approval to keep up
   with agent output.
 - **Lessons that never close.** Incident reviews write actions that never reach the stage that
   owns the gap. The sign is the same kind of miss recurring after it has been reviewed, or actions
@@ -207,6 +212,15 @@ where a team tests whether it has reached this state; that stage sets the criter
 - [Validators](validators.html), [Skills with evals](skills-and-evals.html) and
   [Adapters](adapters.html): the kit's other parts.
 - [Workflow catalog](workflow-catalog.html): the list of workflows the factory draws on.
+- [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
+  incident.
+- [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence
+  is read together.
+- [Lifecycle levels](lifecycle-levels.html): the portfolio, train and team levels at which the
+  lifecycle runs.
+- [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
+  exit criteria for an item of work, including the Definition of Done from the Scrum
+  Guide[^scrum-guide-2020].
 - [Terminology](glossary.html#software-factory): the glossary entry and the credit for each term.
 
 ## Sources
@@ -220,11 +234,14 @@ where a team tests whether it has reached this state; that stage sets the criter
   site's[^shapiro-five-levels][^willison-software-factory].
 - Morris on people working on the loop[^morris-humans-agents-loops]; Böckeler on the steering
   loop, harness templates and sensors[^bockeler-harness][^bockeler-sensors].
-- DORA's 2024 and 2025 research on AI adoption, its AI capabilities model and its customer
-  feedback capability[^dora-2024-report][^dora-2025-report][^dora-ai-capabilities][^dora-customer-feedback].
+- DORA's 2024 and 2025 research on AI adoption, its announcement of the 2025 report, its AI
+  capabilities model and its customer feedback
+  capability[^dora-2024-report][^dora-2025-report][^dora-2025-announcement][^dora-ai-capabilities][^dora-customer-feedback].
 - Thoughtworks on incremental developer platforms, and Team Topologies on the thinnest viable
   platform[^tw-incremental-developer-platform][^team-topologies-tvp].
 - The site reliability engineering workbook on postmortem ownership[^google-sre-postmortem];
   Conway on organisations and system design[^conway-committees].
 - Bainbridge, and Lee and colleagues, on automation and critical
   thinking[^bainbridge-ironies][^lee-genai-critical-thinking].
+- Scaled Agile, Inc., *Inspect and Adapt*: SAFe's Inspect and Adapt event[^safe-inspect-and-adapt].
+- Schwaber and Sutherland, *The 2020 Scrum Guide*: the Definition of Done[^scrum-guide-2020].

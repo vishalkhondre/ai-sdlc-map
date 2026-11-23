@@ -2,6 +2,20 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.5.0 — 2026-11-21
+
+The Lifecycle section, part one.
+
+- Twelve new reference pages, in reading order: Lifecycle levels: portfolio, train and team; SAFe reference model; Idea; Specification; Design; Develop, Build and QA; Deploy; Release; Operate; Definition of Ready and Definition of Done; Traceability spine; and Inspect and Adapt. Each page uses the customer-record export as its example and names its sources. The Lifecycle section appears in the header tabs, the left navigation, search, the sitemap and the llms files.
+- The map's lifecycle band uses generic level labels, portfolio, train and team; SAFe is cited as one framework that uses these levels, and the SAFe reference model is this site's mapping of it onto the band (D-015).
+- On the map, the phase, level, Definition of Ready and Definition of Done, traceability spine and Inspect & Adapt labels open their Lifecycle pages.
+- 22 new terminology entries: Acceptance criteria; Agile Release Train (ART); Continuous Delivery Pipeline; Dark launching; Definition of Done; Definition of Ready; Deploy versus release; Given, when, then; Hermetic build; Inspect and Adapt; INVEST; Portfolio, train and team levels; PI Planning; Planning Interval (PI); Reference model; Release toggle; Spec-first, spec-anchored, spec-as-source; System Demo; Test pyramid; Testability; Traceability spine; and WSJF (weighted shortest job first). Each names its origin; Portfolio, train and team levels and Traceability spine are coined here, the latter naming requirements traceability as its idea.
+- 98 new references, each with its title, author or organisation, address and date accessed.
+- Corrections to existing references, each read again at its source: DORA's metrics reference now points to the DORA metrics guide and names its five metrics; the DORA 2024 and 2025 report references point to their current pages and say what those pages state, with the throughput and stability findings credited to the 2025 announcement; the NIST SSDF reference cites version 1.1, the final version, and the tasks relied on; the Spec Kit, OWASP ASVS, SLSA provenance, SAFe Planning Interval, DORA customer-feedback and Google postmortem references have corrected titles, bylines or notes; the AI-assistant security study is checked against its preprint.
+- The map's credit lines name SAFe (Scaled Agile, Inc.) for Agile Release Train, System Demo and Inspect & Adapt, and the Scrum Guide for Definition of Done.
+- Core pages link to the Lifecycle pages where they mention the traceability spine, the Definition of Ready and Definition of Done, lifecycle levels or Inspect and Adapt.
+- Core prose corrections: Software factory states DORA's 2024 and 2025 findings as each source gives them; Workflows says DORA groups its software delivery performance metrics into throughput and instability; Evidence schema bases optional extra fields on SLSA provenance's requirement that consumers ignore fields they do not recognise, and says rule IDs are carried by expected checks, results and findings, not by decisions.
+
 ## 1.4.2 — 2026-10-06
 
 Diagrams on five Core pages, and two wording fixes on the home page.

@@ -502,3 +502,260 @@
     does not say fewer controls are better. This site's recommendation follows from shrinking what is
     governed: narrow what the agent may produce first, on a few well-defined execution surfaces, then
     start with a small set of controls fitted to failures actually seen.
+
+- id: lifecycle-levels
+  term: Portfolio, train and team levels
+  attribution: coined
+  definition: >-
+    One delivery lifecycle seen at three altitudes: portfolio, train and team. A portfolio decides which
+    initiatives to fund, in what order and with what budget. A train decides which features enter a
+    planning cycle and what an integrated demonstration shows. A team decides which stories to build in
+    an iteration and when work counts as ready and as done. Intent and rules flow down the levels;
+    evidence and lessons flow up. The three labels are generic names introduced by this site. SAFe names
+    the same altitudes Portfolio, Agile Release Train and Agile Team and is cited as one framework that
+    uses them, not as the source of the labels.
+  match: ["lifecycle levels", "portfolio, train and team"]
+
+- id: agile-release-train
+  term: Agile Release Train (ART)
+  attribution: adopted
+  source: safe-art
+  definition: >-
+    SAFe's name for the train level: "a long-lived team of Agile teams that incrementally develops,
+    delivers, and often operates one or more solutions in a development value stream". Credited to
+    Scaled Agile, Inc.; this site uses "train" as the generic label for the same altitude.
+  match: ["Agile Release Train"]
+
+- id: planning-interval
+  term: Planning Interval (PI)
+  attribution: adopted
+  source: safe-framework
+  definition: >-
+    SAFe's name for the planning cycle of a train: "a cadence-based timebox in which Agile Release
+    Trains deliver continuous value to customers in alignment with PI Objectives". SAFe describes it as
+    typically an 8 to 12-week timebox, and calls the pattern of PI Planning and iterations a suggestion
+    rather than a strict rule. Credited to Scaled Agile, Inc.
+  match: ["Planning Interval"]
+
+- id: wsjf
+  term: WSJF (weighted shortest job first)
+  attribution: adopted
+  source: safe-wsjf
+  definition: >-
+    A prioritisation measure that SAFe estimates as the relative cost of delay divided by the relative
+    job duration, from relative user and business value, time criticality, risk reduction and/or
+    opportunity enablement, and job size. Credited to the Scaled Agile Framework (Scaled Agile, Inc.),
+    whose WSJF page opens with an epigraph attributed to Don Reinertsen, The Principles of Product
+    Development Flow. This site credits WSJF to SAFe and does not cite the
+    book.
+  match: ["WSJF"]
+
+- id: reference-model
+  term: Reference model
+  attribution: adopted
+  source: oasis-soa-rm
+  definition: >-
+    "An abstract framework for understanding significant relationships among the entities of some
+    environment", in the words of the OASIS Reference Model for Service Oriented Architecture, where the
+    term is defined for service-oriented environments. This site borrows the sense, not the subject: its
+    SAFe reference model is a mapping that shows which item of Core SAFe lines up with which page of
+    this site, and why. It is the site's recommended practice, not SAFe guidance and not a description
+    of any organisation.
+  match: ["reference model"]
+
+- id: pi-planning
+  term: PI Planning
+  attribution: adopted
+  source: safe-pi-planning
+  definition: >-
+    SAFe's cadence-based event for the entire ART that aligns teams and stakeholders to a shared mission
+    and vision. Its outputs are committed PI objectives from the Agile Teams and an ART planning board
+    that reflects feature delivery dates and dependencies. SAFe describes it as typically a two-day
+    event. Credited to the Scaled Agile Framework (Scaled Agile, Inc.).
+  match: ["PI Planning"]
+
+- id: inspect-and-adapt
+  term: Inspect and Adapt
+  attribution: adopted
+  source: safe-inspect-and-adapt
+  definition: >-
+    SAFe's name for a significant event held at the end of each PI. It is structured into three parts:
+    the PI System Demo, a quantitative and qualitative measurement review, and a retrospective and
+    problem-solving workshop. Its improvement backlog items go into the ART backlog for consideration in
+    the next PI Planning event. Credited to the Scaled Agile Framework (Scaled Agile, Inc.). The site's
+    own Inspect and Adapt page uses the name for its checkpoint where evidence is reviewed and a
+    workflow is added or tightened; the earlier use of the phrase outside SAFe is not claimed here.
+  match: ["Inspect and Adapt", "Inspect & Adapt"]
+
+- id: system-demo
+  term: System Demo
+  attribution: adopted
+  source: safe-system-demo
+  definition: >-
+    SAFe's event that provides stakeholders an integrated view of new features for the most recent
+    iteration delivered by all the teams on the ART. Credited to the Scaled Agile Framework (Scaled
+    Agile, Inc.). On this site it lines up loosely with the release readiness decision, which also
+    brings the results of several changes together.
+  match: ["System Demo"]
+
+- id: continuous-delivery-pipeline
+  term: Continuous Delivery Pipeline
+  attribution: adopted
+  source: safe-cdp
+  also: [fowler-deployment-pipeline]
+  definition: >-
+    SAFe's name for the workflows, activities, and automation needed to guide new functionality from
+    ideation to an on-demand release of value. It has four aspects, in order: continuous exploration,
+    continuous integration, continuous deployment and release on demand. Credited to the Scaled Agile
+    Framework (Scaled Agile, Inc.). Not to be confused with a deployment pipeline as Fowler describes
+    it, a build broken into stages.
+  match: ["Continuous Delivery Pipeline"]
+
+- id: invest
+  term: INVEST
+  attribution: adopted
+  source: wake-invest
+  also: [agile-alliance-dor]
+  definition: >-
+    Bill Wake's acronym, published in 2003, for the qualities of a good user story: Independent,
+    Negotiable, Valuable, Estimable, Small and Testable. The Agile Alliance glossary notes that a team's
+    Definition of Ready is generally based on it. This site uses it as one public test of whether an
+    item is ready, not as the contents of any team's definition.
+  match: ["INVEST"]
+
+- id: acceptance-criteria
+  term: Acceptance criteria
+  attribution: adopted
+  source: istqb-acceptance-criteria
+  definition: >-
+    In the ISTQB glossary's current wording, the criteria that a work product must satisfy to be
+    accepted by the stakeholders. On this site they are written during Specification, carry identifiers
+    so that later tasks and tests can point back to them, and form part of the independent basis for
+    verification.
+
+- id: testability
+  term: Testability
+  attribution: adopted
+  source: istqb-testability
+  definition: >-
+    In the ISTQB glossary, the degree to which test conditions can be established for a component or
+    system, and tests can be performed to determine whether those test conditions have been met. An
+    acceptance criterion with no test condition to establish cannot settle whether the work is accepted.
+
+- id: given-when-then
+  term: Given, when, then
+  attribution: adopted
+  source: fowler-given-when-then
+  definition: >-
+    A form for writing a requirement as a concrete example: a starting state, an action, and the
+    expected outcome. Developed by Daniel Terhorst-North and Chris Matts as part of Behavior-Driven
+    Development, as described by Martin Fowler.
+  match: ["given, when, then"]
+
+- id: spec-commitment
+  term: Spec-first, spec-anchored, spec-as-source
+  attribution: adopted
+  source: bockeler-sdd
+  definition: >-
+    Birgitta Böckeler's three degrees of commitment to a specification in spec-driven development.
+    Spec-first: a specification is written before the code and used for the task at hand. Spec-anchored:
+    the specification is kept after the task and used as the feature evolves. Spec-as-source: the
+    specification is the main artefact a person edits, and the code follows from it.
+  match: ["spec-anchored", "spec-as-source"]
+
+- id: test-pyramid
+  term: Test pyramid
+  attribution: adopted
+  source: fowler-test-pyramid
+  definition: >-
+    The advice to have many more low-level unit tests than high-level broad-stack tests running through
+    a user interface, drawn as a pyramid. Martin Fowler's bliki entry credits Mike Cohn's 2009 book
+    Succeeding with Agile with spreading the name. On this site it is one of the traditional QA
+    practices that still shapes what an agent's tests should look like.
+  match: ["test pyramid"]
+
+- id: hermetic-build
+  term: Hermetic build
+  attribution: adopted
+  source: sre-book-release-engineering
+  definition: >-
+    A build that depends only on known versions of build tools and dependencies, so that the same
+    revision built on different machines gives identical results, as the release engineering chapter of
+    Google's site reliability engineering book describes. With coding agents, the build stays hermetic
+    and an agent proposes changes to its configuration rather than taking part in it.
+  match: ["hermetic build", "hermetic builds"]
+
+- id: deploy-versus-release
+  term: Deploy versus release
+  attribution: common
+  also: [safe-continuous-deployment, tw-radar-decoupling, fowler-feature-toggles]
+  definition: >-
+    Deployment is the act of putting a revision into an environment; release is exposing its behaviour
+    to users. The two coincide unless a toggle, a canary or a staged rollout separates them. Several
+    public sources keep the words apart: SAFe says it is optimal to separate the deployment process from
+    releasing; the Thoughtworks Technology Radar placed "Decoupling deployment from release" in Adopt
+    (November 2015 and April 2016); and Pete Hodgson's article on feature toggles (9 October 2017) calls
+    separating feature release from code deployment "the Continuous Delivery principle". No originator
+    is credited here. On this site, a deployment's health is decided in the Deploy phase and exposure to
+    users in Release.
+  match: ["deploy versus release", "deployment versus release"]
+
+- id: release-toggle
+  term: Release toggle
+  attribution: adopted
+  source: fowler-feature-toggles
+  definition: >-
+    One of the four kinds of feature toggle Pete Hodgson distinguishes by lifespan (release, experiment,
+    ops and permissioning). A release toggle lets incomplete or untested code paths ship to production
+    as latent code that may never be turned on, so exposure to users can be decided apart from
+    deployment. It is meant to be short-lived: Hodgson treats toggles as inventory with a carrying cost
+    and says release toggles should generally not stay much longer than a week or two.
+  match: ["release toggle", "release toggles"]
+
+- id: dark-launching
+  term: Dark launching
+  attribution: adopted
+  source: fowler-dark-launching
+  definition: >-
+    Martin Fowler's description: taking a new or changed back-end behaviour and calling it from existing
+    users without their being able to tell it is being called, to assess load and performance before the
+    capability is announced. Fowler notes that the term has been subject to semantic diffusion, so other
+    sources may use it more loosely.
+  match: ["dark launching", "dark launch"]
+
+- id: definition-of-ready
+  term: Definition of Ready
+  attribution: common
+  also: [agile-alliance-dor]
+  definition: >-
+    The criteria a team makes explicit and visible that an item must meet before the team accepts it for
+    work; the Agile Alliance glossary describes them for a user story and as generally based on the
+    INVEST matrix. The Scrum Guide does not use the term; it says Product Backlog items that can be Done
+    within one Sprint are deemed ready for selection in Sprint Planning.
+  match: ["Definition of Ready"]
+
+- id: definition-of-done
+  term: Definition of Done
+  attribution: adopted
+  source: scrum-guide-2020
+  also: [safe-glossary]
+  definition: >-
+    A formal description of the state of the Increment when it meets the quality measures required for
+    the product (Ken Schwaber and Jeff Sutherland, The 2020 Scrum Guide). It is the Increment's
+    commitment, and a Product Backlog item that does not meet it cannot be released or even presented at
+    the Sprint Review. SAFe's glossary words it as the requirements for completeness of a work product
+    or increment of value. This site applies it at story, increment and release, and treats the release
+    level as recommended practice.
+  match: ["Definition of Done"]
+
+- id: traceability-spine
+  term: Traceability spine
+  attribution: coined
+  definition: >-
+    The map's name for the chain of seven kinds of artefact (requirement, spec, task, test, change,
+    release, incident), each linked to the next by an identifier. Rule IDs tie checks and findings to
+    the chain, and decisions are tied to it through the checks and findings they read. The name, and
+    the extension of the chain to the incident, are this site's, built on requirements traceability as
+    Gotel and Finkelstein (1994) describe it: the ability to describe and follow the life of a
+    requirement forwards and backwards.
+  match: ["traceability spine"]

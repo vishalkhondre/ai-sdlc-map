@@ -42,10 +42,10 @@ fowler-ci:
   title: "Continuous Integration"
   author: "Martin Fowler"
   org: "martinfowler.com"
-  date: "2024-01"
+  date: "18 January 2024 (revised version)"
   url: "https://martinfowler.com/articles/continuousIntegration.html"
-  accessed: "2026-09-25"
-  note: "The classic statement of most of the deterministic floor this site takes for granted: a build that runs the same way everywhere and fails fast."
+  accessed: "2026-11-20"
+  note: "The classic statement of most of the deterministic floor this site takes for granted: a build that runs the same way everywhere and fails fast. Practice headings include Automate the Build; Make the Build Self-Testing; Everyone Pushes Commits To the Mainline Every Day; Fix Broken Builds Immediately; Keep the Build Fast; Test in a Clone of the Production Environment; Everyone can see what's happening; Automate Deployment."
 
 fitness-function:
   title: "Fitness function-driven development"
@@ -57,12 +57,13 @@ fitness-function:
   note: "Architecture goals expressed as executable tests, written first in the manner of test-driven development, giving continuous feedback on architectural conformance during development rather than after. What this site calls architecture gates."
 
 spec-kit:
-  title: "Spec Kit: toolkit to help you get started with Spec-Driven Development"
-  author: "GitHub"
-  org: "GitHub (open source)"
+  title: "Spec Kit"
+  author: "not printed"
+  org: "GitHub (github/spec-kit repository)"
+  date: "not printed"
   url: "https://github.com/github/spec-kit"
-  accessed: "2026-09-25"
-  note: "An open-source toolkit whose commands include specify, plan, tasks and implement, with clarification, checklists and consistency analysis available as optional extra quality gates: the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
+  accessed: "2026-11-20"
+  note: "Open-source toolkit; github.com refuses plain requests, so the README was read from https://raw.githubusercontent.com/github/spec-kit/main/README.md (same file). The README's minimal flow is constitution, specify, plan, tasks, implement and converge. The project's command reference (https://github.github.io/spec-kit/reference/agentic-sdd.html) labels clarify, analyze and checklist each an optional quality gate, and describes converge as assessing implementation against the artifacts and appending remaining work. This is the sequence this site refers to as spec-driven development. Named here as a source; the site's text stays tool-neutral."
 
 ashby:
   title: "Variety (cybernetics): law of requisite variety"
@@ -73,21 +74,22 @@ ashby:
   note: "Secondary source for W. Ross Ashby's law of requisite variety, from An Introduction to Cybernetics (1956): only variety can destroy variety, so a regulator needs at least as much variety as what it regulates. Cited by Böckeler; the reason narrowing what an agent may produce makes it easier to control."
 
 dora-metrics:
-  title: "DORA Research"
-  author: "DORA (DevOps Research and Assessment)"
-  org: "Google, published on dora.dev"
-  url: "https://dora.dev/research/"
-  accessed: "2026-09-25"
-  note: "The research program behind the DORA Core model and its software delivery performance metrics, which the map's measurement band points to."
+  title: "DORA's software delivery performance metrics"
+  author: "Nathen Harvey"
+  org: "DORA, published on dora.dev"
+  date: "last updated 2026-01-05 (as printed)"
+  url: "https://dora.dev/guides/dora-metrics/"
+  accessed: "2026-11-20"
+  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics."
 
 safe-framework:
   title: "Planning Interval (PI)"
-  author: "Scaled Agile, Inc."
-  org: "Scaled Agile Framework (SAFe), framework.scaledagile.com"
-  date: "2025-02-25 (last updated)"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-02-25 (as printed)"
   url: "https://framework.scaledagile.com/planning-interval"
-  accessed: "2026-09-26"
-  note: "SAFe's definition of the Planning Interval: a cadence-based timebox, beginning with PI Planning, in which Agile Release Trains deliver value. SAFe is also the source of the portfolio, Agile Release Train and team levels and WSJF on the map's lifecycle band; cited as one framework that uses these terms, not as a requirement."
+  accessed: "2026-11-20"
+  note: "Defines a Planning Interval (PI) as a cadence-based timebox in which Agile Release Trains deliver continuous value to customers in alignment with PI Objectives. Says a PI begins with PI Planning, followed by four development iterations and one Innovation and Planning iteration, and that a series of ART events, including PI Planning and Inspect and Adapt, ensures successful PI execution. Says a Planning Interval is typically an 8 to 12-week timebox, calls 8 to 12 weeks a good starting point and the pattern a suggestion rather than a strict rule. Prints no version label. Cited, including in the map's credit lines, as one framework that uses these terms, not as a requirement."
 
 aicpa-soc2:
   title: "2017 Trust Services Criteria (With Revised Points of Focus – 2022)"
@@ -115,13 +117,13 @@ ibm-ai-dlc:
   note: "Describes AI-DLC as a software development methodology built around AI as a collaborator in every step, and credits it to AWS (2025)."
 
 dora-2025-announcement:
-  title: "Announcing the 2025 DORA Report"
-  author: "Nathen Harvey, Derek DeBellis"
+  title: "Announcing the 2025 DORA Report: State of AI-Assisted Software Development"
+  author: "Nathen Harvey (DORA Lead); Derek DeBellis (Researcher)"
   org: "Google Cloud Blog"
   date: "2025-09-23"
   url: "https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report"
-  accessed: "2026-09-26"
-  note: "Announcement of the 2025 report: AI adoption has a positive relationship with software delivery throughput and a negative one with stability; without robust control systems, such as strong automated testing, mature version control practices and fast feedback loops, an increase in change volume leads to instability."
+  accessed: "2026-11-20"
+  note: "Announcement of the 2025 report. Says AI doesn't fix a team; it amplifies what's already there. Says that, unlike the previous year, AI adoption has a positive relationship with software delivery throughput and product performance, and that it continues to have a negative relationship with software delivery stability. States that without robust control systems, like strong automated testing, mature version control practices and fast feedback loops, an increase in change volume leads to instability."
 
 aws-ai-dlc:
   title: "AI-Driven Development Life Cycle: Reimagining Software Engineering"
@@ -193,7 +195,7 @@ dora-test-automation:
   org: "Google, published on dora.dev"
   date: "2025-07-17"
   url: "https://dora.dev/capabilities/test-automation/"
-  accessed: "2026-09-26"
+  accessed: "2026-11-20"
   note: "Recommends that developers get feedback from automated tests in less than ten minutes, both on local workstations and from the continuous integration system."
 
 fowler-selftesting:
@@ -202,7 +204,7 @@ fowler-selftesting:
   org: "martinfowler.com (bliki)"
   date: "2014-05-01"
   url: "https://martinfowler.com/bliki/SelfTestingCode.html"
-  accessed: "2026-09-26"
+  accessed: "2026-11-20"
   note: "Self-testing code: comprehensive automated tests written with the code, so that a single command runs them and a pass gives confidence that they would expose the bugs in the code."
 
 npm-doctor:
@@ -248,13 +250,13 @@ spotify-golden-paths:
 
 # Core section (1.4.0): rule registry
 owasp-asvs:
-  title: "What is the ASVS? (OWASP Application Security Verification Standard 5.0.0)"
-  author: "OWASP ASVS project"
+  title: "What is the ASVS?"
+  author: "OWASP ASVS project (project leads: Daniel Cuthbert, Elar Lang, Josh C Grossman)"
   org: "OWASP Foundation"
-  date: "2025-05"
+  date: "Version 5.0.0, May 2025"
   url: "https://github.com/OWASP/ASVS/blob/master/5.0/en/0x03-What-is-the-ASVS.md"
-  accessed: "2026-09-25"
-  note: "How ASVS 5.0 requirements are identified (<chapter>.<section>.<requirement>) and why other documents and tools should cite them with the version prefix (for example v5.0.0-1.2.5): identifiers may change between versions."
+  accessed: "2026-11-20"
+  note: "Chapter 'What is the ASVS?' of ASVS 5.0.0; text read from raw.githubusercontent.com (same file; github.com refuses plain requests). Rather than prescribing a level, an organization should analyze its risks and decide what level it should be at: Level 1 contains the minimum requirements, Level 2 is what most applications should strive for, and Level 3 is for applications looking to demonstrate the highest levels of security. Requirements are identified as <chapter>.<section>.<requirement>, and other documents and tools should cite them with the version prefix (for example v5.0.0-1.2.5) because identifiers may change between versions. Organisation-specific forks are encouraged provided they maintain traceability, so that passing a requirement means the same across all versions."
 
 owasp-asvs-v4-users:
   title: "Changes Compared to v4.x (OWASP Application Security Verification Standard 5.0.0)"
@@ -271,7 +273,7 @@ nist-800-53:
   org: "National Institute of Standards and Technology (NIST)"
   date: "2020-09 (updated 2020-12-10; Release 5.2.0, 2025-08-27)"
   url: "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
-  accessed: "2026-09-25"
+  accessed: "2026-11-20"
   note: "The NIST control catalog, in which each control has a family-based identifier (for example AC-2) and withdrawn controls remain listed under their identifiers with their disposition (incorporated into or moved to another control). AC-5 (Separation of Duties) divides mission and support functions among different individuals or roles, so misuse of privilege needs collusion, and AC-6 (Least Privilege) limits access to what users, and processes acting on behalf of users, need for their tasks."
 
 nist-oscal:
@@ -528,12 +530,12 @@ husain-evals:
 # Core section (1.4.0): evidence schema
 slsa-provenance:
   title: "Build: Provenance"
-  author: "SLSA (Supply-chain Levels for Software Artifacts)"
-  org: "OpenSSF, published on slsa.dev"
-  date: "2025-11 (SLSA v1.2)"
+  author: "not printed"
+  org: "SLSA (Linux Foundation)"
+  date: "SLSA v1.2, Status: Approved (no release date printed)"
   url: "https://slsa.dev/spec/v1.2/build-provenance"
-  accessed: "2026-09-25"
-  note: "Defines provenance as verifiable information about where, when and how an artifact was produced, split into buildDefinition (buildType, externalParameters, internalParameters, resolvedDependencies) and runDetails (builder, metadata, byproducts). Identifies the format with the versioned predicate type https://slsa.dev/provenance/v1, requires consumers to ignore unrecognized fields, and keeps minor versions backwards compatible."
+  accessed: "2026-11-20"
+  note: "Defines provenance as verifiable information about software artifacts describing where, when, and how something was produced, split into buildDefinition (buildType, externalParameters, internalParameters, resolvedDependencies) and runDetails (builder, metadata, byproducts). Identifies the format with the versioned predicate type https://slsa.dev/provenance/v1, requires consumers to ignore unrecognized fields, and keeps minor versions backwards compatible."
 
 slsa-build-requirements:
   title: "Build: Requirements for producing artifacts"
@@ -604,8 +606,8 @@ nist-ssdf:
   org: "NIST Special Publication 800-218"
   date: "2022-02"
   url: "https://csrc.nist.gov/pubs/sp/800/218/final"
-  accessed: "2026-09-26"
-  note: "Secure development practices, including configuring tools to generate artifacts of their support of secure development practices (PO.3.3), and archiving and protecting each release's supporting data and provenance (PS.3.1, PS.3.2). Version 1.2 (SP 800-218r1) was at initial public draft when accessed."
+  accessed: "2026-11-20"
+  note: "NIST SP 800-218 version 1.1, final (3 February 2022); practice and task identifiers checked in the PDF (https://doi.org/10.6028/NIST.SP.800-218). Tasks relied on: PO.1.2 (identify and document all security requirements for organization-developed software to meet, and maintain the requirements over time); PO.3.3 (configure tools to generate artifacts of their support of secure development practices); PS.1.1 (store all forms of code according to least privilege); PS.3.1 (securely archive the files of each release); PS.3.2 (collect, safeguard, maintain and share provenance data); PW.1.1 (use forms of risk modeling, such as threat modeling, attack modeling or attack surface mapping); PW.2.1 (have a qualified person or people who were not involved with the design review the software design); PW.6.1 (use compilers, interpreters and build tools with security features); PW.7.1 and PW.7.2 (decide which code review or analysis to use, perform it in line with secure coding standards, and record and triage the issues found). Also the vulnerability-response practices RV.1 'Identify and Confirm Vulnerabilities on an Ongoing Basis', RV.2 'Assess, Prioritize, and Remediate Vulnerabilities' and RV.3 'Analyze Vulnerabilities to Identify Their Root Causes'. Version 1.2 (SP 800-218 Rev. 1) exists only as an initial public draft (published 2025-12-17, comments closed 2026-01-30); no final Rev. 1 was found on 2026-11-20, so version 1.1 is cited as the final."
 
 json-schema-core:
   title: "JSON Schema: A Media Type for Describing JSON Documents"
@@ -621,8 +623,8 @@ semver:
   author: "Tom Preston-Werner"
   org: "semver.org"
   url: "https://semver.org/spec/v2.0.0.html"
-  accessed: "2026-09-25"
-  note: "Versioning scheme in which MAJOR marks incompatible changes, MINOR backward-compatible additions and PATCH backward-compatible fixes, against a declared public API."
+  accessed: "2026-11-20"
+  note: "Versioning scheme in which MAJOR marks incompatible changes, MINOR backward-compatible additions and PATCH backward-compatible fixes, against a declared public API. The page says it was originally authored by Tom Preston-Werner and prints no date."
 
 fowler-tolerant-reader:
   title: "TolerantReader"
@@ -691,8 +693,9 @@ twelve-factor-parity:
   title: "X. Dev/prod parity"
   author: "Adam Wiggins"
   org: "The Twelve-Factor App (12factor.net)"
+  date: "last updated 2017 (as printed)"
   url: "https://12factor.net/dev-prod-parity"
-  accessed: "2026-09-25"
+  accessed: "2026-11-20"
   note: "Keep development, staging and production as similar as possible. Warns against using different backing services in different environments even when adapters appear to hide the differences, because small incompatibilities let code pass tests in one environment and fail in another."
 
 twelve-factor-backing-services:
@@ -731,22 +734,22 @@ junit-assumptions:
 
 # Core section (1.4.0): workflows
 dora-2024-report:
-  title: "Accelerate State of DevOps Report 2024"
+  title: "DORA Research: 2024"
   author: "DORA (DevOps Research and Assessment)"
   org: "Google, published on dora.dev"
-  date: "2024-10"
+  date: "last updated 2026-04-13 (as printed)"
   url: "https://dora.dev/research/2024/dora-report/"
-  accessed: "2026-09-25"
-  note: "Reports that higher AI adoption was associated with estimated decreases in software delivery throughput and stability, suggests larger batch sizes as a reason and points teams back to basics such as small batches and robust testing, and reports gains in individual productivity, flow and job satisfaction."
+  accessed: "2026-11-20"
+  note: "Landing page for the 2024 Accelerate State of DevOps Report, with download links and key findings, not the report text. States that AI adoption negatively impacts software delivery stability and throughput, reminding teams that fundamentals like small batch sizes and robust testing remain crucial. Does not say that larger batch sizes are the cause."
 
 dora-2025-report:
-  title: "State of AI-assisted Software Development 2025"
+  title: "DORA Research: 2025"
   author: "DORA (DevOps Research and Assessment)"
   org: "Google, published on dora.dev"
-  date: "2025-09"
-  url: "https://dora.dev/dora-report-2025/"
-  accessed: "2026-09-25"
-  note: "Describes AI's primary role as an amplifier of an organisation's existing strengths and dysfunctions. Reports that higher AI adoption is associated with higher software delivery throughput and with higher instability; the control-systems wording is in the announcement (dora-2025-announcement)."
+  date: "not printed"
+  url: "https://dora.dev/research/2025/dora-report/"
+  accessed: "2026-11-20"
+  note: "Landing page for the 2025 State of AI-assisted Software Development report (the earlier URL https://dora.dev/dora-report-2025/ redirects here). Says AI's primary role is as an amplifier, magnifying an organization's existing strengths and weaknesses. It does not state throughput or instability findings; those are in dora-2025-announcement."
 
 dora-ai-capabilities:
   title: "DORA AI Capabilities Model"
@@ -788,8 +791,8 @@ fowler-deployment-pipeline:
   org: "martinfowler.com (bliki)"
   date: "2013-05-30"
   url: "https://martinfowler.com/bliki/DeploymentPipeline.html"
-  accessed: "2026-09-26"
-  note: "Defines a deployment pipeline as a build broken into stages, each giving more confidence at more cost in time, with early stages giving faster feedback."
+  accessed: "2026-11-20"
+  note: "Defines a deployment pipeline as a build broken into stages, each giving more confidence at more cost in time, with early stages giving faster feedback. Credits Jez Humble with detailed help and refers to chapter 5 of the Continuous Delivery book."
 
 nist-ai-rmf:
   title: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
@@ -821,19 +824,20 @@ parasuraman-manzey-2010:
 perry-2023:
   title: "Do Users Write More Insecure Code with AI Assistants?"
   author: "Neil Perry, Megha Srivastava, Deepak Kumar, Dan Boneh"
-  org: "ACM SIGSAC Conference on Computer and Communications Security (CCS '23)"
-  date: "2023-11"
+  org: "ACM SIGSAC Conference on Computer and Communications Security (CCS '23) (venue as in the earlier entry; not re-confirmed)"
+  date: "2023-11 (arXiv v1 2022-11-07, v3 2023-12-18)"
   url: "https://doi.org/10.1145/3576915.3623157"
-  accessed: "2026-09-25"
-  note: "User study finding that participants with an AI code assistant wrote less secure code yet were more likely to believe it was secure."
+  accessed: "2026-11-20"
+  note: "SUBSTITUTE: the ACM record could not be read (HTTP 403); the claim was checked against the authors' arXiv preprint https://arxiv.org/abs/2211.03622, which is not the published version. Its abstract says participants with access to an AI assistant wrote significantly less secure code than those without access and were more likely to believe they wrote secure code. No percentage is carried."
 
 istqb-rbt:
   title: "risk-based testing"
   author: "International Software Testing Qualifications Board (ISTQB)"
   org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
   url: "https://glossary.istqb.org/en_US/term/risk-based-testing"
-  accessed: "2026-09-25"
-  note: "Defines risk-based testing as a test approach in which the management, selection, prioritization and use of test activities and resources are based on risk types and risk levels."
+  accessed: "2026-11-20"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/risk-based-testing) because the page is JavaScript-rendered. Defines risk-based testing as a test approach in which the management, selection, prioritization and use of test activities and resources are based on corresponding risk types and risk levels. The glossary record cites ISO/IEC/IEEE 29119-1 (2013) as its source."
 
 iso-29119-1:
   title: "ISO/IEC/IEEE 29119-1:2022 Software and systems engineering — Software testing — Part 1: General concepts"
@@ -848,8 +852,9 @@ github-status-checks:
   title: "Troubleshooting required status checks"
   author: "GitHub"
   org: "GitHub Docs"
-  url: "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks"
-  accessed: "2026-09-26"
+  date: "not printed"
+  url: "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks"
+  accessed: "2026-11-23"
   note: "States that a job skipped by a conditional reports its status as Success, while a workflow skipped by path or branch filtering or by its commit message leaves required checks Pending. Cited for this platform's behaviour only."
 
 # Core section (1.4.0): software factory
@@ -899,12 +904,13 @@ morris-humans-agents-loops:
   note: "Describes nested loops in software delivery and argues that people work on the loop, changing the harness that produces artifacts rather than inspecting every artifact."
 
 dora-customer-feedback:
-  title: "Capabilities: Customer feedback"
+  title: "Customer feedback"
   author: "DORA (DevOps Research and Assessment)"
   org: "Google, published on dora.dev"
+  date: "not printed"
   url: "https://dora.dev/capabilities/customer-feedback/"
-  accessed: "2026-09-25"
-  note: "Places customer feedback in a group of capabilities, with value-stream visibility, small batches and team experimentation, that DORA finds help predict software delivery and organisational performance."
+  accessed: "2026-11-20"
+  note: "Capability page; no date printed. Places customer feedback in a wider group of capabilities, with visibility of work in the value stream, working in small batches and team experimentation, that together represent a lean approach to product management and, applied together, help predict software delivery performance and organizational performance. The page does not say this of customer feedback alone."
 
 bainbridge-ironies:
   title: "Ironies of automation"
@@ -936,10 +942,11 @@ conway-committees:
 google-sre-postmortem:
   title: "Postmortem Culture: Learning from Failure"
   author: "Daniel Rogers, Murali Suriar, Sue Lueder, Pranjal Deo and Divya Sudhakar, with Gary O'Connor and Dave Rensin"
-  org: "Google, The Site Reliability Workbook, sre.google"
+  org: "Google, The Site Reliability Workbook (O'Reilly Media); sre.google"
+  date: "chapter page footer: Copyright © 2018 Google, Inc."
   url: "https://sre.google/workbook/postmortem-culture/"
-  accessed: "2026-09-26"
-  note: "Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that a postmortem's value depends on the learning it creates."
+  accessed: "2026-11-20"
+  note: "Chapter 10 of the Workbook. Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that the value of a postmortem is proportional to the learning it creates."
 
 tw-incremental-developer-platform:
   title: "Incremental developer platform"
@@ -956,3 +963,886 @@ team-topologies-tvp:
   url: "https://teamtopologies.com/key-concepts-content/what-is-a-thinnest-viable-platform-tvp"
   accessed: "2026-09-26"
   note: "Describes the thinnest viable platform as the minimum a platform needs, kept no thicker than necessary; it can be as little as a wiki page."
+
+# Lifecycle section (1.5.0)
+safe-portfolio:
+  title: "Portfolio"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-04-08 (as printed)"
+  url: "https://framework.scaledagile.com/portfolio"
+  accessed: "2026-11-20"
+  note: "Defines a SAFe Portfolio as a set of value streams that delivers a continuous flow of valuable solutions to customers within a common funding and governance model. Uses 'value streams' within that definition without a separate definition."
+
+safe-lpm-discipline:
+  title: "Lean Portfolio Management"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-03-31 (as printed)"
+  url: "https://framework.scaledagile.com/lean-portfolio-management-discipline"
+  accessed: "2026-11-20"
+  note: "H1 'Lean Portfolio Management'; tab title 'Lean Portfolio Management Discipline'. States that the available portfolio budget is directly allocated to value streams rather than the traditional approach of project-based funding, and that Lean budgets provide funding for value streams aligned with the business strategy and current strategic themes. Full text readable."
+
+safe-lean-budgets:
+  title: "Lean Budgets"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/lean-budgets/"
+  accessed: "2026-11-20"
+  note: "Defines Lean Budgets as a financial governance approach that funds value streams instead of projects. The SAFe glossary entry for Lean Budgets links to this page."
+
+safe-guardrails:
+  title: "Lean Budget Guardrails"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/guardrails/"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Lean Budget Guardrails'. Defines Lean Budget Guardrails as describing the policies and practices for budgeting, spending, and governance for a specific portfolio."
+
+safe-strategic-themes:
+  title: "Strategic Themes"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/strategic-themes/"
+  accessed: "2026-11-20"
+  note: "Defines strategic themes as portfolio-level business objectives that provide competitive differentiation and strategic advantage, and says they connect the enterprise strategy to a portfolio. The readable text does not describe them as decision criteria for the portfolio backlog."
+
+safe-epic:
+  title: "Epic"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-03-11 (as printed)"
+  url: "https://framework.scaledagile.com/epic/"
+  accessed: "2026-11-20"
+  note: "Defines an Epic as a significant solution development initiative and calls epics significant initiatives. Most of the article is behind SAFe's login wall."
+
+safe-wsjf:
+  title: "Weighted Shortest Job First"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/wsjf"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - WSJF'. States that in SAFe, WSJF is estimated as the relative cost of delay divided by the relative job duration, and lists the inputs as relative user and business value, time criticality, risk reduction and/or opportunity enablement, and job size. Opens with an epigraph attributed to Don Reinertsen, The Principles of Product Development Flow."
+
+safe-cost-of-delay:
+  title: "Cost of Delay"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/blog/glossary_term/cost-of-delay"
+  accessed: "2026-11-20"
+  note: "Glossary-term post. Describes Cost of Delay as the numerator in WSJF prioritization, representing the money or value that will be lost by delaying or not doing a job for a time period relative to other jobs."
+
+safe-art:
+  title: "Agile Release Train"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/agile-release-train"
+  accessed: "2026-11-20"
+  note: "Defines the Agile Release Train (ART) as a long-lived team of Agile teams that incrementally develops, delivers, and often operates one or more solutions in a development value stream. The summary names the key roles Product Management, System Architect, Release Train Engineer (RTE) and Business Owners; the role definitions are on their own pages."
+
+safe-agile-teams:
+  title: "Agile Teams"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/agile-teams"
+  accessed: "2026-11-20"
+  note: "Defines an Agile Team as a cross-functional group of typically ten or fewer individuals with all the skills necessary to define, build, test, and deliver value to their customer. Names the Product Owner and Scrum Master/Team Coach roles without defining them in the readable text."
+
+safe-features:
+  title: "Features and Capabilities"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-02-24 (as printed)"
+  url: "https://framework.scaledagile.com/features-and-capabilities"
+  accessed: "2026-11-20"
+  note: "Defines a Feature as solution functionality that delivers business value, fulfills a stakeholder need, and is sized to be delivered by an Agile Release Train within a PI; defines a Capability as large solution functionality whose implementation often spans multiple ARTs and is sized to be delivered within a PI."
+
+safe-pi-planning:
+  title: "PI Planning"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-03-15 (as printed)"
+  url: "https://framework.scaledagile.com/pi-planning/"
+  accessed: "2026-11-20"
+  note: "Defines PI Planning as a cadence-based event for the entire ART that aligns teams and stakeholders to a shared mission and vision; says it is typically a 2-day event that takes place every 8-12 weeks. Names its outputs as committed PI objectives from the Agile Teams and an ART planning board that reflects feature delivery dates and dependencies. Uses the term 'ART planning board'."
+
+safe-glossary:
+  title: "SAFe Glossary"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/glossary/"
+  accessed: "2026-11-20"
+  note: "Glossary of SAFe terms; prints no date. Entries relied on: System Demo ('provides stakeholders an integrated view of new features for the most recent iteration delivered by all the teams on the ART'), Iteration Goals ('a high-level summary of the business and technical goals that an Agile Team agrees to accomplish in an Iteration'), Definition of Done ('specifies the requirements for completeness of a work product or increment of value'), ART Planning Board and Lean Budgets. The glossary has no entry for 'Definition of Ready' or 'Program Board'."
+
+safe-inspect-and-adapt:
+  title: "Inspect and Adapt"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-03-20 (as printed)"
+  url: "https://framework.scaledagile.com/inspect-and-adapt"
+  accessed: "2026-11-20"
+  note: "Describes Inspect and Adapt as a significant event held at the end of each PI, structured into three parts (the PI System Demo, a quantitative and qualitative measurement review, and a retrospective and problem-solving workshop), whose improvement backlog items go into the ART Backlog for consideration in the next PI Planning event. Quotes the twelfth Agile Manifesto principle and says 'The I&A amplifies the original principle'. The page says nothing about AI-Native SAFe; the replacement is stated on the Sense and Respond page. Partly behind SAFe's login wall."
+
+safe-story:
+  title: "Story"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-01-27 (as printed)"
+  url: "https://framework.scaledagile.com/story"
+  accessed: "2026-11-20"
+  note: "Describes stories as short descriptions of a small piece of desired functionality written from the user's perspective; says each story focuses on a specific behavior that can be developed in incremental steps and that keeping stories small ensures they can be completed in a single iteration. States that SAFe describes four tiers of work items: Epic, Capability, Feature, and Story."
+
+safe-iteration-planning:
+  title: "Iteration Planning"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-03-18 (as printed)"
+  url: "https://framework.scaledagile.com/iteration-planning/"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Iteration Planning'. Says the team defines, organizes, and commits to the work for the next iteration, collaboratively defining Iteration Goals and selecting stories from the team backlog; says the meeting is timeboxed to approximately 90 minutes for a two-week iteration."
+
+safe-iterations:
+  title: "Iterations"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-02-25 (as printed)"
+  url: "https://framework.scaledagile.com/iterations/"
+  accessed: "2026-11-20"
+  note: "Defines iterations as a standard, fixed-duration timebox during which Agile Teams and ARTs individually and collectively deliver incremental customer value while working towards the PI objectives."
+
+scrum-guide-2020:
+  title: "The 2020 Scrum Guide"
+  author: "Ken Schwaber and Jeff Sutherland"
+  org: "ScrumGuides.org"
+  date: "November 2020"
+  url: "https://scrumguides.org/scrum-guide.html"
+  accessed: "2026-11-20"
+  note: "HTML port of the November 2020 Scrum Guide; the site's download page labels the English November 2020 edition the official current version. Licence CC BY-SA 4.0. Defines the Definition of Done as a formal description of the state of the Increment when it meets the quality measures required for the product, and as the Increment's commitment, as the Product Goal and the Sprint Goal are the commitments of the Product Backlog and the Sprint Backlog. Says the moment a Product Backlog item meets it an Increment is born, and an item that does not meet it cannot be released or even presented at the Sprint Review; an organisational Definition of Done is followed by all Scrum Teams as a minimum, otherwise the Scrum Team creates one appropriate for the product, and teams on one product must mutually define and comply with the same one; the Developers are accountable for instilling quality by adhering to it and are required to conform to it. Does not use the term Definition of Ready; says Product Backlog items that can be Done within one Sprint are deemed ready for selection in a Sprint Planning event. Describes refinement as an ongoing activity to add details, such as a description, order and size, with the Developers who will be doing the work responsible for the sizing, and makes the Product Owner accountable for effective Product Backlog management, including creating and clearly communicating Product Backlog items and ordering them. Names transparency, inspection and adaptation as the empirical Scrum pillars and says inspection without adaptation is considered pointless. The Sprint Retrospective plans ways to increase quality and effectiveness and inspects individuals, interactions, processes, tools and the Definition of Done; impactful improvements may be added to the Sprint Backlog for the next Sprint. An Increment may be delivered to stakeholders before the end of the Sprint, and the Sprint Review should never be considered a gate to releasing value."
+
+dora-small-batches:
+  title: "Working in small batches"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "last updated 2025-12-08 (as printed)"
+  url: "https://dora.dev/capabilities/working-in-small-batches/"
+  accessed: "2026-11-20"
+  note: "Capability page (tab title 'DORA | Capabilities: Working in small batches'; tagged core and AI). Advises breaking work into units that can be completed independently and in short timeframes, says working in small batches amplifies the positive impact of AI adoption on product performance, and says large changes are difficult to review, test and integrate safely."
+
+dora-wip-limits:
+  title: "Work in process limits"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  date: "not printed"
+  url: "https://dora.dev/capabilities/wip-limits/"
+  accessed: "2026-11-20"
+  note: "Capability page (tab title 'DORA | Capabilities: Work in process limits'). Says research shows WIP limits help drive improvements in software delivery performance, particularly when combined with visual displays and feedback loops from monitoring. The page's own title is 'Work in process limits', not 'WIP limits'."
+
+dora-ai-capabilities-impact:
+  title: "From adoption to impact: Putting the DORA AI Capabilities Model to work"
+  author: "Nathen Harvey (DORA Lead); Allison Park (Senior Product Marketing Manager)"
+  org: "Google Cloud Blog"
+  date: "2025-12-10"
+  url: "https://cloud.google.com/blog/products/ai-machine-learning/from-adoption-to-impact-putting-the-dora-ai-capabilities-model-to-work"
+  accessed: "2026-11-20"
+  note: "Blog post on putting DORA's AI Capabilities Model to work; lists the same seven capabilities, in the same order, as the September 2025 post. Says AI can easily generate massive blocks of code, which are hard to review and test; says working in small batches ensures that speed translates to product performance rather than instability; calls version control a critical safety net essential for maintaining stability. The final URL has no trailing slash (the slash form redirects)."
+
+oasis-soa-rm:
+  title: "Reference Model for Service Oriented Architecture 1.0"
+  author: "C. Matthew MacKenzie, Ken Laskey, Francis McCabe, Peter F Brown, Rebekah Metz (editors)"
+  org: "OASIS"
+  date: "2006-10-12 (OASIS Standard, as printed)"
+  url: "https://docs.oasis-open.org/soa-rm/v1.0/soa-rm.html"
+  accessed: "2026-11-20"
+  note: "Section 1.1 defines a reference model as 'an abstract framework for understanding significant relationships among the entities of some environment'. The abstract adds 'within a service-oriented environment'. Document identifier soa-rm."
+
+safe-framework-home:
+  title: "Framework - Scaled Agile Framework (home page, 'Welcome to the Scaled Agile Framework')"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/"
+  accessed: "2026-11-20"
+  note: "States that 'Core SAFe continues to provide the world's most adopted Operating Model for scaling Lean and Agile practices across your organization' and that AI-Native SAFe 'builds on this foundation'; the page uses 'Core SAFe' and 'AI-Native SAFe' as labels. The visible text prints no release date and no Core SAFe version."
+
+safe-configurations:
+  title: "SAFe 6.0 Configurations"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-09-03 (as printed)"
+  url: "https://framework.scaledagile.com/safe-6-0-configurations"
+  accessed: "2026-11-20"
+  note: "Link page titled 'SAFe 6.0 Configurations'. Lists Full SAFe, Essential SAFe, Large Solution SAFe and Portfolio SAFe and calls them the Scaled Agile Framework 6.0 configurations and the latest version of SAFe. Contains no description of Large Solution SAFe."
+
+safe-ai-native-sense-and-respond:
+  title: "Sense and Respond"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-07-28 (as printed)"
+  url: "https://framework.scaledagile.com/ain-safe-sense-and-respond"
+  accessed: "2026-11-20"
+  note: "AI-Native SAFe page, partly behind SAFe's login wall. Describes Sense and Respond as a two-hour cadenced event designed for AI-Native Agile Release Trains that occurs at the boundary of every iteration. Says the half-day Inspect and Adapt event has been replaced by a two-hour Sense and Respond event every iteration, which also includes the activities formerly present in the System Demo (the page spells the word 'formally'), and notes that some ARTs may choose to run the problem-solving portion of the Core SAFe Inspect and Adapt event periodically. Does not say that Customer Demos replace the System Demo."
+
+safe-large-solution:
+  title: "Large Solution SAFe"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2022-12-05 (as printed)"
+  url: "https://framework.scaledagile.com/large-solution"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Large Solution SAFe'. States that Large Solution SAFe is for enterprises building large and complex solutions that do not require portfolio concerns. Older page (last update 2022)."
+
+safe-solution-train:
+  title: "Solution Train"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/solution-train"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Solution Train'. Introduction defines the Solution Train as the organizational construct used to build large solutions that requires the coordination of multiple ARTs and suppliers. The rest of the article is behind SAFe's login wall."
+
+safe-portfolio-backlog:
+  title: "Portfolio Backlog"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-03-11 (as printed)"
+  url: "https://framework.scaledagile.com/portfolio-backlog/"
+  accessed: "2026-11-20"
+  note: "Defines the Portfolio Backlog as a Kanban system used to capture and manage the business and enabler epics intended to create and evolve the portfolio's products, services, and solutions; says Portfolio Leadership is responsible for developing, maintaining, and prioritizing it and that portfolio epics are large (and typically cross-cutting initiatives). The state names of the portfolio Kanban are behind SAFe's login wall."
+
+safe-team-backlog:
+  title: "Team Backlog"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-02-12 (as printed)"
+  url: "https://framework.scaledagile.com/team-backlog/"
+  accessed: "2026-11-20"
+  note: "Defines the Team Backlog as a Kanban system used to capture and manage the user stories and enablers intended to enhance the solution."
+
+safe-pi-objectives:
+  title: "PI Objectives"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/pi-objectives/"
+  accessed: "2026-11-20"
+  note: "H1 'PI Objectives | Details'. States that PI Objectives summarize the business and technical goals that teams and trains intend to achieve in the upcoming PI and are either committed or uncommitted."
+
+safe-system-demo:
+  title: "System Demo"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-03-18 (as printed)"
+  url: "https://framework.scaledagile.com/system-demo/"
+  accessed: "2026-11-20"
+  note: "States that the System Demo provides stakeholders an integrated view of new features for the most recent iteration delivered by all the teams on the ART. The same sentence is in the SAFe glossary."
+
+safe-problem-solving-workshop:
+  title: "Problem-Solving Workshop"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/blog/glossary_term/problem-solving-workshop"
+  accessed: "2026-11-20"
+  note: "Glossary-term post. Describes the Problem Solving Workshop as an Inspect and Adapt event that provides a structured approach to identifying the root cause and actions to address systemic problems."
+
+safe-art-backlog:
+  title: "ART and Solution Train Backlogs"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-01-21 (as printed)"
+  url: "https://framework.scaledagile.com/art-and-solution-train-backlogs/"
+  accessed: "2026-11-23"
+  note: "Defines the ART backlog as a Kanban system used to capture and manage the features and enablers that enhance the solution and extend its Architectural Runway. Partly behind SAFe's login wall."
+
+safe-team-backlog-refinement:
+  title: "Team Backlog Refinement"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-03-18 (as printed)"
+  url: "https://framework.scaledagile.com/team-backlog-refinement/"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Team Backlog Refinement'. Describes refinement as an event that helps Agile Teams clarify and prepare upcoming stories and features, with regular activities of removing outdated stories, discovering new ones and defining acceptance criteria. The page does not say 'continuously' or 'sized'."
+
+safe-built-in-quality:
+  title: "Built-In Quality"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/built-in-quality"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Built-In Quality'. Defines Built-In Quality as a set of practices to help ensure that the outputs of Agile teams in business and technology domains meet appropriate quality standards throughout the process of creating customer value. Only the opening definition is relied on; the rest is behind SAFe's login wall."
+
+safe-cdp:
+  title: "Continuous Delivery Pipeline"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-02-06 (as printed)"
+  url: "https://framework.scaledagile.com/continuous-delivery-pipeline/"
+  accessed: "2026-11-20"
+  note: "Describes the Continuous Delivery Pipeline as the workflows, activities, and automation needed to guide new functionality from ideation to an on-demand release of value, with four aspects: continuous exploration, continuous integration, continuous deployment, and release on demand."
+
+safe-continuous-exploration:
+  title: "Continuous Exploration"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/continuous-exploration/"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Continuous Exploration'. Describes continuous exploration as an aspect of the Continuous Delivery Pipeline that drives innovation and fosters alignment on what should be built by continually exploring the market and customer needs, defining a vision, roadmap, and set of features for a solution. Part of the page is behind a login wall; only the definition is relied on."
+
+safe-continuous-integration:
+  title: "Continuous Integration"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/continuous-integration/"
+  accessed: "2026-11-20"
+  note: "Describes continuous integration as an aspect of the Continuous Delivery Pipeline in which new functionality is developed, tested, integrated, and validated in preparation for deployment and release; names four activities: Develop, Build, Test end-to-end, Stage."
+
+safe-continuous-deployment:
+  title: "Continuous Deployment"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/continuous-deployment"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Continuous Deployment'. Describes continuous deployment as an aspect of the Continuous Delivery Pipeline that automates the migration of new functionality from a staging environment to production, where it is made available for release; says it is optimal to separate the deployment process from releasing; names four practices (Deploy, Verify, Monitor, Respond)."
+
+safe-release-on-demand:
+  title: "Release on Demand"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2025-02-25 (as printed)"
+  url: "https://framework.scaledagile.com/release-on-demand"
+  accessed: "2026-11-20"
+  note: "Release on demand is an aspect of the Continuous Delivery Pipeline that 'releases new functionality immediately or incrementally based on business and customer needs'; 'releases are decoupled from the work to deploy the functionality'. The names of its four activities sit behind SAFe's login wall and are not cited."
+
+dora-ai-capabilities-intro:
+  title: "Introducing the DORA AI Capabilities Model: 7 keys to succeeding in AI-assisted software development"
+  author: "Kevin M. Storer; Derek DeBellis"
+  org: "Google Cloud Blog"
+  date: "2025-09-23"
+  url: "https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model"
+  accessed: "2026-11-20"
+  note: "Tab title 'Introducing DORA's inaugural AI Capabilities Model | Google Cloud Blog'. Names seven capabilities in this order: clear and communicated AI stance; healthy data ecosystems; AI-accessible internal data; strong version control practices; working in small batches; user-centric focus; quality internal platforms. Says working in small batches is especially powerful in an AI-assisted environment and that, in the absence of a user-centric focus, AI adoption can have a negative impact on team performance."
+
+wake-invest:
+  title: "INVEST in Good Stories, and SMART Tasks"
+  author: "Bill Wake"
+  org: "XP123 (author's site)"
+  date: "17 August 2003"
+  url: "https://xp123.com/invest-in-good-stories-and-smart-tasks/"
+  accessed: "2026-11-20"
+  note: "Self-published on the author's site ('Posted on August 17, 2003 by Bill Wake'; a postscript was added 2011-02-16). Lists INVEST for stories (Independent, Negotiable, Valuable, Estimable, Small, Testable) and SMART for tasks (Specific, Measurable, Achievable, Relevant, Time-boxed). The author states that he developed the INVEST acronym."
+
+istqb-acceptance-criteria:
+  title: "acceptance criteria"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/acceptance-criteria"
+  accessed: "2026-11-20"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/acceptance-criteria) because the page is JavaScript-rendered. Current definition (version 3): the criteria that a work product must satisfy to be accepted by the stakeholders. Versions 1 and 2 use different wording (exit criteria; component or system; user, customer or authorised entity); the site relies on version 3 only."
+
+istqb-testability:
+  title: "testability"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/testability"
+  accessed: "2026-11-20"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/testability) because the term page loads its text with JavaScript. Defines testability as the degree to which test conditions can be established for a component or system, and tests can be performed to determine whether those test conditions have been met."
+
+fowler-given-when-then:
+  title: "Given When Then"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  date: "2013-08-21"
+  url: "https://martinfowler.com/bliki/GivenWhenThen.html"
+  accessed: "2026-11-20"
+  note: "Describes given-when-then as an approach developed by Daniel Terhorst-North and Chris Matts as part of Behavior-Driven Development; a footnote says Terhorst-North credits Ivan Moore for significant inspiration."
+
+agile-alliance-dor:
+  title: "Definition of Ready"
+  author: "not printed"
+  org: "Agile Alliance"
+  date: "not printed"
+  url: "https://agilealliance.org/glossary/definition-of-ready/"
+  accessed: "2026-11-20"
+  note: "Agile Glossary entry (tab title 'What is Definition of Ready? | Agile Alliance'). Describes the team making explicit and visible the criteria (generally based on the INVEST matrix) that a user story must meet before being accepted into the upcoming iteration. Does not mention the Scrum Guide and prints no author or date. Its Origins section is not relied on."
+
+requirements-ambiguity-llm:
+  title: "Requirements Ambiguity Detection and Explanation with LLMs: An Industrial Study"
+  author: "Sarmad Bashir, Alessio Ferrari, Muhammad Abbas Khan, Per Erik Strandberg, Zulqarnain Haider, Mehrdad Saadatmand, Markus Bohlin"
+  org: "41st International Conference on Software Maintenance and Evolution (ICSME 2025)"
+  date: "2025-09"
+  url: "https://www.ipr.mdu.se/pdf_publications/7221.pdf"
+  accessed: "2026-11-20"
+  note: "Industrial study of large language models detecting and explaining ambiguity in real-world requirements by in-context learning; ten in-context demonstrations outperform none at classifying ambiguous requirements, with human evaluation by eight industry experts. The PDF prints title and authors only; venue, month, pages 620-631 and DOI 10.1109/ICSME64153.2025.00063 are printed on the Malardalen University publication record (https://www.ipr.mdu.se/publications/7221-)."
+
+bockeler-sdd:
+  title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
+  author: "Birgitta Böckeler"
+  org: "martinfowler.com (Exploring Gen AI series)"
+  date: "2025-10-15"
+  url: "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"
+  accessed: "2026-11-20"
+  note: "Defines three degrees of commitment to a specification: spec-first, spec-anchored and spec-as-source, and describes three spec-driven tools. The title names three products; site prose names none."
+
+spec-kit-sdd:
+  title: "Specification-Driven Development (SDD)"
+  author: "not printed"
+  org: "GitHub (github/spec-kit repository)"
+  date: "not printed"
+  url: "https://github.com/github/spec-kit/blob/main/spec-driven.md"
+  accessed: "2026-11-20"
+  note: "Methodology document in the open-source spec-kit repository; text read from https://raw.githubusercontent.com/github/spec-kit/main/spec-driven.md (same file; github.com refuses plain requests). Says the templates mandate the use of [NEEDS CLARIFICATION] markers where a prompt does not specify something ('Don't guess') and include checklists that act as 'unit tests' for the specification. Defines a constitution with a Simplicity Gate (Article VII) and an Anti-Abstraction Gate (Article VIII), and says the LLM cannot proceed without either passing the gates or documenting justified exceptions in a 'Complexity Tracking' section."
+
+sei-atam:
+  title: "The Architecture Tradeoff Analysis Method"
+  author: "Rick Kazman, Mark Klein, Mario Barbacci, Tom Longstaff, Howard Lipson, Jeromy Carriere"
+  org: "Software Engineering Institute, Carnegie Mellon University (CMU/SEI-98-TR-008, ESC-TR-98-008)"
+  date: "1998-07"
+  url: "https://www.sei.cmu.edu/documents/1186/1998_005_001_16646.pdf"
+  accessed: "2026-11-20"
+  note: "1998 technical report. Its abstract describes ATAM as a structured technique for understanding the tradeoffs inherent in the architectures of software-intensive systems. It elicits scenarios and evaluates each quality attribute in turn but does not describe prioritising scenarios; that is in the 2000 report (sei-atam-2000)."
+
+sei-atam-2000:
+  title: "ATAM: Method for Architecture Evaluation"
+  author: "Rick Kazman, Mark Klein, Paul Clements"
+  org: "Software Engineering Institute, Carnegie Mellon University (CMU/SEI-2000-TR-004)"
+  date: "2000-08"
+  url: "https://www.sei.cmu.edu/documents/629/2000_005_001_13706.pdf"
+  accessed: "2026-11-20"
+  note: "2000 technical report (catalogue page https://www.sei.cmu.edu/library/atam-method-for-architecture-evaluation/). Its abstract calls ATAM a technique for analyzing software architectures. Includes a step to brainstorm and prioritize scenarios, prioritized via a voting process, and utility trees that give a prioritized list of scenarios."
+
+threat-modeling-manifesto:
+  title: "Threat Modeling Manifesto"
+  author: "Working group: Zoe Braiterman, Adam Shostack, Jonathan Marcil, Stephen de Vries, Irene Michlin, Kim Wuyts, Robert Hurlbut, Brook S.E. Schoenfield, Fraser Scott, Matthew Coles, Chris Romeo, Alyssa Miller, Izar Tarandach, Avi Douglen, Marc French"
+  org: "Threat Modeling Manifesto working group"
+  date: "not printed"
+  url: "https://www.threatmodelingmanifesto.org/"
+  accessed: "2026-11-20"
+  note: "Authors in the order printed on the page. States that when the working group threat models, it asks four key questions: What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job? No publication date is printed on the page or its linked PDF; licensed CC BY 4.0."
+
+owasp-threat-modeling-cs:
+  title: "Threat Modeling Cheat Sheet"
+  author: "not printed (page footer credits 'Cheat Sheets Series Team')"
+  org: "OWASP Cheat Sheet Series"
+  date: "not printed"
+  url: "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html"
+  accessed: "2026-11-20"
+  note: "Breaks threat modeling into four basic steps: application decomposition, threat identification and ranking, mitigations, and review and validation, guided by the four Threat Modeling Manifesto questions. Tab title: 'Threat Modeling - OWASP Cheat Sheet Series'."
+
+fowler-evodb:
+  title: "Evolutionary Database Design"
+  author: "Pramod Sadalage and Martin Fowler"
+  org: "martinfowler.com"
+  date: "May 2016 (complete rewrite; original publication January 2003)"
+  url: "https://martinfowler.com/articles/evodb.html"
+  accessed: "2026-11-20"
+  note: "Describes representing every change to the database as a database migration script that is version controlled together with application code changes, with tools that automate applying them. The page's revisions list records 'May 2016: Complete rewrite' and 'January 2003: Original publication'."
+
+fowler-blue-green:
+  title: "Blue Green Deployment"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  date: "1 March 2010 (page also records an update on 2015-06-05 adding the database paragraph)"
+  url: "https://martinfowler.com/bliki/BlueGreenDeployment.html"
+  accessed: "2026-11-20"
+  note: "Describes two production environments kept as identical as possible, one of them live at any time; the switch is made at the router, and rollback is switching it back. On databases, says the trick is to separate the deployment of schema changes from application upgrades."
+
+safe-system-architect:
+  title: "System Architect"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/system-architect/"
+  accessed: "2026-11-20"
+  note: "Describes the role as responsible for defining and communicating a shared technical and architectural vision for the solutions developed by an Agile Release Train, by defining enablers, participating in solution definition and outlining non-functional requirements."
+
+google-eng-practices-small-cls:
+  title: "Small CLs"
+  author: "not printed"
+  org: "Google (repository google/eng-practices, 'Google Engineering Practices Documentation'; CC-By 3.0 per the repository README)"
+  date: "not printed"
+  url: "https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md"
+  accessed: "2026-11-20"
+  note: "Text read from raw.githubusercontent.com (same file); rendered copy at https://google.github.io/eng-practices/review/developer/small-cls.html. Says small, simple changes are reviewed more quickly and more thoroughly, are less likely to introduce bugs and are simpler to roll back, and that the right size is a minimal change that addresses just one thing and includes related test code."
+
+google-eng-practices-review:
+  title: "What to look for in a code review"
+  author: "not printed"
+  org: "Google (repository google/eng-practices, 'Google Engineering Practices Documentation'; CC-By 3.0 per the repository README)"
+  date: "not printed"
+  url: "https://github.com/google/eng-practices/blob/master/review/reviewer/looking-for.md"
+  accessed: "2026-11-20"
+  note: "Text read from raw.githubusercontent.com (same file); rendered copy at https://google.github.io/eng-practices/review/reviewer/looking-for.html. Section headings in order: Design, Functionality, Complexity, Tests, Naming, Comments, Style, Consistency, Documentation. Under Tests: ask for unit, integration or end-to-end tests as appropriate for the change."
+
+sre-book-release-engineering:
+  title: "Release Engineering"
+  author: "Dinah McNutt (edited by Betsy Beyer and Tim Harvey)"
+  org: "Google, Site Reliability Engineering (book, first edition), O'Reilly Media; sre.google"
+  date: "chapter page footer: Copyright © 2017 Google, Inc.; the book's preface prints 'Copyright 2016 Google, Inc.' in its citation example"
+  url: "https://sre.google/sre-book/release-engineering/"
+  accessed: "2026-11-20"
+  note: "Chapter 8 of the SRE book. Describes hermetic builds (the same revision built on different machines gives identical results; builds depend on known versions of build tools, such as compilers, and dependencies, such as libraries); gated operations (approving source code changes, specifying the actions to perform during a release, creating a new release, approving the initial integration proposal and subsequent cherry picks, deploying a new release, and changes to a project's build configuration); rollouts that fit the risk profile of a service, such as rolling out to successive clusters over a period of several hours or starting in one cluster and expanding exponentially until all clusters are updated; a canary as a few jobs in production after system tests; and release engineers and SREs working together on canarying changes, pushing out new releases without interrupting services and rolling back features that demonstrate problems. The chapter does not use the word 'incubation'."
+
+humble-farley-cd:
+  title: "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation"
+  author: "Jez Humble, David Farley"
+  org: "Addison-Wesley Professional (Addison-Wesley Signature Series (Fowler))"
+  date: "Published Jul 27, 2010 (InformIT); 'Copyright 2011' also printed; 1st edition; ISBN-13 978-0-321-60191-9"
+  url: "https://www.informit.com/store/continuous-delivery-reliable-software-releases-through-9780321601919"
+  accessed: "2026-11-20"
+  note: "Only the catalogue page, the table of contents and the free sample chapter 5, 'Continuous Delivery: Anatomy of the Deployment Pipeline' (https://www.informit.com/articles/article.aspx?p=1621865, 7 September 2010), were readable. The table of contents titles chapter 7 'Commit Testing Stage', chapter 8 'Automated Acceptance Testing' and chapter 10 'Deploying and Releasing Applications'. The sample chapter has a section 'Only Build Your Binaries Once' and says a pipeline instance is created upon every check-in and that the commit stage should ideally take less than five minutes. Nothing is stated about what chapters 7, 8 and 10 say; their text was not readable."
+
+slsa-build-track-basics:
+  title: "Build: Track Basics"
+  author: "not printed"
+  org: "SLSA (Linux Foundation, Community Specification License 1.0)"
+  date: "SLSA v1.2, status Approved (no release date printed)"
+  url: "https://slsa.dev/spec/v1.2/build-track-basics"
+  accessed: "2026-11-20"
+  note: "Tab title 'SLSA - Build: Track Basics'. Table of levels: Build L1 provenance showing how the package was built; L2 signed provenance, generated by a hosted build platform; L3 hardened build platform."
+
+istqb-ctfl-4:
+  title: "Certified Tester Foundation Level Syllabus v4.0.1"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB"
+  date: "2024-09-15 (v4.0.1, errata release of v4.0 of 2023-04-21)"
+  url: "https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf"
+  accessed: "2026-11-20"
+  note: "Section 2.2.1 describes five test levels: component (unit), component integration, system, system integration and acceptance; section 2.2.3 says confirmation testing confirms that an original defect has been successfully fixed and regression testing confirms that no adverse consequences have been caused by a change. The certification overview page is https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/ ('Certified Tester Foundation Level (CTFL) v4.0'); the claims rest on the syllabus, not on the overview page."
+
+fowler-test-pyramid:
+  title: "Test Pyramid"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  date: "2012-05-01"
+  url: "https://martinfowler.com/bliki/TestPyramid.html"
+  accessed: "2026-11-20"
+  note: "Says to have many more low-level unit tests than high-level broad-stack tests running through a GUI. Credits Mike Cohn's 2009 book Succeeding with Agile for the name's spread, and says Fowler drew it with Lisa Crispin in 2003-4."
+
+nist-ir-8397:
+  title: "Guidelines on Minimum Standards for Developer Verification of Software"
+  author: "Paul E. Black, Barbara Guttman, Vadim Okun"
+  org: "National Institute of Standards and Technology (NIST)"
+  date: "2021-10"
+  url: "https://csrc.nist.gov/pubs/ir/8397/final"
+  accessed: "2026-11-20"
+  note: "NISTIR 8397 (DOI https://doi.org/10.6028/NIST.IR.8397); response to Executive Order 14028 of 12 May 2021. Recommends eleven techniques, in this order: threat modeling; automated testing; static code scanning; heuristic tools for hardcoded secrets; built-in checks and protections; black box test cases; code-based structural test cases; historical test cases; fuzzing; web application scanners; addressing included code. States that it does not address the totality of software verification but recommends techniques that are broadly applicable and form the minimum standards. The CSRC page prints 'Paul Black'; the PDF prints 'Paul E. Black'."
+
+owasp-wstg:
+  title: "OWASP Web Security Testing Guide"
+  author: "OWASP WSTG project (project leaders listed in the README: Rick Mitchell, Elie Saad)"
+  org: "OWASP Foundation"
+  date: "last stable release 4.2 per the README; version 5.0 in progress (no date printed in the README)"
+  url: "https://github.com/OWASP/wstg"
+  accessed: "2026-11-20"
+  note: "README text read from raw.githubusercontent.com; the github.com repository page itself was not fetched. Describes the WSTG as a comprehensive guide to testing the security of web applications and web services, created by the collaborative efforts of security professionals and dedicated volunteers; it does not call itself vendor-neutral. Each test scenario has an identifier in the format WSTG-<category>-<number> (example WSTG-INFO-02), and the README prefers a versioned form such as WSTG-v42-INFO-02."
+
+owasp-secrets-management:
+  title: "Secrets Management Cheat Sheet"
+  author: "not printed (page footer credits 'Cheat Sheets Series Team')"
+  org: "OWASP Cheat Sheet Series"
+  date: "not printed"
+  url: "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+  accessed: "2026-11-20"
+  note: "Introduction says organizations need to centralize the storage, provisioning, auditing, rotation and management of secrets. Section 2.3 (Access Control) applies the least privilege principle; section 2.6 (Auditing) lists what to audit at minimum, including who requested a secret and for what system and role, and when a secret was used and by whom or what."
+
+istqb-stress-testing:
+  title: "stress testing"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 1 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/stress-testing"
+  accessed: "2026-11-20"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/stress-testing). Defines stress testing as a type of performance testing to evaluate a system or component at or beyond the limits of its anticipated or specified workloads, or with reduced availability of resources such as access to memory or servers. The glossary record cites ISO/IEC/IEEE 24765 (2017); the site does not rely on that standard."
+
+dora-2024-highlights:
+  title: "Highlights from the 10th DORA report"
+  author: "Nathen Harvey; Derek DeBellis"
+  org: "Google Cloud Blog"
+  date: "2024-10-22"
+  url: "https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report"
+  accessed: "2026-11-20"
+  note: "Tab title 'Announcing the 2024 DORA report | Google Cloud Blog'. Says AI adoption may negatively impact software delivery performance and refers to small batch sizes and robust testing mechanisms. The page gives numeric estimates; the site quotes none."
+
+konstantinou-test-oracles:
+  title: "Can we find bugs using LLM-generated oracles?"
+  author: "Michael Konstantinou, Renzo Degiovanni, Mike Papadakis"
+  org: "arXiv (cs.SE)"
+  date: "v1 submitted 28 Oct 2024; v2 last revised 5 Oct 2026"
+  url: "https://arxiv.org/abs/2410.21136"
+  accessed: "2026-11-20"
+  note: "Preprint; the arXiv page prints no venue. Abstract says LLM-based test generation approaches mainly capture the actual program behavior, making bug detection difficult; the study covers test cases and oracles written by developers and automatically generated for 24 Java repositories (the abstract does not say open-source)."
+
+metr-reward-hacking:
+  title: "Recent Frontier Models Are Reward Hacking"
+  author: "Sydney Von Arx, Lawrence Chan, Beth Barnes"
+  org: "METR"
+  date: "2025-06-05"
+  url: "https://metr.org/blog/2025-06-05-recent-reward-hacking/"
+  accessed: "2026-11-20"
+  note: "Research post. Describes reward hacking as attempting to get a higher score by modifying the tests or scoring code, gaining access to an existing implementation or answer, or exploiting other loopholes in the task environment. The examples are on METR's own evaluation tasks; the post also reports a case where a model reward hacked in 14 of 20 attempts when the task was framed as research with real-world consequences. It is not a study of production teams."
+
+anthropic-claude-37-system-card:
+  title: "Claude 3.7 Sonnet System Card"
+  author: "Anthropic"
+  org: "Anthropic"
+  date: "not printed on the document"
+  url: "https://www.anthropic.com/claude-3-7-sonnet-system-card"
+  accessed: "2026-11-20"
+  note: "The URL redirects to a 43-page PDF (https://assets.claude.com/9ff93dfa8f445c932415d335c88852ef47f1201e.pdf); no date is printed on the document. Section 6, 'Excessive Focus on Passing Tests': the model occasionally resorts to special-casing in order to pass test cases in agentic coding environments, most often directly returning expected test values but also modifying the problematic tests themselves. Section 6.1 says the behaviour emerged as a result of reward hacking during reinforcement learning training and that partial mitigations were applied before launch."
+
+fowler-canary-release:
+  title: "Canary Release"
+  author: "Danilo Sato"
+  org: "martinfowler.com (bliki)"
+  date: "2014-06-25"
+  url: "https://martinfowler.com/bliki/CanaryRelease.html"
+  accessed: "2026-11-20"
+  note: "Slowly rolling out a change to a small subset of users before the entire infrastructure; the rollback strategy is to reroute users back to the old version."
+
+sre-workbook-canarying:
+  title: "Canarying Releases"
+  author: "Alec Warner and Štěpán Davidovič, with Alex Hidalgo, Betsy Beyer, Kyle Smith, and Matt Duftler"
+  org: "Google, The Site Reliability Workbook (O'Reilly Media, 2018), chapter 16; sre.google"
+  date: "2018 (chapter footer: Copyright 2018 Google, Inc.)"
+  url: "https://sre.google/workbook/canarying-releases/"
+  accessed: "2026-11-20"
+  note: "Defines canarying as a partial and time-limited deployment of a change in a service and its evaluation; the part of the service that receives the change is 'the canary' and the remainder is 'the control'."
+
+twelve-factor-config:
+  title: "III. Config"
+  author: "Adam Wiggins"
+  org: "The Twelve-Factor App (12factor.net)"
+  date: "last updated 2017 (as printed)"
+  url: "https://12factor.net/config"
+  accessed: "2026-11-20"
+  note: "Requires strict separation of config from code; config varies substantially across deploys and code does not; config is stored in the environment. Lists resource handles to backing services, credentials to external services and per-deploy values such as the hostname as config."
+
+tw-radar-decoupling:
+  title: "Decoupling deployment from release"
+  author: "Thoughtworks"
+  org: "Thoughtworks Technology Radar"
+  date: "2015-11-10 (published); 2016-04-05 (last updated), as printed"
+  url: "https://www.thoughtworks.com/radar/techniques/decoupling-deployment-from-release"
+  accessed: "2026-11-20"
+  note: "Technique entry in ring Adopt in the November 2015 and April 2016 editions; the page marks it 'NOT ON THE CURRENT EDITION'. The description text appears only under the April 2016 entry (it recommends using 'Deployment' for deploying a change and 'Release' for exposing a feature change to end users, and notes feature toggles and dark launches let teams deploy more often without releasing features); the November 2015 entry carries no text on the page. The page credits no person or source for the distinction."
+
+fowler-feature-toggles:
+  title: "Feature Toggles (aka Feature Flags)"
+  author: "Pete Hodgson"
+  org: "martinfowler.com"
+  date: "2017-10-09 (printed date; series first published 2016-01-19, complete article 2016-02-08)"
+  url: "https://martinfowler.com/articles/feature-toggles.html"
+  accessed: "2026-11-20"
+  note: "Article by Pete Hodgson hosted on martinfowler.com (printed date 9 October 2017; first instalment 19 January 2016, complete article 8 February 2016). Distinguishes release, experiment, ops and permissioning toggles by lifespan. Says release toggles allow incomplete and untested code paths to ship to production as latent code that may never be turned on, and calls them the most common way to implement 'the Continuous Delivery principle of separating [feature] release from [code] deployment'. Says teams should view toggles as inventory with a carrying cost and be proactive in removing flags that are no longer needed, that release toggles should generally not stick around much longer than a week or two, and that a small number of long-lived kill switches may remain."
+
+google-agentic-sre:
+  title: "AI in SRE: Where and how Google is deploying agentic AI to improve operations"
+  author: "Stevan Malesevic (Distinguished Software Engineer) and Christopher Heiser (Distinguished Site Reliability Engineer)"
+  org: "Google Cloud Blog (DevOps & SRE)"
+  date: "2026-05-28"
+  url: "https://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations"
+  accessed: "2026-11-20"
+  note: "One operator's account (not a study) of agents layered on its incident management: consolidating and summarising incident communications, creating handoff documents and drafting postmortems, and investigation agents that use observability data and in some cases mitigate autonomously. Says it relies on consistent controls to prevent unwanted mutations of production state, and that an agentic approach does not necessarily imply removing people from the process, specifically for higher-risk services and features. Gives no outcome figures. The browser tab title differs from the on-page heading. Links a whitepaper that was not read."
+
+dora-streamlining-change-approval:
+  title: "Streamlining change approval"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Streamlining change approval')"
+  date: "2025-10-30 (last updated, as printed)"
+  url: "https://dora.dev/capabilities/streamlining-change-approval/"
+  accessed: "2026-11-20"
+  note: "Says change approvals are best implemented through peer review during the development process, supplemented by automation to detect, prevent and correct bad changes early, and that heavyweight external approval processes have a negative impact on software delivery performance. Treats segregation of duties, a common regulatory requirement, as satisfiable by peer review and gives the change advisory board a strategic role. Does not discuss an external control that mandates approval by an outside party. Carries the 'core' tag; cites the 2019 State of DevOps Report."
+
+keep-a-changelog:
+  title: "Keep a Changelog 1.1.0"
+  author: "Olivier Lacan (page: 'created and maintained by Olivier Lacan, and designed by Tyler Fortune')"
+  org: "keepachangelog.com"
+  date: "version 1.1.0 (its own changelog dates 1.1.0 as 2019-02-15)"
+  url: "https://keepachangelog.com/en/1.1.0/"
+  accessed: "2026-11-20"
+  note: "States that changelogs are for humans, not machines; advises against dumping git logs into changelogs; says there should be an entry for every single version; groups changes under six types (Added, Changed, Deprecated, Removed, Fixed, Security). Says 'Mention whether you follow Semantic Versioning' and does not recommend it outright."
+
+keep-a-changelog-2:
+  title: "Keep a Changelog 2.0.0"
+  author: "Olivier Lacan (page: 'created and maintained by Olivier Lacan, and designed by Tyler Fortune')"
+  org: "keepachangelog.com"
+  date: "2026-06-07 (page: 'Published on June 7th, 2026')"
+  url: "https://keepachangelog.com/en/2.0.0/"
+  accessed: "2026-11-20"
+  note: "The 2.0.0 edition ('Published on June 7th, 2026'). Says changelogs are for humans, not machines; says not to paste a git log; says 'You do not have to use Semantic Versioning'; and draws the line as 'machines can draft, but humans curate', a phrase found on this edition only."
+
+fowler-dark-launching:
+  title: "Dark Launching"
+  author: "Martin Fowler"
+  org: "martinfowler.com (bliki)"
+  date: "2020-04-29"
+  url: "https://martinfowler.com/bliki/DarkLaunching.html"
+  accessed: "2026-11-20"
+  note: "Defines dark launching as taking a new or changed back-end behavior and calling it from existing users without their being able to tell; says it assesses load and performance impact before a public announcement of the new capability; notes the term has been subject to semantic diffusion."
+
+dora-continuous-delivery:
+  title: "Continuous delivery"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Continuous delivery')"
+  date: "not printed"
+  url: "https://dora.dev/capabilities/continuous-delivery/"
+  accessed: "2026-11-20"
+  note: "Defines continuous delivery as the ability to release changes of all kinds on demand quickly, safely and sustainably, including releasing software and making changes to production in a low-risk way at any time, including during normal business hours, without impacting users. Carries the 'core' tag; no date printed."
+
+istqb-test-completion:
+  title: "test completion"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 2 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/test-completion"
+  accessed: "2026-11-20"
+  note: "Read through https://api.glossary.istqb.org/v1/terms/test-completion because the term page is JavaScript-rendered. Defines test completion as the activity that makes testware available for later use, leaves test environments in a satisfactory condition and communicates the results of testing to relevant stakeholders; synonym test closure."
+
+sre-book-monitoring:
+  title: "Monitoring Distributed Systems"
+  author: "Rob Ewaschuk (edited by Betsy Beyer)"
+  org: "Google, Site Reliability Engineering (first edition, O'Reilly Media), chapter 6; sre.google"
+  date: "chapter page footer: Copyright 2017 Google, Inc. (the book's preface prints 2016 in its citation example)"
+  url: "https://sre.google/sre-book/monitoring-distributed-systems/"
+  accessed: "2026-11-20"
+  note: "States that a monitoring system should address two questions, what is broken and why, and names the four golden signals as latency, traffic, errors and saturation. The page's browser tab title does not match the chapter; the on-page chapter heading is used."
+
+sre-book-being-on-call:
+  title: "Being On-Call"
+  author: "Andrea Spadaccini (edited by Kavita Guliani)"
+  org: "Google, Site Reliability Engineering (first edition, O'Reilly Media), chapter 11; sre.google"
+  date: "chapter page footer: Copyright 2017 Google, Inc. (the book's preface prints 2016 in its citation example)"
+  url: "https://sre.google/sre-book/being-on-call/"
+  accessed: "2026-11-20"
+  note: "After a page is acknowledged the on-call engineer is expected to triage the problem and work toward its resolution, possibly involving other team members and escalating as needed; many teams have both a primary and a secondary on-call rotation."
+
+sre-book-managing-incidents:
+  title: "Managing Incidents"
+  author: "Andrew Stribblehill (edited by Kavita Guliani)"
+  org: "Google, Site Reliability Engineering (first edition, O'Reilly Media), chapter 14; sre.google"
+  date: "chapter page footer: Copyright 2017 Google, Inc. (the book's preface prints 2016 in its citation example)"
+  url: "https://sre.google/sre-book/managing-incidents/"
+  accessed: "2026-11-20"
+  note: "Google's incident management system is based on the Incident Command System. Lists four roles (incident command, operational work, communication, planning) and says the operations team should be the only group modifying the system during an incident. The chapter does not use the title 'communications lead'."
+
+nist-800-61r3:
+  title: "Incident Response Recommendations and Considerations for Cybersecurity Risk Management: A CSF 2.0 Community Profile"
+  author: "Alex Nelson, Sanjay Rekhi, Murugiah Souppaya, Karen Scarfone"
+  org: "National Institute of Standards and Technology (NIST)"
+  date: "April 2025 (final, 2025-04-03)"
+  url: "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+  accessed: "2026-11-20"
+  note: "NIST SP 800-61 Rev. 3, DOI https://doi.org/10.6028/NIST.SP.800-61r3. Covers cybersecurity incident response: all six Cybersecurity Framework (CSF) 2.0 Functions (Govern, Identify, Protect, Detect, Respond, Recover) play a part, and lessons learned from performing all activities in all Functions are fed into Improvement (the Improvement Category, ID.IM, in the Identify Function). Supersedes SP 800-61 Rev. 2 (2012), which was withdrawn on 2025-04-03. The CSRC page prints the first author as 'Alexander Nelson'; the PDF prints 'Alex Nelson'."
+
+dora-monitoring-observability:
+  title: "Monitoring and observability"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Monitoring and observability')"
+  date: "not printed"
+  url: "https://dora.dev/capabilities/monitoring-and-observability/"
+  accessed: "2026-11-20"
+  note: "Distinguishes monitoring (tooling or a technical solution that lets teams watch and understand the state of their systems) from observability (lets teams actively debug their system) and says a comprehensive monitoring and observability solution, with a number of other technical practices, contributes positively to continuous delivery. Carries the 'core' tag; no date printed."
+
+ahmed-incident-llm:
+  title: "Recommending Root-Cause and Mitigation Steps for Cloud Incidents using Large Language Models"
+  author: "Toufique Ahmed, Supriyo Ghosh, Chetan Bansal, Tom Zimmermann, Xuchao Zhang, Saravan Rajmohan"
+  org: "Microsoft Research; ICSE 2023"
+  date: "May 2023 (as printed on the publication page)"
+  url: "https://www.microsoft.com/en-us/research/publication/recommending-root-cause-and-mitigation-steps-for-cloud-incidents-using-large-language-models/"
+  accessed: "2026-11-20"
+  note: "Publication page prints 'ICSE 2023 | May 2023'. The abstract describes the first large-scale study to evaluate the effectiveness of large language models for helping engineers root cause and mitigate production incidents, on more than 40,000 incidents, in zero-shot, fine-tuned and multi-task settings, with human evaluation by incident owners."
+
+chen-rcacopilot:
+  title: "Automatic Root Cause Analysis via Large Language Models for Cloud Incidents"
+  author: "Yinfang Chen, Huaibing Xie, Minghua Ma, Yu Kang, Xin Gao, Liu Shi, Yunjie Cao, Xuedong Gao, Hao Fan, Ming Wen, Jun Zeng, Supriyo Ghosh, Xuchao Zhang, Chaoyun Zhang, Qingwei Lin, Saravan Rajmohan, Dongmei Zhang, Tianyin Xu"
+  org: "arXiv (cs.SE)"
+  date: "v1 25 May 2023; v4 last revised 13 Nov 2023"
+  url: "https://arxiv.org/abs/2305.15778"
+  accessed: "2026-11-20"
+  note: "Preprint; the arXiv page prints no venue. Describes a root-cause tool that matches incoming incidents to the corresponding incident handlers based on their alert types, aggregates the critical runtime diagnostic information, predicts the incident's root cause category and provides an explanatory narrative; reports RCA accuracy of up to 0.766, evaluated on a year's worth of incidents from the authors' own cloud provider (named in the abstract)."
+
+istqb-agile-tester-2014:
+  title: "Certified Tester Foundation Level Extension Syllabus Agile Tester, Version 2014"
+  author: "International Software Testing Qualifications Board (ISTQB), Foundation Level Extension Agile Tester Working Group"
+  org: "ISTQB"
+  date: "2014-09-30 (Version 2014)"
+  url: "https://astqb.org/assets/documents/ISTQB-Foundation-Agile-Syllabus.pdf"
+  accessed: "2026-11-20"
+  note: "Agile Tester syllabus. States that each test level has its own definition of done, lists INVEST for user stories and covers acceptance criteria. Currency: ISTQB announces that exams and training for this certification end on 6 May 2027 (English) and 6 November 2027 (non-English); the syllabus is superseded in scope by CTFL v4.0 and CTAL-AT v2.0."
+
+gotel-finkelstein-1994:
+  title: "An analysis of the requirements traceability problem"
+  author: "Orlena C. Z. Gotel, Anthony C. W. Finkelstein"
+  org: "Proceedings of 1st International Conference on Requirements Engineering, IEEE Computer Society Press"
+  date: "1994 (pp. 94-101)"
+  url: "https://discovery.ucl.ac.uk/id/eprint/749/"
+  accessed: "2026-11-20"
+  note: "Defines requirements traceability as the ability to describe and follow the life of a requirement in both a forwards and backwards direction, from its origins through development and specification to deployment and use. Cited for that definition only. The record page prints the venue as '1st International Conference on Requirements Engineering' (no acronym); the paper PDF is at https://discovery.ucl.ac.uk/id/eprint/749/1/2.2_rtprob.pdf."
+
+nasa-swe-052:
+  title: "SWE-052 - Bidirectional Traceability"
+  author: "not printed"
+  org: "NASA, NASA Software Engineering and Assurance Handbook (NASA-HDBK-2203)"
+  date: "handbook cover prints NASA-HDBK-2203B, approved 2022-03-08; the page itself is not dated"
+  url: "https://swehb.nasa.gov/spaces/SWEHBVD/pages/102695427/SWE-052+-+Bidirectional+Traceability"
+  accessed: "2026-11-20"
+  note: "Handbook page for requirement SWE-052 (NPR 7150.2D, 3.12.1): bi-directional traceability between higher-level requirements and software requirements, requirements and hazards, requirements and design components, design components and code, requirements and verification, and requirements and non-conformances. The requirement applies by software class (A, B, C; D; F per the table), not equally to all. States that traceability can point out requirements that are not tested and tests that do not serve requirements, and that the matrix is completed left to right early in the phase and maintained throughout the life of the project."
+
+rath-traceability-wild-2018:
+  title: "Traceability in the Wild: Automatically Augmenting Incomplete Trace Links"
+  author: "Michael Rath, Jacob Rendall, Jin L.C. Guo, Jane Cleland-Huang, Patrick Mäder"
+  org: "ICSE '18: 40th International Conference on Software Engineering, Gothenburg, Sweden, 27 May to 3 June 2018"
+  date: "2018"
+  url: "https://doi.org/10.1145/3180155.3180207"
+  accessed: "2026-11-20"
+  note: "Facts read from the authors' arXiv preprint (https://arxiv.org/abs/1804.02433, v1 6 April 2018; its PDF prints an ACM Reference Format with the DOI), not from the ACM record. Abstract: an analysis of six open source projects showed that on average only 60% of the commits were linked to specific issues. The study addresses missing commit-to-issue links. Not a general finding about traceability."
+
+safe-ia-facilitators-guide:
+  title: "SAFe Inspect and Adapt Facilitator's Guide"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed"
+  url: "https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Inspect-and-Adapt-Facilitators-Guide.pdf"
+  accessed: "2026-11-20"
+  note: "Four-page guide. The event has three primary parts, typically facilitated by the Release Train Engineer (RTE). Part 3 is a brief retrospective followed by a structured, root-cause problem-solving workshop; the guide names Root Cause Analysis, Fishbone, 5 Whys and Pareto. It does not list a six-step workshop."
+
+safe-rte:
+  title: "Release Train Engineer"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "not printed in readable text"
+  url: "https://framework.scaledagile.com/release-train-engineer"
+  accessed: "2026-11-20"
+  note: "Defines the Release Train Engineer (RTE) as a servant leader and ART coach who facilitates ART events and processes, and supports teams in delivering value."
+
+safe-iteration-retrospective:
+  title: "Iteration Retrospective"
+  author: "not printed"
+  org: "Scaled Agile, Inc."
+  date: "last updated 2026-03-18 (as printed)"
+  url: "https://framework.scaledagile.com/iteration-retrospective/"
+  accessed: "2026-11-20"
+  note: "Tab title 'Extended Guidance - Iteration Retrospective'. Describes the Iteration Retrospective as a regular event held at the end of each iteration during which Agile Teams review their results to identify improvements for future work."
+
+agile-manifesto-principles:
+  title: "Principles behind the Agile Manifesto"
+  author: "not printed on this page (the Manifesto home page prints '(c) 2001, the above authors' above a list of 17 names)"
+  org: "agilemanifesto.org"
+  date: "not printed on this page; Manifesto home page '(c) 2001'"
+  url: "https://agilemanifesto.org/principles.html"
+  accessed: "2026-11-20"
+  note: "Twelve unnumbered statements; the last reads 'At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly.'"

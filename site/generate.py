@@ -477,9 +477,13 @@ def linked_map() -> str:
 # --------------------------------------------------------------------------- home
 def routes() -> str:
     """The purpose routing row under the map (project/APPROACH.md): only destinations that exist."""
+    by_id = {pg["id"]: pg for band in PAGES.values() for pg in band}
+    # reference pages a route lists by id; each appears, under its own title, once the page exists
+    pages = lambda *ids: [(by_id[i]["href"], by_id[i]["title"], False) for i in ids if i in by_id]  # noqa: E731
     rows = [
         ("Understand", "What changes when agents do more of the delivery work, and the words for it.",
          [("glossary.html#ai-sdlc", "What the AI SDLC is", False), ("harness-engineering.html", "Harness engineering", False),
+          *pages("lifecycle-levels", "traceability-spine"),
           ("glossary.html", "Terminology and sources", False)]),
         ("Build the kit", "The engineering environment the agent works in: rules, checks, skills and evidence.",
          [("engineering-kit.html", "The Engineering Kit", False), ("rule-registry.html", "Rule registry", False),

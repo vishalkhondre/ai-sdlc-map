@@ -6,8 +6,8 @@ map_box: Workflows
 title: Workflows
 summary: A workflow is one delivery decision run end to end, with a trigger, an agent task, automated checks, a named human decision, an evidence record and one owner.
 key_terms: [workflow, three-roles, risk-tier, failure-path, evidence-handoff, could-not-run, evidence-record, gate, validator, review-skill, specification-readiness, independent-basis, harness-engineering, feedback-path, software-factory, export-example]
-sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, spec-kit, github-status-checks]
-related: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, software-factory]
+sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, spec-kit, github-status-checks, safe-inspect-and-adapt, scrum-guide-2020]
+related: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, software-factory, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, lifecycle-levels]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -221,8 +221,8 @@ loop[^bockeler-harness].
 As recommended practice, a team has a workflow once every qualifying change goes through it and
 leaves a record the next decision reads: for the export feature, anyone can open the verification
 record for the pull request's latest revision and see what ran and who decided. Whether the
-workflow improves delivery then shows in the team's software delivery performance
-measures[^dora-metrics].
+workflow improves delivery then shows in the team's software delivery performance metrics, which
+DORA groups into throughput and instability[^dora-metrics].
 
 The list of workflows across the lifecycle, each with its decision, trigger, agent task, checks,
 human decision and evidence, is the [workflow catalog](workflow-catalog.html).
@@ -242,8 +242,12 @@ applies, its [Validators](validators.html) are the checks, its
 share rules, evidence and feedback.
 
 Outside the core band, the lifecycle band places each workflow in its phase, through the
-[workflow catalog](workflow-catalog.html). The assurance band reads the evidence records a
-workflow leaves, and the adoption path decides which workflow a team builds first.
+[workflow catalog](workflow-catalog.html). Readiness criteria, and the Definition of Done from the
+Scrum Guide[^scrum-guide-2020], are covered on the
+[Definition of Ready and Definition of Done](definition-of-ready-and-done.html) page, and the links
+between records from requirement to incident on the [Traceability spine](traceability-spine.html)
+page. The assurance band reads the evidence records a workflow leaves, and the adoption path
+decides which workflow a team builds first.
 
 ## Pitfalls
 
@@ -290,6 +294,14 @@ workflow leaves, and the adoption path decides which workflow a team builds firs
   evidence and feedback.
 - [Workflow catalog](workflow-catalog.html): the list of workflows across the lifecycle,
   including [pull-request verification](workflow-catalog.html#W23).
+- [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
+  exit criteria for an item of work.
+- [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
+  incident.
+- [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which a workflow is added
+  or tightened, named after an event the Scaled Agile Framework (SAFe) holds[^safe-inspect-and-adapt].
+- [Lifecycle levels](lifecycle-levels.html): the portfolio, train and team levels at which the
+  lifecycle runs.
 - [Workflow in the terminology](glossary.html#workflow): the short definition and its
   attribution.
 
@@ -302,7 +314,8 @@ workflow leaves, and the adoption path decides which workflow a team builds firs
   pipeline[^fowler-deployment-pipeline], continuous integration[^fowler-ci] and non-deterministic
   tests[^fowler-nondeterminism].
 - AI-assisted delivery: DORA's 2024 findings[^dora-2024-report], its 2025 report and its announcement[^dora-2025-report][^dora-2025-announcement],
-  its AI Capabilities Model[^dora-ai-capabilities] and its research programme[^dora-metrics].
+  its AI Capabilities Model[^dora-ai-capabilities] and its guide to software delivery performance
+  metrics[^dora-metrics].
 - Harness vocabulary: Birgitta Böckeler on harness engineering[^bockeler-harness] and on
   sensors[^bockeler-sensors], and one model vendor's account of harness engineering in an
   agent-first team[^openai-harness].
@@ -315,3 +328,5 @@ workflow leaves, and the adoption path decides which workflow a team builds firs
 - Risk-based testing: the ISTQB glossary[^istqb-rbt] and ISO/IEC/IEEE 29119-1[^iso-29119-1].
 - Upstream inputs and result states: an open-source spec-driven toolkit[^spec-kit] and one change
   host's documentation on skipped checks[^github-status-checks].
+- Inspect and Adapt: Scaled Agile, Inc., *Inspect and Adapt*[^safe-inspect-and-adapt].
+- Definition of Done: Schwaber and Sutherland, *The 2020 Scrum Guide*[^scrum-guide-2020].
