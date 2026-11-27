@@ -85,6 +85,43 @@ def write(p: Path, s: str) -> None:
 
 
 # --------------------------------------------------------------------------- diagrams
+# Design system v1.0 (D-031): the diagram sources keep their own palette and fonts (content/ is
+# not restyled); the site maps them onto the brand when it embeds or writes a diagram.
+DIAGRAM_PALETTE = {
+    # neutrals: ink, muted text, line, strong line, paper, faint marks
+    "#1f1f1c": "#18181b", "#5f5e5a": "#52525b", "#d3d1c7": "#e4e4e7", "#b4b2a9": "#d4d4d8",
+    "#faf9f5": "#fafafb", "#888780": "#8a8a93",
+    # the five bands, stroke / fill / text: Context, Lifecycle, Core, Enablement, Assurance
+    "#8a5a00": "#d29a3a", "#faeeda": "#fdf6e9", "#5a3b00": "#7a4e0e",
+    "#f1efe8": "#f7f7f8", "#2c2c2a": "#27272a",
+    "#534ab7": "#4c66e6", "#eeedfe": "#eef1fd", "#26215c": "#2b3a99",
+    "#0f6e56": "#10a374", "#e1f5ee": "#e8f7f1", "#04342c": "#065f46",
+    "#993c1d": "#0e8fb0", "#faece7": "#e6f5fa", "#4a1b0c": "#0b4f63",
+}
+# Text in a band colour uses a darker step of the same hue, so labels reach 4.5:1 on every fill.
+DIAGRAM_TEXT = {"#8a5a00": "#8a5a0a", "#888780": "#6b6b75", "#534ab7": "#3b55d9",
+                "#0f6e56": "#08795a", "#993c1d": "#08708b"}
+DIAGRAM_SANS = 'Inter,"Liberation Sans","DejaVu Sans",Arial,sans-serif'
+DIAGRAM_MONO = '"JetBrains Mono","Liberation Mono","DejaVu Sans Mono",monospace'
+
+
+def brand_svg(svg: str) -> str:
+    """Map a diagram source onto the brand: palette, Inter, mono caps labels, corners up to 8px."""
+    svg = re.sub(r'(<text\b[^>]*\bfill=")(#[0-9a-fA-F]{6})', lambda m: m.group(1) + DIAGRAM_TEXT.get(m.group(2).lower(), m.group(2)), svg)
+    svg = re.sub(r"#[0-9a-fA-F]{6}\b", lambda m: DIAGRAM_PALETTE.get(m.group(0).lower(), m.group(0)), svg)
+    svg = svg.replace("""font-family='"Liberation Sans","DejaVu Sans",Arial,sans-serif'""", f"font-family='{DIAGRAM_SANS}'")
+    svg = svg.replace("""font-family='"Liberation Mono","DejaVu Sans Mono",monospace'""", f"font-family='{DIAGRAM_MONO}'")
+    # small capitals labels (set with letter-spacing) read as mono metadata
+    svg = re.sub(r'<text ((?:(?!>)[^>])*letter-spacing="[^"]*"[^>]*)>',
+                 lambda m: "<text font-family='" + DIAGRAM_MONO + "' " + m.group(1).replace('font-weight="700"', 'font-weight="500"') + ">", svg)
+    # Italic annotations become upright and a half point smaller: upright Inter is wider than the
+    # sources' italic, and the smaller size keeps each note inside the box it was drawn for.
+    svg = re.sub(r'font-size="(1[12](?:\.5)?)"([^>]*) font-style="italic"', lambda m: f'font-size="{float(m.group(1)) - .5:g}"{m.group(2)}', svg)
+    svg = svg.replace('font-weight="700"', 'font-weight="600"').replace(' font-style="italic"', "")
+    svg = re.sub(r'\brx="([\d.]+)"', lambda m: f'rx="{min(float(m.group(1)), 8):g}"', svg)
+    return svg
+
+
 def svg_source(diagram_id: str, instance: str, markup: str | None = None) -> tuple[str, int, int]:
     """Return (svg markup, width, height) for a diagram id, or for the given markup of that diagram."""
     p = DIAGRAMS_SVG / f"{diagram_id}.svg"
@@ -94,6 +131,7 @@ def svg_source(diagram_id: str, instance: str, markup: str | None = None) -> tup
         svg = read(p)
     else:
         raise SystemExit(f"Unknown diagram: {diagram_id}")
+    svg = brand_svg(svg)
     m = re.search(r'<svg[^>]*width="(\d+)"[^>]*height="(\d+)"', svg)
     w, h = (int(m.group(1)), int(m.group(2))) if m else (1200, 628)
     # Namespace definitions per occurrence, including repeats.
@@ -131,7 +169,7 @@ def write_diagram_files() -> list[str]:
     OUT_DIAGRAMS.mkdir(parents=True, exist_ok=True)
     ids = []
     for p in sorted(DIAGRAMS_SVG.glob("*.svg")):
-        write(OUT_DIAGRAMS / p.name, read(p))
+        write(OUT_DIAGRAMS / p.name, brand_svg(read(p)))
         ids.append(p.stem)
     return ids
 
@@ -267,8 +305,8 @@ def head(title: str, description: str, path: str, og_image: str = "og-image.png"
 <meta property="og:image" content="{SITE_URL}/{og_image}">
 <meta property="og:url" content="{canonical}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f6f8f8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1a1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fafafb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f0f12" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{rel('favicon.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{rel('assets/style.css')}?v={VERSION}">
 <script>try{{const t=localStorage.getItem('aisdlcmap-theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>
@@ -277,7 +315,7 @@ def head(title: str, description: str, path: str, og_image: str = "og-image.png"
 """
 
 
-# Logo (D-021): five stacked bars, one per band of the map, in the primary colour.
+# Logo (D-021, D-031): five stacked bars, one per band of the map, in the ink colour.
 LOGO_MARK = '<svg class="brand-mark" viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" focusable="false"><rect x="2" y="2.0" width="16" height="2.2" rx="1.1"/><rect x="2" y="5.4" width="16" height="2.2" rx="1.1"/><rect x="2" y="8.8" width="16" height="2.2" rx="1.1"/><rect x="2" y="12.2" width="16" height="2.2" rx="1.1"/><rect x="2" y="15.6" width="16" height="2.2" rx="1.1"/></svg>'
 
 
@@ -490,7 +528,8 @@ def routes() -> str:
           ("validators.html", "Validators", False), ("skills-and-evals.html", "Skills with evals", False),
           ("evidence-schema.html", "Evidence schema", False), ("adapters.html", "Adapters", False)]),
         ("Run a workflow", "One delivery decision end to end, with a trigger, checks, a human decision and evidence.",
-         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), ("workflows.html", "What a workflow is", False)]),
+         [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), ("workflows.html", "What a workflow is", False),
+          *pages("intake-and-triage", "spec-readiness", "design-conformance", "pull-request-verification", "deploy-verification", "release-readiness", "incident-feedback")]),
         ("Lead adoption", "What to build first, what to measure, and when to move on.",
          [("#adoption", "The adoption path", False), ("software-factory.html", "The software factory", False)]),
         ("Look it up", "Definitions, sources and the catalog as data.",

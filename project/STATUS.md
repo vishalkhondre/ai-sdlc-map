@@ -7,6 +7,14 @@ Update at the end of every session (see `CLAUDE.md`).
 - **Repository (D-010, D-019):** `vishalkhondre/ai-sdlc-map` builds *The AI SDLC Map* (D-013) at
   `vishalkhondre.github.io/ai-sdlc-map/`. It stands on its own: it does not link to or mention the
   earlier narrative series (D-019).
+- **Edition 1.6.0 (session 11, 2026-11-27): Lifecycle, part two.** The seven workflow pages (intake and
+  triage, specification readiness, design conformance, pull-request verification, deploy verification,
+  release readiness, incident feedback), the seven map links moved to them, link-only edits in seven
+  phase pages and three Core pages, 13 references, 5 glossary entries (D-032). Library sweep clean
+  after two rounds and the final D2 sweep; three reviewers in two groups; pull request #28. The author
+  asked for it to be deployed without waiting for his review; he reviews it live and tags at approval.
+- **Edition 1.5.0, Lifecycle part one, merged and deployed (PR #24, 2026-11-21), not yet tagged.** The
+  author's live review and the `v1.5.0` tag are still open.
 - **Live: edition 1.4.2, released.** The author approved the Core section (`v1.4.1`) and edition
   1.4.2 (`v1.4.2`, 2026-10-06), each a GitHub Release with its PDF snapshot; released tags are
   `v1.2.0`, `v1.3.0`, `v1.4.1` and `v1.4.2`. The site is
@@ -41,6 +49,10 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
+0. **Author: approve or change the Assurance plan** (draft PR #27, `project/plans/assurance.md`, eleven
+   open questions), then a session builds Assurance as edition 1.7.0 through the same pipeline.
+   Confirm or reverse D-032, and say whether workflow pages may name the deciding role themselves
+   (spec readiness, release readiness and incident feedback now defer to the catalog row). Live review of 1.5.0 and 1.6.0, then tags.
 1. A small follow-up edition (optional): make the harness page call the feedback path the site's
    extension of the steering loop in all three places (editorial suggestion on 1.4.2), and add the
    dotted precondition line to the workflow diagram's legend.
@@ -95,8 +107,24 @@ Note (GR-1.1, D-017): ordinary words that the library uses as its own names appe
 borderline fields of W01, W08, W12, W22 and W25. The hashed deny-list cannot catch them; the
 confidentiality review of the fix edition reads those fields as a public reader would.
 
+### Added by the 1.6.0 sweep (2026-11-27)
+
+The 1.6.0 sweep flagged page passages that restated published text; they were cut from the new pages,
+and the published text they restated is logged here for the same 1.4.x fix edition (locations only):
+
+| Published item | Location | Verdict | GR |
+|---|---|---|---|
+| Core `workflows` | three-roles section, one sentence | close | 1.2 |
+| Glossary `risk-tier` | definition, first sentence | close | 1.2 |
+| Catalog W01 | Decision field (already listed above) | close | 1.2 |
+
 ## Backlog
 
+- Catalog rows link to their workflow pages (W01, W04, W08, W23, W25, W26, W28): changes the live
+  catalog, so it waits for the 1.4.x fix edition or the author (D-032).
+- Agent-stop failure path on four workflow pages (spec readiness, pull-request verification, release
+  readiness, incident feedback), or once in Core `workflows#failure-paths`: editorial suggestion
+  from the 1.6.0 review, for the 1.4.x fix edition.
 - Catalog consistency pass (W12 wording): the W12 row says "definition of ready" while the map
   and adoption path place it at Specification (D-029, question 8).
 
@@ -155,8 +183,8 @@ Each open item, with its outcome (GR-5.3).
 | Wave | State | Pages planned | Pages published |
 |---|---|---|---|
 | 0 Foundations | closed (D-028) | — | — |
-| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2` with diagrams); Lifecycle plan approved (D-029): 1.5.0 (12 pages) in progress, 1.6.0 (7 pages) planned | 9 (core) + 12 (1.5.0) + 7 (1.6.0) | 9 |
-| 2 Assurance and enablement | not started | set by inventory | 0 |
+| 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2`); Lifecycle 1.5.0 deployed (untagged); 1.6.0 in PR #28 | 9 (core) + 12 (1.5.0) + 7 (1.6.0) | 21 (28 with 1.6.0) |
+| 2 Assurance and enablement | Assurance plan proposed (draft PR #27), awaiting the author | set by inventory | 0 |
 | 3 Context and adoption | not started | set by inventory | 0 |
 
 ## Session log
@@ -172,3 +200,5 @@ Each open item, with its outcome (GR-5.3).
 | 7 | 2026-10-06 | Closed wave 0: STATUS brought up to date (Core released as `v1.4.1`); the library sweep made a gate on every content change (D-027); the keyed deny-list switch built and tested, waiting for the author's hashing run (D-023); wave 0 retrospective held (D-028); diagrams on five Core pages and the home-page wording fixes as edition 1.4.2 | 1.4.2 merged (PR #18) and released as `v1.4.2` on the author's instruction, through the Release workflow (tag pushes are refused by tag protection; the first run's release job failed on a one-off Chromium screenshot error and passed on re-run). Leftover branch could not be deleted from the session. Author: run the rekey command |
 | 8 | 2026-10-06 | Planned the Lifecycle section (architect); the author approved it as two editions (D-029) and answered eight questions; updated the Core plan and this file; opened the plan pull request; started the 1.5.0 briefs and public-skeleton research | Page work on a local branch, nothing pushed; SAFe page text to the author in chat before its first push; see Next item 3 |
 | 9 | 2026-11-20 | Merged the Lifecycle plan pull request (PR #19); recorded that GR-6.1 stays as written (D-029 holds the exception); brought the wave tracker and Next to the two-edition plan; started the 1.5.0 source check (its results go in their own pull request) | See Next item 3 |
+| 10 | 2026-11-27 | Restyled the site with the author's locked AI SDLC design system v1.0 (D-031, supersedes D-021): Inter and JetBrains Mono bundled, new tokens in both themes, the diagram palette mapped onto the band colours at build time, and an interaction layer (map hover and band focus, legend, icons, motion, back to the map). Site only: no content change, no edition bump. Pull request open for the author's review, not merged | Author reviews the preview and the pull request |
+| 11 | 2026-11-27 | Overnight, on the author's instruction to complete the map without waiting for him: found that 1.5.0 was merged but STATUS was stale; built edition 1.6.0 (the seven workflow pages) through briefs, public skeletons, library concept diffs, two sweep rounds (five pages had close passages cut and rewritten by fresh authors; design conformance rewritten), the final D2 sweep, and three reviewers in two groups; recorded D-032; proposed the Assurance plan (draft PR #27) | Author: Assurance plan questions, D-032, live review and tags of 1.5.0 and 1.6.0 |

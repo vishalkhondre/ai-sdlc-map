@@ -275,3 +275,157 @@
     }).join('') || '<div class="search-hint">Nothing found.</div>';
   });
 })();
+
+/* Design system v1.0 (D-031): icons, map hover and band focus, legend, motion, back to the map.
+   Decorative only: every page works the same without it. Icons are line icons in the Lucide style,
+   drawn here as paths. Band icons and colours are keyed to a band's position and read from the map
+   itself, not to band names, so another map with other bands gets the same treatment. */
+(function () {
+  'use strict';
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const P = {
+    compass: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z M16.2 7.8l-2.1 6.3-6.3 2.1 2.1-6.3z',
+    cycle: 'M3 12a9 9 0 0 1 15.5-6.4L21 8 M21 3v5h-5 M21 12a9 9 0 0 1-15.5 6.4L3 16 M3 21v-5h5',
+    chip: 'M6 6h12v12H6z M9.5 9.5h5v5h-5z M9 2v4 M15 2v4 M9 18v4 M15 18v4 M2 9h4 M2 15h4 M18 9h4 M18 15h4',
+    layers: 'M12 2l10 5-10 5-10-5z M2 12l10 5 10-5 M2 17l10 5 10-5',
+    shield: 'M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z M9 12l2 2 4-4',
+    trend: 'M3 17l6-6 4 4 8-8 M14 7h7v7',
+    book: 'M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z',
+    box: 'M12 2l9 5v10l-9 5-9-5V7z M3 7l9 5 9-5 M12 12v10',
+    play: 'M7 4l13 8-13 8z',
+    flag: 'M4 22V4 M4 4h13l-2 4 2 4H4',
+    search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5',
+    list: 'M4 6h16 M4 12h16 M4 18h10',
+    map: 'M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z M9 4v14 M15 6v14',
+    user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0'
+  };
+  /* Band roles by position: 1 sets the frame, 2 says where, 3 does the work, 4 enables it, 5 proves it. */
+  const BAND_ICON = ['compass', 'cycle', 'chip', 'layers', 'shield'];
+  const BAND_VAR = ['context', 'lifecycle', 'core', 'enablement', 'assurance'];
+  const icon = (k, size) => `<svg class="ico" width="${size || 18}" height="${size || 18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="${P[k]}"/></svg>`;
+  const el = (tag, cls, html) => { const e = document.createElement(tag); e.className = cls; if (html) e.innerHTML = html; return e; };
+  const NS = 'http://www.w3.org/2000/svg';
+
+  /* ---------- the clickable map ---------- */
+  const svg = document.querySelector('figure.clickable svg');
+  if (svg) {
+    // The browser's own tooltip would sit on top of ours: drop <title> and title, keep the names.
+    $$('title', svg).forEach(t => t.parentNode.removeChild(t));
+    $$('[title]', svg).forEach(e => { if (!e.getAttribute('aria-label')) e.setAttribute('aria-label', e.getAttribute('title')); e.removeAttribute('title'); });
+    const bands = [];
+    $$('text', svg).forEach(t => {
+      const m = /^(\d) · (.+)$/.exec(t.textContent.trim());
+      const r = t.previousElementSibling;
+      if (!m || !r || r.tagName !== 'rect') return;
+      const n = +m[1], x = +r.getAttribute('x'), y = +r.getAttribute('y'), w = +r.getAttribute('width'), h = +r.getAttribute('height');
+      const name = m[2].charAt(0) + m[2].slice(1).toLowerCase();
+      const b = { n, name, y, h, stroke: r.getAttribute('stroke'), fill: r.getAttribute('fill'), ink: t.getAttribute('fill'), els: [] };
+      b.key = BAND_ICON[(n - 1) % BAND_ICON.length];
+      const g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'band-icon'); g.setAttribute('aria-hidden', 'true');
+      g.setAttribute('transform', `translate(${x + w - 30},${y + h - 30}) scale(.8)`);
+      g.innerHTML = `<path d="${P[b.key]}" fill="none" stroke="${b.ink}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`;
+      svg.appendChild(g);
+      bands.push(b);
+    });
+    bands.sort((a, b) => a.y - b.y);
+    if (bands.length) {
+      $$(':scope > *', svg).forEach(e => {
+        if (/^(title|desc|defs|style)$/.test(e.tagName)) return;
+        let bb; try { bb = e.getBBox(); } catch (_) { return; }
+        const cy = bb.y + bb.height / 2;
+        const b = bands.find(o => cy >= o.y - 4 && cy <= o.y + o.h + 4);
+        e.classList.add('band-el');
+        if (b) b.els.push(e);
+      });
+      let pinned = null;
+      const focus = b => {
+        $$('.band-cur', svg).forEach(e => e.classList.remove('band-cur'));
+        svg.classList.toggle('band-focused', !!b);
+        if (b) b.els.forEach(e => e.classList.add('band-cur'));
+      };
+      bands.forEach(b => b.els.filter(e => (e.tagName === 'rect' || e.tagName === 'text') && +e.getAttribute('x') < 240).forEach(e => {
+        e.addEventListener('mouseenter', () => { if (!pinned) focus(b); });
+        e.addEventListener('mouseleave', () => { if (!pinned) focus(null); });
+      }));
+      const fig = svg.closest('figure');
+      const lg = el('div', 'band-legend');
+      lg.setAttribute('role', 'group'); lg.setAttribute('aria-label', 'Focus a band of the map');
+      lg.innerHTML = bands.map((b, i) => {
+        const v = BAND_VAR[(b.n - 1) % BAND_VAR.length];
+        return `<button type="button" data-i="${i}" aria-pressed="false" style="--c:var(--band-${v});--t:var(--band-${v}-bg);--k:var(--band-${v}-ink)">${icon(b.key, 15)}${b.name}</button>`;
+      }).join('') + '<span class="hint">Choose a band to focus it</span>';
+      fig.parentNode.insertBefore(lg, fig);
+      lg.addEventListener('click', e => {
+        const btn = e.target.closest('button'); if (!btn) return;
+        const on = btn.getAttribute('aria-pressed') === 'true';
+        $$('button', lg).forEach(x => x.setAttribute('aria-pressed', 'false'));
+        pinned = on ? null : bands[+btn.dataset.i];
+        if (pinned) btn.setAttribute('aria-pressed', 'true');
+        focus(pinned);
+      });
+    }
+    // Hover tooltip: "Open X →", kept inside the window.
+    const tip = el('div', 'maptip'); tip.setAttribute('aria-hidden', 'true'); document.body.appendChild(tip);
+    const place = (x, y) => {
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
+      let left = x + 14, top = y + 16;
+      if (left + tw > innerWidth - 8) left = x - tw - 14;
+      if (top + th > innerHeight - 8) top = y - th - 12;
+      tip.style.left = Math.max(8, left) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+    };
+    $$('a.maplink', svg).forEach(a => {
+      const name = a.getAttribute('aria-label') || a.textContent.trim();
+      const where = (a.getAttribute('href') || '').replace(/\.html/, '').replace(/[-#]/g, ' ').trim();
+      a.addEventListener('mouseenter', () => {
+        tip.textContent = 'Open ' + name + ' →';
+        const s = document.createElement('small'); s.textContent = where; tip.appendChild(s);
+        tip.classList.add('on');
+      });
+      a.addEventListener('mousemove', e => place(e.clientX, e.clientY));
+      a.addEventListener('mouseleave', () => tip.classList.remove('on'));
+    });
+    addEventListener('scroll', () => tip.classList.remove('on'), { passive: true });
+  }
+
+  /* ---------- home: route and stat icons ---------- */
+  const ROUTE = ['book', 'box', 'play', 'flag', 'search', 'map'];
+  const ROUTE_TINT = ['core', 'enablement', 'context', 'assurance', 'lifecycle', 'core'];
+  $$('.route').forEach((r, i) => {
+    const v = ROUTE_TINT[i % ROUTE_TINT.length];
+    const s = el('span', 'route-ico', icon(ROUTE[i % ROUTE.length], 18));
+    s.style.setProperty('--t', `var(--band-${v}-bg)`); s.style.setProperty('--k', `var(--band-${v}-ink)`);
+    r.insertBefore(s, r.firstChild);
+  });
+  const STAT = ['layers', 'trend', 'play', 'list'];
+  $$('.stats > div').forEach((s, i) => s.insertBefore(el('span', 'stat-ico', icon(STAT[i % STAT.length], 18)), s.firstChild));
+
+  /* ---------- topic pages: breadcrumb icon, section icons, back to the map ---------- */
+  const crumb = document.querySelector('.crumbs a');
+  if (crumb) crumb.insertBefore(el('span', 'crumb-ico', icon('map', 16)), crumb.firstChild);
+  const H2 = [[/source|reference|further|read/i, 'book'], [/check|verif|evidence|test|eval|prove|valid/i, 'shield'],
+    [/risk|gate|decid|decision|approv|human|person|review/i, 'user'], [/example|walk|sample|in practice/i, 'play'],
+    [/tool|kit|part|platform|skill|adapter|build/i, 'box'], [/agent|harness|core/i, 'chip'], [/how|step|loop|flow|cycle|stage|level/i, 'cycle'],
+    [/start|adopt|next|path/i, 'trend'], [/why|problem|goal|purpose/i, 'flag'], [/what|defin|term|mean/i, 'list']];
+  const article = document.getElementById('article');
+  if (article) {
+    $$('h2', article).forEach(h => {
+      const k = (H2.find(([re]) => re.test(h.textContent)) || [0, 'compass'])[1];
+      h.classList.add('has-ico'); h.insertBefore(el('span', 'h2-ico', icon(k, 15)), h.firstChild);
+    });
+    const brand = document.querySelector('a.brand');
+    const back = el('a', 'back-to-map', icon('map', 16) + 'Back to the map');
+    back.href = ((brand && brand.getAttribute('href')) || 'index.html').replace(/#.*$/, '') + '#map';
+    document.body.appendChild(back);
+    const upd = () => back.classList.toggle('on', scrollY > 600);
+    addEventListener('scroll', upd, { passive: true }); upd();
+  }
+
+  /* ---------- gentle motion ---------- */
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const rise = $$('.section-head, .route, .card, .prose > figure').filter(e => e.getBoundingClientRect().top > innerHeight);
+    rise.forEach(e => e.classList.add('rise'));
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    rise.forEach(e => io.observe(e));
+  }
+})();

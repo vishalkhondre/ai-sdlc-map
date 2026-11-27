@@ -7,7 +7,7 @@ title: Design
 summary: Design settles how a specified change is to be built and records the decisions and trade-offs behind that approach; an agent prepares first versions of the written design, while trade-off judgments stay with people.
 key_terms: [ai-sdlc, risk-tier, rule-registry, rule-route, gate, fitness-function, architecture-decision-record, project-configuration, consumer-driven-contract, contract-test, workflow, three-roles, evidence-record, export-example]
 sources: [bockeler-sensors, sei-atam, sei-atam-2000, nygard-adr, threat-modeling-manifesto, owasp-threat-modeling-cs, nist-ssdf, fowler-evodb, fowler-blue-green, robinson-cdc, fowler-contract-test, istqb-rbt, owasp-asvs, ford-evolutionary-architectures, fitness-function, spec-kit-sdd, bockeler-harness, safe-system-architect, safe-art, scrum-guide-2020]
-related: [specification, develop-build-qa, definition-of-ready-and-done, workflows, rule-registry, engineering-kit, harness-engineering, evidence-schema, validators]
+related: [specification, develop-build-qa, definition-of-ready-and-done, workflows, rule-registry, engineering-kit, harness-engineering, evidence-schema, validators, design-conformance]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -15,7 +15,7 @@ review_record: content/reviews/1.5.0-lifecycle.md
 
 Design is the phase in which an accepted specification becomes a plan for building it. The phase
 chooses a technical approach, weighs what that approach trades away, and records the decisions taken
-so that a later reader can see what was chosen and why. Its central decision is design conformance
+so that a later reader can see what was chosen and why. Its central decision is [design conformance](design-conformance.html)
 ([W08](workflow-catalog.html#W08)), which the workflow catalog titles Plan and architecture
 conformance.
 
@@ -124,7 +124,7 @@ SSDF task PW.2.1[^nist-ssdf], so it cannot serve as the independent reviewer of 
 The workflow catalog uses its own phase names. The rows for this phase sit under the catalog's
 phase 2, "Plan & design":
 
-- [Plan and architecture conformance](workflow-catalog.html#W08): the phase's central decision,
+- [Plan and architecture conformance](workflow-catalog.html#W08) (see the [Design conformance](design-conformance.html) page): the phase's central decision,
   which the map draws as the bar labelled "design conformance".
 - [API contract design](workflow-catalog.html#W09),
   [Data model and migration plan](workflow-catalog.html#W10) and
@@ -143,7 +143,7 @@ One further decision about design sits elsewhere in the catalog.
 describes that phase and the readiness criteria behind it. A plan written against a specification
 that has not passed inherits its open questions.
 
-**Exit.** The phase ends with the design conformance decision ([W08](workflow-catalog.html#W08)),
+**Exit.** The phase ends with the design conformance decision ([W08](workflow-catalog.html#W08); see the [Design conformance](design-conformance.html) page),
 taken by a named person; what that decision covers is set out in its catalog row. The exit leaves an
 evidence record in the common shape the [Evidence schema](evidence-schema.html) sets.
 
@@ -201,6 +201,7 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
 - [Validators](validators.html): the deterministic checks that hold design decisions on later
   changes.
 - [Evidence schema](evidence-schema.html): the fixed shape of every evidence record.
+- [Design conformance](design-conformance.html): whether a planned approach fits the decisions already on record.
 - Workflow catalog rows [W08](workflow-catalog.html#W08), [W12](workflow-catalog.html#W12) and
   [W24](workflow-catalog.html#W24).
 - Terminology: [Risk tier](glossary.html#risk-tier).

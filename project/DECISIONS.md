@@ -174,7 +174,7 @@ change any page's text; a test compares every page's main-content text before an
 out: a framework, and layout changes that alter content.
 
 ## D-021 · Brand: Slate & Teal
-Decided 2026-09-25 by the author (option A). An independent palette, never an employer's design
+*Superseded by D-031.* Decided 2026-09-25 by the author (option A). An independent palette, never an employer's design
 system. Light tokens: ground `#f6f8f8`, surface `#ffffff`, ink `#15232b`, body text `#34434b`,
 muted `#5b6b72`, line `#d8e1e1`, primary teal `#0b6e69` (text on it `#ffffff`), primary tint
 `#e2f1ef`, link `#0b6e69`, accent amber `#b7791f`, accent tint `#fbf1df`, accent text `#7a4e0f`.
@@ -294,3 +294,50 @@ starts in the published rows; any row found close is logged in `STATUS.md` as a 
 separate fix edition, and the live catalog is not changed by the Lifecycle edition. Rules out:
 restating a catalog row or a Core passage on a Lifecycle page, and fixing a published row inside a
 section edition.
+
+## D-031 · Brand: AI SDLC design system v1.0
+Decided 2026-11-27 by the author, who locked the design system v1.0 as one brand for all his AI
+SDLC content; supersedes D-021. Type and colour follow the learn-ontology hero the author chose,
+with a soft colour per map band. Light tokens: ground `#fafafb`, surface `#ffffff`, ink `#18181b`,
+body text `#3f3f46`, muted `#6b6b75`, line `#e4e4e7`, primary `#3b55d9` (text on it `#ffffff`),
+primary tint `#eef1fd`, link `#3b55d9`, accent `#b57a1e`, accent tint `#fdf6e9`, accent text
+`#7a4e0e`. Dark tokens: ground `#0f0f12`, surface `#17171b`, ink `#f4f4f5`, body text `#d4d4d8`,
+muted `#a1a1aa`, line `#2a2a30`, primary `#8b9cf4` (text on it `#0f0f12`), primary tint `#1c2033`,
+link `#a3b1f7`, accent `#e0a84a`, accent tint `#2b2416`, accent text `#f0c47a`. Indigo marks
+navigation state, links and focus; the design system's accent `#4c66e6` is used for marks (the
+Core band, icons, the gradient), and its link shade `#3b55d9` is the primary token because text in
+it must reach 4.5:1 on the tints. Primary buttons are black (`#18181b`, white in dark mode) and
+secondary buttons are outlined; the kicker is a pill with a green dot (`#059669`). The gradient
+`#312e81 → #4c66e6 → #059669` appears on one headline word and the reading-progress line only.
+Amber marks judgment, warnings and notes; the design system's Context amber `#d29a3a` is too light
+for a 3:1 mark, so the accent token is the deeper `#b57a1e`. Band colours (stroke, fill, text):
+Context `#d29a3a` `#fdf6e9` `#7a4e0e`, Lifecycle `#a1a1aa` `#f7f7f8` `#27272a`, Core `#4c66e6`
+`#eef1fd` `#2b3a99`, Enablement `#10a374` `#e8f7f1` `#065f46`, Assurance `#0e8fb0` `#e6f5fa`
+`#0b4f63`; text in a band colour uses a darker step of the same hue so it reaches 4.5:1. Fonts:
+Inter (400, 500, 600) for text and JetBrains Mono for code, IDs and small capitals labels, bundled
+with the site; IBM Plex Mono's arrows file stays for ← → ↔. Logo: the same five bars, in ink.
+The diagram sources in `content/` keep their palette: `site/generate.py` maps them onto the brand
+when it embeds or writes a diagram, so the brand still changes only `site/` (and the PNG renderer).
+An interaction layer in `site/assets/app.js` adds line icons, a hover tooltip and band focus on the
+map with a band legend, route and section icons, gentle motion that respects reduced motion, and a
+"Back to the map" button on topic pages; every page works the same without it. Band icons and
+legend colours are keyed to a band's position on the map, not to its name. The design system
+itself is kept in the author's notes, outside this repository. Rules out: fonts loaded from a third
+party at runtime, colour as the only carrier of meaning, and any resemblance to an employer's
+design system.
+
+## D-032 · How the 1.6.0 workflow pages meet the template without restating catalog rows
+Decided 2026-11-27 by the session that built edition 1.6.0, under the author's instruction to complete
+the map overnight without waiting for his review; recorded for the author to confirm or reverse. The
+workflow template's sections (Decision, Trigger, Agent task, Checks, Human decision, Outputs) match the
+catalog-row fields that D-030 forbids restating, and four of the seven rows (W01, W08, W25, W28) carry
+1.4.x findings. Each workflow page therefore fills every section from public sources in its own
+terms, links its row (`workflow-catalog.html#Wnn`) and the Core Workflows page for the row's own
+wording and for how an agent is limited, and keeps list-shaped passages (failure paths, overrides,
+agent limits) to what a cited source states or to the template minimum. Design conformance is framed
+as consistency with recorded architecture decisions, principles and constraints; its first draft,
+built around the row's own framing, was discarded after the sweep. Smaller choices: the seven pages
+follow map order in the section navigation; the catalog rows do not yet link to their pages (that
+changes the live catalog, so it waits for the 1.4.x fix edition or the author); the SAFe reference
+model page is not edited; no new diagram. Rules out: a workflow page that copies its row into the
+template's sections.

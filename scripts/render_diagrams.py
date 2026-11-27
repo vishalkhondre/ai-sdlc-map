@@ -26,24 +26,37 @@ def svg_size(svg: str) -> tuple[int, int]:
     return (int(m.group(1)), int(m.group(2))) if m else (1200, 628)
 
 
+def font_faces() -> str:
+    """The bundled Inter and JetBrains Mono as data URLs, so PNGs match the site (D-031)."""
+    import base64
+    fonts = SITE / "assets" / "fonts"
+    out = ""
+    for family, weight, name in (("Inter", 400, "inter-latin-400-normal"), ("Inter", 500, "inter-latin-500-normal"),
+                                 ("Inter", 600, "inter-latin-600-normal"), ("JetBrains Mono", 400, "jetbrains-mono-latin-400-normal"),
+                                 ("JetBrains Mono", 500, "jetbrains-mono-latin-500-normal")):
+        data = base64.b64encode((fonts / f"{name}.woff2").read_bytes()).decode()
+        out += f'@font-face{{font-family:"{family}";font-weight:{weight};src:url(data:font/woff2;base64,{data}) format("woff2")}}'
+    return out
+
+
 def og_card() -> str:
     """The social preview card as HTML, with the bundled fonts inlined so it renders offline."""
     import base64
     import yaml
     fonts = SITE / "assets" / "fonts"
     face = ""
-    for weight, name in ((400, "atkinson-hyperlegible-latin-400-normal"), (700, "atkinson-hyperlegible-latin-700-normal")):
+    for weight, name in ((400, "inter-latin-400-normal"), (600, "inter-latin-600-normal")):
         data = base64.b64encode((fonts / f"{name}.woff2").read_bytes()).decode()
         face += f'@font-face{{font-family:A;font-weight:{weight};src:url(data:font/woff2;base64,{data}) format("woff2")}}'
     toc = yaml.safe_load((ROOT / "content" / "toc.yml").read_text(encoding="utf-8"))
     bars = "".join(f'<rect x="2" y="{2 + i * 3.4:.1f}" width="16" height="2.2" rx="1.1"/>' for i in range(5))
     host = toc["site_url"].split("://", 1)[1]
     return f"""<!DOCTYPE html><html><head><style>{face}
-    body{{margin:0;width:1200px;height:630px;background:#f6f8f8;font-family:A,sans-serif;color:#15232b;display:flex}}
-    .card{{margin:64px;padding:64px 72px;flex:1;background:#fff;border:1px solid #d8e1e1;border-radius:24px;display:flex;flex-direction:column;justify-content:space-between}}
-    .row{{display:flex;align-items:center;gap:26px}} svg{{width:104px;height:104px;fill:#0b6e69}}
-    h1{{font-size:76px;line-height:1;margin:0;font-weight:700}} p{{font-size:34px;line-height:1.3;color:#34434b;margin:0;max-width:960px}}
-    .url{{font-size:24px;color:#0b6e69;font-weight:700}}</style></head><body><div class="card">
+    body{{margin:0;width:1200px;height:630px;background:#fafafb;font-family:A,sans-serif;color:#18181b;display:flex}}
+    .card{{margin:64px;padding:64px 72px;flex:1;background:#fff;border:1px solid #e4e4e7;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between}}
+    .row{{display:flex;align-items:center;gap:26px}} svg{{width:104px;height:104px;fill:#18181b}}
+    h1{{font-size:76px;line-height:1;margin:0;font-weight:600;letter-spacing:-.035em}} p{{font-size:34px;line-height:1.3;color:#3f3f46;margin:0;max-width:960px}}
+    .url{{font-size:24px;color:#3b55d9;font-weight:600}}</style></head><body><div class="card">
     <div class="row"><svg viewBox="0 0 20 20">{bars}</svg><h1>{toc["title"]}</h1></div>
     <p>{toc["tagline"]}</p><div class="url">{host}</div></div></body></html>"""
 
@@ -64,17 +77,19 @@ def main() -> int:
         if os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE"):
             options["executable_path"] = os.environ["PLAYWRIGHT_CHROMIUM_EXECUTABLE"]
         browser = p.chromium.launch(**options)
+        faces = font_faces()
         for svg_path in svgs:
             svg = svg_path.read_text(encoding="utf-8")
             w, h = svg_size(svg)
             page = browser.new_page(viewport={"width": w, "height": h}, device_scale_factor=args.scale)
-            page.set_content(f'<!DOCTYPE html><html><body style="margin:0;background:#fff">{svg}</body></html>')
+            page.set_content(f'<!DOCTYPE html><html><head><style>{faces}</style></head><body style="margin:0;background:#fff">{svg}</body></html>')
+            page.evaluate("document.fonts.ready.then(() => true)")
             page.wait_for_timeout(100)
             out = svg_path.with_suffix(".png")
             page.screenshot(path=str(out), clip={"x": 0, "y": 0, "width": w, "height": h})
             page.close()
             print(f"  {out.name}  {w}x{h}@{args.scale}x")
-        # Social preview card (D-021): logo, wordmark and subtitle in the brand, 1200x630
+        # Social preview card (D-031): logo, wordmark and subtitle in the brand, 1200x630
         page = browser.new_page(viewport={"width": 1200, "height": 630}, device_scale_factor=1)
         page.set_content(og_card())
         page.evaluate("document.fonts.ready.then(() => true)")

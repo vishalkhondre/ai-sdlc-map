@@ -37,14 +37,14 @@ DoD: "definition-of-ready-and-done.html#definition-of-done"
 TRACEABILITY SPINE: "traceability-spine.html"
 Inspect & Adapt: "inspect-and-adapt.html"
 
-# Band 2 · lifecycle: the workflow in each phase, in the workflow catalog (until 1.6.0, D-029)
-intake & triage: "workflow-catalog.html#W01"
-spec readiness: "workflow-catalog.html#W04"
-design conformance: "workflow-catalog.html#W08"
-"pull-request verification  ·  security & performance checks by tier": "workflow-catalog.html#W23"
-deploy verification: "workflow-catalog.html#W26"
-release readiness: "workflow-catalog.html#W25"
-incident feedback: "workflow-catalog.html#W28"
+# Band 2 · lifecycle: the workflow in each phase, on its own page (1.6.0, D-029); each page links its catalog row
+intake & triage: "intake-and-triage.html"
+spec readiness: "spec-readiness.html"
+design conformance: "design-conformance.html"
+"pull-request verification  ·  security & performance checks by tier": "pull-request-verification.html"
+deploy verification: "deploy-verification.html"
+release readiness: "release-readiness.html"
+incident feedback: "incident-feedback.html"
 
 # Band 1 · context: flows that have a workflow of their own
 Spike / research: "workflow-catalog.html#W07"
