@@ -341,3 +341,15 @@ follow map order in the section navigation; the catalog rows do not yet link to 
 changes the live catalog, so it waits for the 1.4.x fix edition or the author); the SAFe reference
 model page is not edited; no new diagram. Rules out: a workflow page that copies its row into the
 template's sections.
+
+## D-033 · Assurance section plan approved
+Decided 2026-11-27 by the author, who approved pull request #27 ("I approve the PR"). The Assurance
+plan (`project/plans/assurance.md`) is approved as written, and the recommendation on each of its
+eleven open questions is taken as the answer: Assurance is the first wave-2 section, as edition 1.7.0
+after Lifecycle 1.6.0; the 1.4.x fix edition runs before 1.7.0 is written; the 11 pages, the map
+changes and the back-links as listed; the SOC 2 page names the criterion's content only if the author
+pastes its text before batch C, otherwise it names SOC 2 and carries the mechanism on NIST SP 800-53;
+no standard named by clause; no legal conclusions in the AI use policy; the metric block inside Concept
+pages, no new template; no benchmark values; the running example counted without figures. The
+allow-list additions (question 9) are the author's to make in the environment settings and none is
+required. Rules out: building Assurance pages ahead of the 1.4.x fix edition without the author saying so.

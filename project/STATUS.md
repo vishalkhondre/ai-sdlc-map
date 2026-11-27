@@ -49,9 +49,11 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
-0. **Author: approve or change the Assurance plan** (draft PR #27, `project/plans/assurance.md`, eleven
-   open questions), then a session builds Assurance as edition 1.7.0 through the same pipeline.
-   Confirm or reverse D-032, and say whether workflow pages may name the deciding role themselves
+0. **Assurance plan approved (D-033).** Order: the 1.4.x fix edition first (catalog rows and
+   published passages listed under the D-030 diagnostic and the 1.6.0 sweep, plus catalog-row links to
+   the workflow pages), then Assurance as edition 1.7.0 through the same pipeline. Author, before
+   batch C of 1.7.0: paste the SOC 2 change-management criterion (CC8.1) if wanted. Author: confirm or
+   reverse D-032, and say whether workflow pages may name the deciding role themselves
    (spec readiness, release readiness and incident feedback now defer to the catalog row). Live review of 1.5.0 and 1.6.0, then tags.
 1. A small follow-up edition (optional): make the harness page call the feedback path the site's
    extension of the steering loop in all three places (editorial suggestion on 1.4.2), and add the

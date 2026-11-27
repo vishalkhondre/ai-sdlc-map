@@ -1,7 +1,8 @@
 # Section plan: Assurance (band 5)
 
-Proposed by the architect, 2026-11-27, for the author's approval. Nothing in this plan starts before
-the author approves it (GR-6.1, D-014). Open questions for the author are numbered at the end.
+Proposed by the architect, 2026-11-27. **Approved by the author on 2026-11-27 ("I approve the PR",
+pull request #27); the recommendation on each open question at the end is taken as its answer
+(D-033).** Open questions for the author are numbered at the end.
 
 - **Section:** assurance, band 5 of the map ("what must be provable"), the first section of wave 2
   ("Assurance and enablement"). Enablement (band 4) follows as the second section of the wave; the
