@@ -4,7 +4,7 @@ type: workflow
 band: lifecycle
 map_box: intake & triage
 title: Intake and triage
-summary: The workflow that decides whether an arriving request, report or lesson is taken on, and as what kind of work, with an agent's first reading offered as input and the decision recorded under a person's name.
+summary: The workflow that decides whether an arriving request, report or lesson is taken on now, as it stands or broken into smaller items, with an agent's first reading offered as input and the decision recorded under a person's name.
 key_terms: [ai-sdlc, workflow, three-roles, risk-tier, evidence-record, evidence-handoff, could-not-run, failure-path, rule-registry, lifecycle-levels, export-example]
 sources: [scrum-guide-2020, intake-istqb-defect-management, dora-customer-feedback, nist-ssdf, dora-wip-limits, dora-ai-capabilities-intro, sre-book-being-on-call, dora-small-batches, dora-metrics]
 related: [idea, spec-readiness, incident-feedback, lifecycle-levels, traceability-spine, operate, workflows, rule-registry, evidence-schema]
@@ -63,8 +63,7 @@ A run reads five things:
 
 ## Agent task
 
-No public study measures how well a coding agent sorts or sizes incoming work, so this section is
-recommended practice rather than a research finding. The agent reads the item as written and offers
+This section is recommended practice; it is not drawn from a study of agents at intake. The agent reads the item as written and offers
 a first reading, which a person then accepts, changes or rejects. What that reading contains is set
 out in the catalog row [Intake and classification](workflow-catalog.html#W01) and is not repeated
 here. In the record it is marked as the agent's, so nobody later mistakes it for the decision. In
@@ -173,6 +172,12 @@ back to whoever raised it with the failure stated, and that person acts next. Wh
 admitted, and the owner of the unavailable tool acts next; the
 [Evidence schema](evidence-schema.html#check-results) keeps that result apart from both a pass and a
 failure.
+
+When the agent stops for one of the reasons the Guardrails section defines, the next actor is named
+in the same way, as recommended practice. If the reading times out, the decider proceeds without it.
+If the item describes a live incident, the on-call engineer or incident owner acts next, through
+incident handling on the [Operate](operate.html#managing-incidents) page. If the item carries data
+that should not sit in a backlog, whoever owns the backlog's data handling acts next.
 
 ## Measures
 

@@ -4,7 +4,7 @@ type: workflow
 band: lifecycle
 map_box: spec readiness
 title: Specification readiness
-summary: The workflow that decides whether a team can start planning from one revision of a specification, with every question still open written down and settled by the person accountable for it, and that leaves a readiness record which design, verification and incident review read later.
+summary: The workflow that decides whether a team can start planning from one revision of a specification, with every open question recorded and either settled or accepted as open by the person accountable for it, and leaves a readiness record.
 key_terms: [ai-sdlc, specification-readiness, definition-of-ready, acceptance-criteria, testability, given-when-then, independent-basis, spec-driven-development, workflow, evidence-record, evidence-handoff, could-not-run, failure-path, harness-evaluation, rule-registry, export-example]
 sources: [scrum-guide-2020, spec-kit-sdd, requirements-ambiguity-llm, istqb-acceptance-criteria, istqb-testability, fowler-given-when-then, nist-ssdf, owasp-asvs, dora-small-batches, agile-alliance-dor, dora-metrics, bockeler-harness, spec-kit, safe-inspect-and-adapt]
 related: [specification, definition-of-ready-and-done, traceability-spine, intake-and-triage, design-conformance, pull-request-verification, incident-feedback, inspect-and-adapt, workflows, skills-and-evals, rule-registry, evidence-schema, engineering-kit]
@@ -25,7 +25,7 @@ under [Definition of Ready](definition-of-ready-and-done.html#definition-of-read
 
 In an AI SDLC (the software development lifecycle with AI agents doing part of the work), the
 decision carries more weight, because an agent given a specification that is silent on a point still
-produces something. One open-source spec-driven toolkit gives this as the reason its templates mark a
+produces something. One open-source spec-driven toolkit[^spec-kit] gives this as the reason its templates mark a
 gap instead of filling it: doing so "prevents the common LLM behavior of making plausible but
 potentially incorrect assumptions"[^spec-kit-sdd]. Settling such questions before planning, rather
 than in code, is this site's recommended practice.
@@ -63,7 +63,7 @@ The run reads the change itself, earlier records and parts of the project's kit.
   [Definition of Ready](definition-of-ready-and-done.html#definition-of-ready).
 - **Questions added by earlier lessons.** Questions that past misses added for specifications of this
   kind. They arrive by the feedback path described on
-  [Harness engineering](harness-engineering.html#the-steering-loop-and-the-feedback-path).
+  [Harness engineering](harness-engineering.html#the-steering-loop-and-the-feedback-path)[^bockeler-harness].
 - **The security requirements that apply.** NIST's Secure Software Development Framework, practice
   PO.1, asks that security requirements for software development be known at all times, so they can
   be taken into account throughout development and collected once and shared; task PO.1.2 asks an
@@ -197,8 +197,8 @@ The record has six readers.
   by the criterion identifiers the record holds.
 - [Incident feedback](incident-feedback.html) (catalog [W28](workflow-catalog.html#W28)) reads it when
   a miss in production traces back to a question nobody asked.
-- [Inspect and Adapt](inspect-and-adapt.html), the periodic checkpoint, may change what readiness asks
-  of a kind of specification.
+- [Inspect and Adapt](inspect-and-adapt.html)[^safe-inspect-and-adapt], the periodic checkpoint,
+  may change what readiness asks of a kind of specification.
 
 In the export example, the first run's record shows the question the access rule turns on, which
 roles may export which records, as open, and the specification as not ready. Once the answer is
@@ -287,6 +287,6 @@ checks are required. Who decides in a given run stays as the catalog row sets it
   OWASP Application Security Verification Standard[^owasp-asvs].
 - Batch size and baselines: DORA's pages on working in small batches[^dora-small-batches] and on
   software delivery performance metrics[^dora-metrics].
-- Birgitta Böckeler on harness engineering and the steering loop.[^bockeler-harness]
-- The origin of the term spec-driven development, as the glossary credits it.[^spec-kit]
-- Scaled Agile, Inc. on SAFe's Inspect and Adapt event.[^safe-inspect-and-adapt]
+- The steering loop and feedback path: Birgitta Böckeler on harness engineering[^bockeler-harness].
+- Spec-driven development: the open-source toolkit the glossary credits with the term[^spec-kit].
+- Inspect and Adapt: Scaled Agile, Inc.'s page on the event[^safe-inspect-and-adapt].

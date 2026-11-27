@@ -4,7 +4,7 @@ type: workflow
 band: lifecycle
 map_box: pull-request verification · security & performance checks by tier
 title: Pull-request verification
-summary: Whether one revision of a change may join the mainline, decided by a named reviewer on check results recorded for that exact revision, with an agent's review as advice.
+summary: The workflow that decides whether one revision of a change may join the mainline, on check results recorded for that exact revision, with a named reviewer deciding and an agent's review as advice.
 key_terms: [workflow, three-roles, risk-tier, gate, validator, review-skill, could-not-run, evidence-record, evidence-handoff, failure-path, independent-basis, deterministic-gate, export-example, pre-integration-review]
 sources: [fowler-branching-patterns, fowler-ci, google-eng-practices-standard, google-eng-practices-small-cls, google-eng-practices-speed, google-eng-practices-review, bockeler-harness, bockeler-sensors, nist-800-53, metr-reward-hacking, anthropic-claude-37-system-card, nist-ai-600-1, parasuraman-manzey-2010, perry-2023, istqb-rbt, nist-ssdf, owasp-asvs, github-status-checks, sarif-2-1-0, dora-streamlining-change-approval, slsa-build-track-basics, slsa-build-requirements, dora-metrics, dora-trunk-based-development, lean-vs-manager, safe-inspect-and-adapt]
 related: [develop-build-qa, spec-readiness, design-conformance, release-readiness, deploy-verification, incident-feedback, workflows, evidence-schema, validators, skills-and-evals, rule-registry, engineering-kit, adapters, traceability-spine, inspect-and-adapt, definition-of-ready-and-done]
@@ -23,7 +23,7 @@ names the practice of peer-reviewing every commit before the mainline accepts it
 review.[^fowler-branching-patterns] The call matters because continuous integration "can only work
 if the mainline is kept in a healthy state".[^fowler-ci] The bar is not perfection. Google's guidance
 for reviewers favours approving a change once it definitely improves the overall health of the
-code, even if it is not perfect, and never knowingly accepting one that makes code health worse
+code, even if it is not perfect, and never accepting one that definitely makes code health worse,
 outside an emergency.[^google-eng-practices-standard]
 
 The decision attaches to one revision, a single identified state of the change, because a result is
@@ -121,7 +121,7 @@ checks themselves are the catalog's QA rows, [W17](workflow-catalog.html#W17) to
 any check reports ([Evidence schema](evidence-schema.html#expected-checks-before-results)).
 
 **One explicit pass.** Every result takes one of four states, passed, failed, skipped or
-[could_not_run](glossary.html#could-not-run), and only an explicit pass counts as one
+[could_not_run](glossary.html#could-not-run), and only an explicit pass counts as a pass
 ([Engineering Kit](engineering-kit.html#the-could_not_run-result)). The distinction matters on a
 change host: one host's documentation says a job skipped by a condition reports "Success", while a
 workflow skipped by path filtering leaves its checks pending and blocks the
@@ -195,7 +195,7 @@ calls the [evidence hand-off](glossary.html#evidence-handoff).
   revisions a release contains tie the change to the release.
 - **[Incident feedback](incident-feedback.html)** opens it when a later miss is traced back to this
   run, to see what was checked and who decided.
-- **[Inspect and Adapt](inspect-and-adapt.html)** reads could_not_run results by cause and the
+- **[Inspect and Adapt](inspect-and-adapt.html)**[^safe-inspect-and-adapt] reads could_not_run results by cause and the
   report-only checks that may become required.
 - **The workflow's owner** reads the records in aggregate for the measures below.
 
@@ -279,7 +279,7 @@ One accountable owner holds and changes the workflow itself, a role distinct fro
 decides each run ([Workflows](workflows.html#definition)). Lean practice offers the model: a value
 stream has an accountable manager who may not own the people and resources in it.[^lean-vs-manager]
 DORA names pitfalls of change approval that
-such an owner guards against; three of them, in its order, are treating all changes equally,
+such an owner guards against; three of them are treating all changes equally,
 failing to apply continuous improvement, and responding to problems by adding more
 process.[^dora-streamlining-change-approval]
 
@@ -324,7 +324,7 @@ process.[^dora-streamlining-change-approval]
   checks.[^sarif-2-1-0][^slsa-build-track-basics][^slsa-build-requirements][^github-status-checks]
 - Separation of duties: NIST's security and privacy control catalogue.[^nist-800-53]
 - Accountable ownership: the Lean Enterprise Institute on the value-stream manager.[^lean-vs-manager]
+- Inspect and Adapt: Scaled Agile, Inc.'s page on the event.[^safe-inspect-and-adapt]
 - The inputs set, the agent's limits, the guardrails, what approval does not override, the handling
   of a failed check, the stop on a missing input, re-verification after the mainline moves and the
   last two measures are this site's recommended practice; no public source states them.
-- Scaled Agile, Inc. on SAFe's Inspect and Adapt event.[^safe-inspect-and-adapt]

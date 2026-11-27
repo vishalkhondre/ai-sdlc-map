@@ -44,7 +44,7 @@ failure as "an event in which a component or system does not meet its requiremen
 limits during its execution",[^incident-istqb-failure] and a defect as "an imperfection or deficiency
 in a work product where it does not meet its requirements or specifications or impairs its intended
 use".[^incident-istqb-defect] A failure seen in production and traced to a defect that every earlier
-check let through, often called an escaped defect, starts a run in the same way. No public glossary
+check let through, which this page calls an escaped defect, starts a run in the same way. No public glossary
 read for this page defines "escaped defect", so the term is used here in its plain sense only.
 
 Security findings arrive by their own route. NIST's Secure Software Development Framework (SSDF)
@@ -126,17 +126,20 @@ public source sets them.
 The catalog row has its own check ([W28](workflow-catalog.html#W28)). The properties below are ones
 a tool can settle the same way on every run.
 
-- **Every action has an owner and a tracking number.** This is an item on the SRE workbook's
-  postmortem checklist, which also notes that actions without clear owners are less likely to be
+- **Every action has an owner and a tracking number.** The SRE workbook's annotated example of a
+  better postmortem asks that all action items have both an owner and a tracking number, and the
+  chapter notes that actions without clear owners are less likely to be
   resolved.[^google-sre-postmortem] A tool can read it from the tracker. As recommended practice,
   the result is failed while any action has no owner, and the review stays open, as
   [Operate](operate.html#gates-and-evidence) also recommends.
-- **Every action states a verifiable end state.** The workbook's checklist asks for one and warns
+- **Every action states a verifiable end state.** The same example asks for one, and the workbook warns
   that unclear language "makes it difficult to measure and understand success criteria".[^google-sre-postmortem]
   Checking that each action names how its completion will be shown is recommended practice.
 - **The trace is complete.** The evidence record links the incident to the running release and on to
   the upstream change it produces, with no orphan on the way (see the
-  [traceability spine](traceability-spine.html#orphans-in-both-directions)).
+  [traceability spine](traceability-spine.html#orphans-in-both-directions)). As recommended
+  practice, a failed result does not stop the run, but the run does not close until each gap is
+  recorded with its owner.
 - **The miss has a test.** Martin Fowler's practice on a bug found in production is to "write a test
   that exposes the bug, and only then to try to fix it", because "once the bug is fixed it stays
   fixed".[^fowler-selftesting] The ISTQB glossary separates two kinds of change-related testing that
@@ -201,7 +204,7 @@ Two limits hold whoever decides. A change to a rule is for that rule's named own
 to the security owner, and R-042 is not open to exception. And the deciders may reject the agent's
 hypothesis; the rejection is recorded as a decision with its reason, in the form the
 [evidence schema](evidence-schema.html#agent-findings-and-decisions) gives decisions, so later runs
-and the review skill's tuning can learn from it. That recording is recommended practice.
+and the review skill's[^bockeler-sensors] tuning can learn from it. That recording is recommended practice.
 
 For security incidents, NIST SP 800-61 Revision 3 feeds "lessons learned from performing all
 activities in all Functions" into its Improvement category, and its ID.IM-03 outcome reads
@@ -233,7 +236,7 @@ practice.
   workflow, why, and by when.
 - **The owner of each rule** the trace reached ([rule registry](rule-registry.html)) reads the
   proposal that awaits their decision.
-- **[Inspect and Adapt](inspect-and-adapt.html)**, the periodic checkpoint, reads whether each
+- **[Inspect and Adapt](inspect-and-adapt.html)**,[^safe-inspect-and-adapt] the periodic checkpoint, reads whether each
   lesson landed.
 - **The next incident review** reads whether a similar miss was seen before and what was done about
   it.
@@ -295,7 +298,7 @@ assurance band.
 
 One person or role owns the workflow itself, as every workflow on this site has one accountable owner
 ([workflows](workflows.html)). That owner is distinct from the people who decide each run. The
-incident roles in the SRE book cover the response and end with it, and each postmortem action has its
+incident roles in the SRE book cover the response and end with it,[^sre-book-managing-incidents] and each postmortem action has its
 own owner (see [Operate](operate.html#roles)).[^google-sre-postmortem]
 
 As recommended practice, the workflow owner keeps the rules for tracing and for closing a run,
@@ -349,6 +352,6 @@ across runs as well as within one: "Analyze the root causes over time to identif
 - Measures and proportion: DORA's guide to software delivery performance metrics[^dora-metrics] and
   its capability page on streamlining change approval.[^dora-streamlining-change-approval]
 - The steering loop: Birgitta Böckeler.[^bockeler-harness]
-- Birgitta Böckeler on inferential sensors, the basis of the review skill term.[^bockeler-sensors]
-- Scaled Agile, Inc. on SAFe's Inspect and Adapt event.[^safe-inspect-and-adapt]
+- The review skill as an inferential sensor: Birgitta Böckeler.[^bockeler-sensors]
+- Inspect and Adapt: Scaled Agile, Inc.'s page on the event.[^safe-inspect-and-adapt]
 - Statements marked as recommended practice are this site's own and are not findings of any study.

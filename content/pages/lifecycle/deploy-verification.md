@@ -5,8 +5,8 @@ band: lifecycle
 map_box: deploy verification
 title: Deploy verification
 summary: The workflow that decides whether a revision now running in an environment stays there or the way back is taken, by comparing it with a control and with the service's objectives, and by treating a missing signal as a result of its own, never as health.
-key_terms: [workflow, three-roles, gate, could-not-run, evidence-record, evidence-handoff, failure-path, deploy-versus-release, canary-release, service-level-objective, export-example]
-sources: [sre-workbook-canarying, sre-book-release-engineering, sre-book-monitoring, twelve-factor-config, deployverif-sre-book-slo, fowler-blue-green, fowler-canary-release, google-agentic-sre, nist-800-53, github-status-checks, sre-book-being-on-call, twelve-factor-parity, dora-metrics, dora-monitoring-observability, bockeler-sensors]
+key_terms: [ai-sdlc, workflow, three-roles, gate, could-not-run, evidence-record, evidence-handoff, failure-path, deploy-versus-release, canary-release, service-level-objective, export-example]
+sources: [sre-workbook-canarying, sre-book-release-engineering, sre-book-monitoring, twelve-factor-config, deployverif-sre-book-slo, fowler-blue-green, fowler-canary-release, google-agentic-sre, nist-800-53, github-status-checks, sre-book-being-on-call, twelve-factor-parity, dora-metrics, dora-monitoring-observability, bockeler-sensors, incident-sre-book-postmortem]
 related: [deploy, release, release-readiness, incident-feedback, operate, traceability-spine, workflows, evidence-schema, validators, adapters]
 review_record: content/reviews/1.6.0-lifecycle.md
 ---
@@ -79,8 +79,8 @@ The run reads what earlier work has already settled, and what it needs to compar
 ## Agent task
 
 The agent's part in this workflow is set in its catalog row ([W26](workflow-catalog.html#W26)); this
-page adds how that part is bounded. No public study measures agents in deployment verification, so
-what follows is recommended practice except where a source is named.
+page adds how that part is bounded. This page draws on no study of agents in deployment verification,
+so what follows is recommended practice except where a source is named.
 
 The case for an agent is volume. Once a canary is live, the signals outnumber what a person on watch
 can follow, and an agent can lay out for that person where the canary and the control diverge and
@@ -89,7 +89,8 @@ attributable metric[^sre-workbook-canarying]. Its account enters the record as a
 results. It never settles the outcome (see [Deploy](deploy.html)).
 
 One operator's account describes agents in its incident management that "consolidate/summarize data",
-create handoff documents and draft postmortems, and, separately, agents "to investigate incidents, and
+create handoff documents and draft postmortems (written records of an incident and its follow-up
+actions[^incident-sre-book-postmortem]), and, separately, agents "to investigate incidents, and
 in some cases to autonomously mitigate issues"[^google-agentic-sre]. It is one organisation's
 description of incident work, not a study of deployment, and it reports no outcome figures. This page
 recommends no autonomous agent action on production.
@@ -226,6 +227,9 @@ to this workflow:
   show no difference while both are worse[^sre-workbook-canarying]. The reading against objectives then
   decides whether the service is within them. The result is recorded and not attributed to the change
   on the comparison alone.
+- **No control to compare against.** The run records no result about the change, and the rollout
+  does not proceed on it. As recommended practice, the named person who decides the deployment acts
+  next, choosing whether a control is set up and the run repeated.
 - **A required signal is missing.** The result is `could_not_run` and the rollout does not proceed. As
   recommended practice, whoever owns the monitoring is told; the gap is not a defect in the change.
 - **The way back is closed.** Fixing forward or another response is decided in incident handling
@@ -255,7 +259,10 @@ application or service to improve over time rather than a way to compare teams[^
 measure below is read against a baseline; this page sets no target or threshold.
 
 - **Change fail rate, failed deployment recovery time and deployment rework rate**, as DORA names
-  them[^dora-metrics]; their definitions belong to the assurance band. Baseline: the same service's
+  them[^dora-metrics]: the ratio of deployments that require immediate intervention following a
+  deployment; the time it takes to recover from a deployment that fails and requires immediate
+  intervention; and the ratio of deployments that are unplanned but happen as a result of an incident
+  in production. Baseline: the same service's
   values before the workflow was in use.
 - **Share of runs judged with every required signal present**, with `could_not_run` results counted by
   cause. Baseline: the first deployments under the workflow, since no earlier record exists.
@@ -285,7 +292,7 @@ change is recorded as a new configuration revision.
 - [Deploy](deploy.html), [Release](release.html) and [Operate](operate.html): the phases around it;
   strategies, environments and the deploy-versus-release distinction live on Deploy.
 - [Traceability spine](traceability-spine.html): the link from release to incident.
-- [Workflows](workflows.html), [Evidence schema](evidence-schema.html), [Validators](validators.html)
+- [Workflows](workflows.html), [Evidence schema](evidence-schema.html), [Validators](validators.html)[^bockeler-sensors]
   and [Adapters](adapters.html): the Core pages behind the checks, the record and the bindings to the
   pipeline runner and monitoring.
 - Workflow catalog: deployment and post-deploy verification ([W26](workflow-catalog.html#W26)),
@@ -311,5 +318,8 @@ change is recorded as a new configuration revision.
   800-53[^nist-800-53]; skipped checks: one change host's documentation[^github-status-checks].
 - Measures: DORA's guide to software delivery performance metrics[^dora-metrics] and its page on
   monitoring and observability[^dora-monitoring-observability].
+- Postmortems: *Postmortem Culture: Learning from Failure*, chapter 15 of the SRE
+  book[^incident-sre-book-postmortem].
+- Validators as computational sensors: Birgitta Böckeler on maintainability
+  sensors[^bockeler-sensors].
 - Statements marked recommended practice are this site's own and are not findings of any study.
-- Birgitta Böckeler on computational sensors, the basis of the validator term.[^bockeler-sensors]

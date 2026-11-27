@@ -529,7 +529,7 @@ def routes() -> str:
           ("evidence-schema.html", "Evidence schema", False), ("adapters.html", "Adapters", False)]),
         ("Run a workflow", "One delivery decision end to end, with a trigger, checks, a human decision and evidence.",
          [("workflow-catalog.html", f"{len(CATALOG['workflows'])} workflows in the catalog", False), ("workflows.html", "What a workflow is", False),
-          *pages("pull-request-verification", "spec-readiness", "intake-and-triage", "design-conformance", "release-readiness", "deploy-verification", "incident-feedback")]),
+          *pages("intake-and-triage", "spec-readiness", "design-conformance", "pull-request-verification", "deploy-verification", "release-readiness", "incident-feedback")]),
         ("Lead adoption", "What to build first, what to measure, and when to move on.",
          [("#adoption", "The adoption path", False), ("software-factory.html", "The software factory", False)]),
         ("Look it up", "Definitions, sources and the catalog as data.",

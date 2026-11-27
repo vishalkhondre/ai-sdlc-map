@@ -80,7 +80,7 @@ dora-metrics:
   date: "last updated 2026-01-05 (as printed)"
   url: "https://dora.dev/guides/dora-metrics/"
   accessed: "2026-11-27"
-  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics. Defines deployment rework rate as the ratio of deployments that are unplanned but happen as a result of an incident in production. Advises setting a baseline for an application's current performance and improving over time, not competing against other teams or organizations; says the metrics are meant to be applied at the application or service level; lists 'Setting metrics as a goal' among its pitfalls and warns, citing Goodhart's law, that metrics set as goals invite gaming."
+  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics. Defines change fail rate as the ratio of deployments that require immediate intervention following a deployment; failed deployment recovery time as the time it takes to recover from a deployment that fails and requires immediate intervention; and deployment rework rate as the ratio of deployments that are unplanned but happen as a result of an incident in production. Advises setting a baseline for an application's current performance and improving over time, not competing against other teams or organizations; says the metrics are meant to be applied at the application or service level; lists 'Setting metrics as a goal' among its pitfalls and warns, citing Goodhart's law, that metrics set as goals invite gaming."
 
 safe-framework:
   title: "Planning Interval (PI)"
@@ -946,7 +946,7 @@ google-sre-postmortem:
   date: "chapter page footer: Copyright © 2018 Google, Inc."
   url: "https://sre.google/workbook/postmortem-culture/"
   accessed: "2026-11-27"
-  note: "Chapter 10 of the Workbook. Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that the value of a postmortem is proportional to the learning it creates. Its checklist says all action items have both an owner and a tracking number and a verifiable end state, and are vetted and approved by the technical leads of the service; action items are filed as bugs in a centralized tracker. Asks whether action items are taking too long to close, and says failures that mirror previous incidents call for deeper analysis. Advises including all incident participants in postmortem authoring; says action items aim at improving the system instead of people, and that a postmortem without subsequent action is indistinguishable from no postmortem to users."
+  note: "Chapter 10 of the Workbook. Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that the value of a postmortem is proportional to the learning it creates. Its checklist includes ensuring that action items are vetted and approved by the technical leads of the service; its 'Concrete action items' commentary on the annotated example of a better postmortem says all action items have both an owner and a tracking number and a verifiable end state; action items are filed as bugs in a centralized tracker. Asks whether action items are taking too long to close, and says failures that mirror previous incidents call for deeper analysis. Advises including all incident participants in postmortem authoring; says action items aim at improving the system instead of people, and that a postmortem without subsequent action is indistinguishable from no postmortem to users."
 
 tw-incremental-developer-platform:
   title: "Incremental developer platform"
@@ -1332,7 +1332,7 @@ dora-ai-capabilities-intro:
   date: "2025-09-23"
   url: "https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model"
   accessed: "2026-11-27"
-  note: "Tab title 'Introducing DORA's inaugural AI Capabilities Model | Google Cloud Blog'. Names seven capabilities in this order: clear and communicated AI stance; healthy data ecosystems; AI-accessible internal data; strong version control practices; working in small batches; user-centric focus; quality internal platforms. Says working in small batches is especially powerful in an AI-assisted environment and that, in the absence of a user-centric focus, AI adoption can have a negative impact on team performance."
+  note: "Tab title 'Introducing DORA's inaugural AI Capabilities Model | Google Cloud Blog' (page metadata: 2025-09-22). Names seven capabilities in this order: clear and communicated AI stance; healthy data ecosystems; AI-accessible internal data; strong version control practices; working in small batches; user-centric focus; quality internal platforms. Says working in small batches is especially powerful in an AI-assisted environment and that, in the absence of a user-centric focus, AI adoption can have a negative impact on team performance."
 
 wake-invest:
   title: "INVEST in Good Stories, and SMART Tasks"
@@ -1959,7 +1959,7 @@ incident-istqb-regression-testing:
 
 incident-owasp-logging:
   title: "Logging Cheat Sheet"
-  author: "not printed in the text read (footer credit not checked)"
+  author: "OWASP Cheat Sheets Series Team"
   org: "OWASP Cheat Sheet Series"
   date: "not printed"
   url: "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"

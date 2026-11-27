@@ -36,7 +36,7 @@ does not start without the readiness record ([Design](design.html#gates-and-evid
 
 Two later events start a fresh run, and both are this site's recommended practice. The first is a new
 revision of the plan; the earlier record stays with the earlier revision. The second is a change to a
-recorded decision the plan relies on. Michael Nygard's architecture decision records are never edited
+recorded decision the plan relies on. Michael Nygard's architecture decision records are not deleted
 when a decision is reversed: the old record is kept and marked superseded[^nygard-adr]. A plan that
 rests on a record later marked superseded is therefore resting on a decision the team no longer holds,
 and it is judged again.
@@ -72,8 +72,8 @@ The agent's part in this workflow is set in the catalog row [W08](workflow-catal
 not repeated here. How the agent, the checks and people divide the work is set out under
 [the three roles](workflows.html#the-three-roles-agent-checks-and-people) on the Workflows page.
 
-No public study measures how well coding agents design, so what follows is recommended practice, as
-on [Design](design.html#ai-assisted-practice). The agent prepares first versions of written design
+This page draws on no study of how well coding agents design, so what follows is recommended
+practice, as on [Design](design.html#ai-assisted-practice). The agent prepares first versions of written design
 material for a person to accept or reject, and sets the plan beside the decision records and rule
 entries it reads, marking where the plan appears to depart from one. That comparison is advice.
 Birgitta Böckeler notes that language models "can partially address problems that require semantic
@@ -100,7 +100,7 @@ Architectures*[^ford-evolutionary-architectures]; the Thoughtworks Technology Ra
 tests, metrics and monitors[^thoughtworks-radar-fitness]. A decision that has become such a check
 holds on every later change without being argued again. As recommended practice, when the run finds
 that a plan adds a decision of that kind, the decision is noted as a candidate for a fitness function
-on [Validators](validators.html#fitness-functions-for-architecture-rules).
+on [Validators](validators.html#fitness-functions-for-architecture-rules)[^bockeler-sensors].
 
 **One concern a tool can test at design time: interface contracts.** In Ian Robinson's
 consumer-driven contracts, consumers' expectations of a service become tests that assert each
@@ -113,7 +113,7 @@ would break. Applying this at design time is recommended practice.
 defined under [The could_not_run result](engineering-kit.html#the-could_not_run-result). Only an
 explicit pass counts, and a check that never reports is not recorded as passed
 ([Evidence schema](evidence-schema.html#check-results)). As an example, and as recommended practice: if
-the environment that runs consumers' contract tests is unavailable, the contract check reports
+the environment that runs consumers' contract tests[^fowler-contract-test] is unavailable, the contract check reports
 could_not_run.
 
 **What no check settles.** Whether an approach is right, given what it trades away, has no mechanical
@@ -143,7 +143,7 @@ cannot go on.
 ## Human decision
 
 Who decides is set in the catalog row [W08](workflow-catalog.html#W08) and kept there. Where a person
-reviews the design, SSDF task PW.2.1, quoted in full under Agent task, asks for a qualified person not
+reviews the design, SSDF task PW.2.1, quoted under Agent task, asks for a qualified person not
 involved with the design[^nist-ssdf]; as recommended practice, the decider is therefore never the
 plan's author. Frameworks give the accountability different titles; in SAFe, for
 example, the System Architect is "responsible for defining and communicating a shared technical and
@@ -206,8 +206,8 @@ practice.
 
 ## Measures
 
-No public source measures design conformance, so each measure below is recommended practice, is read
-against a baseline and carries no target value. DORA advises setting a baseline for current
+This page draws on no study of measuring design conformance, so each measure below is recommended
+practice, is read against a baseline and carries no target value. DORA advises setting a baseline for current
 performance and improving over time, and warns that metrics set as goals invite
 gaming[^dora-metrics]; DORA says this of its own delivery metrics, and the site borrows it here by
 analogy.
@@ -261,8 +261,9 @@ changes what the workflow checks.
 - Framework title for technical direction: Scaled Agile's System Architect
   page[^safe-system-architect].
 - Baselines and targets: DORA's software delivery performance metrics[^dora-metrics].
+- Validators as computational sensors: Birgitta Böckeler on maintainability
+  sensors[^bockeler-sensors].
+- Contract tests: Martin Fowler[^fowler-contract-test].
 - The re-run triggers, the agent's comparison, the design-time contract check and its example, the
   stop cases, the decider's evidence set, the failure routing, the measures and the owner are this
   site's recommended practice; no public source states them.
-- Birgitta Böckeler on computational sensors, the basis of the validator term.[^bockeler-sensors]
-- Martin Fowler on contract tests.[^fowler-contract-test]

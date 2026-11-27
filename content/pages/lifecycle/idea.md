@@ -186,7 +186,7 @@ in the enablement band, under people and roles.
 - [Evidence schema](evidence-schema.html): the fixed shape of the record each run leaves.
 - [Software factory](software-factory.html): what emerges when workflows share rules, evidence and
   lessons.
-- [Intake and triage](intake-and-triage.html): whether an arriving item is taken on, and by which route.
+- [Intake and triage](intake-and-triage.html): whether an arriving item is taken on now, as it stands or broken into smaller items.
 - Workflow catalog rows [Intake and classification](workflow-catalog.html#W01) and
   [Security discovery and baseline](workflow-catalog.html#W02).
 - Terminology: [Risk tier](glossary.html#risk-tier), [Three roles](glossary.html#three-roles),
