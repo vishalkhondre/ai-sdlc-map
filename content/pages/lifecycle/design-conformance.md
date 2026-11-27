@@ -100,7 +100,7 @@ Architectures*[^ford-evolutionary-architectures]; the Thoughtworks Technology Ra
 tests, metrics and monitors[^thoughtworks-radar-fitness]. A decision that has become such a check
 holds on every later change without being argued again. As recommended practice, when the run finds
 that a plan adds a decision of that kind, the decision is noted as a candidate for a fitness function
-on [Validators](validators.html#fitness-functions-for-architecture-rules)[^bockeler-sensors].
+on [Validators](validators.html#fitness-functions-for-architecture-rules), the page on computational sensors[^bockeler-sensors].
 
 **One concern a tool can test at design time: interface contracts.** In Ian Robinson's
 consumer-driven contracts, consumers' expectations of a service become tests that assert each

@@ -63,7 +63,7 @@ A run reads five things:
 
 ## Agent task
 
-This section is recommended practice; it is not drawn from a study of agents at intake. The agent reads the item as written and offers
+This section is recommended practice except where a source is named; it is not drawn from a study of agents at intake. The agent reads the item as written and offers
 a first reading, which a person then accepts, changes or rejects. What that reading contains is set
 out in the catalog row [Intake and classification](workflow-catalog.html#W01) and is not repeated
 here. In the record it is marked as the agent's, so nobody later mistakes it for the decision. In
@@ -177,7 +177,8 @@ When the agent stops for one of the reasons the Guardrails section defines, the 
 in the same way, as recommended practice. If the reading times out, the decider proceeds without it.
 If the item describes a live incident, the on-call engineer or incident owner acts next, through
 incident handling on the [Operate](operate.html#managing-incidents) page. If the item carries data
-that should not sit in a backlog, whoever owns the backlog's data handling acts next.
+that should not sit in a backlog, whoever owns the backlog's data handling acts next, and the item stays out of the backlog until that
+is settled.
 
 ## Measures
 

@@ -204,7 +204,7 @@ Two limits hold whoever decides. A change to a rule is for that rule's named own
 to the security owner, and R-042 is not open to exception. And the deciders may reject the agent's
 hypothesis; the rejection is recorded as a decision with its reason, in the form the
 [evidence schema](evidence-schema.html#agent-findings-and-decisions) gives decisions, so later runs
-and the review skill's[^bockeler-sensors] tuning can learn from it. That recording is recommended practice.
+and the review skill's tuning can learn from it[^bockeler-sensors]. That recording is recommended practice.
 
 For security incidents, NIST SP 800-61 Revision 3 feeds "lessons learned from performing all
 activities in all Functions" into its Improvement category, and its ID.IM-03 outcome reads
@@ -298,7 +298,7 @@ assurance band.
 
 One person or role owns the workflow itself, as every workflow on this site has one accountable owner
 ([workflows](workflows.html)). That owner is distinct from the people who decide each run. The
-incident roles in the SRE book cover the response and end with it,[^sre-book-managing-incidents] and each postmortem action has its
+incident roles in the SRE book cover the response itself,[^sre-book-managing-incidents] and each postmortem action has its
 own owner (see [Operate](operate.html#roles)).[^google-sre-postmortem]
 
 As recommended practice, the workflow owner keeps the rules for tracing and for closing a run,

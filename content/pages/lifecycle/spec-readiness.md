@@ -287,6 +287,6 @@ checks are required. Who decides in a given run stays as the catalog row sets it
   OWASP Application Security Verification Standard[^owasp-asvs].
 - Batch size and baselines: DORA's pages on working in small batches[^dora-small-batches] and on
   software delivery performance metrics[^dora-metrics].
-- The steering loop and feedback path: Birgitta Böckeler on harness engineering[^bockeler-harness].
+- The steering loop: Birgitta Böckeler on harness engineering[^bockeler-harness].
 - Spec-driven development: the open-source toolkit the glossary credits with the term[^spec-kit].
 - Inspect and Adapt: Scaled Agile, Inc.'s page on the event[^safe-inspect-and-adapt].

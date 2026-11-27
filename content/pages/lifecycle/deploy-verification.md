@@ -227,8 +227,8 @@ to this workflow:
   show no difference while both are worse[^sre-workbook-canarying]. The reading against objectives then
   decides whether the service is within them. The result is recorded and not attributed to the change
   on the comparison alone.
-- **No control to compare against.** The run records no result about the change, and the rollout
-  does not proceed on it. As recommended practice, the named person who decides the deployment acts
+- **No control to compare against.** As recommended practice, the run records no result about the
+  change, the rollout does not proceed on it, and the named person who decides the deployment acts
   next, choosing whether a control is set up and the run repeated.
 - **A required signal is missing.** The result is `could_not_run` and the rollout does not proceed. As
   recommended practice, whoever owns the monitoring is told; the gap is not a defect in the change.
@@ -259,11 +259,10 @@ application or service to improve over time rather than a way to compare teams[^
 measure below is read against a baseline; this page sets no target or threshold.
 
 - **Change fail rate, failed deployment recovery time and deployment rework rate**, as DORA names
-  them[^dora-metrics]: the ratio of deployments that require immediate intervention following a
-  deployment; the time it takes to recover from a deployment that fails and requires immediate
-  intervention; and the ratio of deployments that are unplanned but happen as a result of an incident
-  in production. Baseline: the same service's
-  values before the workflow was in use.
+  them[^dora-metrics]: "the ratio of deployments that require immediate intervention following a
+  deployment"; "the time it takes to recover from a deployment that fails and requires immediate
+  intervention"; and "the ratio of deployments that are unplanned but happen as a result of an
+  incident in production". Baseline: the same service's values before the workflow was in use.
 - **Share of runs judged with every required signal present**, with `could_not_run` results counted by
   cause. Baseline: the first deployments under the workflow, since no earlier record exists.
   Recommended practice.
@@ -292,7 +291,7 @@ change is recorded as a new configuration revision.
 - [Deploy](deploy.html), [Release](release.html) and [Operate](operate.html): the phases around it;
   strategies, environments and the deploy-versus-release distinction live on Deploy.
 - [Traceability spine](traceability-spine.html): the link from release to incident.
-- [Workflows](workflows.html), [Evidence schema](evidence-schema.html), [Validators](validators.html)[^bockeler-sensors]
+- [Workflows](workflows.html), [Evidence schema](evidence-schema.html), [Validators](validators.html)
   and [Adapters](adapters.html): the Core pages behind the checks, the record and the bindings to the
   pipeline runner and monitoring.
 - Workflow catalog: deployment and post-deploy verification ([W26](workflow-catalog.html#W26)),

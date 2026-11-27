@@ -15,10 +15,10 @@ bockeler-sensors:
   title: "Maintainability sensors for coding agents"
   author: "Birgitta Böckeler"
   org: "Thoughtworks, published on martinfowler.com"
-  date: "2026-05"
+  date: "2026-05-27"
   url: "https://martinfowler.com/articles/sensors-for-coding-agents.html"
   accessed: "2026-09-25"
-  note: "Worked examples of computational and inferential sensors on a real codebase."
+  note: "Worked examples of computational and inferential sensors on a real codebase. The article names architectural fitness among the sensors and links to fitness functions."
 
 bockeler-context:
   title: "Context Engineering for Coding Agents"
@@ -1883,7 +1883,7 @@ google-eng-practices-standard:
   date: "not printed"
   url: "https://github.com/google/eng-practices/blob/master/review/reviewer/standard.md"
   accessed: "2026-11-27"
-  note: "Text read from https://raw.githubusercontent.com/google/eng-practices/master/review/reviewer/standard.md (same file; github.com refuses plain requests). Says reviewers should favour approving a change once it definitely improves the overall code health, even if it is not perfect, and that a change should not knowingly worsen code health except in an emergency. Principles: technical facts and data overrule opinions and personal preferences; the style guide is the authority on style; optional comments are prefixed 'Nit:'. Resolving conflicts, in order: consensus; a face-to-face or video discussion with the outcome recorded as a comment on the change; escalation to a broader team discussion, a technical lead, a code maintainer or an engineering manager; a change should not stall on a disagreement."
+  note: "Text read from https://raw.githubusercontent.com/google/eng-practices/master/review/reviewer/standard.md (same file; github.com refuses plain requests). Says reviewers should favour approving a change once it definitely improves the overall code health, even if it is not perfect, and that a change should not definitely worsen code health except in an emergency. Principles: technical facts and data overrule opinions and personal preferences; the style guide is the authority on style; optional comments are prefixed 'Nit:'. Resolving conflicts, in order: consensus; a face-to-face or video discussion with the outcome recorded as a comment on the change; escalation to a broader team discussion, a technical lead, a code maintainer or an engineering manager; a change should not stall on a disagreement."
 
 google-eng-practices-speed:
   title: "Speed of Code Reviews"
@@ -1959,7 +1959,7 @@ incident-istqb-regression-testing:
 
 incident-owasp-logging:
   title: "Logging Cheat Sheet"
-  author: "OWASP Cheat Sheets Series Team"
+  author: "Cheat Sheets Series Team (footer credit)"
   org: "OWASP Cheat Sheet Series"
   date: "not printed"
   url: "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"

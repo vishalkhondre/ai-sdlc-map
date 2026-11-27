@@ -51,7 +51,8 @@ Update at the end of every session (see `CLAUDE.md`).
 
 0. **Author: approve or change the Assurance plan** (draft PR #27, `project/plans/assurance.md`, eleven
    open questions), then a session builds Assurance as edition 1.7.0 through the same pipeline.
-   Confirm or reverse D-032. Live review of 1.5.0 and 1.6.0, then tags.
+   Confirm or reverse D-032, and say whether workflow pages may name the deciding role themselves
+   (spec readiness, release readiness and incident feedback now defer to the catalog row). Live review of 1.5.0 and 1.6.0, then tags.
 1. A small follow-up edition (optional): make the harness page call the feedback path the site's
    extension of the steering loop in all three places (editorial suggestion on 1.4.2), and add the
    dotted precondition line to the workflow diagram's legend.
@@ -111,16 +112,19 @@ confidentiality review of the fix edition reads those fields as a public reader 
 The 1.6.0 sweep flagged page passages that restated published text; they were cut from the new pages,
 and the published text they restated is logged here for the same 1.4.x fix edition (locations only):
 
-| Published item | Passage | Verdict | GR |
+| Published item | Location | Verdict | GR |
 |---|---|---|---|
-| Core `workflows` | the contrast that an agent is limited by its identity's permissions rather than its instructions | close | 1.2 |
-| Glossary `risk-tier` | the definition of the tier as what selects the checks and reviewers a change owes | close | 1.2 |
-| Catalog W01 | the decision wording (already listed above) | close | 1.2 |
+| Core `workflows` | three-roles section, one sentence | close | 1.2 |
+| Glossary `risk-tier` | definition, first sentence | close | 1.2 |
+| Catalog W01 | Decision field (already listed above) | close | 1.2 |
 
 ## Backlog
 
 - Catalog rows link to their workflow pages (W01, W04, W08, W23, W25, W26, W28): changes the live
   catalog, so it waits for the 1.4.x fix edition or the author (D-032).
+- Agent-stop failure path on four workflow pages (spec readiness, pull-request verification, release
+  readiness, incident feedback), or once in Core `workflows#failure-paths`: editorial suggestion
+  from the 1.6.0 review, for the 1.4.x fix edition.
 - Catalog consistency pass (W12 wording): the W12 row says "definition of ready" while the map
   and adoption path place it at Specification (D-029, question 8).
 
