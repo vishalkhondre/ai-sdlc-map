@@ -149,9 +149,9 @@ def main():
                 page.keyboard.press("Escape")
 
                 assert page.locator("nav.routes .route").count() == 5
-                assert page.locator("#map svg").first.get_attribute("role") == "group"
+                assert page.locator("#map figure svg").first.get_attribute("role") == "group"
                 assert page.locator("#adoption svg").first.get_attribute("role") == "img"
-                tree = page.locator("#map svg").first.aria_snapshot()
+                tree = page.locator("#map figure svg").first.aria_snapshot()
                 names = re.findall(r'- link "([^"]+)"', tree)
                 links = yaml.safe_load((ROOT / "content/diagrams/map/links.yml").read_text(encoding="utf-8"))
                 assert len(names) == len(links) and "Engineering Kit" in names, tree
@@ -159,7 +159,7 @@ def main():
                 assert kit.get_attribute("href") == links["Engineering Kit"]
                 # the kit's five parts are links of their own, beside the title's (D-018)
                 for part in ("rule registry", "validators", "skills with evals", "evidence schema", "adapters"):
-                    assert page.locator("#map svg").first.get_by_role("link", name=part, exact=True).get_attribute("href") == links[part], part
+                    assert page.locator("#map figure svg").first.get_by_role("link", name=part, exact=True).get_attribute("href") == links[part], part
                 page.get_by_role("link", name="intake & triage", exact=True).click()
                 page.wait_for_url("**/workflow-catalog.html#W01")
                 page.locator("#wf-detail").wait_for(state="visible")
