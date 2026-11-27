@@ -7,7 +7,7 @@ title: Operate
 summary: The phase in which released software runs in production and is kept in service, where it is monitored, its incidents are handled and reviewed, vulnerabilities and usage are answered, and lessons travel back to earlier work.
 key_terms: [feedback-path, steering-loop, harness, software-factory, evidence-handoff, rule-registry, workflow, three-roles, harness-evaluation, export-example]
 sources: [sre-book-monitoring, sre-book-being-on-call, sre-book-managing-incidents, google-sre-postmortem, nist-800-61r3, nist-ssdf, dora-monitoring-observability, dora-customer-feedback, dora-metrics, dora-2025-announcement, google-agentic-sre, ahmed-incident-llm, chen-rcacopilot, bockeler-harness, safe-inspect-and-adapt, safe-framework]
-related: [harness-engineering, software-factory, workflows, evidence-schema, rule-registry, validators, specification, deploy, release, inspect-and-adapt, traceability-spine]
+related: [harness-engineering, software-factory, workflows, evidence-schema, rule-registry, validators, specification, deploy, release, inspect-and-adapt, traceability-spine, incident-feedback]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -17,7 +17,7 @@ Operate is the phase in which a released change runs in production and the team 
 service: it watches how the software behaves, responds when it fails and learns from each failure.
 The decisions taken here belong to the workflows listed below; the two at the centre of the phase
 are incident remediation ([W27](workflow-catalog.html#W27)) and incident-to-development feedback
-([W28](workflow-catalog.html#W28)), and their catalog rows state them.
+([W28](workflow-catalog.html#W28); see the [Incident feedback](incident-feedback.html) page), and their catalog rows state them.
 
 In the AI SDLC (the software development lifecycle with AI agents doing part of the work), Operate
 is where the lifecycle's loop closes. On the map, a dashed arrow leaves the Operate box and returns
@@ -171,14 +171,14 @@ Five rows of the [workflow catalog](workflow-catalog.html) run here. They sit in
 lifecycle, such as change control and exceptions, belong to no single phase.
 
 - [Incident remediation](workflow-catalog.html#W27): the response while an incident is open.
-- [Incident-to-development feedback](workflow-catalog.html#W28): the lesson once it has closed.
+- [Incident-to-development feedback](workflow-catalog.html#W28) (see the [Incident feedback](incident-feedback.html) page): the lesson once it has closed.
 - [Vulnerability response](workflow-catalog.html#W29): security weaknesses found in what is
   running.
 - [Usage and feedback intake](workflow-catalog.html#W30): feedback from the people who use the
   product.
 - [Decommission and data disposal](workflow-catalog.html#W31): the end of a component's life.
 
-Incident-to-development feedback is the workflow the map draws on the Operate box, as the bar
+[Incident-to-development feedback](incident-feedback.html) is the workflow the map draws on the Operate box, as the bar
 labelled "incident feedback", because it starts the loop back to Specification. The lessons it
 carries follow the feedback path defined on [harness engineering](harness-engineering.html). Its
 records are read again at the site's [inspect and adapt](inspect-and-adapt.html) checkpoint, where
@@ -264,6 +264,7 @@ are divided between titles belongs to the operating model in the enablement band
   [Rule registry](rule-registry.html) and the page on
   [deterministic rule checks](validators.html): the unit of work, its record, the shared rules and
   the checks a lesson can tighten.
+- [Incident feedback](incident-feedback.html): which earlier control changes after an incident.
 - [Workflow catalog](workflow-catalog.html#W28): incident-to-development feedback, with
   [W27](workflow-catalog.html#W27), [W29](workflow-catalog.html#W29),
   [W30](workflow-catalog.html#W30) and [W31](workflow-catalog.html#W31).

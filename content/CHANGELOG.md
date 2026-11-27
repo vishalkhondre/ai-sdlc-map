@@ -2,6 +2,17 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.6.0 — 2026-11-27
+
+The Lifecycle section, part two.
+
+- Seven new workflow pages, in reading order: Intake and triage; Specification readiness; Design conformance; Pull-request verification; Deploy verification; Release readiness; and Incident feedback. Each page sets out one workflow's decision, how a run proceeds and fails, the evidence it leaves and the measures that show whether it works, links its workflow catalog row, uses the customer-record export as its example and names its sources. The pages appear in the Lifecycle section's navigation, search, the sitemap and the llms files, and the routing row's Run a workflow route leads to them.
+- On the map, the intake & triage, spec readiness, design conformance, pull-request verification, deploy verification, release readiness and incident feedback labels open their workflow pages instead of the workflow catalog.
+- The Idea, Specification, Design, Develop, Build and QA, Deploy, Release and Operate pages link to the workflow pages beside the catalog rows they name, and list them under Related. The Workflows, Software factory and Harness engineering pages link to the Pull-request verification and Incident feedback pages.
+- 5 new terminology entries: Canary release (canarying); Postmortem; Pre-integration review; Regression testing; and Service level objective (SLO). Each names its origin.
+- 13 new references, each with its title, author or organisation, address and date accessed.
+- Corrections to existing references, each read again at its source: the notes for the Scrum Guide, Semantic Versioning, Keep a Changelog (both editions), the SRE book's release engineering chapter, the SRE workbook's postmortem chapter, the SLSA verification and verification summary pages, the NIST SSDF and SP 800-61 Rev. 3, OWASP ASVS, Spec Kit, the Agile Alliance Definition of Ready entry, INVEST, given-when-then, Self Testing Code and DORA's metrics, work in process limits, customer feedback and change approval pages now record the further points they state that the new pages rely on.
+
 ## 1.5.0 — 2026-11-21
 
 The Lifecycle section, part one.

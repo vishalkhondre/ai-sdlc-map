@@ -160,10 +160,13 @@ def main():
                 # the kit's five parts are links of their own, beside the title's (D-018)
                 for part in ("rule registry", "validators", "skills with evals", "evidence schema", "adapters"):
                     assert page.locator("#map figure svg").first.get_by_role("link", name=part, exact=True).get_attribute("href") == links[part], part
-                page.get_by_role("link", name="intake & triage", exact=True).click()
-                page.wait_for_url("**/workflow-catalog.html#W01")
+                # the seven lifecycle workflow labels open their own pages (1.6.0, D-029)
+                assert page.get_by_role("link", name="intake & triage", exact=True).get_attribute("href") == links["intake & triage"]
+                # a context flow label still opens its catalog row in the detail panel
+                page.get_by_role("link", name="Spike / research", exact=True).click()
+                page.wait_for_url("**/workflow-catalog.html#W07")
                 page.locator("#wf-detail").wait_for(state="visible")
-                assert "W01" in page.locator("#wf-detail").inner_text()
+                assert "W07" in page.locator("#wf-detail").inner_text()
 
                 page.goto(base + "/workflow-catalog.html")
                 for label, visible in [("Table", "wf-table"), ("Traditional map", "wf-trad"), ("Map", "wf-map")]:

@@ -18,3 +18,7 @@
 "1.5":
   section: "Lifecycle, part one: the generic levels and SAFe reference model, the seven phase pages, Definition of Ready and Done, the traceability spine and Inspect and Adapt"
   pages: [index.html, lifecycle-levels.html, safe-reference-model.html, idea.html, specification.html, design.html, develop-build-qa.html, deploy.html, release.html, operate.html, definition-of-ready-and-done.html, traceability-spine.html, inspect-and-adapt.html]
+
+"1.6":
+  section: "Lifecycle, part two: the seven workflow pages, from intake and triage to incident feedback"
+  pages: [index.html, intake-and-triage.html, spec-readiness.html, design-conformance.html, pull-request-verification.html, deploy-verification.html, release-readiness.html, incident-feedback.html]

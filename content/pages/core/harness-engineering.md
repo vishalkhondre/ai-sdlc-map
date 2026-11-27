@@ -7,7 +7,7 @@ title: Harness engineering
 summary: The discipline of designing and maintaining what a coding agent reads, what it may do, what a machine checks and what a person decides, and of improving those controls each time a failure recurs.
 key_terms: [harness, harness-engineering, guides-and-sensors, two-kinds-of-machinery, steering-loop, feedback-path, harnessability, requisite-variety, harness-template, gate, validator, skill, review-skill, harness-evaluation, rule-registry, engineering-kit, workflow, software-factory, export-example]
 sources: [bockeler-harness, bockeler-harness-memo, bockeler-sensors, bockeler-context, openai-harness, anthropic-context-engineering, tw-radar-feedback-sensors, swe-agent, ashby, fitness-function, fowler-ci, nist-800-53, safe-inspect-and-adapt, scrum-guide-2020]
-related: [engineering-kit, validators, skills-and-evals, rule-registry, workflows, software-factory, inspect-and-adapt, definition-of-ready-and-done, traceability-spine]
+related: [engineering-kit, validators, skills-and-evals, rule-registry, workflows, software-factory, inspect-and-adapt, definition-of-ready-and-done, traceability-spine, incident-feedback]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -282,6 +282,7 @@ this page defines the controls, not what their results mean for that decision. T
 - [Software factory](software-factory.html): the operating state that appears when workflows share
   rules, evidence and feedback.
 - [Workflow catalog](workflow-catalog.html): the list of workflows.
+- [Incident feedback](incident-feedback.html): which earlier control changes after an incident.
 - [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence
   is read together.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and

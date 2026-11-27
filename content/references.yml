@@ -79,8 +79,8 @@ dora-metrics:
   org: "DORA, published on dora.dev"
   date: "last updated 2026-01-05 (as printed)"
   url: "https://dora.dev/guides/dora-metrics/"
-  accessed: "2026-11-20"
-  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics."
+  accessed: "2026-11-27"
+  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics. Defines deployment rework rate as the ratio of deployments that are unplanned but happen as a result of an incident in production. Advises setting a baseline for an application's current performance and improving over time, not competing against other teams or organizations; says the metrics are meant to be applied at the application or service level; lists 'Setting metrics as a goal' among its pitfalls and warns, citing Goodhart's law, that metrics set as goals invite gaming."
 
 safe-framework:
   title: "Planning Interval (PI)"
@@ -204,8 +204,8 @@ fowler-selftesting:
   org: "martinfowler.com (bliki)"
   date: "2014-05-01"
   url: "https://martinfowler.com/bliki/SelfTestingCode.html"
-  accessed: "2026-11-20"
-  note: "Self-testing code: comprehensive automated tests written with the code, so that a single command runs them and a pass gives confidence that they would expose the bugs in the code."
+  accessed: "2026-11-27"
+  note: "Self-testing code: comprehensive automated tests written with the code, so that a single command runs them and a pass gives confidence that they would expose the bugs in the code. Also describes the response to a production bug: write a test that exposes the bug, and only then try to fix it, so that once the bug is fixed it stays fixed. Printed date 1 May 2014; originally published 5 May 2005."
 
 npm-doctor:
   title: "npm-doctor"
@@ -255,8 +255,8 @@ owasp-asvs:
   org: "OWASP Foundation"
   date: "Version 5.0.0, May 2025"
   url: "https://github.com/OWASP/ASVS/blob/master/5.0/en/0x03-What-is-the-ASVS.md"
-  accessed: "2026-11-20"
-  note: "Chapter 'What is the ASVS?' of ASVS 5.0.0; text read from raw.githubusercontent.com (same file; github.com refuses plain requests). Rather than prescribing a level, an organization should analyze its risks and decide what level it should be at: Level 1 contains the minimum requirements, Level 2 is what most applications should strive for, and Level 3 is for applications looking to demonstrate the highest levels of security. Requirements are identified as <chapter>.<section>.<requirement>, and other documents and tools should cite them with the version prefix (for example v5.0.0-1.2.5) because identifiers may change between versions. Organisation-specific forks are encouraged provided they maintain traceability, so that passing a requirement means the same across all versions."
+  accessed: "2026-11-27"
+  note: "Chapter 'What is the ASVS?' of ASVS 5.0.0; text read from raw.githubusercontent.com (same file; github.com refuses plain requests). Rather than prescribing a level, an organization should analyze its risks and decide what level it should be at: Level 1 contains the minimum requirements, Level 2 is what most applications should strive for, and Level 3 is for applications looking to demonstrate the highest levels of security. Requirements are identified as <chapter>.<section>.<requirement>, and other documents and tools should cite them with the version prefix (for example v5.0.0-1.2.5) because identifiers may change between versions. Organisation-specific forks are encouraged provided they maintain traceability, so that passing a requirement means the same across all versions. The chapter opens by describing the ASVS as defining security requirements for web applications and services, and describes filtering the requirements to the chapters that apply."
 
 owasp-asvs-v4-users:
   title: "Changes Compared to v4.x (OWASP Application Security Verification Standard 5.0.0)"
@@ -552,8 +552,8 @@ slsa-verifying:
   org: "OpenSSF, published on slsa.dev"
   date: "2025-11 (SLSA v1.2)"
   url: "https://slsa.dev/spec/v1.2/verifying-artifacts"
-  accessed: "2026-09-25"
-  note: "Describes checking provenance against expectations (known values set by trust on first use, by the producer or by the source repository), comparing at least builder identity, canonical source repository, buildType and externalParameters."
+  accessed: "2026-11-27"
+  note: "Describes checking provenance against expectations (known values set by trust on first use, by the producer or by the source repository), comparing at least builder identity, canonical source repository, buildType and externalParameters. Says provenance does nothing unless somebody inspects it, which SLSA calls verification; places verification at upload (package ecosystem), download (consumers) or continuous monitoring; orders the steps as check the SLSA Build level (signature, subject digest, predicateType, builder level), check expectations, and optionally check dependencies recursively; says unrecognized externalParameters should cause verification to fail, and that detection has limited value unless a human or automated system acts on a failed verification. Status: Approved."
 
 slsa-vsa:
   title: "Verification Summary Attestation (VSA)"
@@ -561,8 +561,8 @@ slsa-vsa:
   org: "OpenSSF, published on slsa.dev"
   date: "2025-11 (SLSA v1.2)"
   url: "https://slsa.dev/spec/v1.2/verification_summary"
-  accessed: "2026-09-25"
-  note: "An attestation recording the outcome of a verification: the verifier, the time, the policy applied, the input attestations used, and a verificationResult of PASSED or FAILED."
+  accessed: "2026-11-27"
+  note: "An attestation recording the outcome of a verification: the verifier, the time, the policy applied, the input attestations used, and a verificationResult of PASSED or FAILED. Lets consumers make a decision about the validity of an artifact without reviewing every underlying attestation. Status: Approved; predicate type https://slsa.dev/verification_summary/v1."
 
 in-toto-attestation:
   title: "in-toto Attestation Framework Spec"
@@ -606,8 +606,8 @@ nist-ssdf:
   org: "NIST Special Publication 800-218"
   date: "2022-02"
   url: "https://csrc.nist.gov/pubs/sp/800/218/final"
-  accessed: "2026-11-20"
-  note: "NIST SP 800-218 version 1.1, final (3 February 2022); practice and task identifiers checked in the PDF (https://doi.org/10.6028/NIST.SP.800-218). Tasks relied on: PO.1.2 (identify and document all security requirements for organization-developed software to meet, and maintain the requirements over time); PO.3.3 (configure tools to generate artifacts of their support of secure development practices); PS.1.1 (store all forms of code according to least privilege); PS.3.1 (securely archive the files of each release); PS.3.2 (collect, safeguard, maintain and share provenance data); PW.1.1 (use forms of risk modeling, such as threat modeling, attack modeling or attack surface mapping); PW.2.1 (have a qualified person or people who were not involved with the design review the software design); PW.6.1 (use compilers, interpreters and build tools with security features); PW.7.1 and PW.7.2 (decide which code review or analysis to use, perform it in line with secure coding standards, and record and triage the issues found). Also the vulnerability-response practices RV.1 'Identify and Confirm Vulnerabilities on an Ongoing Basis', RV.2 'Assess, Prioritize, and Remediate Vulnerabilities' and RV.3 'Analyze Vulnerabilities to Identify Their Root Causes'. Version 1.2 (SP 800-218 Rev. 1) exists only as an initial public draft (published 2025-12-17, comments closed 2026-01-30); no final Rev. 1 was found on 2026-11-20, so version 1.1 is cited as the final."
+  accessed: "2026-11-27"
+  note: "NIST SP 800-218 version 1.1, final (3 February 2022); practice and task identifiers checked in the PDF (https://doi.org/10.6028/NIST.SP.800-218). Tasks relied on: PO.1.2 (identify and document all security requirements for organization-developed software to meet, and maintain the requirements over time); PO.3.3 (configure tools to generate artifacts of their support of secure development practices); PS.1.1 (store all forms of code according to least privilege); PS.3.1 (securely archive the files of each release); PS.3.2 (collect, safeguard, maintain and share provenance data); PW.1.1 (use forms of risk modeling, such as threat modeling, attack modeling or attack surface mapping); PW.2.1 (have a qualified person or people who were not involved with the design review the software design); PW.6.1 (use compilers, interpreters and build tools with security features); PW.7.1 and PW.7.2 (decide which code review or analysis to use, perform it in line with secure coding standards, and record and triage the issues found). Also the vulnerability-response practices RV.1 'Identify and Confirm Vulnerabilities on an Ongoing Basis', RV.2 'Assess, Prioritize, and Remediate Vulnerabilities' and RV.3 'Analyze Vulnerabilities to Identify Their Root Causes'. Version 1.2 (SP 800-218 Rev. 1) exists only as an initial public draft (published 2025-12-17, comments closed 2026-01-30); no final Rev. 1 was found on 2026-11-20, so version 1.1 is cited as the final. Practice PO.1: ensure that security requirements for software development are known at all times so that they can be taken into account throughout the SDLC and duplication of effort can be minimized because the requirements information can be collected once and shared. PS.3.2 examples include making provenance data available to the organization's operations and response teams to aid them in mitigating software vulnerabilities. RV.1.1: gather information from software acquirers, users and public sources on potential vulnerabilities, and investigate all credible reports. RV.3.1: analyze identified vulnerabilities to determine their root causes; RV.3.2: analyze the root causes over time to identify patterns; RV.3.4: review the SDLC process and update it if appropriate to prevent (or reduce the likelihood of) the root cause recurring."
 
 json-schema-core:
   title: "JSON Schema: A Media Type for Describing JSON Documents"
@@ -623,8 +623,8 @@ semver:
   author: "Tom Preston-Werner"
   org: "semver.org"
   url: "https://semver.org/spec/v2.0.0.html"
-  accessed: "2026-11-20"
-  note: "Versioning scheme in which MAJOR marks incompatible changes, MINOR backward-compatible additions and PATCH backward-compatible fixes, against a declared public API. The page says it was originally authored by Tom Preston-Werner and prints no date."
+  accessed: "2026-11-27"
+  note: "Versioning scheme in which MAJOR marks incompatible changes, MINOR backward-compatible additions and PATCH backward-compatible fixes, against a declared public API. The page says it was originally authored by Tom Preston-Werner and prints no date. Item 3: once a versioned package has been released, the contents of that version must not be modified, and any modifications must be released as a new version. The FAQ, on a release that broke the specification, says to fix the problem in a new release and that modifying versioned releases is unacceptable."
 
 fowler-tolerant-reader:
   title: "TolerantReader"
@@ -909,8 +909,8 @@ dora-customer-feedback:
   org: "Google, published on dora.dev"
   date: "not printed"
   url: "https://dora.dev/capabilities/customer-feedback/"
-  accessed: "2026-11-20"
-  note: "Capability page; no date printed. Places customer feedback in a wider group of capabilities, with visibility of work in the value stream, working in small batches and team experimentation, that together represent a lean approach to product management and, applied together, help predict software delivery performance and organizational performance. The page does not say this of customer feedback alone."
+  accessed: "2026-11-27"
+  note: "Capability page; no date printed. Places customer feedback in a wider group of capabilities, with visibility of work in the value stream, working in small batches and team experimentation, that together represent a lean approach to product management and, applied together, help predict software delivery performance and organizational performance. The page does not say this of customer feedback alone. Its diagnostic questions include 'Do you actively and regularly gather feedback from users and act on it?'"
 
 bainbridge-ironies:
   title: "Ironies of automation"
@@ -945,8 +945,8 @@ google-sre-postmortem:
   org: "Google, The Site Reliability Workbook (O'Reilly Media); sre.google"
   date: "chapter page footer: Copyright © 2018 Google, Inc."
   url: "https://sre.google/workbook/postmortem-culture/"
-  accessed: "2026-11-20"
-  note: "Chapter 10 of the Workbook. Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that the value of a postmortem is proportional to the learning it creates."
+  accessed: "2026-11-27"
+  note: "Chapter 10 of the Workbook. Guidance on postmortems, including that action items with little or no ownership are less likely to be resolved and that the value of a postmortem is proportional to the learning it creates. Its checklist says all action items have both an owner and a tracking number and a verifiable end state, and are vetted and approved by the technical leads of the service; action items are filed as bugs in a centralized tracker. Asks whether action items are taking too long to close, and says failures that mirror previous incidents call for deeper analysis. Advises including all incident participants in postmortem authoring; says action items aim at improving the system instead of people, and that a postmortem without subsequent action is indistinguishable from no postmortem to users."
 
 tw-incremental-developer-platform:
   title: "Incremental developer platform"
@@ -1124,8 +1124,8 @@ scrum-guide-2020:
   org: "ScrumGuides.org"
   date: "November 2020"
   url: "https://scrumguides.org/scrum-guide.html"
-  accessed: "2026-11-20"
-  note: "HTML port of the November 2020 Scrum Guide; the site's download page labels the English November 2020 edition the official current version. Licence CC BY-SA 4.0. Defines the Definition of Done as a formal description of the state of the Increment when it meets the quality measures required for the product, and as the Increment's commitment, as the Product Goal and the Sprint Goal are the commitments of the Product Backlog and the Sprint Backlog. Says the moment a Product Backlog item meets it an Increment is born, and an item that does not meet it cannot be released or even presented at the Sprint Review; an organisational Definition of Done is followed by all Scrum Teams as a minimum, otherwise the Scrum Team creates one appropriate for the product, and teams on one product must mutually define and comply with the same one; the Developers are accountable for instilling quality by adhering to it and are required to conform to it. Does not use the term Definition of Ready; says Product Backlog items that can be Done within one Sprint are deemed ready for selection in a Sprint Planning event. Describes refinement as an ongoing activity to add details, such as a description, order and size, with the Developers who will be doing the work responsible for the sizing, and makes the Product Owner accountable for effective Product Backlog management, including creating and clearly communicating Product Backlog items and ordering them. Names transparency, inspection and adaptation as the empirical Scrum pillars and says inspection without adaptation is considered pointless. The Sprint Retrospective plans ways to increase quality and effectiveness and inspects individuals, interactions, processes, tools and the Definition of Done; impactful improvements may be added to the Sprint Backlog for the next Sprint. An Increment may be delivered to stakeholders before the end of the Sprint, and the Sprint Review should never be considered a gate to releasing value."
+  accessed: "2026-11-27"
+  note: "HTML port of the November 2020 Scrum Guide; the site's download page labels the English November 2020 edition the official current version. Licence CC BY-SA 4.0. Defines the Definition of Done as a formal description of the state of the Increment when it meets the quality measures required for the product, and as the Increment's commitment, as the Product Goal and the Sprint Goal are the commitments of the Product Backlog and the Sprint Backlog. Says the moment a Product Backlog item meets it an Increment is born, and an item that does not meet it cannot be released or even presented at the Sprint Review; an organisational Definition of Done is followed by all Scrum Teams as a minimum, otherwise the Scrum Team creates one appropriate for the product, and teams on one product must mutually define and comply with the same one; the Developers are accountable for instilling quality by adhering to it and are required to conform to it. Does not use the term Definition of Ready; says Product Backlog items that can be Done within one Sprint are deemed ready for selection in a Sprint Planning event. Describes refinement as an ongoing activity to add details, such as a description, order and size, with the Developers who will be doing the work responsible for the sizing, and makes the Product Owner accountable for effective Product Backlog management, including creating and clearly communicating Product Backlog items and ordering them. Names transparency, inspection and adaptation as the empirical Scrum pillars and says inspection without adaptation is considered pointless. The Sprint Retrospective plans ways to increase quality and effectiveness and inspects individuals, interactions, processes, tools and the Definition of Done; impactful improvements may be added to the Sprint Backlog for the next Sprint. An Increment may be delivered to stakeholders before the end of the Sprint, and the Sprint Review should never be considered a gate to releasing value. Describes Product Backlog refinement as the act of breaking down and further defining Product Backlog items; counts ensuring that the Product Backlog is transparent, visible and understood among the Product Owner's accountabilities; says the Product Owner may delegate the responsibility to others but remains accountable, and that the entire organization must respect the Product Owner's decisions, which are visible in the content and ordering of the Product Backlog. Says the emergent process and work must be visible to those performing the work as well as those receiving the work, and that low transparency can lead to decisions that diminish value and increase risk."
 
 dora-small-batches:
   title: "Working in small batches"
@@ -1133,7 +1133,7 @@ dora-small-batches:
   org: "Google, published on dora.dev"
   date: "last updated 2025-12-08 (as printed)"
   url: "https://dora.dev/capabilities/working-in-small-batches/"
-  accessed: "2026-11-20"
+  accessed: "2026-11-27"
   note: "Capability page (tab title 'DORA | Capabilities: Working in small batches'; tagged core and AI). Advises breaking work into units that can be completed independently and in short timeframes, says working in small batches amplifies the positive impact of AI adoption on product performance, and says large changes are difficult to review, test and integrate safely."
 
 dora-wip-limits:
@@ -1142,8 +1142,8 @@ dora-wip-limits:
   org: "Google, published on dora.dev"
   date: "not printed"
   url: "https://dora.dev/capabilities/wip-limits/"
-  accessed: "2026-11-20"
-  note: "Capability page (tab title 'DORA | Capabilities: Work in process limits'). Says research shows WIP limits help drive improvements in software delivery performance, particularly when combined with visual displays and feedback loops from monitoring. The page's own title is 'Work in process limits', not 'WIP limits'."
+  accessed: "2026-11-27"
+  note: "Capability page (tab title 'DORA | Capabilities: Work in process limits'). Says research shows WIP limits help drive improvements in software delivery performance, particularly when combined with visual displays and feedback loops from monitoring. The page's own title is 'Work in process limits', not 'WIP limits'. Advises not allowing more WIP in any given part of the process than there are people to work on tasks, and suggests a retrospective question on mean lead time and its variability for the entire value stream, from idea to customer."
 
 dora-ai-capabilities-impact:
   title: "From adoption to impact: Putting the DORA AI Capabilities Model to work"
@@ -1331,7 +1331,7 @@ dora-ai-capabilities-intro:
   org: "Google Cloud Blog"
   date: "2025-09-23"
   url: "https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model"
-  accessed: "2026-11-20"
+  accessed: "2026-11-27"
   note: "Tab title 'Introducing DORA's inaugural AI Capabilities Model | Google Cloud Blog'. Names seven capabilities in this order: clear and communicated AI stance; healthy data ecosystems; AI-accessible internal data; strong version control practices; working in small batches; user-centric focus; quality internal platforms. Says working in small batches is especially powerful in an AI-assisted environment and that, in the absence of a user-centric focus, AI adoption can have a negative impact on team performance."
 
 wake-invest:
@@ -1340,8 +1340,8 @@ wake-invest:
   org: "XP123 (author's site)"
   date: "17 August 2003"
   url: "https://xp123.com/invest-in-good-stories-and-smart-tasks/"
-  accessed: "2026-11-20"
-  note: "Self-published on the author's site ('Posted on August 17, 2003 by Bill Wake'; a postscript was added 2011-02-16). Lists INVEST for stories (Independent, Negotiable, Valuable, Estimable, Small, Testable) and SMART for tasks (Specific, Measurable, Achievable, Relevant, Time-boxed). The author states that he developed the INVEST acronym."
+  accessed: "2026-11-27"
+  note: "Self-published on the author's site ('Posted on August 17, 2003 by Bill Wake'; a postscript was added 2011-02-16). Lists INVEST for stories (Independent, Negotiable, Valuable, Estimable, Small, Testable) and SMART for tasks (Specific, Measurable, Achievable, Relevant, Time-boxed). The author states that he developed the INVEST acronym. Says 'A good story is testable' and that if a customer doesn't know how to test something, this may indicate that the story isn't clear enough; says good stories tend to be small, since above a certain size it is too hard to know what is in the story's scope."
 
 istqb-acceptance-criteria:
   title: "acceptance criteria"
@@ -1367,8 +1367,8 @@ fowler-given-when-then:
   org: "martinfowler.com (bliki)"
   date: "2013-08-21"
   url: "https://martinfowler.com/bliki/GivenWhenThen.html"
-  accessed: "2026-11-20"
-  note: "Describes given-when-then as an approach developed by Daniel Terhorst-North and Chris Matts as part of Behavior-Driven Development; a footnote says Terhorst-North credits Ivan Moore for significant inspiration."
+  accessed: "2026-11-27"
+  note: "Describes given-when-then as an approach developed by Daniel Terhorst-North and Chris Matts as part of Behavior-Driven Development; a footnote says Terhorst-North credits Ivan Moore for significant inspiration. Calls it a style of representing tests in three parts: given, the state of the world before the behaviour is specified; when, the behaviour being specified; then, the changes expected because of that behaviour."
 
 agile-alliance-dor:
   title: "Definition of Ready"
@@ -1376,8 +1376,8 @@ agile-alliance-dor:
   org: "Agile Alliance"
   date: "not printed"
   url: "https://agilealliance.org/glossary/definition-of-ready/"
-  accessed: "2026-11-20"
-  note: "Agile Glossary entry (tab title 'What is Definition of Ready? | Agile Alliance'). Describes the team making explicit and visible the criteria (generally based on the INVEST matrix) that a user story must meet before being accepted into the upcoming iteration. Does not mention the Scrum Guide and prints no author or date. Its Origins section is not relied on."
+  accessed: "2026-11-27"
+  note: "Agile Glossary entry (tab title 'What is Definition of Ready? | Agile Alliance'). Describes the team making explicit and visible the criteria (generally based on the INVEST matrix) that a user story must meet before being accepted into the upcoming iteration. Does not mention the Scrum Guide and prints no author or date. Its Origins section is not relied on. Says the practice avoids beginning work on features that do not have clearly defined completion criteria, and that the explicit agreement allows the team to push back on accepting ill-defined features."
 
 requirements-ambiguity-llm:
   title: "Requirements Ambiguity Detection and Explanation with LLMs: An Industrial Study"
@@ -1403,8 +1403,8 @@ spec-kit-sdd:
   org: "GitHub (github/spec-kit repository)"
   date: "not printed"
   url: "https://github.com/github/spec-kit/blob/main/spec-driven.md"
-  accessed: "2026-11-20"
-  note: "Methodology document in the open-source spec-kit repository; text read from https://raw.githubusercontent.com/github/spec-kit/main/spec-driven.md (same file; github.com refuses plain requests). Says the templates mandate the use of [NEEDS CLARIFICATION] markers where a prompt does not specify something ('Don't guess') and include checklists that act as 'unit tests' for the specification. Defines a constitution with a Simplicity Gate (Article VII) and an Anti-Abstraction Gate (Article VIII), and says the LLM cannot proceed without either passing the gates or documenting justified exceptions in a 'Complexity Tracking' section."
+  accessed: "2026-11-27"
+  note: "Methodology document in the open-source spec-kit repository; text read from https://raw.githubusercontent.com/github/spec-kit/main/spec-driven.md (same file; github.com refuses plain requests). Says the templates mandate the use of [NEEDS CLARIFICATION] markers where a prompt does not specify something ('Don't guess') and include checklists that act as 'unit tests' for the specification. Defines a constitution with a Simplicity Gate (Article VII) and an Anti-Abstraction Gate (Article VIII), and says the LLM cannot proceed without either passing the gates or documenting justified exceptions in a 'Complexity Tracking' section. Its 'Requirement Completeness' checklist items are, in order: no [NEEDS CLARIFICATION] markers remain; requirements are testable and unambiguous; success criteria are measurable. The marker takes the form '[NEEDS CLARIFICATION: specific question]', and the document says this prevents the common LLM behavior of making plausible but potentially incorrect assumptions."
 
 sei-atam:
   title: "The Architecture Tradeoff Analysis Method"
@@ -1493,8 +1493,8 @@ sre-book-release-engineering:
   org: "Google, Site Reliability Engineering (book, first edition), O'Reilly Media; sre.google"
   date: "chapter page footer: Copyright © 2017 Google, Inc.; the book's preface prints 'Copyright 2016 Google, Inc.' in its citation example"
   url: "https://sre.google/sre-book/release-engineering/"
-  accessed: "2026-11-20"
-  note: "Chapter 8 of the SRE book. Describes hermetic builds (the same revision built on different machines gives identical results; builds depend on known versions of build tools, such as compilers, and dependencies, such as libraries); gated operations (approving source code changes, specifying the actions to perform during a release, creating a new release, approving the initial integration proposal and subsequent cherry picks, deploying a new release, and changes to a project's build configuration); rollouts that fit the risk profile of a service, such as rolling out to successive clusters over a period of several hours or starting in one cluster and expanding exponentially until all clusters are updated; a canary as a few jobs in production after system tests; and release engineers and SREs working together on canarying changes, pushing out new releases without interrupting services and rolling back features that demonstrate problems. The chapter does not use the word 'incubation'."
+  accessed: "2026-11-27"
+  note: "Chapter 8 of the SRE book. Describes hermetic builds (the same revision built on different machines gives identical results; builds depend on known versions of build tools, such as compilers, and dependencies, such as libraries); gated operations (approving source code changes, specifying the actions to perform during a release, creating a new release, approving the initial integration proposal and subsequent cherry picks, deploying a new release, and changes to a project's build configuration); rollouts that fit the risk profile of a service, such as rolling out to successive clusters over a period of several hours or starting in one cluster and expanding exponentially until all clusters are updated; a canary as a few jobs in production after system tests; and release engineers and SREs working together on canarying changes, pushing out new releases without interrupting services and rolling back features that demonstrate problems. The chapter does not use the word 'incubation'. Also: releases branch from the mainline at a specific revision and never merge back; older releases are rebuilt at the same revision; bug fixes reach a release as cherry picks, each approved or rejected for inclusion; the release system produces a report of all changes in a release and re-runs unit tests on the release branch, creating an audit trail that they passed."
 
 humble-farley-cd:
   title: "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation"
@@ -1664,8 +1664,8 @@ dora-streamlining-change-approval:
   org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Streamlining change approval')"
   date: "2025-10-30 (last updated, as printed)"
   url: "https://dora.dev/capabilities/streamlining-change-approval/"
-  accessed: "2026-11-20"
-  note: "Says change approvals are best implemented through peer review during the development process, supplemented by automation to detect, prevent and correct bad changes early, and that heavyweight external approval processes have a negative impact on software delivery performance. Treats segregation of duties, a common regulatory requirement, as satisfiable by peer review and gives the change advisory board a strategic role. Does not discuss an external control that mandates approval by an outside party. Carries the 'core' tag; cites the 2019 State of DevOps Report."
+  accessed: "2026-11-27"
+  note: "Says change approvals are best implemented through peer review during the development process, supplemented by automation to detect, prevent and correct bad changes early, and that heavyweight external approval processes have a negative impact on software delivery performance. Treats segregation of duties, a common regulatory requirement, as satisfiable by peer review and gives the change advisory board a strategic role. Does not discuss an external control that mandates approval by an outside party. Carries the 'core' tag; cites the 2019 State of DevOps Report. Quotes segregation of duties as 'changes must be approved by someone other than the author'. Names as a pitfall responding to problems by adding more process, which drives up lead times and batch sizes, and advises investing in making it quicker and safer to make changes. Suggests measures including the percentage of changes that do (or do not) require a manual change to be promoted to production (also by risk profile), and the time changes spend waiting for approval from external bodies, then from local approval bodies or reviewers as approvals move closer to the work."
 
 keep-a-changelog:
   title: "Keep a Changelog 1.1.0"
@@ -1673,8 +1673,8 @@ keep-a-changelog:
   org: "keepachangelog.com"
   date: "version 1.1.0 (its own changelog dates 1.1.0 as 2019-02-15)"
   url: "https://keepachangelog.com/en/1.1.0/"
-  accessed: "2026-11-20"
-  note: "States that changelogs are for humans, not machines; advises against dumping git logs into changelogs; says there should be an entry for every single version; groups changes under six types (Added, Changed, Deprecated, Removed, Fixed, Security). Says 'Mention whether you follow Semantic Versioning' and does not recommend it outright."
+  accessed: "2026-11-27"
+  note: "States that changelogs are for humans, not machines; advises against dumping git logs into changelogs; says there should be an entry for every single version; groups changes under six types (Added, Changed, Deprecated, Removed, Fixed, Security). Says 'Mention whether you follow Semantic Versioning' and does not recommend it outright. Says using commit log diffs as changelogs is a bad idea because they are full of noise."
 
 keep-a-changelog-2:
   title: "Keep a Changelog 2.0.0"
@@ -1682,8 +1682,8 @@ keep-a-changelog-2:
   org: "keepachangelog.com"
   date: "2026-06-07 (page: 'Published on June 7th, 2026')"
   url: "https://keepachangelog.com/en/2.0.0/"
-  accessed: "2026-11-20"
-  note: "The 2.0.0 edition ('Published on June 7th, 2026'). Says changelogs are for humans, not machines; says not to paste a git log; says 'You do not have to use Semantic Versioning'; and draws the line as 'machines can draft, but humans curate', a phrase found on this edition only."
+  accessed: "2026-11-27"
+  note: "The 2.0.0 edition ('Published on June 7th, 2026'). Says changelogs are for humans, not machines; says not to paste a git log; says 'You do not have to use Semantic Versioning'; and draws the line as 'machines can draft, but humans curate', a phrase found on this edition only. Says a language model can draft a changelog from a diff in seconds as a starting point and advises reading the result before anyone else does; says not to use a list of commits as a changelog (a commit records a step in the source code; a changelog entry records a notable difference written for the people who use the software); asks for an Unreleased section at the top, a release date per version, and yanked releases listed, not hidden."
 
 fowler-dark-launching:
   title: "Dark Launching"
@@ -1727,7 +1727,7 @@ sre-book-being-on-call:
   org: "Google, Site Reliability Engineering (first edition, O'Reilly Media), chapter 11; sre.google"
   date: "chapter page footer: Copyright 2017 Google, Inc. (the book's preface prints 2016 in its citation example)"
   url: "https://sre.google/sre-book/being-on-call/"
-  accessed: "2026-11-20"
+  accessed: "2026-11-27"
   note: "After a page is acknowledged the on-call engineer is expected to triage the problem and work toward its resolution, possibly involving other team members and escalating as needed; many teams have both a primary and a secondary on-call rotation."
 
 sre-book-managing-incidents:
@@ -1745,8 +1745,8 @@ nist-800-61r3:
   org: "National Institute of Standards and Technology (NIST)"
   date: "April 2025 (final, 2025-04-03)"
   url: "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
-  accessed: "2026-11-20"
-  note: "NIST SP 800-61 Rev. 3, DOI https://doi.org/10.6028/NIST.SP.800-61r3. Covers cybersecurity incident response: all six Cybersecurity Framework (CSF) 2.0 Functions (Govern, Identify, Protect, Detect, Respond, Recover) play a part, and lessons learned from performing all activities in all Functions are fed into Improvement (the Improvement Category, ID.IM, in the Identify Function). Supersedes SP 800-61 Rev. 2 (2012), which was withdrawn on 2025-04-03. The CSRC page prints the first author as 'Alexander Nelson'; the PDF prints 'Alex Nelson'."
+  accessed: "2026-11-27"
+  note: "NIST SP 800-61 Rev. 3, DOI https://doi.org/10.6028/NIST.SP.800-61r3. Covers cybersecurity incident response: all six Cybersecurity Framework (CSF) 2.0 Functions (Govern, Identify, Protect, Detect, Respond, Recover) play a part, and lessons learned from performing all activities in all Functions are fed into Improvement (the Improvement Category, ID.IM, in the Identify Function). Supersedes SP 800-61 Rev. 2 (2012), which was withdrawn on 2025-04-03. The CSRC page prints the first author as 'Alexander Nelson'; the PDF prints 'Alex Nelson'. ID.IM-03: improvements are identified from the execution of operational processes, procedures and activities; RC.RP-06 R1: prepare an after-action report that documents the incident itself and the response and recovery actions taken."
 
 dora-monitoring-observability:
   title: "Monitoring and observability"
@@ -1846,3 +1846,122 @@ agile-manifesto-principles:
   url: "https://agilemanifesto.org/principles.html"
   accessed: "2026-11-20"
   note: "Twelve unnumbered statements; the last reads 'At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly.'"
+
+# Lifecycle section, part two (1.6.0)
+
+intake-istqb-defect-management:
+  title: "defect management"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 4 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/defect-management"
+  accessed: "2026-11-27"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/defect-management) because the term page loads its text with JavaScript. Version 4 defines defect management as the process of recognizing, recording, classifying, investigating, fixing and disposing of defects. The record lists no synonyms, see-also terms or source standard."
+
+nist-glossary-least-privilege:
+  title: "least privilege"
+  author: "National Institute of Standards and Technology"
+  org: "NIST Computer Security Resource Center, Glossary"
+  date: "not printed"
+  url: "https://csrc.nist.gov/glossary/term/least_privilege"
+  accessed: "2026-11-27"
+  note: "Glossary entry giving four definitions with their sources. The NIST SP 800-53 Rev. 5 definition, taken from CNSSI 4009-2022, is the principle that a security architecture is designed so that each entity is granted the minimum system resources and authorizations it needs to perform its function. The SP 800-12 Rev. 1 definition, taken from CNSSI 4009, calls least privilege a security principle that a system should restrict the access privileges of users, or processes acting on behalf of users, to those needed for their assigned work."
+
+fowler-branching-patterns:
+  title: "Patterns for Managing Source Code Branches"
+  author: "Martin Fowler"
+  org: "martinfowler.com"
+  date: "2020-05-28"
+  url: "https://martinfowler.com/articles/branching-patterns.html"
+  accessed: "2026-11-27"
+  note: "Defines the mainline as the codeline a team considers the current state of its code, a healthy branch as one with automated checks on each commit, and pre-integration review as every commit to mainline being peer-reviewed before it is accepted; describes pull requests as a mechanism combining feature branching and pre-integration review. Says even a clean merge can hide semantic conflicts, so merged code is built and the mainline commit suite run. The first 100,000 of about 125,000 characters were read; nothing is cited from the remainder."
+
+google-eng-practices-standard:
+  title: "The Standard of Code Review"
+  author: "not printed"
+  org: "Google (repository google/eng-practices, 'Google Engineering Practices Documentation'; CC-By 3.0 per the repository README)"
+  date: "not printed"
+  url: "https://github.com/google/eng-practices/blob/master/review/reviewer/standard.md"
+  accessed: "2026-11-27"
+  note: "Text read from https://raw.githubusercontent.com/google/eng-practices/master/review/reviewer/standard.md (same file; github.com refuses plain requests). Says reviewers should favour approving a change once it definitely improves the overall code health, even if it is not perfect, and that a change should not knowingly worsen code health except in an emergency. Principles: technical facts and data overrule opinions and personal preferences; the style guide is the authority on style; optional comments are prefixed 'Nit:'. Resolving conflicts, in order: consensus; a face-to-face or video discussion with the outcome recorded as a comment on the change; escalation to a broader team discussion, a technical lead, a code maintainer or an engineering manager; a change should not stall on a disagreement."
+
+google-eng-practices-speed:
+  title: "Speed of Code Reviews"
+  author: "not printed"
+  org: "Google (repository google/eng-practices, 'Google Engineering Practices Documentation'; CC-By 3.0 per the repository README)"
+  date: "not printed"
+  url: "https://github.com/google/eng-practices/blob/master/review/reviewer/speed.md"
+  accessed: "2026-11-27"
+  note: "Text read from https://raw.githubusercontent.com/google/eng-practices/master/review/reviewer/speed.md (same file). Says one business day is the maximum time it should take to respond to a code review request, that individual response time matters more than the length of the whole review, and that a reviewer asks for a large change to be split into smaller, sequential changes or, where that is not possible, comments on the overall design and returns it. Relaxed quality guidelines are reserved for true emergencies."
+
+dora-trunk-based-development:
+  title: "Trunk-based development"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev (capability page)"
+  date: "not printed in the text read"
+  url: "https://dora.dev/capabilities/trunk-based-development/"
+  accessed: "2026-11-27"
+  note: "Capability page. Recommends synchronous code review as part of development and says that when review takes hours or days developers avoid small batches. Its measures include the number of active branches, code freeze periods, the frequency of merging to trunk and the time taken to approve code changes."
+
+deployverif-sre-book-slo:
+  title: "Service Level Objectives"
+  author: "Chris Jones, John Wilkes, and Niall Murphy, with Cody Smith (edited by Betsy Beyer)"
+  org: "Google, Site Reliability Engineering (first edition, O'Reilly Media), chapter 4; sre.google"
+  date: "chapter page footer: Copyright 2017 Google, Inc."
+  url: "https://sre.google/sre-book/service-level-objectives/"
+  accessed: "2026-11-27"
+  note: "Defines an SLI as a carefully defined quantitative measure of some aspect of the level of service provided, and an SLO as a target value or range of values for a service level measured by an SLI; says SLIs and SLOs are crucial elements in the control loops used to manage systems; describes an error budget, with the gap between the SLO violation rate and the budget used as an input to the process that decides when to roll out new releases. The chapter does not discuss rollbacks."
+
+incident-sre-book-postmortem:
+  title: "Postmortem Culture: Learning from Failure"
+  author: "John Lunney and Sue Lueder (edited by Gary O'Connor)"
+  org: "Google, Site Reliability Engineering (first edition, O'Reilly Media), chapter 15; sre.google"
+  date: "chapter page footer: Copyright © 2017 Google, Inc."
+  url: "https://sre.google/sre-book/postmortem-culture/"
+  accessed: "2026-11-27"
+  note: "Chapter 15 of the SRE book (distinct from the Workbook chapter of the same title, key google-sre-postmortem). Defines a postmortem as a written record of an incident, its impact, the actions taken to mitigate or resolve it, the root cause(s) and the follow-up actions to prevent recurrence; lists common postmortem triggers (user-visible downtime or degradation beyond a threshold, data loss, on-call intervention, resolution time above a threshold, monitoring failure); says a blameless postmortem focuses on contributing causes without indicting any individual or team; says an unreviewed postmortem might as well never have existed and that reviewed postmortems are added to a repository of past incidents; gives as primary goals that the incident is documented, root causes understood and effective preventive actions put in place."
+
+incident-istqb-failure:
+  title: "failure"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/failure"
+  accessed: "2026-11-27"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/failure) because the term page is JavaScript-rendered. Defines failure as an event in which a component or system does not meet its requirements within specified limits during its execution; synonym malfunction. The record cites ISO/IEC/IEEE 24765 (2017); the site does not rely on that standard."
+
+incident-istqb-defect:
+  title: "defect"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/defect"
+  accessed: "2026-11-27"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/defect). Defines defect as an imperfection or deficiency in a work product where it does not meet its requirements or specifications or impairs its intended use; synonyms bug, fault, flaw. The record cites ISO/IEC/IEEE 24765 (2017); the site does not rely on that standard."
+
+incident-istqb-confirmation-testing:
+  title: "confirmation testing"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/confirmation-testing"
+  accessed: "2026-11-27"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/confirmation-testing). Defines confirmation testing as a type of change-related testing performed after fixing a defect to confirm that a failure caused by that defect does not reoccur; synonym retesting."
+
+incident-istqb-regression-testing:
+  title: "regression testing"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 3 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/regression-testing"
+  accessed: "2026-11-27"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/regression-testing). Defines regression testing as a type of change-related testing to detect whether defects have been introduced or uncovered in unchanged areas of the software."
+
+incident-owasp-logging:
+  title: "Logging Cheat Sheet"
+  author: "not printed in the text read (footer credit not checked)"
+  org: "OWASP Cheat Sheet Series"
+  date: "not printed"
+  url: "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+  accessed: "2026-11-27"
+  note: "Tab title 'Logging - OWASP Cheat Sheet Series'. Section 'Data to exclude' says listed data, including sensitive personal data, should usually not be recorded directly in logs and should be removed, masked, sanitized, hashed or encrypted; suggests de-identification techniques; says privileges to read log data should be restricted and reviewed periodically."

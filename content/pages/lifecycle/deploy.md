@@ -7,7 +7,7 @@ title: Deploy
 summary: The phase that places a verified revision in an environment, confirms that it behaves there as intended and keeps a way back open, kept apart from the decision to release its behaviour to users.
 key_terms: [workflow, three-roles, gate, could-not-run, evidence-record, evidence-handoff, adapter, feedback-path, deploy-versus-release, export-example]
 sources: [fowler-deployment-pipeline, fowler-ci, twelve-factor-parity, safe-cdp, safe-continuous-deployment, fowler-blue-green, fowler-canary-release, sre-workbook-canarying, sre-book-release-engineering, twelve-factor-config, owasp-secrets-management, fowler-evodb, safe-release-on-demand, tw-radar-decoupling, fowler-feature-toggles, google-agentic-sre, nist-800-53, github-status-checks, bockeler-harness, bockeler-sensors, cockburn-hexagonal]
-related: [release, design, develop-build-qa, operate, workflows, evidence-schema, validators, adapters, software-factory]
+related: [release, design, develop-build-qa, operate, workflows, evidence-schema, validators, adapters, software-factory, deploy-verification, release-readiness]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -132,9 +132,9 @@ incident remediation in catalog phase 7, "Operate & sustain"; both are rows from
 touch Deploy. Each catalog row holds the workflow's own definition; this page names and links them
 only.
 
-- [Deployment and post-deploy verification](workflow-catalog.html#W26): the workflow that decides
+- [Deployment and post-deploy verification](workflow-catalog.html#W26) (see the [Deploy verification](deploy-verification.html) page): the workflow that decides
   here.
-- [Release readiness](workflow-catalog.html#W25): settled for the same revision before deployment.
+- [Release readiness](workflow-catalog.html#W25) (see the [Release readiness](release-readiness.html) page): settled for the same revision before deployment.
 - [Data change execution](workflow-catalog.html#W16): schema migrations, apart from the application.
 - [Incident remediation](workflow-catalog.html#W27): problems that surface after this phase.
 
@@ -142,7 +142,7 @@ only.
 
 **Entry.** The revision's evidence is current (see [Workflows](workflows.html) and
 [Evidence schema](evidence-schema.html)). Release readiness
-([W25](workflow-catalog.html#W25)) is settled for that same revision, and that row lists what it
+([W25](workflow-catalog.html#W25); see the [Release readiness](release-readiness.html) page) is settled for that same revision, and that row lists what it
 checks. As recommended practice, a deployment that is not ready does not start, and its record
 states what it is waiting for.
 
@@ -216,6 +216,8 @@ the rollout and rollback work described above[^sre-book-release-engineering].
   of Birgitta Böckeler's computational sensors[^bockeler-sensors].
 - [Adapters](adapters.html): the thin bindings to outside tools such as the pipeline runner, adapted from
   Alistair Cockburn's ports-and-adapters pattern[^cockburn-hexagonal].
+- [Deploy verification](deploy-verification.html): whether a running revision stays or the way back is taken.
+- [Release readiness](release-readiness.html): whether a release candidate is fit to go out.
 - Workflow catalog: deployment and post-deploy verification ([W26](workflow-catalog.html#W26)),
   release readiness ([W25](workflow-catalog.html#W25)), data change execution
   ([W16](workflow-catalog.html#W16)) and incident remediation ([W27](workflow-catalog.html#W27)).

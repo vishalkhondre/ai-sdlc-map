@@ -7,7 +7,7 @@ title: Develop, Build and QA
 summary: Develop, Build and QA are the three phases in which one change is made, assembled and tested under one set of checks and one evidence record; they end in the merge decision, and agents, deterministic checks and people each have a distinct part along the way.
 key_terms: [deterministic-gate, engineering-kit, gate, validator, review-skill, skill, could-not-run, evidence-record, independent-basis, guides-and-sensors, risk-tier, harness-engineering, workflow, three-roles, review-fatigue, feedback-path, export-example]
 sources: [google-eng-practices-small-cls, google-eng-practices-review, fowler-selftesting, fowler-ci, dora-test-automation, nist-ssdf, sre-book-release-engineering, fowler-deployment-pipeline, humble-farley-cd, safe-continuous-integration, slsa-provenance, slsa-build-track-basics, istqb-ctfl-4, fowler-test-pyramid, istqb-rbt, nist-ir-8397, owasp-asvs, owasp-secrets-management, istqb-stress-testing, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2024-highlights, dora-2025-report, dora-2025-announcement, dora-ai-capabilities-impact, perry-2023, konstantinou-test-oracles, metr-reward-hacking, anthropic-claude-37-system-card, dora-small-batches, safe-built-in-quality, istqb-acceptance-criteria, scrum-guide-2020]
-related: [engineering-kit, validators, skills-and-evals, workflows, evidence-schema, harness-engineering, rule-registry, adapters, design, deploy, definition-of-ready-and-done, traceability-spine]
+related: [engineering-kit, validators, skills-and-evals, workflows, evidence-schema, harness-engineering, rule-registry, adapters, design, deploy, definition-of-ready-and-done, traceability-spine, pull-request-verification]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -198,7 +198,7 @@ image. It is neither passed nor skipped, and the fix belongs to whoever maintain
 ## Workflows in this phase
 
 The workflow the map draws across all three phases is
-[Pull-request verification](workflow-catalog.html#W23), where the stretch ends in the merge
+[Pull-request verification](pull-request-verification.html) (catalog row [W23](workflow-catalog.html#W23)), where the stretch ends in the merge
 decision; the map adds "security & performance checks by tier" to its label. The other rows below
 run inside the stretch. Each row's definition (trigger, agent task, checks, human decision and
 evidence) is in the [workflow catalog](workflow-catalog.html) and is not repeated here; the
@@ -216,7 +216,7 @@ evidence) is in the [workflow catalog](workflow-catalog.html) and is not repeate
 | [W20 Accessibility and visual regression](workflow-catalog.html#W20) | QA |
 | [W21 API contract conformance](workflow-catalog.html#W21) | QA |
 | [W22 System integration and acceptance evidence](workflow-catalog.html#W22) | QA |
-| [W23 Pull-request verification](workflow-catalog.html#W23) | The close of all three |
+| [W23 Pull-request verification](workflow-catalog.html#W23) | The close of all three; see the [Pull-request verification](pull-request-verification.html) page |
 
 ## Gates and evidence
 
@@ -302,6 +302,7 @@ Who decides at the human step of each workflow is named in that workflow's catal
 - Neighbouring phases: [Design](design.html) before, [Deploy](deploy.html) after.
 - [Definition of Ready and Done](definition-of-ready-and-done.html) and
   [Traceability spine](traceability-spine.html): the entry bar and the links from criterion to test.
+- [Pull-request verification](pull-request-verification.html): whether one revision of a change may join the mainline.
 - [Task execution loop](workflow-catalog.html#W13), [Pull-request verification](workflow-catalog.html#W23)
   and [could_not_run](glossary.html#could-not-run).
 
