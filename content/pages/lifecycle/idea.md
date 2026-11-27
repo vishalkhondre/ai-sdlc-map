@@ -7,7 +7,7 @@ title: Idea
 summary: The first lifecycle phase, where a request becomes an ordered, sized item of work in the backlog with its intake decision recorded, so that specification starts from a record rather than a conversation.
 key_terms: [ai-sdlc, workflow, three-roles, risk-tier, evidence-record, evidence-handoff, export-example]
 sources: [scrum-guide-2020, safe-continuous-exploration, safe-cdp, safe-features, safe-wsjf, dora-small-batches, dora-ai-capabilities-intro, dora-ai-capabilities-impact, safe-art, safe-framework]
-related: [specification, design, lifecycle-levels, definition-of-ready-and-done, workflows, evidence-schema, software-factory]
+related: [specification, design, lifecycle-levels, definition-of-ready-and-done, workflows, evidence-schema, software-factory, intake-and-triage]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -19,7 +19,7 @@ new possibility turns into an item of work that a team has agreed to carry. The 
 phase with a place in the backlog, an order against everything else waiting there and a size that
 the people who will build it accept, and the decision that admitted it is on record under the name
 of the person who took it. The decision itself, in the words this site uses for it, is the catalog
-row [Intake and classification](workflow-catalog.html#W01).
+row [Intake and classification](workflow-catalog.html#W01) (see the [Intake and triage](intake-and-triage.html) page).
 
 The phase does not settle what the work must do or how it is built. Those questions belong to
 [Specification](specification.html) and [Design](design.html). What Idea hands on is a record: the
@@ -109,7 +109,7 @@ catalog's name for the map's Idea box. A workflow, in this site's sense, is one 
 run end to end with a named owner; each catalog row gives that decision and its parts, and this
 page does not repeat them.
 
-- [Intake and classification](workflow-catalog.html#W01): the decision at the centre of this
+- [Intake and classification](workflow-catalog.html#W01) (see the [Intake and triage](intake-and-triage.html) page): the decision at the centre of this
   phase, and the one every later phase builds on. The map draws it as the bar labelled
   "intake & triage".
 - [Security discovery and baseline](workflow-catalog.html#W02): in the same catalog phase,
@@ -186,6 +186,7 @@ in the enablement band, under people and roles.
 - [Evidence schema](evidence-schema.html): the fixed shape of the record each run leaves.
 - [Software factory](software-factory.html): what emerges when workflows share rules, evidence and
   lessons.
+- [Intake and triage](intake-and-triage.html): whether an arriving item is taken on now, as it stands or broken into smaller items.
 - Workflow catalog rows [Intake and classification](workflow-catalog.html#W01) and
   [Security discovery and baseline](workflow-catalog.html#W02).
 - Terminology: [Risk tier](glossary.html#risk-tier), [Three roles](glossary.html#three-roles),

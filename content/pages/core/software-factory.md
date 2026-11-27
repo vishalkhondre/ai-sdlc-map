@@ -7,7 +7,7 @@ title: Software factory
 summary: The operating state that appears when delivery workflows share one set of rules, one evidence format and one feedback path, so that what production teaches changes what the next specification asks.
 key_terms: [software-factory, workflow, evidence-handoff, feedback-path, steering-loop, harness, harness-template, rule-registry, evidence-record, engineering-kit, harness-engineering, validator, specification-readiness, three-roles, skill-erosion, export-example]
 sources: [cusumano-software-factories, greenfield-software-factories, shapiro-five-levels, willison-software-factory, morris-humans-agents-loops, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-customer-feedback, tw-incremental-developer-platform, team-topologies-tvp, google-sre-postmortem, conway-committees, bainbridge-ironies, lee-genai-critical-thinking, safe-inspect-and-adapt, scrum-guide-2020]
-related: [workflows, harness-engineering, engineering-kit, rule-registry, evidence-schema, validators, skills-and-evals, adapters, traceability-spine, inspect-and-adapt, lifecycle-levels, definition-of-ready-and-done]
+related: [workflows, harness-engineering, engineering-kit, rule-registry, evidence-schema, validators, skills-and-evals, adapters, traceability-spine, inspect-and-adapt, lifecycle-levels, definition-of-ready-and-done, pull-request-verification, incident-feedback]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -61,7 +61,7 @@ improves outcomes. What follows is recommended practice, built on that adjacent 
 ### It emerges from workflows that already run
 
 No team starts by building a factory. It starts with one workflow that runs on real changes, such
-as pull-request verification, and adds another once the first is trusted. Shared parts appear when
+as [pull-request verification](pull-request-verification.html), and adds another once the first is trusted. Shared parts appear when
 a second workflow needs something the first already has: it reads the access rule from the
 registry instead of keeping its own copy, and it reads check results in the format the first
 workflow already writes. Nothing moves into the shared layer until a workflow in use has needed it.
@@ -212,6 +212,8 @@ where a team tests whether it has reached this state; that stage sets the criter
 - [Validators](validators.html), [Skills with evals](skills-and-evals.html) and
   [Adapters](adapters.html): the kit's other parts.
 - [Workflow catalog](workflow-catalog.html): the list of workflows the factory draws on.
+- [Pull-request verification](pull-request-verification.html): whether one revision of a change may join the mainline.
+- [Incident feedback](incident-feedback.html): which earlier control changes after an incident.
 - [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
   incident.
 - [Inspect and Adapt](inspect-and-adapt.html): the periodic checkpoint at which delivery evidence

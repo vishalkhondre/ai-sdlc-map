@@ -7,7 +7,7 @@ title: Workflows
 summary: A workflow is one delivery decision run end to end, with a trigger, an agent task, automated checks, a named human decision, an evidence record and one owner.
 key_terms: [workflow, three-roles, risk-tier, failure-path, evidence-handoff, could-not-run, evidence-record, gate, validator, review-skill, specification-readiness, independent-basis, harness-engineering, feedback-path, software-factory, export-example]
 sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, spec-kit, github-status-checks, safe-inspect-and-adapt, scrum-guide-2020]
-related: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, software-factory, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, lifecycle-levels]
+related: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, software-factory, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, lifecycle-levels, pull-request-verification, incident-feedback]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -68,7 +68,7 @@ measures the effect of defining work this way.
 
 The table gives each part, what it holds, and how it reads for one running example: verifying a
 pull request for the customer-record export, a feature that lets users export customer records
-(the pull-request verification entry in the [workflow catalog](workflow-catalog.html#W23)).
+(the pull-request verification entry in the [workflow catalog](workflow-catalog.html#W23); see the [Pull-request verification](pull-request-verification.html) page).
 
 | Part | What it holds | In the export example |
 |---|---|---|
@@ -294,6 +294,8 @@ decides which workflow a team builds first.
   evidence and feedback.
 - [Workflow catalog](workflow-catalog.html): the list of workflows across the lifecycle,
   including [pull-request verification](workflow-catalog.html#W23).
+- [Pull-request verification](pull-request-verification.html): whether one revision of a change may join the mainline.
+- [Incident feedback](incident-feedback.html): which earlier control changes after an incident.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
   exit criteria for an item of work.
 - [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to

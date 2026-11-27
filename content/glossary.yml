@@ -759,3 +759,62 @@
     Gotel and Finkelstein (1994) describe it: the ability to describe and follow the life of a
     requirement forwards and backwards.
   match: ["traceability spine"]
+
+- id: pre-integration-review
+  term: Pre-integration review
+  attribution: adopted
+  source: fowler-branching-patterns
+  definition: >-
+    Martin Fowler's name for the branching pattern in which every commit to the mainline is
+    peer-reviewed before the mainline accepts it; he describes the pull request as a mechanism that
+    combines feature branching with this kind of review. On this site it is the practice the
+    pull-request verification workflow puts into a recorded decision for one revision.
+  match: ["pre-integration review"]
+
+- id: canary-release
+  term: Canary release (canarying)
+  attribution: adopted
+  source: fowler-canary-release
+  also: [sre-workbook-canarying]
+  definition: >-
+    Danilo Sato's description on martinfowler.com: rolling out a change slowly to a small subset of users
+    before the entire infrastructure, with rollback by rerouting users back to the old version. Google's
+    Site Reliability Workbook defines canarying as a partial and time-limited deployment of a change in a
+    service and its evaluation, in which the part that receives the change, the canary, is judged against
+    the remainder, the control, and absolute measures such as service level objectives are used as well.
+  match: ["canary release", "canarying"]
+
+- id: service-level-objective
+  term: Service level objective (SLO)
+  attribution: adopted
+  source: deployverif-sre-book-slo
+  definition: >-
+    From Google's Site Reliability Engineering book: a target value or range of values for a service level
+    that is measured by a service level indicator (SLI), where an SLI is a carefully defined quantitative
+    measure of some aspect of the level of service provided. The book calls SLIs and SLOs crucial elements
+    in the control loops used to manage systems.
+  match: ["service level objective", "service level objectives"]
+
+- id: postmortem
+  term: Postmortem
+  attribution: adopted
+  source: incident-sre-book-postmortem
+  also: [google-sre-postmortem]
+  definition: >-
+    A written record of an incident, its impact, the actions taken to mitigate or resolve it, its root
+    causes and the follow-up actions to prevent it recurring, in the definition of Google's site
+    reliability engineering (SRE) book. The SRE book and workbook describe it as blameless: it looks
+    for contributing causes in the system without blaming any person or team.
+  match: ["postmortem", "postmortems"]
+
+- id: regression-testing
+  term: Regression testing
+  attribution: adopted
+  source: incident-istqb-regression-testing
+  also: [incident-istqb-confirmation-testing, istqb-ctfl-4]
+  definition: >-
+    In the ISTQB glossary, a type of change-related testing that detects whether defects have been
+    introduced or uncovered in unchanged areas of the software. The same glossary separates it from
+    confirmation testing, which follows the fix of a defect and confirms that the failure it caused
+    does not reoccur.
+  match: ["regression testing"]

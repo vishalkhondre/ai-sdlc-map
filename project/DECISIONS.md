@@ -325,3 +325,19 @@ legend colours are keyed to a band's position on the map, not to its name. The d
 itself is kept in the author's notes, outside this repository. Rules out: fonts loaded from a third
 party at runtime, colour as the only carrier of meaning, and any resemblance to an employer's
 design system.
+
+## D-032 · How the 1.6.0 workflow pages meet the template without restating catalog rows
+Decided 2026-11-27 by the session that built edition 1.6.0, under the author's instruction to complete
+the map overnight without waiting for his review; recorded for the author to confirm or reverse. The
+workflow template's sections (Decision, Trigger, Agent task, Checks, Human decision, Outputs) match the
+catalog-row fields that D-030 forbids restating, and four of the seven rows (W01, W08, W25, W28) carry
+1.4.x findings. Each workflow page therefore fills every section from public sources in its own
+terms, links its row (`workflow-catalog.html#Wnn`) and the Core Workflows page for the row's own
+wording and for how an agent is limited, and keeps list-shaped passages (failure paths, overrides,
+agent limits) to what a cited source states or to the template minimum. Design conformance is framed
+as consistency with recorded architecture decisions, principles and constraints; its first draft,
+built around the row's own framing, was discarded after the sweep. Smaller choices: the seven pages
+follow map order in the section navigation; the catalog rows do not yet link to their pages (that
+changes the live catalog, so it waits for the 1.4.x fix edition or the author); the SAFe reference
+model page is not edited; no new diagram. Rules out: a workflow page that copies its row into the
+template's sections.

@@ -7,7 +7,7 @@ title: Specification
 summary: Specification turns intent into a specification a team can plan from, with testable acceptance criteria and its open questions recorded; with coding agents, an agent proposes questions, checks settle what a tool can decide, and named owners decide when the specification is ready.
 key_terms: [ai-sdlc, specification-readiness, spec-driven-development, independent-basis, workflow, evidence-record, evidence-handoff, failure-path, harness-evaluation, export-example]
 sources: [scrum-guide-2020, wake-invest, istqb-acceptance-criteria, istqb-testability, fowler-given-when-then, nist-ssdf, safe-team-backlog-refinement, agile-alliance-dor, requirements-ambiguity-llm, spec-kit, bockeler-sdd, spec-kit-sdd, dora-small-batches]
-related: [idea, design, definition-of-ready-and-done, traceability-spine, workflows, evidence-schema, skills-and-evals, rule-registry]
+related: [idea, design, definition-of-ready-and-done, traceability-spine, workflows, evidence-schema, skills-and-evals, rule-registry, spec-readiness]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -19,7 +19,7 @@ account of which questions were answered and which remain open, and a
 [readiness record](glossary.html#specification-readiness) that later phases read. The phase answers
 one question: is this specification clear enough to plan from, with the uncertainty that remains made
 visible? The decision is taken in the catalog's
-[Specification readiness](workflow-catalog.html#W04) workflow.
+[Specification readiness](workflow-catalog.html#W04) workflow (see the [Specification readiness](spec-readiness.html) page).
 
 In an AI SDLC (the software development lifecycle with AI agents doing part of the work), the phase
 carries more weight than before. Where a specification is silent, an agent working from it still has
@@ -119,7 +119,7 @@ cases on [Skills with evals](skills-and-evals.html).
 The workflow catalog uses its own phase names; this phase corresponds to the catalog's phase 1,
 Specify. Each entry below names a workflow by its catalog title and links its row.
 
-- [Specification readiness](workflow-catalog.html#W04): the decision that closes the phase.
+- [Specification readiness](workflow-catalog.html#W04) (see the [Specification readiness](spec-readiness.html) page): the decision that closes the phase.
 - [Design-to-specification handoff](workflow-catalog.html#W03): where design work feeds the
   specification, at the start of the phase.
 - [Brownfield pre-flight analysis](workflow-catalog.html#W05): alongside the writing of the
@@ -135,7 +135,7 @@ Plan & design. The idea of readiness itself is covered under
 
 Work enters this phase from [Idea](idea.html) and leaves for [Design](design.html). The phase has one
 gate, at its exit: the readiness decision in
-[Specification readiness](workflow-catalog.html#W04). What starts that decision, which checks run and
+[Specification readiness](workflow-catalog.html#W04) (see the [Specification readiness](spec-readiness.html) page). What starts that decision, which checks run and
 who decides are recorded in the catalog row and are not repeated here. The gate passes when the
 required checks have passed and the named owners have decided. A passing check never stands in for an
 owner's decision: checks confirm that a specification is complete in form, and only a person can say
@@ -200,6 +200,7 @@ roles that take part in the phase are these.
 - [Skills with evals](skills-and-evals.html): the evaluation cases that test how an agent handles an
   open question.
 - [Rule registry](rule-registry.html): where rules such as R-042 and their owners are kept.
+- [Specification readiness](spec-readiness.html): whether planning can start from one revision of a specification.
 - Workflow catalog: [Specification readiness](workflow-catalog.html#W04),
   [Design-to-specification handoff](workflow-catalog.html#W03),
   [Brownfield pre-flight analysis](workflow-catalog.html#W05),

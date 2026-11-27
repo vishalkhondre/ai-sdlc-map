@@ -7,7 +7,7 @@ title: Release
 summary: Release decides whether a candidate is fit to reach its users, on evidence recorded for its exact revision, and leaves a record of that decision; an agent prepares, checks confirm and a named person decides.
 key_terms: [ai-sdlc, workflow, three-roles, gate, evidence-record, evidence-handoff, could-not-run, failure-path, deploy-versus-release, export-example]
 sources: [sre-book-release-engineering, dora-streamlining-change-approval, keep-a-changelog, keep-a-changelog-2, semver, fowler-feature-toggles, fowler-dark-launching, safe-release-on-demand, dora-continuous-delivery, scrum-guide-2020, nist-ssdf, slsa-provenance, istqb-test-completion, dora-2025-announcement, bockeler-sensors]
-related: [deploy, operate, develop-build-qa, definition-of-ready-and-done, traceability-spine, workflows, evidence-schema, validators, software-factory, rule-registry]
+related: [deploy, operate, develop-build-qa, definition-of-ready-and-done, traceability-spine, workflows, evidence-schema, validators, software-factory, rule-registry, release-readiness, deploy-verification]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -123,8 +123,8 @@ reads "release readiness", the workflow of that name. In the
 [workflow catalog](workflow-catalog.html), whose phase names differ from the map's, both sit in its
 phase 6, which the catalog also calls Release, and two cross-lifecycle rows reach into it.
 
-- [Release readiness](workflow-catalog.html#W25): the decision this phase exists to make.
-- [Deployment and post-deploy verification](workflow-catalog.html#W26): the neighbouring decision,
+- [Release readiness](workflow-catalog.html#W25) (see the [Release readiness](release-readiness.html) page): the decision this phase exists to make.
+- [Deployment and post-deploy verification](workflow-catalog.html#W26) (see the [Deploy verification](deploy-verification.html) page): the neighbouring decision,
   covered on the [Deploy](deploy.html) page.
 - [Change control](workflow-catalog.html#W32): a cross-lifecycle row that a release can fall under.
 - [Exception handling](workflow-catalog.html#W33): a cross-lifecycle row; a waiver sought at
@@ -222,6 +222,8 @@ identity it runs under has no permission to write a decision.
   behind the records this phase reads.
 - [Validators](validators.html): the deterministic checks whose results the record holds, this
   site's adaptation of Birgitta Böckeler's computational sensors[^bockeler-sensors].
+- [Release readiness](release-readiness.html): whether a release candidate is fit to go out.
+- [Deploy verification](deploy-verification.html): whether a running revision stays or the way back is taken.
 - Workflow catalog rows: release readiness ([W25](workflow-catalog.html#W25)), deployment and
   post-deploy verification ([W26](workflow-catalog.html#W26)), change control
   ([W32](workflow-catalog.html#W32)) and exception handling ([W33](workflow-catalog.html#W33)).
