@@ -218,7 +218,7 @@
           <div class="wf-cell checks"><span class="k">The checks</span>${esc(w.checks)}</div>
           <div class="wf-cell people"><span class="k">The people</span>${esc(w.people)}</div>
         </div>
-        <div class="wf-row"><span class="k">Trigger</span><span>${esc(w.trigger)}</span><span class="k">Evidence record</span><span>${esc(w.evidence)}</span><span class="k">Applies to</span><span>${w.applies_to.join(', ')}</span>${w.notes ? `<span class="k">Notes</span><span>${esc(w.notes)}</span>` : ''}</div>
+        <div class="wf-row"><span class="k">Trigger</span><span>${esc(w.trigger)}</span><span class="k">Evidence record</span><span>${esc(w.evidence)}</span><span class="k">Applies to</span><span>${w.applies_to.join(', ')}</span>${w.notes ? `<span class="k">Notes</span><span>${esc(w.notes)}</span>` : ''}${w.page ? `<span class="k">Workflow page</span><span><a href="${esc(w.page)}">${esc(w.name)}</a></span>` : ''}</div>
         <div class="wf-nav">${i > 0 ? `<button class="btn small" type="button" data-go="${ids[i - 1]}">← ${ids[i - 1]}</button>` : '<span></span>'}<a class="btn small" href="${esc(D.definition.url)}" rel="noopener">${esc(D.definition.label)}</a>${i < ids.length - 1 ? `<button class="btn small" type="button" data-go="${ids[i + 1]}">${ids[i + 1]} →</button>` : '<span></span>'}</div>`;
       $$('[data-go]', body).forEach(b => b.addEventListener('click', () => openDetail(b.dataset.go)));
       detail.hidden = false; document.body.style.overflow = 'hidden'; history.replaceState(null, '', '#' + id);

@@ -4,9 +4,9 @@ type: concept
 band: core
 map_box: Engineering Kit · rule registry
 title: Rule registry
-summary: The single list of the rules a team relies on, each with a stable identifier, a statement, a route (gate, judgment or guidance), an owner and its known gaps, which validators, skills and evidence records refer to by identifier.
-key_terms: [rule-registry, rule-route, architecture-decision-record, gate, validator, skill, review-skill, evidence-record, deterministic-gate, feedback-path, engineering-kit, export-example]
-sources: [bockeler-harness, bockeler-sensors, openai-harness, fitness-function, owasp-asvs, owasp-asvs-v4-users, nist-800-53, nist-oscal, cwe-deprecated, nygard-adr, tw-radar-adr, tw-radar-security-policy-as-code, nist-800-37, sadowski-tricorder]
+summary: The single list of the rules a team relies on, each with a stable identifier, a statement, how it is enforced, an owner and its known gaps, which validators, skills and evidence records refer to by identifier.
+key_terms: [rule-registry, architecture-decision-record, gate, validator, skill, review-skill, evidence-record, deterministic-gate, feedback-path, engineering-kit, export-example]
+sources: [bockeler-harness, bockeler-sensors, openai-harness, fitness-function, owasp-asvs, owasp-asvs-v4-users, nist-800-53, nist-oscal, cwe-deprecated, nygard-adr, tw-radar-adr, tw-radar-security-policy-as-code, nist-800-37, sadowski-tricorder, sadowski-cacm-2018, sarif-2-1-0, nasa-swe-052, dora-metrics]
 related: [engineering-kit, validators, skills-and-evals, evidence-schema, harness-engineering, workflows]
 review_record: content/reviews/1.4.0-core.md
 ---
@@ -14,12 +14,11 @@ review_record: content/reviews/1.4.0-core.md
 ## Definition
 
 A rule registry is the one place where a team lists the rules its software must keep, one entry
-per rule. Each entry carries a stable identifier, a statement of the rule in a sentence or two, a
-route that says how the rule is enforced (a gate, a judgment or guidance), a named owner, and the
+per rule. Each entry carries a stable identifier, a statement of the rule in a sentence or two, a record of how the rule is enforced (the checks that enforce it, the named
+person who decides on it, or both), a named owner, and the
 known gaps in that enforcement. Other parts of the engineering environment point at entries by
 identifier: a validator names the rules it enforces, a skill names the rules it supports, and an
-evidence record names the rule checks that ran. "Rule registry" is a working name coined by this
-site, not an industry term; it is one of the five parts of the
+evidence record names the rule checks that ran. "Rule registry" is a working name coined by this site, not an industry term; the registry is one of the five parts of the
 [Engineering Kit](engineering-kit.html).
 
 ## Why it matters
@@ -34,9 +33,9 @@ breaks it, and nobody can say afterwards whether it held.
 
 A registry fixes three things that scattered rules cannot. First, identity: once a rule has an
 identifier, a check, a skill and a run record can all say which rule they concern, and the team can
-ask which rules have no check at all. Second, strength: the route makes explicit whether a rule is
-enforced by a machine, by a named person's call, or only by the agent's good behaviour, so a passing
-build is not mistaken for proof that every rule held. Third, responsibility: an owner per rule means
+ask which rules have no check at all. Second, strength: the entry says how firmly the rule is held by naming the
+checks that enforce it, the person who decides on it, or both, so a rule that rests on nothing more
+than a sentence in an instruction file shows up as a gap instead of passing for an enforced one. Third, responsibility: an owner per rule means
 a failing or noisy rule is somebody's problem to fix rather than everybody's reason to ignore it.
 
 The idea is familiar from security practice. Requirement and control catalogues give every item an
@@ -57,14 +56,14 @@ example, a feature that lets users export customer records.
 |---|---|---|
 | Identifier | A short code that never changes and is never reused | R-042 |
 | Statement | The rule in one or two plain sentences | An identity may export only the customer records it may read |
-| Route | Gate, judgment or guidance, and for a split rule which part takes which route | Gate |
+| Enforcement | The checks that enforce the rule, named by validator identifier, the named person or role who decides on it, or both; an entry with neither says so openly | The access validator, a required check on every change that touches an export path, including background workers |
 | Owner | The named person or role who answers for the rule | The security owner |
 | Known gaps | What the enforcement does not cover, and gaps since closed | None open. The background worker's broader query was recorded here as a gap and closed when the validator was extended to cover it |
 | External reference | An outside control or standard the rule implements, if any | SEC-004, the security-standard entry it serves |
 | Status | Active, superseded or retired, with a pointer to any replacement | Active |
 
-Two further fields earn their place once the registry is in use. A gated rule records its rollout
-stage, report-only or required, and the date by which it is planned to become required; the
+Two further fields earn their place once the registry is in use. A rule enforced by a check records its rollout
+stage, report-only or required; the
 [Validators](validators.html) page describes that path. And each entry links to the record of why
 the rule exists and how it has changed, in the manner of an architecture decision record: Michael
 Nygard's short, numbered records of a decision's context, the decision itself, its status and its
@@ -95,36 +94,37 @@ MITRE's weakness list keeps deprecated entries, grouped in a view of their own, 
 point to its replacement[^cwe-deprecated]. Nygard's decision records are numbered in sequence, the
 numbers are not reused, and a reversed decision is kept and marked superseded[^nygard-adr].
 
-### Choosing a route
+### Deciding how each rule is enforced
 
-The route is set when a rule enters the registry, and it turns on one question: could a program
-tell, from the code, the configuration or the running system, that the rule has been broken, and
-give the same answer every time without a stream of false alarms that people learn to ignore? A rule
-for which the answer is yes is routed to a gate, a deterministic check that runs locally and in the
-pipeline and can block a merge. A rule whose breach only a person with context can recognise is
-routed to judgment: a named person decides against written criteria, and the decision is recorded.
-Either way, the agent can also be told why the rule exists, through a skill or its instructions, and
-that helps it get the change right first time. It is still not enforcement. An instruction asks; a
-gate refuses.
+For each rule the team asks what can tell, on any given change, whether the rule held. Where a
+program can detect a violation and give the same verdict every time on the same input, the rule
+suits a validator, and the entry names that validator by its identifier. Rules about layers and
+dependencies often qualify, because architecture goals can be written as executable tests that run
+with the build[^fitness-function]. Where the answer turns on purpose or context, such as whether the
+fields in an export are the ones its users need, the entry names the person or role who decides,
+usually at review. Many rules need both: a check for the part a program can see and a named decider
+for the rest, with the known-gaps field saying where the check stops.
 
-A rule routed to guidance alone is one that no tool can check and nobody needs to sign off, such as
-a naming preference with no effect on correctness. It is the weakest route, and the registry makes
-that visible.
+Whether a check may stop a change is a separate choice from whether it exists. Experience with
+static analysis at scale is that a check which breaks the build should be easy to understand, should
+point to a fix and should never stop correct code, and that existing violations are cleared from the
+codebase before the check is switched on[^sadowski-cacm-2018]. As recommended practice, an entry
+records a rule as enforced by a required check, one whose failure stops the change, only once such
+a check exists and the change host lists it among the checks a change must pass. Until then the
+entry names the check as report-only and names who decides on the rule in the meantime. In the
+running example, R-042 is enforced by the access validator as a required check; R-017's row limit
+is enforced by the load scenario's check, and the rule's owner decides on any request to exceed it.
 
-Judgment suits rules whose breach depends on meaning rather than form. A program can list the
-columns a customer-record export returns, but whether a newly added column counts as personal data
-depends on what it holds and why the requester needs it, and a person decides that. Where a rule
-about structure can be written as an executable test, as many architecture goals can[^fitness-function],
-it belongs with a gate instead.
+A rule with neither an enforcing check nor a named decider is not enforced, however clearly it is
+written. As recommended practice, the registry shows such a rule openly, with the missing
+enforcement recorded as an open known gap. An instruction file or a skill can still help the agent
+keep the rule, but neither counts as enforcement, because nothing refuses the change that breaks it.
 
-A single rule can take two routes. R-017 limits the size of a customer-record export: the limit
-itself is a gate, because a check can count rows, while a request to exceed it goes to judgment,
-because only a person with the context can weigh a one-off business need against the risk.
-
-The route is a different axis from Birgitta Böckeler's regulation categories, which group what a
-harness regulates into maintainability, architecture fitness and behaviour[^bockeler-harness]. A
-category says what a control is about; the route says how strongly it is enforced. The pairing is
-this site's own reading, not Böckeler's.
+How a rule is enforced is a different question from which of Birgitta Böckeler's regulation
+categories it falls under; those categories group what a harness regulates into maintainability,
+architecture fitness and behaviour[^bockeler-harness]. A category says what a control is about; the
+entry's enforcement field says how the rule is enforced. Reading the two together is this site's own
+approach, not Böckeler's.
 
 ### How the rest of the kit refers to rules
 
@@ -138,7 +138,7 @@ block. An evidence record lists which rule checks ran on a change and what each
 returned.
 
 With those references in place, questions that are otherwise guesswork have answers read straight
-from data: which validator enforces R-042, which gated rules have no validator yet, which skills
+from data: which validator enforces R-042, which rules meant for a required check have no validator yet, which skills
 still cite a retired rule. The [Evidence schema](evidence-schema.html) and
 [Skills with evals](skills-and-evals.html) pages describe the other end of each reference.
 
@@ -147,24 +147,21 @@ still cite a retired rule. The [Evidence schema](evidence-schema.html) and
 **Entering.** A rule enters when someone writes its entry and the owner accepts it. Agent
 instruction files are a good first place to look, because they often hold rules in passing: a line
 such as "the export job never writes customer email addresses to its logs" is a rule without an
-identifier. As recommended practice, each such line becomes an entry with a route and an owner, and
+identifier. As recommended practice, each such line becomes an entry that records how the rule is enforced and
+names an owner, and
 the instruction stays where it is but cites the identifier, so the agent, a check and a reviewer all
 refer to the same rule.
 
-**Promoting.** The usual change of route is upward. A rule starts as guidance or judgment and moves
-to a gate once a tool can check it and it keeps being broken or keeps coming up in review. This is
-one step of the feedback path, in which a recurring review comment becomes a rule and a rule that
-keeps being violated becomes a gate. In the export example, reviewers keep writing that exports
-should leave out the internal notes fields. The comment enters the registry as a guidance rule with
-its own identifier. When the same miss appears in change after change, a validator is written, the
-route becomes gate, and the guidance stays behind only to explain why. One published account of
-harness engineering reports the same move: review comments and bugs are turned into documentation
-or tooling, and a rule is promoted into code when documentation is not enough[^openai-harness].
-The recommended practice is to write a gate for a miss that has already happened, rather than for
-one that might.
+**Promoting.** A rule that people have been checking by hand, or that an instruction only reminds
+the agent about, gains an enforcing check once a tool can check it and the rule keeps being broken.
+One model vendor's published account of harness engineering describes the same move: architectural
+constraints enforced through automated checks rather than through reminders[^openai-harness]. As
+recommended practice, the new check starts report-only, as the [Validators](validators.html) page
+describes, and the entry's enforcement field names it once it is required.
 
-**Demoting.** The route can also go down. A check found to be unreliable is treated as judgment
-until it is fixed, because a gate that raises false alarms trains people to override it. Checks that
+**Demoting.** A check found to be unreliable stops being required until it is fixed, and in the
+meantime the entry names the person who decides on the rule, because a check that raises false
+alarms trains people to override it. Checks that
 block need to be trusted: one large program-analysis platform put an analyser on probation once its
 not-useful rate, measured from developer feedback on its findings, reached 10 per cent, and could
 switch it off above 25 per cent[^sadowski-tricorder].
@@ -177,7 +174,7 @@ ran against, so a result is always read against the rule as it stood when the ch
 
 **Exceptions.** An exception lets one change depart from a rule without changing the rule. It is
 logged against the rule's identifier, with who allowed it and when it lapses. Several live
-exceptions against the same rule suggest that the rule, or its route, needs another look. A team may
+exceptions against the same rule suggest that the rule, or the way it is enforced, needs another look. A team may
 also mark some rules as never open to exception; an access rule such as R-042 is the obvious case.
 Who may grant an exception is a question of decision rights, which the map places in the operating
 model box of its enablement band; the registry records that an exception was granted.
@@ -200,21 +197,17 @@ inspects, so a passing result is read together with the gaps listed against the 
 validator covered only the export request itself, the background worker's broader query was
 written down as a gap; extending the validator closed it, and the entry keeps the note.
 
-One simple measure, recommended by this site, shows whether the registry's routes are real: the
-number of active rules routed to a gate that no required validator cites. It can be read straight
-from the registry and the validators' declarations, and it falls to zero only when every gated rule
-is actually enforced.
-
-### Which rules go in first
-
-No public study says how many rules a registry should start with. As recommended practice, the
-first entries come from the team's own recent history: the incidents and review comments of the last
-few months show which rules actually get broken, and a handful of those is enough to begin. A long
-first list tends to produce noise, and a check switched off for noise is hard to switch back on.
-These first rules and their validators, with the kit's `verify` command, which runs the same checks
-in the same way on a developer's machine and in the pipeline, and an evidence schema, make up the
-kit's deterministic floor. The registry then grows one rule at a time, as each new check earns the
-team's trust.
+As recommended practice, the registry also gives a plain reading of whether its gates are real:
+the list of rules recorded as enforced by a required check that no required validator cites by
+identifier. A report-only
+validator does not count, because it cannot refuse anything. Since each validator declares the
+identifiers it enforces, much as each result in the SARIF format for analysis output can carry a
+rule identifier[^sarif-2-1-0], the list is read from data rather than compiled by hand.
+Requirements traceability rests on the same idea: tracing requirements to their verification shows
+the requirements that nothing tests[^nasa-swe-052]. The list is compared with its own earlier
+readings, not with a target, in the way DORA advises teams to improve on their own baseline rather
+than compete with others[^dora-metrics]. An empty list says only that every rule meant for a required check has a
+check; the known gaps say what each check does not see.
 
 ## Where it sits on the map
 
@@ -235,17 +228,20 @@ matter for audit and traceability, which reads the registry but is not part of i
 - **A registry nobody reads.** The list exists as a document, but validators and skills do not cite
   it. Sign: checks whose results name no rule identifier, or rules that appear only in agent
   instruction files.
-- **Gates in name only.** An entry says gate, but its validator is missing or has stayed
-  report-only past its planned date. Sign: gated rules that no required validator cites.
-- **Speculative gates.** Checks are added for rules nobody has seen broken, and the first set is too
-  large. Sign: gates that are routinely overridden or switched off, and complaints about noise.
+- **Gates on paper.** A rule is recorded as enforced by a required check, but that check does not
+  exist, does not cite the rule's identifier or still runs report-only, so nothing refuses a change
+  that breaks it. Sign: rules recorded as enforced by a required check that no required validator
+  cites by identifier, or a merged change whose evidence record shows
+  that rule's check failed.
 - **Rules without a reason.** Entries carry no link to why the rule exists. Sign: nobody can say
   whether a rule is still needed, so nothing is ever retired.
 - **Green read as full assurance.** Known gaps are left empty. Sign: a rule whose check covers only
   the place where an operation is triggered, with nothing recorded about other code that reaches the
   same data.
-- **Reused or renumbered identifiers.** An identifier is given to a new rule or recomputed after a
-  reorganisation. Sign: old run records or review comments that point at a rule they never meant.
+- **Identifiers that change meaning.** A retired identifier is handed to a new rule, or entries are
+  renumbered when the registry is reorganised, against the practice under
+  [Identifiers that stay put](#identifiers-that-stay-put). Sign: an old run record or review comment
+  whose identifier now leads to a rule that says something different.
 - **Exceptions in place of change.** The same departure is approved again and again. Sign: several
   live exceptions against one rule identifier.
 - **No real owner.** An entry names a team alias or no one. Sign: a failing or noisy rule that stays
@@ -254,7 +250,7 @@ matter for audit and traceability, which reads the registry but is not part of i
 ## Related
 
 - [Engineering Kit](engineering-kit.html): the package the registry belongs to, and its other parts.
-- [Validators](validators.html): the deterministic checks that enforce gated rules, and the path
+- [Validators](validators.html): the deterministic checks that enforce rules, and the path
   from report-only to required.
 - [Skills with evals](skills-and-evals.html): packaged guidance for the agent, and how skills cite
   the rules they support.
@@ -262,7 +258,7 @@ matter for audit and traceability, which reads the registry but is not part of i
 - [Harness engineering](harness-engineering.html): the discipline of deciding what the agent reads,
   what a machine checks and what a person decides.
 - [Workflows](workflows.html): the unit of delivery that runs the checks the registry defines.
-- [Terminology](glossary.html#rule-registry): the rule registry, rule routes and the terms above.
+- [Terminology](glossary.html#rule-registry): the rule registry and the terms above.
 - [Workflow catalog](workflow-catalog.html): every workflow, with the checks and decisions it holds.
 
 ## Sources
@@ -276,4 +272,7 @@ matter for audit and traceability, which reads the registry but is not part of i
 - Regulation categories, sensors, and promoting rules into tooling: [^bockeler-harness],
   [^bockeler-sensors], [^openai-harness].
 - Allocating controls to where they are provided: [^nist-800-37].
-- Why checks that block need to be trusted: [^sadowski-tricorder].
+- Why checks that block need to be trusted, and what makes a check fit to stop a build:
+  [^sadowski-tricorder], [^sadowski-cacm-2018].
+- Reading enforcement from data, and finding requirements nothing verifies: [^sarif-2-1-0],
+  [^nasa-swe-052]; comparing a measure with a team's own baseline: [^dora-metrics].

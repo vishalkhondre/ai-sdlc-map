@@ -52,7 +52,7 @@ The run reads the plan revision itself and the records against which it is judge
   Thoughtworks Technology Radar recommends keeping them in source control beside the
   code[^tw-radar-adr], which lets the run read the same set the code was built against.
 - **The rules the plan touches**, read from their [Rule registry](rule-registry.html) entries,
-  including how each rule is enforced ([Choosing a route](rule-registry.html#choosing-a-route)).
+  including how each rule is enforced ([Deciding how each rule is enforced](rule-registry.html#deciding-how-each-rule-is-enforced)).
 - **The project configuration**, which holds the project's own settings and the checks it has
   ([Engineering Kit](engineering-kit.html#project-configuration)).
 - **The threat-model answers for the change.** The Threat Modeling Manifesto frames threat modelling

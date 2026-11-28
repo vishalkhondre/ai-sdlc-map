@@ -25,12 +25,12 @@ workflows:
 - id: W01
   phase: '0'
   name: Intake and classification
-  decision: What kind of work is this, and which lane does it enter?
+  page: intake-and-triage.html
+  decision: Should this item be admitted now, and as one item or several?
   trigger: Item enters the backlog
-  agent: Draft classification (feature, bug, spike, production bug); propose change categories, size and initial risk tier
-    from the description
-  checks: Required intake fields present; size within the feature cap; categories from the allowed set
-  people: Product owner classifies; tech lead confirms lane
+  agent: Classify the item by kind; list the rules it touches; show likely duplicates and where it would sit in the backlog; suggest a risk tier
+  checks: Required fields present; user or stakeholder served is named; every rule touched found in the registry
+  people: Product owner decides, directly or through a delegate; developers size the work
   evidence: Intake record
   applies_to:
   - All
@@ -65,11 +65,12 @@ workflows:
 - id: W04
   phase: '1'
   name: Specification readiness
+  page: spec-readiness.html
   decision: Is the specification ready to plan from?
   trigger: Specification marked ready for planning
   agent: Scan for ambiguity, missing edge cases, untestable acceptance criteria, unstated non-functional requirements; propose
     risk tier and open questions
-  checks: Required sections present; every acceptance criterion has an identifier; mandatory questions have recorded answers
+  checks: No open clarification markers; every acceptance criterion has an identifier and a testable form (given/when/then is one); each criterion traces to a requirement; every cited rule has a registry entry
   people: Product owner resolves intent; engineering or security owner confirms constraints
   evidence: Readiness record
   applies_to:
@@ -119,17 +120,17 @@ workflows:
 - id: W08
   phase: '2'
   name: Plan and architecture conformance
-  decision: Is the technical approach acceptable, and which gates apply?
+  page: design-conformance.html
+  decision: Does the proposed plan agree with the architecture decisions and constraints already recorded?
   trigger: Readiness record accepted
-  agent: Draft plan from the specification; check against the constitution; identify boundaries crossed and change categories;
-    draft gate declaration
-  checks: Constitution rules routed to gates are checked; gate declaration committed with lane, categories and named reviewers
-  people: Tech lead owns the plan; architect approves exceptions
-  evidence: Plan with gate declaration
+  agent: Draft design material for review; compare the plan with decision records and rule entries; flag apparent departures as advice
+  checks: Fitness functions for recorded decisions run against the plan; consumer contracts run against any proposed interface; every rule the plan touches has a check
+  people: An architect who did not write the plan decides conformance
+  evidence: Design conformance record, with any new or superseding ADRs
   applies_to:
   - All
   maturity: First
-  notes: Where the risk tier becomes the gate set.
+  notes: Conformance only; trade-off questions go to W24.
 - id: W09
   phase: '2'
   name: API contract design
@@ -160,10 +161,10 @@ workflows:
   phase: '2'
   name: Security design review
   decision: Does the design meet the security requirements and mitigations?
-  trigger: Plan for a change with tier-3 security categories
+  trigger: Plan accepted for a change that touches a security-relevant category or carries a threat model record
   agent: Review the plan against the baseline and threat model; list unmitigated threats
   checks: Every required mitigation traces to a task or a rule
-  people: Security reviewer (tier 3) approves
+  people: Security owner accepts the design or returns it with the threats still unmitigated
   evidence: Security design record
   applies_to:
   - API
@@ -173,12 +174,11 @@ workflows:
 - id: W12
   phase: '2'
   name: Task traceability and test planning
-  decision: Is the work ready to start (definition of ready)?
+  decision: Does every task trace to a criterion, and every criterion to a planned test?
   trigger: Plan accepted
-  agent: Generate tasks from the plan; map every acceptance criterion to implementation and test tasks; classify each criterion
-    under the testing contract
-  checks: No orphan criteria; no task without a criterion; test tasks precede implementation tasks; stable task identifiers
-  people: Dev lead confirms sequencing; QA lead owns the testing-contract classification
+  agent: Split the accepted plan into small tasks tagged with criterion identifiers; propose tests for each criterion
+  checks: Every task cites a criterion; every criterion has at least one planned test; each task small enough for a single review
+  people: Engineering lead verifies the agent's task-to-criterion mapping and accepts the breakdown
   evidence: Tasks file with traceability
   applies_to:
   - All
@@ -192,7 +192,7 @@ workflows:
   agent: Implement the task; run the kit's verify command; self-correct within the retry limit; write the commit message with task
     identifier
   checks: Lint, type check, unit tests, sandbox and permission boundaries, command restrictions, branch protection
-  people: Developer directs and inspects; stops the loop on repeated failure
+  people: Developer directing the agent stays the change's author and judges the task done
   evidence: Commit linked to the task with check results
   applies_to:
   - All
@@ -243,7 +243,7 @@ workflows:
   decision: Does the change meet its acceptance criteria?
   trigger: Implementation tasks complete, or on every pull request for the criteria in scope
   agent: Generate test scenarios from acceptance criteria; separate generated from pre-existing tests; propose test data
-  checks: Tests execute in CI; results stored with criterion identifiers; changed-code coverage against baseline
+  checks: Every criterion in scope has a result carrying its identifier; generated tests marked apart from existing ones; each new test seen to fail before the behavior exists
   people: QA lead judges scenario adequacy and coverage gaps
   evidence: Test results with criterion identifiers
   applies_to:
@@ -258,7 +258,7 @@ workflows:
   agent: Trace access paths through the change; explain threats introduced; propose remediation
   checks: Access tests by identity; secret scanning; static analysis; dependency audit; dynamic analysis where an environment
     exists
-  people: Security owner for tier-3 categories; otherwise the reviewer
+  people: Developer resolves floor-check findings; security owner judges findings on changes in a security category
   evidence: Security check record
   applies_to:
   - All
@@ -309,16 +309,17 @@ workflows:
   decision: Does the integrated system behave, and does the business accept it?
   trigger: Feature validated at pull-request level; SIT entry criteria met
   agent: Assemble the evidence pack; draft UAT scripts from acceptance criteria; summarize open defects and dispositions
-  checks: SIT entry evidence present; environment and configuration version recorded; every criterion has a disposition
-  people: QA lead runs SIT, including manual paths that span hardware, firmware and cloud; business owner signs acceptance
+  checks: SIT exit criteria met; a recorded result in the integrated environment for every acceptance criterion
+  people: Intended users or their business representative accept; test lead confirms SIT exit
   evidence: SIT and acceptance record
   applies_to:
   - All
   maturity: Later
-  notes: Human-led; the agent assembles evidence. Manual SIT stays where paths cannot be reproduced in CI.
+  notes: Needs every integrated system present in one shared environment.
 - id: W23
   phase: '5'
   name: Pull-request verification
+  page: pull-request-verification.html
   decision: Is this change ready to merge?
   trigger: Pull request marked ready; revision changes
   agent: Compare the diff with the specification; trace affected paths; draft findings with locations and reasons; summarize
@@ -333,7 +334,7 @@ workflows:
   phase: '5'
   name: Design and architecture review
   decision: Is the design acceptable given its trade-offs?
-  trigger: Tier-3 change, or an explicit architecture decision
+  trigger: Change introduces or reverses an architecture decision, or design conformance refers a trade-off question
   agent: Summarize the decision, alternatives considered and consequences
   checks: None that can be mechanized
   people: Named specialist reviewer with capacity
@@ -345,12 +346,13 @@ workflows:
 - id: W25
   phase: '6'
   name: Release readiness
+  page: release-readiness.html
   decision: Is this release safe to deploy?
   trigger: Release candidate tagged
   agent: Aggregate evidence across the changes; draft release notes and known risks; check for missing records
   checks: All required records present and current for the candidate revision; rollback path demonstrated; configuration version
     recorded; final license and security gap checks
-  people: Release owner approves; mandatory organizational controls (CAB, security sign-off) unchanged
+  people: Named release owner decides; W32 sets the approver where change control applies
   evidence: Release record
   applies_to:
   - All
@@ -359,6 +361,7 @@ workflows:
 - id: W26
   phase: '6'
   name: Deployment and post-deploy verification
+  page: deploy-verification.html
   decision: Is the deployment healthy, or do we roll back?
   trigger: Deployment started
   agent: Compare observed health to expected; summarize anomalies
@@ -385,9 +388,10 @@ workflows:
 - id: W28
   phase: '7'
   name: Incident-to-development feedback
+  page: incident-feedback.html
   decision: What must change upstream so this does not recur?
   trigger: Incident closed, or escaped defect classified
-  agent: Propose root cause; identify which check passed wrongly, was absent, or was bypassed; draft the regression case
+  agent: Gather linked records into one view; flag links it could not follow; offer a cause as a hypothesis with reasoning and rejected alternatives; propose the upstream change and a reproducing test
   checks: Proposed test reproduces the failure before the fix and passes after
   people: Owner picks the conversion (criterion, test, validator, eval) and the workflow it lands in
   evidence: Feedback record linked to the upstream change

@@ -77,7 +77,7 @@ by analogy on Cockburn's and Evans's patterns.
 
 | Stays in the core | Goes in an adapter |
 |---|---|
-| Rule identifiers, routes and owners (the rule registry) | Endpoints, authentication calls and rate-limit handling |
+| Rule identifiers, how each rule is enforced, and owners (the rule registry) | Endpoints, authentication calls and rate-limit handling |
 | Validator logic and the results it returns | Translating the tool's input into the core's interface |
 | The evidence schema and what each field means | Translating the core's results into the tool's vocabulary: a check, a status, a comment |
 | The four results a check can report: passed, failed, skipped and could_not_run | Packaging the kit in the form the tool loads |

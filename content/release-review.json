@@ -1,6 +1,6 @@
 {
   "verdict": "ACCEPT",
-  "source_sha256": "7abfab309e0a0de5c87965d341470160750e3ddfa47a5680fff53802472f62e3",
-  "report": "content/reviews/1.6.1-catalog-correction.md",
-  "report_sha256": "5ec90f358fc8dfbdca0c15b4ca8e5ee57072a415b610dd363286ef4ec8150d87"
+  "source_sha256": "436216b82cd8110252e84568d6f294aa9526baab2a5f449e13f76517348d61f1",
+  "report": "content/reviews/1.6.2-core-corrections.md",
+  "report_sha256": "571729fb26426315d6d695d200a63caa27b8956b8f660559f344339112da8ce0"
 }

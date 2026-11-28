@@ -6,7 +6,7 @@ map_box: Workflows
 title: Workflows
 summary: A workflow is one delivery decision run end to end, with a trigger, an agent task, automated checks, a named human decision, an evidence record and one owner.
 key_terms: [workflow, three-roles, risk-tier, failure-path, evidence-handoff, could-not-run, evidence-record, gate, validator, review-skill, specification-readiness, independent-basis, harness-engineering, feedback-path, software-factory, export-example]
-sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, spec-kit, github-status-checks, safe-inspect-and-adapt, scrum-guide-2020]
+sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, fowler-deployment-pipeline, fowler-nondeterminism, lean-vsm, lean-vs-manager, dora-vsm-guide, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-metrics, nist-ai-rmf, nist-ai-600-1, nist-800-53, parasuraman-manzey-2010, perry-2023, istqb-rbt, iso-29119-1, istqb-risk-level, istqb-ctfl-4, owasp-asvs, nist-glossary-least-privilege, spec-kit, github-status-checks, safe-inspect-and-adapt, scrum-guide-2020]
 related: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, software-factory, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, lifecycle-levels, pull-request-verification, incident-feedback]
 review_record: content/reviews/1.4.0-core.md
 ---
@@ -124,12 +124,13 @@ frameworks expect it too: the NIST AI Risk Management Framework calls for polici
 that define and differentiate roles and responsibilities for human-AI configurations and the
 oversight of AI systems[^nist-ai-rmf].
 
-The agent's limits come from the permissions of the identity it runs under, not from its
-instructions. In the export example, the review skill's credential can post comments on the pull
-request but holds no merge right and no write access to the check configuration, so no wording
-in a prompt can widen what it does. This is least privilege, which NIST's control catalogue
-applies to processes acting on behalf of users as well as to the users
-themselves[^nist-800-53].
+The Guardrails row is enforced through the identity the agent runs under. As recommended practice,
+each workflow grants that identity only the permissions its task needs, which is least privilege:
+each entity receives the minimum authorisations it needs to perform its
+function[^nist-glossary-least-privilege]. In the export example, nothing the agent's identity may
+do reaches the decision fields of the evidence record, so every decision there carries a person's
+name. The general principle, and the agent runtime that supplies the permissions, are covered on
+the [Harness engineering](harness-engineering.html#computational-and-inferential-controls) page.
 
 Blurring the roles fails in two ways:
 
@@ -152,22 +153,34 @@ the access design.
 
 ### Risk tiers: same definition, different cost
 
-A risk tier is a label, set when the change is planned, that decides which checks and which
-reviewers a run requires; the workflow's definition stays the same at every tier. Scaling
-verification effort to risk is established testing practice: in risk-based testing, the type and
-level of risk govern which test activities are selected and how much effort they
-receive[^istqb-rbt][^iso-29119-1]. As recommended practice, the tier follows from what the change
-touches, such as the data it reads and the rules that apply, and a lower tier never drops a rule
-that applies.
+A risk tier is the level of risk recorded for a change, and it decides how much verification the
+change receives. The workflow's definition is the same at every tier: the same nine parts, the
+same trigger, the same owner. What the tier changes is which checks a run selects and who is asked
+to decide. This is risk-based testing applied to a workflow: the selection, prioritisation and use
+of test activities and resources follow the kinds and levels of risk involved[^istqb-rbt].
+ISO/IEC/IEEE 29119-1 describes test plans and strategies in the context of risk-based testing,
+which it recommends as the basis for test prioritisation and focus[^iso-29119-1]. A risk's level
+comes from its impact and its likelihood[^istqb-risk-level], so a small change can still carry a
+high tier when getting it wrong would do serious harm. Security standards leave the depth of
+verification to the organisation in the same way: OWASP asks an organisation to analyse its risks
+and decide which verification level an application should reach[^owasp-asvs].
 
-In the export example, the change reads customer data and applies an access rule, so its tier
-calls for both the R-042 validator and the R-017 load scenario, and adds the owner of the access
-rule as a required reviewer. A change to the export button's label would run the same workflow
-with fewer checks and one reviewer.
+The customer-record export shows the contrast. The export reads customer data under R-042 and can
+produce large result sets under R-017, so its pull request runs the R-042 access validator and the
+R-017 load scenario, and the security owner decides on anything touching access, as in the table
+above. A change to the export button's label touches no customer data, involves neither rule and
+adds no load, so it runs only the checks every change runs and goes to the usual reviewer. Both
+changes pass through the same workflow; only the cost of the run differs. As recommended practice, a
+higher tier also brings in more independent review; testing guidance holds that most projects are
+best served by several levels of independence[^istqb-ctfl-4]. How many tiers a team keeps, and
+what each adds, is the team's own choice, and no public source sets a scale.
 
-The tier set at planning can turn out wrong once the diff exists, so the recommended practice is
-to work it out again for each revision. If a revision of the label change also edits the export
-query, the tier rises and the R-042 validator and the security owner join the run.
+The tier can first be proposed when the work arrives and is confirmed at specification readiness.
+The agent may propose it, but a person sets it, and the agent never sets a tier on its own
+authority. As recommended practice, the tier is revisited when what is known about the change
+moves, for example when design shows that a change thought cosmetic reads customer records; how
+often a tier set early is changed later is one of the measures on the
+[Intake and triage](intake-and-triage.html) page.
 
 ### Failure paths
 
@@ -200,6 +213,15 @@ something to fix at once rather than wave through[^fowler-ci].
 Each return also says where the problem started, and as recommended practice the record keeps
 that cause. A string of `could_not_run` results traced to one runner image is a platform fix, not
 a coding one, and the workflow's owner can see that only if returns are recorded by cause.
+
+The agent's own step can fail too: it times out, refuses the task, or returns output nobody can
+use, such as findings tied to no rule. As recommended practice, the run records that the agent's
+step did not complete, and why, rather than an empty list of findings, because people relying on an
+aid tend to miss what it fails to flag[^parasuraman-manzey-2010]. This is not a check result and is
+never written as `could_not_run` against a check. Where the agent's output is advice, the person
+deciding goes ahead without it and the record says so; where a later step needs that output, the
+run waits and cannot show a positive status. A failure that repeats goes to whoever owns the
+agent's skill or configuration.
 
 ### What a workflow hands on
 
@@ -273,9 +295,10 @@ decides which workflow a team builds first.
 - **A run too large to review.** More is attempted in one change than a reviewer can read with
   care. Sign: time spent reviewing does not grow with change size, or large diffs are approved
   with few comments. The fix is to split the work before it starts.
-- **Tiers chosen for convenience.** A change is put in a lighter tier to save time. Sign: the
-  recorded tier does not match what the change touched, or a lighter tier carries no reason and
-  no name.
+- **A lighter tier than the change warrants.** The impact of a change is read too narrowly, or the
+  agent's proposed tier is accepted without a second look, so the run skips, by design, checks the
+  change needed. Sign: a change that touches customer data or cites R-042 recorded at the lowest
+  tier.
 - **Hand-off by conversation.** The next workflow asks in chat whether security looked at the
   change. Sign: a downstream decision cites a message rather than an evidence record.
 
@@ -326,8 +349,12 @@ decides which workflow a team builds first.
   bias[^parasuraman-manzey-2010] and Perry and colleagues' study of AI code
   assistants[^perry-2023].
 - Separation of duties and least privilege: NIST's security and privacy control
-  catalogue[^nist-800-53].
-- Risk-based testing: the ISTQB glossary[^istqb-rbt] and ISO/IEC/IEEE 29119-1[^iso-29119-1].
+  catalogue[^nist-800-53] and NIST's glossary definition of least
+  privilege[^nist-glossary-least-privilege].
+- Risk-based testing and risk levels: the ISTQB glossary[^istqb-rbt][^istqb-risk-level],
+  ISO/IEC/IEEE 29119-1[^iso-29119-1] and the ISTQB Foundation Level syllabus on independent
+  testing[^istqb-ctfl-4]; choosing a verification level from risk: OWASP's Application Security
+  Verification Standard[^owasp-asvs].
 - Upstream inputs and result states: an open-source spec-driven toolkit[^spec-kit] and one change
   host's documentation on skipped checks[^github-status-checks].
 - Inspect and Adapt: Scaled Agile, Inc., *Inspect and Adapt*[^safe-inspect-and-adapt].

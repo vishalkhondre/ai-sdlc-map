@@ -5,7 +5,7 @@ band: lifecycle
 map_box: Design
 title: Design
 summary: Design settles how a specified change is to be built and records the decisions and trade-offs behind that approach; an agent prepares first versions of the written design, while trade-off judgments stay with people.
-key_terms: [ai-sdlc, risk-tier, rule-registry, rule-route, gate, fitness-function, architecture-decision-record, project-configuration, consumer-driven-contract, contract-test, workflow, three-roles, evidence-record, export-example]
+key_terms: [ai-sdlc, risk-tier, rule-registry, gate, fitness-function, architecture-decision-record, project-configuration, consumer-driven-contract, contract-test, workflow, three-roles, evidence-record, export-example]
 sources: [bockeler-sensors, sei-atam, sei-atam-2000, nygard-adr, threat-modeling-manifesto, owasp-threat-modeling-cs, nist-ssdf, fowler-evodb, fowler-blue-green, robinson-cdc, fowler-contract-test, istqb-rbt, owasp-asvs, ford-evolutionary-architectures, fitness-function, spec-kit-sdd, bockeler-harness, safe-system-architect, safe-art, scrum-guide-2020]
 related: [specification, develop-build-qa, definition-of-ready-and-done, workflows, rule-registry, engineering-kit, harness-engineering, evidence-schema, validators, design-conformance]
 review_record: content/reviews/1.5.0-lifecycle.md
@@ -195,7 +195,7 @@ by an ART"[^safe-system-architect], that is, by an Agile Release Train[^safe-art
   product[^scrum-guide-2020].
 - [Workflows](workflows.html): the decision unit, the three roles and how
   [risk tiers](workflows.html#risk-tiers-same-definition-different-cost) work.
-- [Rule registry](rule-registry.html): rules and their routes.
+- [Rule registry](rule-registry.html): rules and how each is enforced.
 - [Engineering Kit](engineering-kit.html): the project configuration that holds which checks run.
 - [Harness engineering](harness-engineering.html): computational and inferential controls.
 - [Validators](validators.html): the deterministic checks that hold design decisions on later
