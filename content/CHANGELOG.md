@@ -2,6 +2,18 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.6.2 — 2026-11-28
+
+Corrections to Core pages, the workflow catalog and the map, after a check of published text against the site's own standard for original wording.
+
+- Rule registry: each entry now records how its rule is enforced, by the checks that enforce it, the named person who decides, or both; a rule with neither is shown as an open gap. The page no longer sorts rules into named routes, and the section on choosing a route is now "Deciding how each rule is enforced". Validators, Skills with evals, Engineering Kit, Adapters, Harness engineering, Software factory, Design and Design conformance, and the rule registry terminology entry, use the same wording.
+- Workflows, Software factory, Rule registry and Validators: sections rewritten in new words; some passages and one pitfall are removed.
+- Evidence schema, Specification readiness and Pull-request verification no longer describe decision reasons chosen from a fixed list.
+- Workflow catalog: risk is described without numbered tiers, several rows' triggers, people and notes are rewritten, and seven rows link their workflow pages; the detail panel shows a "Workflow page" link.
+- Map: the context band's caption is reworded, the Rule registry step in the adoption path and one Measurement bullet are removed, and the hotfix footnote is shortened. The adoption path loses its closing line, two stage 0 items, one stage 0 measure and the stage 4 condition for moving on.
+- Terminology: new or rewritten entries for Risk tier and Review fatigue; the Rule route entry is removed; Deterministic floor is shortened.
+- References: three new entries (Sadowski et al., *Lessons from Building Static Analysis Tools at Google*; a study of habituation in human review of AI agent code; the ISTQB glossary entry for risk level) and corrected notes for ISO/IEC/IEEE 29119-1 and the ISTQB Foundation syllabus.
+
 ## 1.6.1 — 2026-11-28
 
 A correction to the workflow catalog.
@@ -44,7 +56,7 @@ Diagrams on five Core pages, and two wording fixes on the home page.
 - Workflows: a diagram of one workflow run from trigger to evidence record, with the agent, the checks and the people kept apart, the input check before the run shown as a precondition, and each failure path naming who acts next.
 - Validators: a diagram of one validator called the same way from a developer's machine, an agent's session and CI, its four results, and what each means while the validator is report-only and once it is required.
 - Each new diagram has a text description and a credit line for the terms it borrows, and can be downloaded as SVG or PNG.
-- Home page: the map's introduction and caption say that underlined labels are links to where each item is covered. The adoption path's closing line states its order as a recommendation: build the floor and the first workflow before adding skills, agents and platforms.
+- Home page: the map's introduction and caption say that underlined labels are links to where each item is covered.
 
 ## 1.4.1 — 2026-09-28
 

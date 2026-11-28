@@ -272,7 +272,7 @@ this page defines the controls, not what their results mean for that decision. T
 ## Related
 
 - [Engineering Kit](engineering-kit.html): the versioned package that harness engineering produces.
-- [Rule registry](rule-registry.html): every rule with an identifier, a route and an owner.
+- [Rule registry](rule-registry.html): every rule with an identifier, how it is enforced and an owner.
 - [Validators](validators.html): computational sensors as code, and their rollout from report-only
   to required.
 - [Skills with evals](skills-and-evals.html): inferential guides and how they are tested.

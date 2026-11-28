@@ -6,7 +6,7 @@ map_box: Software factory
 title: Software factory
 summary: The operating state that appears when delivery workflows share one set of rules, one evidence format and one feedback path, so that what production teaches changes what the next specification asks.
 key_terms: [software-factory, workflow, evidence-handoff, feedback-path, steering-loop, harness, harness-template, rule-registry, evidence-record, engineering-kit, harness-engineering, validator, specification-readiness, three-roles, skill-erosion, export-example]
-sources: [cusumano-software-factories, greenfield-software-factories, shapiro-five-levels, willison-software-factory, morris-humans-agents-loops, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-customer-feedback, tw-incremental-developer-platform, team-topologies-tvp, google-sre-postmortem, conway-committees, bainbridge-ironies, lee-genai-critical-thinking, safe-inspect-and-adapt, scrum-guide-2020]
+sources: [cusumano-software-factories, greenfield-software-factories, shapiro-five-levels, willison-software-factory, morris-humans-agents-loops, bockeler-harness, bockeler-sensors, dora-2024-report, dora-2025-report, dora-2025-announcement, dora-ai-capabilities, dora-customer-feedback, tw-incremental-developer-platform, team-topologies-tvp, google-sre-postmortem, conway-committees, lean-vs-manager, nist-ssdf, tw-radar-security-policy-as-code, bainbridge-ironies, lee-genai-critical-thinking, safe-inspect-and-adapt, scrum-guide-2020]
 related: [workflows, harness-engineering, engineering-kit, rule-registry, evidence-schema, validators, skills-and-evals, adapters, traceability-spine, inspect-and-adapt, lifecycle-levels, definition-of-ready-and-done, pull-request-verification, incident-feedback]
 review_record: content/reviews/1.4.0-core.md
 ---
@@ -76,19 +76,16 @@ workflows that already run is this site's recommended practice.
 
 ### Three things are shared
 
-- **Rules.** One [rule registry](rule-registry.html) holds the rules that apply across changes,
-  each with an identifier, a route (a gate that blocks, a named person's judgment, or guidance)
-  and an owner, and every workflow reads that registry rather than a copy of it. Material about a
-  single change, such as its specification, plan and evidence, stays in version control with that
-  change's code and is reviewed alongside it. Keeping it out of the registry keeps the registry
-  small enough for its owners to keep current.
+- **Rules.** Every workflow reads its rules from one [rule registry](rule-registry.html), and the
+  checks, skills and records in each workflow cite the same rule identifiers, so a change to a rule
+  reaches every workflow at once instead of being copied into each. NIST's secure development
+  framework asks for security requirements to be known at all times and maintained over time, so
+  that the information is collected once and shared[^nist-ssdf], and security policy as code keeps
+  such policies as versioned files that the pipeline validates[^tw-radar-security-policy-as-code].
 - **Evidence.** Every workflow writes its results in the one shape the
   [evidence schema](evidence-schema.html) fixes, and the next workflow reads that record instead of
   asking the same questions again. A check that produced no verdict is recorded as `could_not_run`
-  with its cause, and each human decision carries a reason code from a fixed list rather than free
-  text. Because the codes are shared, a later workflow can act on a decision without interpreting
-  prose, and a team can count how often each reason recurs across all its workflows. Keeping one
-  list of reason codes for every workflow is recommended practice.
+  with its cause.
 - **Feedback.** One feedback path decides where each lesson goes, and the change lands upstream of
   where the problem appeared. Böckeler calls the same practice the steering loop, in which people
   improve the harness (the context, tools, permissions and checks around an agent) based on
@@ -101,20 +98,23 @@ workflows that already run is this site's recommended practice.
 
 ### Production feedback reaches specification
 
-An incident review asks where the gap first became possible, not only where it showed. If nobody
-asked the question that would have exposed it, the action lands in specification readiness; if a
-rule existed but nothing checked it, the action becomes a check tied to that rule's identifier. The
-site reliability engineering workbook notes that postmortem action items with little or no
-ownership are less likely to be resolved[^google-sre-postmortem], so each action names one owner
-and the stage it changes. Because every workflow reads the same registry and writes the same
-record, one change upstream reaches every later change of that kind.
+A lesson from production does the most good when it changes a part that many workflows read. When
+an incident review finds that a miss began before any code was written, the change it leads to
+lands in a shared part, such as a rule in the registry, a readiness question or an evaluation case.
+From then on every later change, in every workflow that reads that part, meets the lesson without
+anyone having to remember it. That reach is what separates a factory from a set of workflows that
+each learn alone; it is this site's model, not a measured finding. The
+[Incident feedback](incident-feedback.html) workflow decides which earlier control changes, and the
+[feedback path](harness-engineering.html#the-steering-loop-and-the-feedback-path) is how the
+finding travels there.
 
-A new check or a tighter threshold does not start as a gate. It runs report-only first, recording
-what it would have blocked, and becomes required once its failures prove to be real problems
-rather than noise, since a gate that raises false alarms teaches people to override it. Repeated
-exceptions travel the same path: when one rule collects the same exception change after change,
-the pattern goes back to the rule's owner as a question about the rule or its route, instead of
-being granted once more. Both are this site's recommended practice.
+The practice underneath is well established. NIST's secure development framework asks teams to
+analyse root causes over time to find patterns, and to review and update the development process
+itself so that a root cause does not recur[^nist-ssdf]. Böckeler's steering loop improves the
+guides and sensors around an agent whenever an issue happens more than once[^bockeler-harness].
+The change also has to be made, not just agreed: Google's site reliability workbook observes that
+action items without clear owners are less likely to be resolved, and gives every action item an
+owner and a tracking number[^google-sre-postmortem].
 
 ### The running example across workflows
 
@@ -180,14 +180,15 @@ where a team tests whether it has reached this state; that stage sets the criter
   so as recommended practice the people who hold those decisions still do some of the work
   unaided. The sign is people who struggle to take over when the agent or its checks are
   unavailable.
-- **Unowned or over-concentrated connections.** The rules, evidence format and feedback path
-  between workflows belong to no single workflow. Conway observed that organisations design
-  systems that copy their communication structures[^conway-committees], so without an owner the
-  connections tend to split along team lines. As recommended practice, the shared rules have one
-  accountable owner, recorded by name, and ownership is confirmed again whenever people or teams
-  change, not only when something goes wrong. The signs are rule changes queued behind one person,
-  the same exception granted repeatedly for one rule, or nobody able to say who approves a change
-  to the shared rules.
+- **Connections nobody owns.** Each workflow has an owner, but the shared parts between them, the
+  rules, the evidence format and the feedback path, have none, so each workflow adjusts them to
+  suit itself. Conway observed that a system's design copies the communication structure of the
+  organisation that builds it, and that two connected parts need their designers to agree on the
+  interface between them[^conway-committees]; on that reading, a connection nobody owns is a
+  conversation nobody holds. Lean practice gives a flow that crosses many hands one accountable
+  person who need not own its resources[^lean-vs-manager], and as recommended practice each shared
+  part has one such owner; who grants that role is a matter for the operating model in the
+  enablement band. The sign is two workflows citing different revisions of the same rule.
 - **Reading the factory as unattended throughput.** Treating human decision points as the
   bottleneck to remove turns the factory into the lights-out sense this site does not mean, and
   DORA's 2024 research, which found that AI adoption negatively affects delivery stability, reminds
@@ -205,8 +206,8 @@ where a team tests whether it has reached this state; that stage sets the criter
   shares.
 - [Engineering Kit](engineering-kit.html): the versioned package that carries the shared rules,
   checks and evidence schema between workflows and teams.
-- [Rule registry](rule-registry.html): the shared rules, each with an identifier, a route and an
-  owner.
+- [Rule registry](rule-registry.html): the shared rules, each with an identifier, how it is enforced
+  and an owner.
 - [Evidence schema](evidence-schema.html): the fixed shape of the record every workflow writes and
   the next one reads.
 - [Validators](validators.html), [Skills with evals](skills-and-evals.html) and
@@ -242,7 +243,11 @@ where a team tests whether it has reached this state; that stage sets the criter
 - Thoughtworks on incremental developer platforms, and Team Topologies on the thinnest viable
   platform[^tw-incremental-developer-platform][^team-topologies-tvp].
 - The site reliability engineering workbook on postmortem ownership[^google-sre-postmortem];
-  Conway on organisations and system design[^conway-committees].
+  Conway on organisations and system design[^conway-committees]; the Lean Enterprise Institute on
+  the value-stream manager[^lean-vs-manager].
+- NIST's Secure Software Development Framework on shared security requirements and on changing the
+  process after root-cause analysis[^nist-ssdf]; the Thoughtworks Technology Radar on security
+  policy as code[^tw-radar-security-policy-as-code].
 - Bainbridge, and Lee and colleagues, on automation and critical
   thinking[^bainbridge-ironies][^lee-genai-critical-thinking].
 - Scaled Agile, Inc., *Inspect and Adapt*: SAFe's Inspect and Adapt event[^safe-inspect-and-adapt].

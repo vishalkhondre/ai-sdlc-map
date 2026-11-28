@@ -167,8 +167,9 @@
   term: Rule registry
   attribution: coined
   definition: >-
-    One entry per rule the team cares about, with an identifier, a statement, a route (gate, judgment or
-    guidance), an owner and known gaps. Validators declare which rules they enforce, skills which rules
+    One entry per rule the team cares about, with an identifier, a statement, how the rule is
+    enforced (the checks that enforce it, the person who decides on it, or both), an owner and known
+    gaps. Validators declare which rules they enforce, skills which rules
     they support, evidence which rule checks ran. The connecting structure of the kit.
   match: ["rule registry"]
 
@@ -183,17 +184,6 @@
     not reused, and a reversed decision is kept and marked superseded rather than edited. This site
     uses the same pattern for the history of each rule in the rule registry.
   match: ["architecture decision record", "architecture decision records"]
-
-- id: rule-route
-  term: Rule route (gate / judgment / guidance)
-  attribution: coined
-  definition: >-
-    The decision, made once per rule, of how it is enforced. A gate is a deterministic check that can
-    block. A judgment is a named person's call, recorded. Guidance shapes what the agent tries to do but
-    enforces nothing. "An instruction asks; a gate refuses." Böckeler's regulation categories
-    (maintainability, architecture fitness, behaviour) classify what a control regulates; the route
-    classifies how strongly.
-  match: ["routed to a gate", "routed to judgment", "gate, judgment or guidance"]
 
 - id: gate
   term: Gate (deterministic gate)
@@ -223,7 +213,7 @@
   attribution: coined
   definition: >-
     The minimum a kit's first release needs before any skill: a verify command that runs the same way
-    locally and in CI, a few validators for rules the team has broken before, a rule
+    locally and in CI, a few validators, a rule
     registry and an evidence schema. Dull, and the only part that makes the rest safe.
   match: ["deterministic floor"]
 
@@ -393,11 +383,13 @@
 - id: risk-tier
   term: Risk tier
   attribution: common
-  also: [istqb-rbt, iso-29119-1]
+  also: [istqb-rbt, iso-29119-1, istqb-risk-level]
   definition: >-
-    Assigned at readiness or planning; selects which checks and which reviewers apply. The workflow
-    definition stays the same, its cost scales with the change. A low tier never removes an applicable rule.
-    The idea of scaling test effort to risk comes from risk-based testing.
+    The level of risk recorded for a change, judged from the impact and likelihood of getting it wrong,
+    which decides which checks a workflow run selects and who is asked to decide, while the workflow's
+    definition stays the same. It applies risk-based testing to delivery. The agent may propose a tier,
+    a person confirms it at specification readiness, and it is revisited when what is known about the
+    change moves.
   match: ["risk tier", "tier 2"]
 
 - id: failure-path
@@ -435,10 +427,13 @@
 - id: review-fatigue
   term: Review fatigue
   attribution: common
+  also: [parasuraman-manzey-2010, yu-habituation-2026]
   definition: >-
-    More workflows, more evidence and more agent output landing on the same few approvers. Leading
-    indicators: review latency, reviewer concentration, shortening comments. The answer is moving every
-    mechanical check into a gate so reviewers see only decisions and exceptions.
+    Falling scrutiny in review as more agent output and evidence reach the same few approvers: more is
+    approved, fewer comments are written, and less of each change is read with care. Research on
+    automation finds that attention to an automated aid slips under heavy task load, and a 2026
+    preprint on repeat reviewers of agent-authored pull requests reports approval rising while inline
+    comments fell over several months, a pattern its authors read as habituation without claiming cause.
   match: ["review fatigue"]
 
 - id: skill-erosion

@@ -843,10 +843,10 @@ iso-29119-1:
   title: "ISO/IEC/IEEE 29119-1:2022 Software and systems engineering — Software testing — Part 1: General concepts"
   author: "ISO/IEC JTC 1/SC 7 and IEEE"
   org: "International Organization for Standardization"
-  date: "2022-01"
+  date: "2022-01 (second edition)"
   url: "https://www.iso.org/standard/81291.html"
-  accessed: "2026-09-25"
-  note: "General concepts of software testing, including risk-based testing as the approach for prioritizing test effort."
+  accessed: "2026-11-28"
+  note: "The ISO catalogue page gives only a short abstract (general concepts in software testing; key concepts for the 29119 series). The Introduction (page vii), read in the publisher's preview of the front matter (https://assets.vde-verlag.de/iec-normen/preview-pdf/info_isoiecieee29119-1%7Bed2.0%7Den.pdf), says test plans and test strategies are described in the context of risk-based testing, which is the recommended approach, that it provides the basis for test prioritization and focus, and that the document defines a risk-based approach to testing. The terms-and-definitions clause and clause 4.2.2 (Risks and risk management) are not in the preview and are not relied on."
 
 github-status-checks:
   title: "Troubleshooting required status checks"
@@ -1521,7 +1521,7 @@ istqb-ctfl-4:
   date: "2024-09-15 (v4.0.1, errata release of v4.0 of 2023-04-21)"
   url: "https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf"
   accessed: "2026-11-20"
-  note: "Section 2.2.1 describes five test levels: component (unit), component integration, system, system integration and acceptance; section 2.2.3 says confirmation testing confirms that an original defect has been successfully fixed and regression testing confirms that no adverse consequences have been caused by a change. The certification overview page is https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/ ('Certified Tester Foundation Level (CTFL) v4.0'); the claims rest on the syllabus, not on the overview page."
+  note: "Section 2.2.1 describes five test levels: component (unit), component integration, system, system integration and acceptance; section 2.2.3 says confirmation testing confirms that an original defect has been successfully fixed and regression testing confirms that no adverse consequences have been caused by a change. Section 1.5.3 (read 2026-11-28) says work products can be tested by their author (no independence) and that for most projects it is usually best to carry out testing with multiple levels of independence; chapter 5 was not read and is not relied on. The certification overview page is https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/ ('Certified Tester Foundation Level (CTFL) v4.0'); the claims rest on the syllabus, not on the overview page."
 
 fowler-test-pyramid:
   title: "Test Pyramid"
@@ -1965,3 +1965,32 @@ incident-owasp-logging:
   url: "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
   accessed: "2026-11-27"
   note: "Tab title 'Logging - OWASP Cheat Sheet Series'. Section 'Data to exclude' says listed data, including sensitive personal data, should usually not be recorded directly in logs and should be removed, masked, sanitized, hashed or encrypted; suggests de-identification techniques; says privileges to read log data should be restricted and reviewed periodically."
+
+# Core fix edition (1.6.2)
+
+sadowski-cacm-2018:
+  title: "Lessons from Building Static Analysis Tools at Google"
+  author: "Caitlin Sadowski, Edward Aftandilian, Alex Eagle, Liam Miller-Cushon, Ciera Jaspan"
+  org: "Communications of the ACM 61(4), 58-66"
+  date: "2018-04"
+  url: "https://research.google/pubs/lessons-from-building-static-analysis-tools-at-google/"
+  accessed: "2026-11-28"
+  note: "Bylines, volume, issue and pages read from the Google Research publication page; article text read from the CACM PDF (https://cacm.acm.org/magazines/2018/4/226371-lessons-from-building-static-analysis-tools-at-google/pdf), which prints no byline. Says a compiler check at Google should be easily understood, actionable and easy to fix, produce no effective false positives (never stop the build for correct code) and report issues affecting only correctness rather than style or best practices; that tool writers first fix all existing issues in the codebase to avoid breaking builds, and that the Clang team enabled a new diagnostic as an error (not a warning, which it found Google developers ignored) once the codebase was cleansed of the issue. Defines an effective false positive as an issue on which developers took no positive action; analysis results shown in code review may include up to 10% effective false positives, and an analyzer above that ratio is disabled until its authors improve it. Says developers need to build trust in analysis tools and lose faith and ignore results when tools waste their time. Distinct from sadowski-tricorder (ICSE 2015), whose probation and switch-off thresholds differ."
+
+yu-habituation-2026:
+  title: "Habituation at the Gate: Rising Approval and Declining Scrutiny in Human Review of AI Agent Code"
+  author: "Haoran Yu, Lifei Liu, Xiaochong Jiang, Yuwen Jia, Su Wang, Pin Qian, Yihang Chen"
+  org: "arXiv (cs.SE)"
+  date: "v1 21 Jun 2026"
+  url: "https://arxiv.org/pdf/2606.22721"
+  accessed: "2026-11-28"
+  note: "Preprint (arXiv:2606.22721v1); no venue printed. The PDF was read; the abstract page was not. Studies 11,429 reviews by 400 repeat reviewers of agent-authored pull requests in public repositories (repositories with at least 100 stars). Reports that approval of agent-authored pull requests rose over seven months while inline comment volume fell and review latency rose, and reads the combination as most consistent with habituation under workload; the authors say causality cannot be established. The abstract names commercial coding agents; site prose names none (GR-3.3). Observational data from public repositories only."
+
+istqb-risk-level:
+  title: "risk level"
+  author: "International Software Testing Qualifications Board (ISTQB)"
+  org: "ISTQB Glossary"
+  date: "term version 2 (no page date printed)"
+  url: "https://glossary.istqb.org/en_US/term/risk-level"
+  accessed: "2026-11-28"
+  note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/risk-level) because the term page is JavaScript-rendered. Defines risk level as the measure of a risk defined by risk impact and risk likelihood; synonym risk exposure. The record names no source standard."

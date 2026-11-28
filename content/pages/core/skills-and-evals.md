@@ -5,7 +5,7 @@ band: core
 map_box: Engineering Kit · skills with evals
 title: Skills with evals
 summary: A skill is packaged guidance a coding agent loads when a task calls for it; because it shapes behaviour without guaranteeing it, it ships with a record of scenario evaluations rather than on one passing run.
-key_terms: [skill, review-skill, harness-evaluation, llm-as-a-judge, guides-and-sensors, two-kinds-of-machinery, harness, rule-registry, rule-route, validator, feedback-path, independent-basis, engineering-kit, export-example]
+key_terms: [skill, review-skill, harness-evaluation, llm-as-a-judge, guides-and-sensors, two-kinds-of-machinery, harness, rule-registry, validator, feedback-path, independent-basis, engineering-kit, export-example]
 sources: [bockeler-harness, bockeler-sensors, bockeler-context, anthropic-agent-skills, github-agent-skills, claude-skill-practices, anthropic-agent-evals, agentskills-evaluating, openai-eval-skills, yao-tau-bench, ouyang-nondeterminism, zheng-llm-judge, husain-evals]
 related: [validators, rule-registry, engineering-kit, harness-engineering, evidence-schema, workflows]
 review_record: content/reviews/1.4.0-core.md
@@ -46,9 +46,10 @@ changed any of that.[^anthropic-agent-evals]
 
 ## How it works
 
-**Route the rule first.** Every rule in the rule registry carries a route: gate, judgment or
-guidance. A skill serves the guidance route, and it may also help the agent meet a rule that a gate
-enforces. This site recommends a clear division of labour between validators and skills. When a
+**Know how the rule is enforced first.** Every entry in the rule registry records how its rule is
+enforced: the checks that enforce it, the person who decides on it, or both. A skill helps the agent
+follow a rule that people decide on or that has no check yet. It may also help the agent meet a rule
+that a required check enforces, but it never replaces that check. This site recommends a clear division of labour between validators and skills. When a
 validator can decide a rule, the validator carries it. A skill that touches the same rule can show
 the agent what a compliant change looks like, through examples and a loop of validating and
 fixing,[^claude-skill-practices] and this site recommends that it also explain why the rule exists,
@@ -136,7 +137,7 @@ typing the same guidance into agent sessions again and again.[^claude-skill-prac
 guidance suggests starting from where the agent struggles on representative tasks[^anthropic-agent-skills],
 and writing the evaluation cases first, from failures already seen, and the skill text after
 them.[^claude-skill-practices] Guidance that turns out to
-be a checkable rule goes to a validator, as described under routing above. This site recommends
+be a checkable rule goes to a validator, as described under knowing how the rule is enforced, above. This site recommends
 that someone answers for each skill: that person keeps its eval set current and removes the skill
 once nothing depends on it.
 
@@ -155,8 +156,8 @@ and a failure in production becomes a new eval case.[^bockeler-harness]
 ## Pitfalls
 
 - **A skill carrying a rule that must always hold.** The only defence for the access rule is a
-  paragraph in a skill. Sign: a rule routed to a gate in the registry has skills citing it but no
-  validator.
+  paragraph in a skill. Sign: a rule the registry records as enforced by a required check has skills
+  citing it but no validator.
 - **Shipping on one good run.** The skill passed once, on one model, and nobody kept the result.
   Sign: no baseline comparison, a single trial per case, and no model version in the record.
 - **Evals that grade the skill against itself.** Expected behaviour is copied from the skill's text,
@@ -185,7 +186,7 @@ and a failure in production becomes a new eval case.[^bockeler-harness]
 ## Related
 
 - [Validators](validators.html): the deterministic checks that enforce what a skill only encourages.
-- [Rule registry](rule-registry.html): where each rule's identifier, route and owner live, and
+- [Rule registry](rule-registry.html): where each rule's identifier, enforcement and owner live, and
   which skills cite it.
 - [Engineering Kit](engineering-kit.html): the package that carries skills, evals and the other
   parts.

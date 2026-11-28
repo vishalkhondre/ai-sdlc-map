@@ -5,7 +5,7 @@ band: core
 map_box: Engineering Kit
 title: Engineering Kit
 summary: A versioned, installable package of the environment a team's people and coding agents work inside (rule registry, validators, skills with evals, evidence schema and adapters), organised in four layers and run through three commands, init, doctor and verify.
-key_terms: [engineering-kit, technology-profile, project-configuration, harness, harness-template, rule-registry, rule-route, validator, skill, review-skill, harness-evaluation, evidence-record, adapter, could-not-run, mechanism-vs-meaning, deterministic-gate, gate, guides-and-sensors, workflow, software-factory, golden-path, export-example]
+key_terms: [engineering-kit, technology-profile, project-configuration, harness, harness-template, rule-registry, validator, skill, review-skill, harness-evaluation, evidence-record, adapter, could-not-run, mechanism-vs-meaning, deterministic-gate, gate, guides-and-sensors, workflow, software-factory, golden-path, export-example]
 sources: [bockeler-harness, bockeler-sensors, cncf-platforms, dora-platform-engineering, fowler-ci, fowler-selftesting, dora-test-automation, npm-doctor, homebrew-doctor, flutter-doctor, sarif-2-1-0, python-unittest, github-protected-branches, semver, cockburn-hexagonal, spotify-golden-paths]
 related: [rule-registry, validators, skills-and-evals, evidence-schema, adapters, harness-engineering, workflows, software-factory]
 review_record: content/reviews/1.4.0-core.md
@@ -62,7 +62,7 @@ the volume-limit rule, which caps the number of rows one export may return.
 
 | Part | What it holds | In the export example |
 |---|---|---|
-| [Rule registry](rule-registry.html) | Every rule, each with a stable identifier, a statement, a route (gate, judgment or guidance), an owner and its known gaps | R-042 is routed to a gate. R-017's limit is a gate, and a request to exceed it goes to judgment |
+| [Rule registry](rule-registry.html) | Every rule, each with a stable identifier, a statement, how it is enforced, an owner and its known gaps | R-042 is enforced by the access validator, a required check. R-017's limit is enforced by a required check, and the rule's owner decides on any request to exceed it |
 | [Validators](validators.html) | Deterministic checks as code, tied to rule identifiers, that report passed, failed, skipped or could_not_run | The access validator fails on a background worker whose query reads more records than the caller may see |
 | [Skills with evals](skills-and-evals.html) | Guidance the agent loads when a task calls for it, shipped with scenario evaluations run repeatedly and recorded | An access-rule skill supports R-042. Its evals check that the agent stops and asks when the access rule is unresolved |
 | [Evidence schema](evidence-schema.html) | The fixed, versioned shape of what each run records, with one kind of writer per field | The record shows R-042 failed, R-017 could_not_run and an overall status of blocked |
@@ -344,7 +344,7 @@ The adoption path decides when a team installs the kit and which workflow it bui
 
 ## Related
 
-- [Rule registry](rule-registry.html): every rule with an identifier, a route and an owner, and how
+- [Rule registry](rule-registry.html): every rule with an identifier, how it is enforced and an owner, and how
   rules enter, change and retire.
 - [Validators](validators.html): deterministic checks as code, how they report results, and the path
   from report-only to required.

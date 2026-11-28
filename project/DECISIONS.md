@@ -353,3 +353,30 @@ no standard named by clause; no legal conclusions in the AI use policy; the metr
 pages, no new template; no benchmark values; the running example counted without figures. The
 allow-list additions (question 9) are the author's to make in the environment settings and none is
 required. Rules out: building Assurance pages ahead of the 1.4.x fix edition without the author saying so.
+
+## D-034 · Rule enforcement is described per rule, with no named routes
+Decided 2026-11-28 by the author ("Reframe it (no named routes)"), after the 1.6.2 library sweep found
+that the site's three named rule routes, one per rule, matched the source library's own split in list
+membership, order and structure (GR-1.2), and that rewording did not change that. The rule registry
+no longer classifies rules into named routes and the site no longer uses "route" for rule
+enforcement: each entry names how the rule is enforced, by the check or checks that enforce it
+(by validator identifier), by the named person who decides, or both, and a rule with neither is
+shown as an unenforced gap. Pages that said a rule was "routed to a gate" say it is enforced by a
+required check. The glossary entry for the route is removed. Rules out: reintroducing a fixed set of
+named enforcement classes for rules without the author.
+
+## D-035 · Remaining map boxes are re-derived from public sources before their pages are written
+Decided 2026-11-28 by the author ("Yes, re-derive and relabel"), after the library check of the draft
+Enablement and Context-and-Adoption plans found that much of their closeness to the source library
+started in published map labels (the band-4 role bullets, the "policy wins" note, the brownfield
+note and the adoption stages). The plans for the remaining bands are rebuilt from public sources and
+propose relabels of those boxes as open questions; the author approves the relabels with the plans.
+Rules out: writing pages that follow a map label the library check has found close.
+
+## D-036 · Enablement, Context and Adoption plans approved
+Decided 2026-11-28 by the author ("I approve PR 30"). The plans `project/plans/enablement.md`
+(1.8.0) and `project/plans/context-and-adoption.md` (1.9.0 Context, 2.0.0 Adoption) are approved, and
+each open question's recommendation is taken as the answer, including the band 1 and band 4 relabels,
+"Embedded and connected products" for the firmware/device box, and the full re-derivation of the
+adoption path (whose plan addendum still needs the author's approval before any adoption brief).
+Order: 1.6.2, then Assurance 1.7.0, Enablement 1.8.0, Context 1.9.0, Adoption 2.0.0.

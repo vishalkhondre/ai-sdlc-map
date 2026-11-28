@@ -269,7 +269,7 @@ workflow became required, or with the period named.
 - **could_not_run results per required check, by cause.** A rising count for one cause points at
   an environment, not at the code (recommended practice). Baseline: the check's report-only period
   ([Validators](validators.html)).
-- **Share of agent findings rejected, with their coded reasons.** This is an input to the review
+- **Share of agent findings rejected.** This is an input to the review
   skill's evaluations ([Skills with evals](skills-and-evals.html)), not a target (recommended
   practice). Baseline: the rejection share when the review skill was first introduced.
 

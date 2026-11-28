@@ -161,7 +161,7 @@ as the access rule R-042, are never open to exception
 ([Rule registry](rule-registry.html#entering-changing-and-retiring-rules)).
 
 When the decider rejects a question the agent raised, the rejection is recorded
-with a reason chosen from a fixed list ([Evidence schema](evidence-schema.html#agent-findings-and-decisions)),
+([Evidence schema](evidence-schema.html#agent-findings-and-decisions)),
 and those rejections feed the evaluation of the skill behind the agent
 ([Skills with evals](skills-and-evals.html)).
 

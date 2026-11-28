@@ -60,7 +60,7 @@ The schema fixes nine fields and one writer for each.
 | Expected checks | Every check that applies to this change, each with its rule ID, listed before any result | The kit, from the change and the project configuration |
 | Check results | For each expected check: rule ID, status (passed, failed, skipped or could_not_run), the reason where it did not run, and a link to the full report | Each validator |
 | Agent findings | Each finding, with the rule ID it concerns, its location and its text; advisory only | The review skill, or another agent |
-| Decisions | Each decision, with its subject, a named decider, its state (pending or taken) and a reason code | A named person |
+| Decisions | Each decision, with its subject, a named decider and its state (pending or taken) | A named person |
 | Overall status | One status derived from the results and decisions by a stated rule | The kit |
 
 ### Revisions and versions
@@ -117,11 +117,7 @@ IDs, so they sit beside the validator results for the same rules, but no finding
 status or the overall status.
 
 Decisions live in the record, not in a chat thread or a pull-request comment. Each one names its
-subject, the person who decides and whether it is pending or taken, and it carries a reason chosen
-from a fixed list, so decisions can be counted and compared across projects. SARIF offers a
-precedent: a suppression records whether it is under review, accepted or rejected, with a
-justification the user supplies, and the standard warns that such user-supplied text needs care
-when it is displayed or shared.[^sarif-2-1-0] Coded reasons are this site's recommended practice.
+subject, the person who decides and whether it is pending or taken.
 
 ### Who writes each field
 
@@ -196,7 +192,7 @@ stance for any consumer: read data from another service as tolerantly as
 possible.[^fowler-tolerant-reader] in-toto adds a safety condition. Policies should be monotonic,
 so that ignoring a field or an attestation can never turn a deny into an
 allow.[^in-toto-attestation] A reader that meets an unknown field in an evidence record may skip
-it, but a skipped field must never produce a positive status. Changing a status, a reason code or
+it, but a skipped field must never produce a positive status. Changing a status or
 a required field means publishing a new schema version. Records are never rewritten into a newer
 version; each is read by the version it declares.
 
@@ -254,8 +250,8 @@ covered on the [Traceability spine](traceability-spine.html) page.
   the revision on the change host, and nothing marks the entry as manual.
 - **Each project reshapes the evidence.** Sign: comparing two teams' records needs a hand-written
   mapping between their fields.
-- **Meanings change silently.** Sign: records from different months use the same status or
-  reason for different things, with no schema version change between them.
+- **Meanings change silently.** Sign: records from different months use the same status for
+  different things, with no schema version change between them.
 
 ## Related
 
@@ -297,5 +293,5 @@ covered on the [Traceability spine](traceability-spine.html) page.
 - Definition of Done: Schwaber and Sutherland, *The 2020 Scrum Guide*[^scrum-guide-2020].
 - Inspect and Adapt: Scaled Agile, Inc., *Inspect and Adapt*[^safe-inspect-and-adapt].
 - The difference between records and logs, expected checks in the same record, report links, the
-  per-check could_not_run status, coded decision reasons, one kind of writer per field and the fixed schema are this site's
+  per-check could_not_run status, one kind of writer per field and the fixed schema are this site's
   recommended practice; no public source states them.

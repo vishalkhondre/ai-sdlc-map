@@ -156,6 +156,8 @@ class Generated(unittest.TestCase):
             self.assertIn(w["maturity"], cat["maturity"], w["id"])
             for k in ("decision", "trigger", "agent", "checks", "people", "evidence"):
                 self.assertTrue(w[k], f"{w['id']} missing {k}")
+            if w.get("page"):
+                self.assertIn(w["page"], REFERENCE_PAGES, f"{w['id']} page {w['page']} is not a reference page")
 
     def test_citation_gate(self):
         res = subprocess.run([sys.executable, str(ROOT / "scripts" / "check_citations.py")], capture_output=True, text=True)

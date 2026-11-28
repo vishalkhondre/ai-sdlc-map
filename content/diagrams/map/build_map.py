@@ -163,9 +163,8 @@ MAP_DESC = (
 PATH_DESC = (
     "Five adoption stages left to right: 0 Deterministic floor, 1 One workflow, 2 Second workflow and hand-off, "
     "3 Feedback path proven, 4 Factory emerges. For each stage the diagram lists what to build, what to measure, "
-    "a suggested condition for moving on, and a failure pattern to watch for. "
-    "The order is the point: build the floor and the first workflow before adding skills, agents and "
-    "platforms. A credit line in the footer names the sources of borrowed terms."
+    "a suggested condition for moving on (none for the last stage), and a failure pattern to watch for. "
+    "A credit line in the footer names the sources of borrowed terms."
 )
 
 
@@ -182,7 +181,7 @@ def page_map(links: dict[str, str] | None = None) -> str:
 
     # ---------------- band 1: context
     y0, h = 110, 150
-    s.append(band_label(y0, h, "1", "CONTEXT", "what kind of work", ["Together these set the risk tier: which gates run, how deep, who approves."], "amber"))
+    s.append(band_label(y0, h, "1", "CONTEXT", "what kind of work", ["Project, product and flow together set the risk tier a change carries."], "amber"))
     s.append(group(250, y0, 300, h, "Project type", "amber"))
     s.append(chip(264, y0 + 38, 132, "Greenfield", "amber"))
     s.append(chip(404, y0 + 38, 132, "Brownfield", "amber"))
@@ -200,7 +199,7 @@ def page_map(links: dict[str, str] | None = None) -> str:
         cx = 926 + (i % 4) * 152
         cy = y0 + 38 + (i // 4) * 38
         s.append(chip(cx, cy, 146, f, "amber", size=12))
-    s.append(t(926, y0 + 132, "* hotfix: expedited path, evidence completed afterwards, never skipped", 12, MUTE, italic=True))
+    s.append(t(926, y0 + 132, "* hotfix: expedited path", 12, MUTE, italic=True))
 
     # ---------------- band 2: lifecycle
     y0, h = 280, 210
@@ -317,7 +316,6 @@ def page_map(links: dict[str, str] | None = None) -> str:
     s.append(bullet_col(1120, y0, 420, h, "Measurement", [
         "Baseline before changing anything",
         "Flow metrics and DORA delivery metrics",
-        "Escaped defects; reviewer load and concentration",
         "Cost per change, including tokens and evals"], "coral"))
 
     # ---------------- footer: adoption path
@@ -348,8 +346,8 @@ def page_map(links: dict[str, str] | None = None) -> str:
 # ============================================================================ page 2
 STAGES = [
     ("0", "Deterministic floor", "teal",
-     ["A verify command that runs the same way locally and in CI", "A few validators for rules the team has broken before", "Rule registry: every rule gets an ID, a route and an owner", "Evidence schema; branch protection actually enforced"],
-     ["Baseline: lead time, review time, escaped defects", "Share of rules still guidance-only"],
+     ["A few validators", "Evidence schema; branch protection actually enforced"],
+     ["Baseline: lead time, review time, escaped defects"],
      "Every merge passes the same checks, and enforcement is verified, not assumed.",
      "Skipping straight to skills and agents on top of no gates."),
     ("1", "One workflow", "purple",
@@ -368,9 +366,9 @@ STAGES = [
      "Suggested: each of the last three incidents changed an upstream check.",
      "Retro actions that are written down and never close."),
     ("4", "Factory emerges", "grey",
-     ["Shared registry and evidence across workflows", "A second team installs the kit and passes its first feature", "Named owner for the connections between workflows"],
+     ["Shared registry and evidence across workflows", "Named owner for the connections between workflows"],
      ["Requirement-to-release time", "Escaped defects vs throughput", "Cost per change incl. tokens and evals"],
-     "A second team adopts the kit without the original author in the room.",
+     "",
      "Building the platform before the workflows exist."),
 ]
 
@@ -393,6 +391,8 @@ def page_path() -> str:
         s.append(r(x, y0 + 82, cw, 500, "#fff", stroke, 1.2, 12))
         yy = y0 + 110
         for label, idx in rows:
+            if idx == 2 and not exit_:
+                continue
             s.append(t(x + 16, yy, label, 11, stroke, 700, spacing=0.6))
             yy += 20
             if idx in (0, 1):
@@ -412,7 +412,6 @@ def page_path() -> str:
                 s.append(f'<line x1="{x + 14}" y1="{yy - 12}" x2="{x + cw - 14}" y2="{yy - 12}" stroke="{LINE}" stroke-width="1"/>')
     s.append(credit(1540, H - 10, "Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect & Adapt: SAFe term (Scaled Agile, Inc.)",
                     ["bockeler-harness", "bockeler-sensors", "safe-framework", "safe-inspect-and-adapt"], 11, "end"))
-    s.append(t(800, H - 36, "The order is the point: build the floor and the first workflow before adding skills, agents and platforms.", 14, MUTE, anchor="middle", italic=True))
     s.append("</svg>")
     return "\n".join(s)
 
