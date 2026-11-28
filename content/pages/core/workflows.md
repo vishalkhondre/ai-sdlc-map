@@ -170,9 +170,9 @@ produce large result sets under R-017, so its pull request runs the R-042 access
 R-017 load scenario, and the security owner decides on anything touching access, as in the table
 above. A change to the export button's label touches no customer data, involves neither rule and
 adds no load, so it runs only the checks every change runs and goes to the usual reviewer. Both
-changes pass through the same workflow; only the cost of the run differs. A higher tier also brings
-in review that is more independent of the author, in line with the testing guidance that most
-projects are best served by testing at several levels of independence[^istqb-ctfl-4]. How many tiers a team keeps, and
+changes pass through the same workflow; only the cost of the run differs. As recommended practice, a
+higher tier also brings in more independent review; testing guidance holds that most projects are
+best served by several levels of independence[^istqb-ctfl-4]. How many tiers a team keeps, and
 what each adds, is the team's own choice, and no public source sets a scale.
 
 The tier can first be proposed when the work arrives and is confirmed at specification readiness.

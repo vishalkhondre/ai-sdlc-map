@@ -167,8 +167,7 @@ periodic review of delivery evidence are covered on the
 pages. The enablement band
 holds the runtime and tools, the people and roles, and that operating model, all of which the
 factory depends on. The assurance band holds the evidence record on every run and the measurement
-that shows whether the connections help. The adoption path's final stage, "Factory emerges", is
-where a team tests whether it has reached this state; that stage sets the criteria.
+that shows whether the connections help.
 
 ## Pitfalls
 

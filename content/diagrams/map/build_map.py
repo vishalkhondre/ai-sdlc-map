@@ -378,7 +378,7 @@ def page_path() -> str:
     s = [svg_open(W, H, "Adoption path: one step at a time, one workflow at a time", PATH_DESC, []),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
          t(60, 58, "Adoption path: one step at a time, one workflow at a time", 32, INK, 700),
-         t(60, 88, "Companion to the one-page map. Each stage has something to build, something to measure, and a condition for moving on.", 16, MUTE)]
+         t(60, 88, "Companion to the one-page map. Each stage has something to build and something to measure; every stage but the last has a condition for moving on.", 16, MUTE)]
     cw, gap, x0, y0 = 280, 17, 66, 120
     rows = [("BUILD", 0), ("MEASURE", 1), ("MOVE ON WHEN", 2), ("WATCH FOR", 3)]
     for i, (num, name, col, build, measure, exit_, risk) in enumerate(STAGES):

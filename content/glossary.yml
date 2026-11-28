@@ -104,8 +104,7 @@
   source: bockeler-harness
   definition: >-
     The degree to which a codebase supports building a harness: typed languages, well-defined boundaries
-    and a runnable local environment make sensors cheap to add. A runnable starting point for the
-    agent and brownfield pre-flight analysis (workflow catalog) are the same concern.
+    and a runnable local environment make sensors cheap to add.
 
 - id: harness-template
   term: Harness template
@@ -390,7 +389,7 @@
     definition stays the same. It applies risk-based testing to delivery. The agent may propose a tier,
     a person confirms it at specification readiness, and it is revisited when what is known about the
     change moves.
-  match: ["risk tier", "tier 2"]
+  match: ["risk tier"]
 
 - id: failure-path
   term: Failure path

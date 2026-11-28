@@ -288,13 +288,12 @@ an incompatible change, and the versioning rules above decide which release it m
 ### The smallest useful first release
 
 A kit does not start with all five parts at full depth. The smallest first release worth installing
-is the deterministic floor: a rule registry holding a handful of rules drawn from the team's own
-recent incidents and review comments, validators for those rules, a `verify` that runs the same way
+is the deterministic floor: a rule registry, validators for its rules, a `verify` that runs the same way
 locally and in the pipeline, and the evidence schema. Skills come after it. Without the floor, a
 skill's guidance has nothing to check it, and nobody can tell whether a rule held. The floor is this site's framing. Its ingredients, a
 self-testing build that runs from one command locally and on every integration, are long-standing
 continuous-integration practice.[^fowler-ci][^fowler-selftesting] Its validators begin in
-report-only mode and become required checks once they have earned trust, as the
+report-only mode and later become required checks, as the
 [Validators](validators.html) page describes.
 
 ## Where it sits on the map

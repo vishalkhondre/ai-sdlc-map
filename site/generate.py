@@ -572,7 +572,7 @@ def render_index() -> str:
 
 <section class="section alt" id="adoption">
 <div class="section-inner">
-<div class="section-head"><h2>The adoption path</h2><p>One step at a time, one workflow at a time. Each stage has something to build, something to measure, and a condition for moving on.</p></div>
+<div class="section-head"><h2>The adoption path</h2><p>One step at a time, one workflow at a time. Each stage has something to build and something to measure, and every stage but the last has a condition for moving on.</p></div>
 {figure('ai-sdlc-adoption-path', 'Adoption path: from the deterministic floor to the software factory.')}
 </div>
 </section>
@@ -627,12 +627,12 @@ def render_glossary() -> str:
         ("Sensors (feedback controls)", "Validators, tests, review skill", "adapted"),
         ("Computational controls", "Deterministic machinery; validators; gates", "adapted"),
         ("Inferential controls", "Probabilistic machinery; the review skill; harness evaluations", "adapted"),
-        ("Regulation categories (maintainability, architecture, behaviour)", "Not used as categories; rules carry a route instead (gate / judgment / guidance)", "different"),
+        ("Regulation categories (maintainability, architecture, behaviour)", "Not used as categories; each rule records the checks that enforce it, who decides, or both", "different"),
         ("Steering loop", "Feedback path, with its conversions named", "adapted"),
-        ("Harnessability", "Give the agent a usable starting point; brownfield pre-flight analysis", "adapted"),
+        ("Harnessability", "Give the agent a usable starting point", "adapted"),
         ("Ambient affordances", "Not used; closest is the kit's technology profile", "different"),
         ("Harness templates", "Engineering Kit technology profiles", "adapted"),
-        ("—", "Rule registry, evidence record, could_not_run, risk tier, workflow, software factory", "coined"),
+        ("—", "Rule registry, evidence record, could_not_run, workflow, software factory", "coined"),
     ]
     trans_html = "".join(f'<tr><td>{esc(a)}</td><td>{esc(b)}</td><td><span class="attr attr-{c}">{c}</span></td></tr>' for a, b, c in translation)
 

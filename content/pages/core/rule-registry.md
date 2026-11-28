@@ -62,8 +62,8 @@ example, a feature that lets users export customer records.
 | External reference | An outside control or standard the rule implements, if any | SEC-004, the security-standard entry it serves |
 | Status | Active, superseded or retired, with a pointer to any replacement | Active |
 
-Two further fields earn their place once the registry is in use. A rule enforced by a required check records its rollout
-stage, report-only or required, and the date by which it is planned to become required; the
+Two further fields earn their place once the registry is in use. A rule enforced by a check records its rollout
+stage, report-only or required; the
 [Validators](validators.html) page describes that path. And each entry links to the record of why
 the rule exists and how it has changed, in the manner of an architecture decision record: Michael
 Nygard's short, numbered records of a decision's context, the decision itself, its status and its
@@ -201,7 +201,7 @@ As recommended practice, the registry also gives a plain reading of whether its 
 the list of rules recorded as enforced by a required check that no required validator cites by
 identifier. A report-only
 validator does not count, because it cannot refuse anything. Since each validator declares the
-identifiers it enforces, much as every result in the SARIF format for analysis output carries a
+identifiers it enforces, much as each result in the SARIF format for analysis output can carry a
 rule identifier[^sarif-2-1-0], the list is read from data rather than compiled by hand.
 Requirements traceability rests on the same idea: tracing requirements to their verification shows
 the requirements that nothing tests[^nasa-swe-052]. The list is compared with its own earlier
