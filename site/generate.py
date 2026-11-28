@@ -533,7 +533,9 @@ def routes() -> str:
         ("Lead adoption", "What to build first, what to measure, and when to move on.",
          [("#adoption", "The adoption path", False), ("software-factory.html", "The software factory", False)]),
         ("Look it up", "Definitions, sources and the catalog as data.",
-         [("glossary.html", "Terminology", False), ("references.html", "References", False), ("data/workflow-catalog.csv", "Catalog as CSV", False)]),
+         [("glossary.html", "Terminology", False), ("references.html", "References", False),
+          *pages("evidence-record", "check-results-and-decisions"),
+          ("data/workflow-catalog.csv", "Catalog as CSV", False)]),
     ]
     out = ""
     for title, blurb, links in rows:

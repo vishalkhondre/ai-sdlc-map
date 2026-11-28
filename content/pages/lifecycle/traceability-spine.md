@@ -7,7 +7,7 @@ title: Traceability spine
 summary: The chain of seven artefacts from requirement to incident, each pair linked by an identifier and checked for orphans in both directions, with rule IDs as the keys that tie checks and findings, and through them decisions, to the chain.
 key_terms: [traceability-spine, rule-registry, evidence-record, evidence-handoff, feedback-path, could-not-run, validator, workflow, specification-readiness, software-factory, export-example]
 sources: [gotel-finkelstein-1994, nasa-swe-052, rath-traceability-wild-2018, owasp-asvs, owasp-wstg, google-sre-postmortem, nist-ssdf, nist-800-61r3, slsa-provenance, bockeler-harness, bockeler-sensors, safe-inspect-and-adapt, istqb-acceptance-criteria, scrum-guide-2020]
-related: [rule-registry, evidence-schema, workflows, software-factory, harness-engineering, specification, design, develop-build-qa, deploy, release, operate, definition-of-ready-and-done, inspect-and-adapt]
+related: [rule-registry, evidence-schema, workflows, software-factory, harness-engineering, specification, design, develop-build-qa, deploy, release, operate, definition-of-ready-and-done, inspect-and-adapt, evidence-record]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -264,6 +264,8 @@ audit and for their validity per revision, which this page does not cover.
   term.[^scrum-guide-2020]
 - [Inspect and Adapt](inspect-and-adapt.html): the review of what landed.
 - [Validators](validators.html): the deterministic checks whose results carry rule IDs.
+- [Evidence record](evidence-record.html): how audit, release and incident review read one record,
+  valid for one revision.
 - [Workflow catalog](workflow-catalog.html): rows
   [W04](workflow-catalog.html#W04), [W12](workflow-catalog.html#W12),
   [W13](workflow-catalog.html#W13), [W17](workflow-catalog.html#W17),

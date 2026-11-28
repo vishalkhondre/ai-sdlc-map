@@ -22,3 +22,7 @@
 "1.6":
   section: "Lifecycle, part two: the seven workflow pages, from intake and triage to incident feedback"
   pages: [index.html, intake-and-triage.html, spec-readiness.html, design-conformance.html, pull-request-verification.html, deploy-verification.html, release-readiness.html, incident-feedback.html]
+
+"1.7":
+  section: "Assurance: the evidence record, check results and decisions, delivery templates, change controls and standards, the AI use policy and agent permissions"
+  pages: [index.html, evidence-record.html, check-results-and-decisions.html, delivery-templates.html, change-controls-and-standards.html, ai-use-policy.html, agent-permissions.html]

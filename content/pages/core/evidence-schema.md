@@ -7,7 +7,7 @@ title: Evidence schema
 summary: The fixed, versioned shape of what every run records (revisions, kit version, expected checks and their results, agent findings, decisions and an overall status) and who is allowed to write each field.
 key_terms: [evidence-record, could-not-run, validator, rule-registry, review-skill, evidence-handoff, engineering-kit, mechanism-vs-meaning, workflow, export-example]
 sources: [slsa-provenance, slsa-build-requirements, slsa-verifying, slsa-vsa, in-toto-attestation, in-toto-spec, in-toto-usenix, sarif-2-1-0, nist-ssdf, aicpa-soc2, json-schema-core, semver, fowler-tolerant-reader, bockeler-harness, bockeler-sensors, safe-inspect-and-adapt, scrum-guide-2020]
-related: [engineering-kit, validators, rule-registry, skills-and-evals, workflows, adapters, traceability-spine, definition-of-ready-and-done, inspect-and-adapt]
+related: [engineering-kit, validators, rule-registry, skills-and-evals, workflows, adapters, traceability-spine, definition-of-ready-and-done, inspect-and-adapt, evidence-record]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -267,6 +267,8 @@ covered on the [Traceability spine](traceability-spine.html) page.
 - [Harness engineering](harness-engineering.html): the discipline the kit and its schema serve.
 - [Traceability spine](traceability-spine.html): the chain of linked artefacts from requirement to
   incident.
+- [Evidence record](evidence-record.html): how release, incident review and audit read the same
+  record, and why it holds for one revision only.
 - [Definition of Ready and Definition of Done](definition-of-ready-and-done.html): the entry and
   exit criteria for an item of work, including the Definition of Done from the Scrum
   Guide[^scrum-guide-2020].

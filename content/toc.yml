@@ -17,3 +17,4 @@ chapters: []
 pages:
   lifecycle: [lifecycle-levels, safe-reference-model, idea, specification, design, develop-build-qa, deploy, release, operate, definition-of-ready-and-done, traceability-spine, inspect-and-adapt, intake-and-triage, spec-readiness, design-conformance, pull-request-verification, deploy-verification, release-readiness, incident-feedback]
   core: [harness-engineering, engineering-kit, rule-registry, validators, skills-and-evals, evidence-schema, adapters, workflows, software-factory]
+  assurance: [evidence-record, check-results-and-decisions, delivery-templates, change-controls-and-standards, ai-use-policy, agent-permissions]

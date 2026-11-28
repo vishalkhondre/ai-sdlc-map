@@ -49,6 +49,19 @@ Update at the end of every session (see `CLAUDE.md`).
 
 ## Next (in order)
 
+00. **Edition 1.7.0 (Assurance part one, six pages) is in review with the author** as a pull request
+   stacked on 1.6.2. Merge 1.6.2 first, then retarget 1.7.0 to `main`. The Measurement column's five
+   pages (measurement, delivery metrics, escaped defects, cost per change, review time) reached the
+   three-round sweep cap (plan (e)): the column's set of measure families on the published map, and
+   the "load and concentration" pairing, are close to the library. They are held back, unpublished,
+   until the author decides how to re-plan that column (ship later, cut, or merge into one page).
+   Findings for a later fix edition (D-030 pattern, from 1.7.0 sweeps): the Measurement column's
+   bullets on the published map; Core `engineering-kit` (the could_not_run result passage and line 35
+   on copied files drifting) and `rule-registry` ("Deciding how each rule is enforced") may be near
+   library wording; Core `evidence-schema` states CC8.1 content from secondary sources only (the
+   AICPA document is behind a login). Architect proposal for the author: relabel "Agent permissions
+   reviewed as privileged access" to "Agent identities and permissions reviewed".
+
 0. **Assurance plan approved (D-033).** Order: the 1.4.x fix edition first (catalog rows and
    published passages listed under the D-030 diagnostic and the 1.6.0 sweep, plus catalog-row links to
    the workflow pages), then Assurance as edition 1.7.0 through the same pipeline. Author, before

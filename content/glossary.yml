@@ -812,3 +812,91 @@
     confirmation testing, which follows the fix of a defect and confirms that the failure it caused
     does not reoccur.
   match: ["regression testing"]
+
+# Assurance (1.7.0): entries arrive with the pages that use them (D-025).
+
+- id: delivery-template
+  term: Delivery template
+  attribution: coined
+  definition: >-
+    A working name, used on this site, for the fixed and versioned outline of one kind of delivery
+    document (specification, plan, architecture decision record or release notes). It names the parts
+    a writer fills and marks which are required, so a tool can confirm their presence and form and an
+    agent can draft into it for a person to finish. Templates are kit-owned files and change only in a
+    kit release.
+  match: ["delivery template", "delivery templates"]
+
+- id: change-control
+  term: Change control (configuration change control)
+  attribution: adopted
+  source: nist-800-128
+  also: [nist-glossary-configuration-control]
+  definition: >-
+    NIST's term for the documented process by which proposed changes to a system are put forward,
+    justified, made, tested, reviewed and then accepted or turned down. NIST's related term,
+    configuration control, is the process that protects a system against improper modifications
+    before, during and after it goes into service.
+  # "change control" alone is left out of match: release, release-readiness and the catalog use it
+  # for row W32 without citing nist-800-128, and check_citations would then require that source there.
+  match: ["configuration change control"]
+
+- id: separation-of-duties
+  term: Separation of duties
+  attribution: adopted
+  source: nist-800-53
+  also: [nist-glossary-separation-of-duty]
+  definition: >-
+    The security principle that no one holds enough privilege to misuse a system alone, so that
+    misuse takes more than one party. NIST SP 800-53 sets it out as control AC-5. On this site it
+    means that whoever produces a change, whether a person or an agent's run, is never the one who
+    approves it.
+  # source is nist-800-53 because every published page that uses the phrase (workflows,
+  # pull-request-verification, agent-permissions) already cites it; "segregation of duties" is left
+  # out of match because release, release-readiness and pull-request-verification use it with DORA only.
+  match: ["separation of duties"]
+
+- id: trust-services-criteria
+  term: Trust Services Criteria
+  attribution: adopted
+  source: aicpa-soc2
+  definition: >-
+    The criteria set by the AICPA's Assurance Services Executive Committee that the map names for
+    SOC 2. This site names the framework and its originator and does not restate the content of
+    any criterion.
+  match: ["Trust Services Criteria"]
+
+- id: ai-use-policy
+  term: AI use policy
+  attribution: common
+  also: [nist-ai-rmf, nist-ai-600-1]
+  definition: >-
+    An organisation's stated position on how AI systems may take part in delivery work: which data
+    may be given to which models and on what terms, and what generated code must pass, and how it is
+    disclosed, before it is accepted. On this site each point of such a policy is held as a rule with
+    an owner, enforced by checks, a named decider or both. NIST's generative AI profile uses the
+    related phrase "acceptable use policies". The term carries no legal content here.
+  match: ["AI use policy", "AI use policies"]
+
+- id: least-privilege
+  term: Least privilege
+  attribution: adopted
+  source: nist-glossary-least-privilege
+  also: [nist-800-53, nist-ssdf]
+  definition: >-
+    The security principle that a user, or a process acting on behalf of a user, holds only the
+    access its assigned task needs. NIST's glossary records definitions from several of its
+    publications, and NIST SP 800-53 applies the principle through control AC-6. On this site it is
+    what bounds an agent's identity, independent of the agent's instructions.
+  match: ["least privilege"]
+
+- id: excessive-agency
+  term: Excessive agency
+  attribution: adopted
+  source: owasp-llm06-2025
+  definition: >-
+    OWASP's name, in its Top 10 for LLM Applications 2025 (LLM06), for the vulnerability that lets
+    damaging actions be performed in response to unexpected, ambiguous or manipulated model output.
+    OWASP traces it to excessive functionality, excessive permissions or excessive autonomy, and its
+    mitigations include narrowing the tools and permissions an agent holds and enforcing
+    authorisation in downstream systems rather than in the model.
+  match: ["excessive agency"]

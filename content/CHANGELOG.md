@@ -2,6 +2,17 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.7.0 — 2026-11-28
+
+The Assurance section, part one: what the evidence proves, to whom, and how it is controlled.
+
+- Six new pages in the assurance band: Evidence record, Check results and decisions, Delivery templates, Change controls and standards, AI use policy and Agent permissions.
+- Map: the assurance band's evidence, standards and governance bullets now open these pages; the Measurement column is unchanged and stays unlinked.
+- Navigation and search: an Assurance section in the page menu, the "Look it up" route gains Evidence record and Check results and decisions, and release sections gain 1.7.
+- Core and Lifecycle pages gain links to the new pages in their Related lists; the Validators page links its two references to the assurance band to Check results and decisions.
+- Terminology: new entries for the terms these pages introduce, each with its source.
+- References: new entries for the public sources these pages cite, and added notes on existing entries.
+
 ## 1.6.2 — 2026-11-28
 
 Corrections to Core pages, the workflow catalog and the map, after a check of published text against the site's own standard for original wording.

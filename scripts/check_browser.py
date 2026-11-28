@@ -152,7 +152,7 @@ def main():
                 assert page.locator("#map figure svg").first.get_attribute("role") == "group"
                 assert page.locator("#adoption svg").first.get_attribute("role") == "img"
                 tree = page.locator("#map figure svg").first.aria_snapshot()
-                names = re.findall(r'- link "([^"]+)"', tree)
+                names = re.findall(r"""- '?link "([^"]+)\"""", tree)  # a name holding ": " is quoted in the snapshot
                 links = yaml.safe_load((ROOT / "content/diagrams/map/links.yml").read_text(encoding="utf-8"))
                 assert len(names) == len(links) and "Engineering Kit" in names, tree
                 kit = page.get_by_role("link", name="Engineering Kit", exact=True)
