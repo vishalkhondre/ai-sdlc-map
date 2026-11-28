@@ -1,6 +1,6 @@
 {
   "verdict": "ACCEPT",
-  "source_sha256": "be68d3091bd9adbb7cb2cce207cfaf79dfb9504afa356ea5428c7fac9ab523c4",
-  "report": "content/reviews/1.6.0-lifecycle.md",
-  "report_sha256": "7921879b15920f5c65e5f9f42d1afc7116ab6c05ff074a48193e27c3379c39f6"
+  "source_sha256": "7abfab309e0a0de5c87965d341470160750e3ddfa47a5680fff53802472f62e3",
+  "report": "content/reviews/1.6.1-catalog-correction.md",
+  "report_sha256": "5ec90f358fc8dfbdca0c15b4ca8e5ee57072a415b610dd363286ef4ec8150d87"
 }

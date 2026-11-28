@@ -78,6 +78,19 @@ Update at the end of every session (see `CLAUDE.md`).
    4. 1.5.0: review, merge, author's live review, tag. Then 1.6.0 on the same steps. The deferred
       retrospective items for this section are listed below.
 
+## 2026-11-28 diagnostic sweeps (borderline items and catalog structure)
+
+On the approved order (D-033) the fix edition began with two diagnostic sweeps (reports kept outside
+the repository, GR-1.3). The borderline sweep found 15 more close passages: catalog W04 checks, W13
+people, W17 checks, W01 notes, W08 decision, W22 checks; Core `workflows` Pitfalls (risk-tier bullet),
+`software-factory` Pitfalls (connections bullet), `rule-registry` route set (summary, definition, entry
+table) and four nearby passages (choosing a route, two later passages, a pitfall heading),
+`validators` From report-only to required (paragraph 2) and one pitfall. The structure sweep found the
+catalog's traditional map close or unverifiable; on the author's choice (2026-11-28, "Remove it now,
+publish soon") edition 1.6.1 removes it, the per-row counterparts and fourteen notes. The remaining
+close passages go to the next fix edition (1.6.2), with fresh-author rewrites; the author was told the
+rule-registry route idea is kept and rewritten from public sources unless he says otherwise.
+
 ## 1.4.x findings from the D-030 catalog diagnostic (2026-11-21)
 
 The Lifecycle 1.5.0 batch A sweep stopped at round 2 (D-030). On the author's instruction a diagnostic

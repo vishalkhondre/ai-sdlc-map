@@ -2,6 +2,13 @@
 
 Content edition history of The AI SDLC Map. Only reader-visible changes to the map, diagrams, catalog, terminology or references bump this version.
 
+## 1.6.1 — 2026-11-28
+
+A correction to the workflow catalog.
+
+- The workflow catalog no longer shows the traditional map: the Traditional map view, the traditional counterpart on each workflow card, table row and detail panel, the list of source models, fourteen workflow notes, including those that referred to them or to a traditional counterpart, and the traditional columns of the catalog's CSV download are removed. The workflows themselves, their phases, maturity and change types are unchanged.
+- The catalog page no longer counts traditional activities mapped or lists source models in its footnote; the catalog page and the home page card (whose heading is now "35 SDLC workflows") no longer describe the workflows as mapped one-to-one to traditional activities, and the Release page no longer points to traditional activities listed in a catalog row.
+
 ## 1.6.0 — 2026-11-27
 
 The Lifecycle section, part two.

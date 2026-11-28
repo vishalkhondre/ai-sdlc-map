@@ -11,8 +11,8 @@ Read it at **https://vishalkhondre.github.io/ai-sdlc-map/**
 The site has:
 
 - **The map and the adoption path** on the home page.
-- **SDLC workflow catalog**: 35 workflows across eight phases, each mapped one-to-one to the
-  traditional activity it absorbs, filterable by phase, maturity and change type.
+- **SDLC workflow catalog**: 35 workflows, filterable by phase, maturity and change
+  type.
 - **Terminology and sources**: every term, marked as adopted, adapted, coined or common, with a
   translation table to Birgitta Böckeler's harness-engineering vocabulary on martinfowler.com.
 - **References**: every source, with the terms and diagrams that cite it.
@@ -29,7 +29,7 @@ content/
   toc.yml               site identity
   glossary.yml          terms, attribution (adopted / adapted / coined / common), sources
   references.yml        canonical references
-  workflows/catalog.yml the workflow catalog and traditional-activity map
+  workflows/catalog.yml the workflow catalog
   diagrams/map/         generator for the map and the adoption path
   diagrams/svg/         diagram SVGs (the map ones are generated)
   reviews/              editorial review reports; release-review.json binds one to the sources

@@ -168,7 +168,7 @@
       if (state.m !== 'all' && w.maturity !== state.m) return false;
       if (state.a !== 'all' && !(w.applies_to.includes('All') || w.applies_to.includes(state.a))) return false;
       if (state.q) {
-        const hay = [w.id, w.name, w.decision, w.agent, w.checks, w.people, w.evidence, w.traditional.activity, w.traditional.owner].join(' ').toLowerCase();
+        const hay = [w.id, w.name, w.decision, w.agent, w.checks, w.people, w.evidence].join(' ').toLowerCase();
         if (!hay.includes(state.q)) return false;
       }
       return true;
@@ -176,24 +176,20 @@
     /* map */
     const map = $('#wf-map');
     map.innerHTML = phases.map(p => `<div class="wf-col" data-phase="${p.key}"><div class="wf-col-head"><b>${esc(p.name)}</b><br>${(byPhase[p.key] || []).length} workflows</div>${(byPhase[p.key] || []).map(w => `
-      <button class="wf-card m-${w.maturity}" type="button" data-id="${w.id}" id="${w.id}"><span class="id">${w.id} · ${w.maturity}</span><span class="name">${esc(w.name)}</span><span class="was">${esc(w.traditional.activity.split(';')[0])}</span><span class="tags">${w.applies_to.map(a => `<span class="tag">${esc(a)}</span>`).join('')}</span></button>`).join('')}<div class="wf-empty" hidden>No match</div></div>`).join('');
+      <button class="wf-card m-${w.maturity}" type="button" data-id="${w.id}" id="${w.id}"><span class="id">${w.id} · ${w.maturity}</span><span class="name">${esc(w.name)}</span><span class="tags">${w.applies_to.map(a => `<span class="tag">${esc(a)}</span>`).join('')}</span></button>`).join('')}<div class="wf-empty" hidden>No match</div></div>`).join('');
     /* table */
     const tbl = $('#wf-table');
-    const cols = [['id', 'ID'], ['phase', 'Phase'], ['name', 'Workflow'], ['decision', 'Decision it supports'], ['maturity', 'Maturity'], ['applies', 'Change type'], ['was', 'Traditional counterpart']];
+    const cols = [['id', 'ID'], ['phase', 'Phase'], ['name', 'Workflow'], ['decision', 'Decision it supports'], ['maturity', 'Maturity'], ['applies', 'Change type']];
     function renderTable() {
       const rows = D.workflows.slice().sort((x, y) => {
-        const k = state.sort; const vx = k === 'applies' ? x.applies_to.join() : k === 'was' ? x.traditional.activity : x[k]; const vy = k === 'applies' ? y.applies_to.join() : k === 'was' ? y.traditional.activity : y[k];
+        const k = state.sort; const vx = k === 'applies' ? x.applies_to.join() : x[k]; const vy = k === 'applies' ? y.applies_to.join() : y[k];
         return (vx > vy ? 1 : vx < vy ? -1 : 0) * (state.desc ? -1 : 1);
       });
       tbl.innerHTML = `<div class="table-wrap"><table><thead><tr>${cols.map(c => `<th data-k="${c[0]}" class="${state.sort === c[0] ? 'sorted' + (state.desc ? ' desc' : '') : ''}">${c[1]}</th>`).join('')}</tr></thead><tbody>${rows.map(w => `
-        <tr data-id="${w.id}"${visible(w) ? '' : ' hidden'}><td>${w.id}</td><td>${esc(phaseName(w.phase))}</td><td><b>${esc(w.name)}</b></td><td>${esc(w.decision)}</td><td><span class="pill m-${w.maturity}">${w.maturity}</span></td><td>${w.applies_to.join(', ')}</td><td>${esc(w.traditional.activity)}</td></tr>`).join('')}</tbody></table></div>`;
+        <tr data-id="${w.id}"${visible(w) ? '' : ' hidden'}><td>${w.id}</td><td>${esc(phaseName(w.phase))}</td><td><b>${esc(w.name)}</b></td><td>${esc(w.decision)}</td><td><span class="pill m-${w.maturity}">${w.maturity}</span></td><td>${w.applies_to.join(', ')}</td></tr>`).join('')}</tbody></table></div>`;
       $$('th', tbl).forEach(th => th.addEventListener('click', () => { if (state.sort === th.dataset.k) state.desc = !state.desc; else { state.sort = th.dataset.k; state.desc = false; } renderTable(); }));
       $$('tr[data-id]', tbl).forEach(tr => tr.addEventListener('click', () => openDetail(tr.dataset.id)));
     }
-    /* traditional map */
-    const trad = $('#wf-trad');
-    trad.innerHTML = `<p class="muted">Every activity from the source models and where it lands. Rows landing in <b>harness</b> are mechanisms rather than workflows (rule registry, evidence schema, adapters); rows marked <b>excluded</b> are deliberately outside the catalog.</p><div class="table-wrap"><table><thead><tr><th>Source</th><th>Source phase</th><th>Role / initiator</th><th>Traditional activity</th><th>Artefact or tool</th><th>Lands in</th><th>How</th></tr></thead><tbody>${D.traditional_map.map(r => `<tr><td>${esc(D.sources[r.source] || r.source)}</td><td>${esc(r.phase)}</td><td>${esc(r.role)}</td><td>${esc(r.activity)}${r.note ? `<div class="muted">${esc(r.note)}</div>` : ''}</td><td>${esc(r.artefact)}</td><td class="lands">${byId[r.lands_in] ? `<a href="#${r.lands_in}" data-open="${r.lands_in}">${r.lands_in} ${esc(byId[r.lands_in].name)}</a>` : esc(r.lands_in)}</td><td>${esc(r.how)}</td></tr>`).join('')}</tbody></table></div>`;
-    $$('a[data-open]', trad).forEach(a => a.addEventListener('click', e => { e.preventDefault(); openDetail(a.dataset.open); }));
     function apply() {
       $$('.wf-card', map).forEach(c => c.hidden = !visible(byId[c.dataset.id]));
       $$('.wf-col', map).forEach(col => { const any = $$('.wf-card:not([hidden])', col).length; $('.wf-empty', col).hidden = any > 0; });
@@ -223,7 +219,6 @@
           <div class="wf-cell people"><span class="k">The people</span>${esc(w.people)}</div>
         </div>
         <div class="wf-row"><span class="k">Trigger</span><span>${esc(w.trigger)}</span><span class="k">Evidence record</span><span>${esc(w.evidence)}</span><span class="k">Applies to</span><span>${w.applies_to.join(', ')}</span>${w.notes ? `<span class="k">Notes</span><span>${esc(w.notes)}</span>` : ''}</div>
-        <div class="wf-trad-box"><span class="k">Traditional counterpart</span><br><b>${esc(w.traditional.activity)}</b><br><span class="muted">Owner: ${esc(w.traditional.owner)} · Artefact: ${esc(w.traditional.artefact)}</span></div>
         <div class="wf-nav">${i > 0 ? `<button class="btn small" type="button" data-go="${ids[i - 1]}">← ${ids[i - 1]}</button>` : '<span></span>'}<a class="btn small" href="${esc(D.definition.url)}" rel="noopener">${esc(D.definition.label)}</a>${i < ids.length - 1 ? `<button class="btn small" type="button" data-go="${ids[i + 1]}">${ids[i + 1]} →</button>` : '<span></span>'}</div>`;
       $$('[data-go]', body).forEach(b => b.addEventListener('click', () => openDetail(b.dataset.go)));
       detail.hidden = false; document.body.style.overflow = 'hidden'; history.replaceState(null, '', '#' + id);

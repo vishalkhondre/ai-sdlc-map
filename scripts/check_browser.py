@@ -169,9 +169,9 @@ def main():
                 assert "W07" in page.locator("#wf-detail").inner_text()
 
                 page.goto(base + "/workflow-catalog.html")
-                for label, visible in [("Table", "wf-table"), ("Traditional map", "wf-trad"), ("Map", "wf-map")]:
+                for label, visible in [("Table", "wf-table"), ("Map", "wf-map")]:
                     page.get_by_role("tab", name=label, exact=True).click()
-                    for panel in ("wf-map", "wf-table", "wf-trad"):
+                    for panel in ("wf-map", "wf-table"):
                         assert page.locator("#" + panel).is_visible() == (panel == visible), (label, panel)
                 page.locator(".wf-card").first.click()
                 definition = page.locator(".wf-nav a")

@@ -156,11 +156,6 @@ class Generated(unittest.TestCase):
             self.assertIn(w["maturity"], cat["maturity"], w["id"])
             for k in ("decision", "trigger", "agent", "checks", "people", "evidence"):
                 self.assertTrue(w[k], f"{w['id']} missing {k}")
-        for r in cat["traditional_map"]:
-            for part in str(r["lands_in"]).split("/"):
-                part = part.strip()
-                if part.startswith("W"):
-                    self.assertIn(part, ids, r["activity"])
 
     def test_citation_gate(self):
         res = subprocess.run([sys.executable, str(ROOT / "scripts" / "check_citations.py")], capture_output=True, text=True)

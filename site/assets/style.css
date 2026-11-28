@@ -405,8 +405,6 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .wf-card.m-Floor { border-left-color: var(--teal); } .wf-card.m-First { border-left-color: var(--amber-mark); } .wf-card.m-Later { border-left-color: var(--coral); }
 .wf-card .id { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 .wf-card .name { font-weight: 650; font-size: 15px; line-height: 1.3; }
-.wf-card .was { font-size: 12.5px; color: var(--muted); }
-.wf-card .was::before { content: "was: "; color: var(--faint); }
 .wf-card .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
 .tag { font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--bg-3); color: var(--muted); }
 .wf-card[hidden] { display: none; }
@@ -419,10 +417,6 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .wf-table tr { cursor: pointer; }
 .wf-table tr:hover td { background: var(--bg-3); }
 .wf-table tr[hidden] { display: none; }
-.wf-trad table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.wf-trad th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--line-2); position: sticky; top: var(--topbar); background: var(--bg-2); }
-.wf-trad td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.wf-trad .lands { font-family: var(--mono); font-size: 12px; }
 .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
 .pill.m-Floor { background: var(--teal-bg); color: var(--teal); } .pill.m-First { background: var(--amber-bg); color: var(--amber); } .pill.m-Later { background: var(--coral-bg); color: var(--coral); }
 .small-note { font-size: 13px; margin-top: 20px; }
@@ -438,7 +432,6 @@ a.term:hover { color: var(--accent-ink); text-decoration-style: solid; }
 .wf-cell.agent { background: var(--coral-bg); border-color: transparent; } .wf-cell.checks { background: var(--accent-bg); border-color: transparent; } .wf-cell.people { background: var(--amber-bg); border-color: transparent; }
 .wf-row { display: grid; grid-template-columns: 140px 1fr; gap: 8px 14px; font-size: 14.5px; margin-top: 16px; }
 .wf-row .k { padding-top: 3px; }
-.wf-trad-box { margin-top: 18px; padding: 14px 16px; border-left: 3px solid var(--line-2); background: var(--bg-3); border-radius: 0 10px 10px 0; font-size: 14.5px; }
 .wf-nav { display: flex; justify-content: space-between; margin-top: 20px; }
 @media (max-width: 720px) { .wf-grid { grid-template-columns: 1fr; } .wf-row { grid-template-columns: 1fr; } }
 
