@@ -89,7 +89,7 @@ RENDERED_JS = """() => {
 
 def catalog_rendered(page, base: str) -> str:
     page.goto(base + "/workflow-catalog.html")
-    for label in ("Table", "Traditional map", "Map"):
+    for label in ("Table", "Map"):
         page.get_by_role("tab", name=label, exact=True).click()
     return page.evaluate(RENDERED_JS)
 

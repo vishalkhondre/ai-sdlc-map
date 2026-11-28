@@ -581,7 +581,7 @@ def render_index() -> str:
 <div class="section-inner">
 <div class="section-head"><h2>Go further</h2><p>The map is the summary. These carry the detail.</p></div>
 <div class="cards three">
-<a class="card" href="workflow-catalog.html"><div class="card-num">Catalog</div><h3>{n_workflows} SDLC workflows, mapped to what they replace</h3><p>Every candidate workflow across the lifecycle, each with its decision, trigger, agent task, checks, human decision and evidence record, mapped one-to-one to the traditional activity it absorbs.</p></a>
+<a class="card" href="workflow-catalog.html"><div class="card-num">Catalog</div><h3>{n_workflows} SDLC workflows</h3><p>Every candidate workflow across the lifecycle, each with its decision, trigger, agent task, checks, human decision and evidence record.</p></a>
 <a class="card" href="glossary.html"><div class="card-num">Terminology</div><h3>Every term, and where it comes from</h3><p>Which words are adopted from Böckeler and Thoughtworks, which are adapted, and which are coined here, with a translation table between the vocabularies.</p></a>
 <a class="card" href="references.html"><div class="card-num">References</div><h3>Every source in one place</h3><p>The public sources behind the terms, the map and the catalog, each with its author, publisher and link.</p></a>
 </div>
@@ -707,22 +707,22 @@ def render_catalog() -> str:
     set_prefix("")
     data = CATALOG
     phases = {p["key"]: p["name"] for p in data["phases"]}
-    wf_json = json.dumps({"phases": data["phases"], "maturity": data["maturity"], "sources": data["sources"], "workflows": data["workflows"], "traditional_map": data["traditional_map"],
+    wf_json = json.dumps({"phases": data["phases"], "maturity": data["maturity"], "workflows": data["workflows"],
                           "definition": {"url": "glossary.html#workflow", "label": "What a workflow is"}})
     counts = {}
     for w in data["workflows"]:
         counts[w["maturity"]] = counts.get(w["maturity"], 0) + 1
-    page = head(f"SDLC workflow catalog · {TITLE}", f"{len(data['workflows'])} candidate workflows across the software lifecycle, each mapped to the traditional activity it absorbs, with its activities split into agent, checks and people.", "workflow-catalog.html")
+    page = head(f"SDLC workflow catalog · {TITLE}", f"{len(data['workflows'])} candidate workflows across the software lifecycle, each with its activities split into agent, checks and people.", "workflow-catalog.html")
     page += "<body>" + nav("workflows")
     page += f"""
 <main>
 <div class="hero hero-plain"><div class="hero-inner"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">{esc(TITLE)}</a> <span aria-hidden="true">/</span> <a href="workflow-catalog.html">Workflows</a> <span aria-hidden="true">/</span> <span aria-current="page">Workflow catalog</span></nav><h1>SDLC workflow catalog</h1>
-<p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition in the <a href="glossary.html#workflow">terminology</a>: it supports one delivery decision end to end, with a trigger, inputs, an agent task, automated checks, guardrails, a human decision, outputs, feedback and an owner. Each one is mapped one-to-one to the traditional activity it absorbs, so a reader can see that almost nothing here is new; the mechanical part moved to a check, the reading and drafting moved to an agent, and the decision stayed with a person but now carries evidence.</p>
-<div class="stats small"><div><b>{len(data['workflows'])}</b><span>workflows</span></div><div><b>{len(data['phases'])}</b><span>phases</span></div><div><b>{counts.get('Floor',0)}</b><span>floor</span></div><div><b>{counts.get('First',0)}</b><span>first</span></div><div><b>{counts.get('Later',0)}</b><span>later</span></div><div><b>{len(data['traditional_map'])}</b><span>traditional activities mapped</span></div></div>
+<p class="lede">Every candidate workflow across the software development lifecycle (SDLC), using the definition in the <a href="glossary.html#workflow">terminology</a>: it supports one delivery decision end to end, with a trigger, inputs, an agent task, automated checks, guardrails, a human decision, outputs, feedback and an owner.</p>
+<div class="stats small"><div><b>{len(data['workflows'])}</b><span>workflows</span></div><div><b>{len(data['phases'])}</b><span>phases</span></div><div><b>{counts.get('Floor',0)}</b><span>floor</span></div><div><b>{counts.get('First',0)}</b><span>first</span></div><div><b>{counts.get('Later',0)}</b><span>later</span></div></div>
 </div></div>
 <div class="section-inner">
 <div class="catalog-controls">
-<div class="viewtabs" role="tablist"><button class="on" data-view="map" role="tab">Map</button><button data-view="table" role="tab">Table</button><button data-view="traditional" role="tab">Traditional map</button></div>
+<div class="viewtabs" role="tablist"><button class="on" data-view="map" role="tab">Map</button><button data-view="table" role="tab">Table</button></div>
 <input id="wf-search" type="search" placeholder="Filter workflows…" aria-label="Filter workflows">
 <div class="filterbar" id="wf-maturity"><span class="k">Maturity</span><button class="chipbtn on" data-m="all">All</button><button class="chipbtn m-Floor" data-m="Floor">Floor</button><button class="chipbtn m-First" data-m="First">First</button><button class="chipbtn m-Later" data-m="Later">Later</button></div>
 <div class="filterbar" id="wf-applies"><span class="k">Change type</span><button class="chipbtn on" data-a="all">All</button><button class="chipbtn" data-a="UI">UI</button><button class="chipbtn" data-a="API">API</button><button class="chipbtn" data-a="Data">Data</button></div>
@@ -730,8 +730,7 @@ def render_catalog() -> str:
 <div class="legend-row"><span class="k">Maturity</span>{''.join(f'<span class="lg m-{k}"><i></i>{k} — {esc(v)}</span>' for k, v in data['maturity'].items())}</div>
 <div id="wf-map" class="wf-map" data-view="map"></div>
 <div id="wf-table" class="wf-table" data-view="table" hidden></div>
-<div id="wf-trad" class="wf-trad" data-view="traditional" hidden></div>
-<p class="muted small-note">Sources for the traditional side: {', '.join(esc(v) for v in data['sources'].values())}. No tool names in the catalog by design; tools appear only in the traditional map as they were in the sources. Download the catalog as <a href="data/workflow-catalog.json" download>JSON</a> or <a href="data/workflow-catalog.csv" download>CSV</a>.</p>
+<p class="muted small-note">No tool names in the catalog by design. Download the catalog as <a href="data/workflow-catalog.json" download>JSON</a> or <a href="data/workflow-catalog.csv" download>CSV</a>.</p>
 </div>
 <div class="wf-detail" id="wf-detail" hidden><div class="wf-detail-panel"><button class="lightbox-close" type="button" aria-label="Close">×</button><div class="wf-detail-body"></div></div></div>
 </main>
@@ -811,7 +810,7 @@ def write_discovery() -> None:
     for g in GLOSSARY:
         idx.append({"t": g["term"], "u": f"glossary.html#{g['id']}", "k": "term", "s": g["definition"].strip()[:200], "b": g["definition"].strip()})
     for w in CATALOG["workflows"]:
-        idx.append({"t": f"{w['id']} {w['name']}", "u": f"workflow-catalog.html#{w['id']}", "k": "workflow", "s": w["decision"], "b": " ".join(str(v) for v in [w["agent"], w["checks"], w["people"], w["traditional"]["activity"]])})
+        idx.append({"t": f"{w['id']} {w['name']}", "u": f"workflow-catalog.html#{w['id']}", "k": "workflow", "s": w["decision"], "b": " ".join(str(v) for v in [w["agent"], w["checks"], w["people"]])})
     write(SITE / "search-index.json", json.dumps(idx))
     # data downloads
     (SITE / "data").mkdir(exist_ok=True)
@@ -819,9 +818,9 @@ def write_discovery() -> None:
     import csv, io
     buf = io.StringIO()
     wcsv = csv.writer(buf)
-    wcsv.writerow(["id", "phase", "name", "decision", "trigger", "agent", "checks", "people", "evidence", "applies_to", "maturity", "traditional_activity", "traditional_owner", "traditional_artefact", "notes"])
+    wcsv.writerow(["id", "phase", "name", "decision", "trigger", "agent", "checks", "people", "evidence", "applies_to", "maturity", "notes"])
     for w in CATALOG["workflows"]:
-        wcsv.writerow([w["id"], w["phase"], w["name"], w["decision"], w["trigger"], w["agent"], w["checks"], w["people"], w["evidence"], "; ".join(w["applies_to"]), w["maturity"], w["traditional"]["activity"], w["traditional"]["owner"], w["traditional"]["artefact"], w.get("notes") or ""])
+        wcsv.writerow([w["id"], w["phase"], w["name"], w["decision"], w["trigger"], w["agent"], w["checks"], w["people"], w["evidence"], "; ".join(w["applies_to"]), w["maturity"], w.get("notes") or ""])
     write(SITE / "data" / "workflow-catalog.csv", buf.getvalue())
     # 404
     set_prefix("")

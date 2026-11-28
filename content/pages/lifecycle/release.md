@@ -78,8 +78,7 @@ provenance as "verifiable information about software artifacts describing where,
 something was produced"[^slsa-provenance]. Testing closes here too: the ISTQB glossary defines test
 completion, also called test closure, as the activity that makes testware available for later use,
 leaves test environments in a satisfactory condition and communicates the results of testing to
-relevant stakeholders[^istqb-test-completion]. The catalog row for release readiness
-([W25](workflow-catalog.html#W25)) lists the other traditional activities it takes in.
+relevant stakeholders[^istqb-test-completion].
 
 ## AI-assisted practice
 
