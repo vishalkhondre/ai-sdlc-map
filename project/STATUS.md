@@ -199,8 +199,8 @@ Each open item, with its outcome (GR-5.3).
 |---|---|---|---|
 | 0 Foundations | closed (D-028) | — | — |
 | 1 Core and lifecycle | Core released (`v1.4.1`, `v1.4.2`); Lifecycle 1.5.0 deployed (untagged); 1.6.0 in PR #28 | 9 (core) + 12 (1.5.0) + 7 (1.6.0) | 21 (28 with 1.6.0) |
-| 2 Assurance and enablement | Assurance plan proposed (draft PR #27), awaiting the author | set by inventory | 0 |
-| 3 Context and adoption | not started | set by inventory | 0 |
+| 2 Assurance and enablement | Assurance plan approved (D-033); Enablement plan proposed (`project/plans/enablement.md`, 14 pages, edition 1.8.0), awaiting the author | 11 (1.7.0) + 14 (1.8.0, proposed) | 0 |
+| 3 Context and adoption | Plan proposed (`project/plans/context-and-adoption.md`: Context 15 pages as 1.9.0, Adoption 6 pages as 2.0.0), awaiting the author | 15 + 6 (proposed) | 0 |
 
 ## Session log
 
