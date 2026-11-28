@@ -7,7 +7,7 @@ title: Release
 summary: Release decides whether a candidate is fit to reach its users, on evidence recorded for its exact revision, and leaves a record of that decision; an agent prepares, checks confirm and a named person decides.
 key_terms: [ai-sdlc, workflow, three-roles, gate, evidence-record, evidence-handoff, could-not-run, failure-path, deploy-versus-release, export-example]
 sources: [sre-book-release-engineering, dora-streamlining-change-approval, keep-a-changelog, keep-a-changelog-2, semver, fowler-feature-toggles, fowler-dark-launching, safe-release-on-demand, dora-continuous-delivery, scrum-guide-2020, nist-ssdf, slsa-provenance, istqb-test-completion, dora-2025-announcement, bockeler-sensors]
-related: [deploy, operate, develop-build-qa, definition-of-ready-and-done, traceability-spine, workflows, evidence-schema, validators, software-factory, rule-registry, release-readiness, deploy-verification]
+related: [deploy, operate, develop-build-qa, definition-of-ready-and-done, traceability-spine, workflows, evidence-schema, validators, software-factory, rule-registry, release-readiness, deploy-verification, change-controls-and-standards]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -223,6 +223,8 @@ identity it runs under has no permission to write a decision.
   site's adaptation of Birgitta Böckeler's computational sensors[^bockeler-sensors].
 - [Release readiness](release-readiness.html): whether a release candidate is fit to go out.
 - [Deploy verification](deploy-verification.html): whether a running revision stays or the way back is taken.
+- [Change controls and standards](change-controls-and-standards.html): how an external control
+  framework is met through rules, checks, records and named approvers.
 - Workflow catalog rows: release readiness ([W25](workflow-catalog.html#W25)), deployment and
   post-deploy verification ([W26](workflow-catalog.html#W26)), change control
   ([W32](workflow-catalog.html#W32)) and exception handling ([W33](workflow-catalog.html#W33)).

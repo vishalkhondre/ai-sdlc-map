@@ -7,7 +7,7 @@ title: Rule registry
 summary: The single list of the rules a team relies on, each with a stable identifier, a statement, how it is enforced, an owner and its known gaps, which validators, skills and evidence records refer to by identifier.
 key_terms: [rule-registry, architecture-decision-record, gate, validator, skill, review-skill, evidence-record, deterministic-gate, feedback-path, engineering-kit, export-example]
 sources: [bockeler-harness, bockeler-sensors, openai-harness, fitness-function, owasp-asvs, owasp-asvs-v4-users, nist-800-53, nist-oscal, cwe-deprecated, nygard-adr, tw-radar-adr, tw-radar-security-policy-as-code, nist-800-37, sadowski-tricorder, sadowski-cacm-2018, sarif-2-1-0, nasa-swe-052, dora-metrics]
-related: [engineering-kit, validators, skills-and-evals, evidence-schema, harness-engineering, workflows]
+related: [engineering-kit, validators, skills-and-evals, evidence-schema, harness-engineering, workflows, evidence-record]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -255,6 +255,8 @@ matter for audit and traceability, which reads the registry but is not part of i
 - [Skills with evals](skills-and-evals.html): packaged guidance for the agent, and how skills cite
   the rules they support.
 - [Evidence schema](evidence-schema.html): the record of which rule checks ran on a change.
+- [Evidence record](evidence-record.html): following a rule ID from the registry to the checks and
+  decisions that relied on it.
 - [Harness engineering](harness-engineering.html): the discipline of deciding what the agent reads,
   what a machine checks and what a person decides.
 - [Workflows](workflows.html): the unit of delivery that runs the checks the registry defines.

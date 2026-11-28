@@ -131,14 +131,31 @@ def group(x, y, w, h, title, color):
 
 
 def bullet_col(x, y, w, h, title, items, color):
+    """A column of bullets. A column title or a bullet whose full text is a key in links.yml
+    becomes one link; a wrapped bullet keeps all its lines in one <text> (one tspan per line), so
+    the underline covers every line and each link carries exactly one label."""
     stroke, fill, dark = C[color]
-    s = r(x, y, w, h, fill, stroke, 1.3, 11) + t(x + 16, y + 26, title.upper(), 12, stroke, 700, spacing=0.6)
+    head = t(x + 16, y + 26, title.upper(), 12, stroke, 700, spacing=0.6)
+    if title.upper() in LINKS:
+        # the column title is keyed by the displayed (upper-cased) label; a 24 px hit area widens it
+        head = linked(title.upper(), hit(x + 12, y + 10, len(title) * 9 + 8, 24) + head)
+    s = r(x, y, w, h, fill, stroke, 1.3, 11) + head
     yy = y + 52
     for it in items:
         lines = wrap(it, w - 44, 14)
-        s += f'<circle cx="{x + 20}" cy="{yy - 5}" r="2.6" fill="{stroke}"/>'
-        for i, ln in enumerate(lines):
-            s += t(x + 30, yy + i * 19, ln, 14, INK)
+        dot = f'<circle cx="{x + 20}" cy="{yy - 5}" r="2.6" fill="{stroke}"/>'
+        href = LINKS.get(it)
+        if href:
+            LINKED.add(it)
+            # a trailing space keeps the words of adjacent lines apart in the text content readers get
+            spans = "".join(f'<tspan x="{x + 30}" y="{yy + i * 19}">{esc(ln)}{" " if i < len(lines) - 1 else ""}</tspan>' for i, ln in enumerate(lines))
+            label = f'<text class="maplabel" x="{x + 30}" y="{yy}" font-size="14" fill="{INK}" font-weight="400" text-anchor="start">{spans}</text>'
+            s += (f'<a class="maplink" href="{html.escape(href)}" aria-label="{html.escape(" ".join(it.split()))}">'
+                  + hit(x + 12, yy - 16, w - 24, len(lines) * 19 + 4) + dot + label + "</a>")
+        else:
+            s += dot
+            for i, ln in enumerate(lines):
+                s += t(x + 30, yy + i * 19, ln, 14, INK)
         yy += len(lines) * 19 + 4
     return s
 

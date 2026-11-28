@@ -7,7 +7,7 @@ title: Definition of Ready and Definition of Done
 summary: A Definition of Ready states what an item must meet before a team accepts it for work, and a Definition of Done states what the result must meet to count as finished; with coding agents, both need parts a machine can check and an owner who is not the agent.
 key_terms: [ai-sdlc, definition-of-ready, definition-of-done, specification-readiness, independent-basis, risk-tier, workflow, evidence-record, evidence-handoff, could-not-run, failure-path, export-example, gate, feedback-path, steering-loop]
 sources: [scrum-guide-2020, agile-alliance-dor, safe-glossary, wake-invest, istqb-agile-tester-2014, istqb-testability, dora-ai-capabilities-impact, dora-small-batches, spec-kit-sdd, requirements-ambiguity-llm, metr-reward-hacking, anthropic-claude-37-system-card, konstantinou-test-oracles, bockeler-harness, oasis-soa-rm, safe-inspect-and-adapt, istqb-acceptance-criteria]
-related: [specification, design, release, develop-build-qa, lifecycle-levels, traceability-spine, workflows, rule-registry, evidence-schema]
+related: [specification, design, release, develop-build-qa, lifecycle-levels, traceability-spine, workflows, rule-registry, evidence-schema, delivery-templates]
 review_record: content/reviews/1.5.0-lifecycle.md
 ---
 
@@ -291,6 +291,8 @@ lifecycle onto SAFe.
 - [Inspect and Adapt](inspect-and-adapt.html): the checkpoint where a definition is reviewed and changed.
 - [SAFe reference model](safe-reference-model.html): the mapping of the lifecycle onto SAFe.
 - [Workflows](workflows.html): the decision unit that each readiness and done check belongs to.
+- [Delivery templates](delivery-templates.html): the fixed outlines of specifications, plans,
+  decision records and release notes that readiness and done checks read.
 - [Rule registry](rule-registry.html), [Evidence schema](evidence-schema.html),
   [Software factory](software-factory.html) and [checks that enforce rules](validators.html): the
   shared machinery behind the checks.

@@ -44,8 +44,8 @@ fowler-ci:
   org: "martinfowler.com"
   date: "18 January 2024 (revised version)"
   url: "https://martinfowler.com/articles/continuousIntegration.html"
-  accessed: "2026-11-20"
-  note: "The classic statement of most of the deterministic floor this site takes for granted: a build that runs the same way everywhere and fails fast. Practice headings include Automate the Build; Make the Build Self-Testing; Everyone Pushes Commits To the Mainline Every Day; Fix Broken Builds Immediately; Keep the Build Fast; Test in a Clone of the Production Environment; Everyone can see what's happening; Automate Deployment."
+  accessed: "2026-11-28"
+  note: "The classic statement of most of the deterministic floor this site takes for granted: a build that runs the same way everywhere and fails fast. Practice headings include Automate the Build; Make the Build Self-Testing; Everyone Pushes Commits To the Mainline Every Day; Fix Broken Builds Immediately; Keep the Build Fast; Test in a Clone of the Production Environment; Everyone can see what's happening; Automate Deployment. Says any test failing is enough to fail the build ('99.9% green is still red'), and that a failed integration build is fixed right away, usually by reverting the faulty commit. Read 2026-11-28."
 
 fitness-function:
   title: "Fitness function-driven development"
@@ -79,8 +79,8 @@ dora-metrics:
   org: "DORA, published on dora.dev"
   date: "last updated 2026-01-05 (as printed)"
   url: "https://dora.dev/guides/dora-metrics/"
-  accessed: "2026-11-27"
-  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics. Defines change fail rate as the ratio of deployments that require immediate intervention following a deployment; failed deployment recovery time as the time it takes to recover from a deployment that fails and requires immediate intervention; and deployment rework rate as the ratio of deployments that are unplanned but happen as a result of an incident in production. Advises setting a baseline for an application's current performance and improving over time, not competing against other teams or organizations; says the metrics are meant to be applied at the application or service level; lists 'Setting metrics as a goal' among its pitfalls and warns, citing Goodhart's law, that metrics set as goals invite gaming."
+  accessed: "2026-11-28"
+  note: "Names five software delivery performance metrics in two groups: throughput (change lead time, deployment frequency, failed deployment recovery time) and instability (change fail rate, deployment rework rate). Failed deployment recovery time is a throughput metric on this page. The page https://dora.dev/guides/dora-metrics-four-keys/ redirects here. Cited for DORA's software delivery performance metrics. Defines change fail rate as the ratio of deployments that require immediate intervention following a deployment; failed deployment recovery time as the time it takes to recover from a deployment that fails and requires immediate intervention; and deployment rework rate as the ratio of deployments that are unplanned but happen as a result of an incident in production. Advises setting a baseline for an application's current performance and improving over time, not competing against other teams or organizations; says the metrics are meant to be applied at the application or service level; lists 'Setting metrics as a goal' among its pitfalls and warns, citing Goodhart's law, that metrics set as goals invite gaming. Defines change lead time as the amount of time it takes for a change to go from committed to version control to deployed in production, and deployment frequency as the number of deployments over a given period or the time between deployments. Says throughput measures how many changes can move through the system over a period of time and instability how well the software deployments go. Lists 'Having one metric to rule them all' among its pitfalls, advising multiple metrics including some with a healthy amount of tension between them, and lists comparing very different applications among its pitfalls. Gives as an example of a broad goal that every application must deploy multiple times per day by year's end, and says such goals increase the likelihood that teams will try to game the metrics."
 
 safe-framework:
   title: "Planning Interval (PI)"
@@ -273,8 +273,8 @@ nist-800-53:
   org: "National Institute of Standards and Technology (NIST)"
   date: "2020-09 (updated 2020-12-10; Release 5.2.0, 2025-08-27)"
   url: "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
-  accessed: "2026-11-20"
-  note: "The NIST control catalog, in which each control has a family-based identifier (for example AC-2) and withdrawn controls remain listed under their identifiers with their disposition (incorporated into or moved to another control). AC-5 (Separation of Duties) divides mission and support functions among different individuals or roles, so misuse of privilege needs collusion, and AC-6 (Least Privilege) limits access to what users, and processes acting on behalf of users, need for their tasks."
+  accessed: "2026-11-28"
+  note: "The NIST control catalog, in which each control has a family-based identifier (for example AC-2) and withdrawn controls remain listed under their identifiers with their disposition (incorporated into or moved to another control). AC-5 (Separation of Duties) divides mission and support functions among different individuals or roles, so misuse of privilege needs collusion, and AC-6 (Least Privilege) limits access to what users, and processes acting on behalf of users, need for their tasks. AU family (read 2026-11-28 through fedramp.gov's rendering of the NIST OSCAL catalog 5.2.0, because the PDF text could not be extracted): AU-6 requires reviewing and analysing audit records at an organization-defined frequency for organization-defined inappropriate or unusual activity and reporting findings to organization-defined personnel or roles; AU-9 requires protecting audit information and audit logging tools from unauthorized access, modification and deletion, and alerting organization-defined personnel or roles on detection; AU-11 requires retaining audit records for an organization-defined time period to support after-the-fact investigations of incidents and to meet regulatory and organizational information retention requirements. AC-2 (Account Management): define and document account types allowed and prohibited (a); assign account managers (b); specify authorized users, group and role membership, and access authorizations for each account (d); require approvals for requests to create accounts (e); create, enable, modify, disable and remove accounts per organization-defined policy (f); monitor the use of accounts (g); notify account managers when accounts are no longer required, users are terminated or transferred, or need-to-know changes (h); review accounts at an organization-defined frequency (j). The discussion lists service among account types and calls for additional scrutiny of accounts with administrative privileges. AC-2(3) disables accounts that have expired, are no longer associated with a user or individual, violate policy, or have been inactive for a defined period; AC-2(4) automatically audits account creation, modification, enabling, disabling and removal; AC-2(9) permits shared and group accounts only under defined conditions, citing the lack of accountability. AC-5 identifies duties requiring separation and defines access authorizations to support it. AC-6(5) restricts privileged accounts to defined personnel or roles; AC-6(7) reviews privileges at a defined frequency to validate the need for them and reassigns or removes them; AC-6(9) logs the execution of privileged functions. Frequencies, periods and approvers are organization-defined. Control text read in NIST's v5.1 XML and the AC-2 base text in the nvlpubs PDF; not yet confirmed against Release 5.2.0. SA-9a and SA-9c (require providers of external system services to comply with organisational security and privacy requirements, and monitor their control compliance on an ongoing basis). Read in FedRAMP's vendored copy of the NIST SP 800-53 Rev. 5 OSCAL catalog (release 5.2.0). Control text read 2026-11-28 in FedRAMP's vendored copy of the NIST SP 800-53 Rev. 5 OSCAL catalog (release 5.2.0), because the NIST PDF was truncated by the fetch tool: AU-5 (alert organisation-defined personnel or roles within an organisation-defined period in the event of an audit logging process failure, and take organisation-defined additional actions); CM-3c (document configuration change decisions) and CM-3e (retain records of configuration-controlled changes for an organisation-defined period); CM-6c (identify, document and approve deviations from established configuration settings)."
 
 nist-oscal:
   title: "OSCAL: the Open Security Controls Assessment Language"
@@ -404,8 +404,8 @@ github-protected-branches:
   author: "GitHub"
   org: "GitHub Docs"
   url: "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
-  accessed: "2026-09-25"
-  note: "States that required status checks must have a successful, skipped or neutral status before changes reach a protected branch. Cited for this platform's behaviour only."
+  accessed: "2026-11-28"
+  note: "States that required status checks must have a successful, skipped or neutral status before changes reach a protected branch. Cited for this platform's behaviour only. Also states that a branch protection setting can dismiss stale pull request approvals when commits are pushed that affect the diff (read 2026-11-28)."
 
 github-checks-api:
   title: "Using the REST API to interact with checks"
@@ -597,8 +597,8 @@ sarif-2-1-0:
   org: "OASIS Open"
   date: "2023-08-28 (OASIS Standard incorporating Errata 01)"
   url: "https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html"
-  accessed: "2026-09-25"
-  note: "OASIS Standard for static-analysis tool output. Each result carries a stable ruleId and a kind (pass, fail, open, review, notApplicable, informational). The invocation records whether the tool's execution succeeded (executionSuccessful) separately from its results, and an informative appendix explains that a run whose execution failed cannot be assumed to hold complete results. Results also record the scanned revision (revisionId) and suppressions with a status (underReview, accepted, rejected) and a user-supplied justification."
+  accessed: "2026-11-28"
+  note: "OASIS Standard for static-analysis tool output. Each result carries a stable ruleId and a kind (pass, fail, open, review, notApplicable, informational). The invocation records whether the tool's execution succeeded (executionSuccessful) separately from its results, and an informative appendix explains that a run whose execution failed cannot be assumed to hold complete results. Results also record the scanned revision (revisionId) and suppressions with a status (underReview, accepted, rejected) and a user-supplied justification. The JSON schema (copy at https://www.schemastore.org/sarif-2.1.0.json, $id on oasis-tcs/sarif-spec) defines suppressions as a property of the result object; each suppression has a kind (inSource or external), a status (accepted, underReview, rejected) and a justification. Spec prose of sections 3.27.23 and 3.35 not read on 2026-11-28 (HTML truncated by the fetch tool)."
 
 nist-ssdf:
   title: "Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities"
@@ -606,8 +606,8 @@ nist-ssdf:
   org: "NIST Special Publication 800-218"
   date: "2022-02"
   url: "https://csrc.nist.gov/pubs/sp/800/218/final"
-  accessed: "2026-11-27"
-  note: "NIST SP 800-218 version 1.1, final (3 February 2022); practice and task identifiers checked in the PDF (https://doi.org/10.6028/NIST.SP.800-218). Tasks relied on: PO.1.2 (identify and document all security requirements for organization-developed software to meet, and maintain the requirements over time); PO.3.3 (configure tools to generate artifacts of their support of secure development practices); PS.1.1 (store all forms of code according to least privilege); PS.3.1 (securely archive the files of each release); PS.3.2 (collect, safeguard, maintain and share provenance data); PW.1.1 (use forms of risk modeling, such as threat modeling, attack modeling or attack surface mapping); PW.2.1 (have a qualified person or people who were not involved with the design review the software design); PW.6.1 (use compilers, interpreters and build tools with security features); PW.7.1 and PW.7.2 (decide which code review or analysis to use, perform it in line with secure coding standards, and record and triage the issues found). Also the vulnerability-response practices RV.1 'Identify and Confirm Vulnerabilities on an Ongoing Basis', RV.2 'Assess, Prioritize, and Remediate Vulnerabilities' and RV.3 'Analyze Vulnerabilities to Identify Their Root Causes'. Version 1.2 (SP 800-218 Rev. 1) exists only as an initial public draft (published 2025-12-17, comments closed 2026-01-30); no final Rev. 1 was found on 2026-11-20, so version 1.1 is cited as the final. Practice PO.1: ensure that security requirements for software development are known at all times so that they can be taken into account throughout the SDLC and duplication of effort can be minimized because the requirements information can be collected once and shared. PS.3.2 examples include making provenance data available to the organization's operations and response teams to aid them in mitigating software vulnerabilities. RV.1.1: gather information from software acquirers, users and public sources on potential vulnerabilities, and investigate all credible reports. RV.3.1: analyze identified vulnerabilities to determine their root causes; RV.3.2: analyze the root causes over time to identify patterns; RV.3.4: review the SDLC process and update it if appropriate to prevent (or reduce the likelihood of) the root cause recurring."
+  accessed: "2026-11-28"
+  note: "NIST SP 800-218 version 1.1, final (3 February 2022); practice and task identifiers checked in the PDF (https://doi.org/10.6028/NIST.SP.800-218). Tasks relied on: PO.1.2 (identify and document all security requirements for organization-developed software to meet, and maintain the requirements over time); PO.3.3 (configure tools to generate artifacts of their support of secure development practices); PS.1.1 (store all forms of code according to least privilege); PS.3.1 (securely archive the files of each release); PS.3.2 (collect, safeguard, maintain and share provenance data); PW.1.1 (use forms of risk modeling, such as threat modeling, attack modeling or attack surface mapping); PW.2.1 (have a qualified person or people who were not involved with the design review the software design); PW.6.1 (use compilers, interpreters and build tools with security features); PW.7.1 and PW.7.2 (decide which code review or analysis to use, perform it in line with secure coding standards, and record and triage the issues found). Also the vulnerability-response practices RV.1 'Identify and Confirm Vulnerabilities on an Ongoing Basis', RV.2 'Assess, Prioritize, and Remediate Vulnerabilities' and RV.3 'Analyze Vulnerabilities to Identify Their Root Causes'. Version 1.2 (SP 800-218 Rev. 1) exists only as an initial public draft (published 2025-12-17, comments closed 2026-01-30); no final Rev. 1 was found on 2026-11-20, so version 1.1 is cited as the final. Practice PO.1: ensure that security requirements for software development are known at all times so that they can be taken into account throughout the SDLC and duplication of effort can be minimized because the requirements information can be collected once and shared. PS.3.2 examples include making provenance data available to the organization's operations and response teams to aid them in mitigating software vulnerabilities. RV.1.1: gather information from software acquirers, users and public sources on potential vulnerabilities, and investigate all credible reports. RV.3.1: analyze identified vulnerabilities to determine their root causes; RV.3.2: analyze the root causes over time to identify patterns; RV.3.4: review the SDLC process and update it if appropriate to prevent (or reduce the likelihood of) the root cause recurring. PO.4 'Define and Use Criteria for Software Security Checks': PO.4.1 (define criteria for software security checks and track throughout the SDLC; examples include reviewing artifacts against the criteria and recording security check approvals, rejections and exception requests as part of the workflow and tracking system); PO.4.2 (implement processes and mechanisms to gather and safeguard the information supporting the criteria; examples include allowing only authorized personnel to access the gathered information and preventing any alteration or deletion of it). Read 2026-11-28. PW.4.1: acquire and maintain well-secured third-party components (examples include obtaining and analysing provenance data such as SBOMs); PW.4.4: verify that acquired components comply with requirements throughout their life cycles. PS.3: archive and protect each software release, and collect, safeguard, maintain and share provenance data for its components. Read 2026-11-28 (fetch tool paraphrase of Table 1)."
 
 json-schema-core:
   title: "JSON Schema: A Media Type for Describing JSON Documents"
@@ -800,8 +800,8 @@ nist-ai-rmf:
   org: "NIST, NIST AI 100-1"
   date: "2023-01"
   url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
-  accessed: "2026-09-25"
-  note: "GOVERN 3.2 calls for defining and differentiating roles and responsibilities for human-AI configurations and oversight of AI systems; MAP 3.5 for defined, assessed and documented human oversight processes."
+  accessed: "2026-11-28"
+  note: "GOVERN 3.2 calls for defining and differentiating roles and responsibilities for human-AI configurations and oversight of AI systems; MAP 3.5 for defined, assessed and documented human oversight processes. GOVERN 1 (policies, processes, procedures and practices for mapping, measuring and managing AI risks in place, transparent and implemented effectively); GOVERN 1.1 (legal and regulatory requirements involving AI understood, managed and documented); GOVERN 2.1 (roles, responsibilities and lines of communication documented and clear); GOVERN 6 and 6.1 (policies and procedures for AI risks from third-party software, data and entities, including infringement of third-party IP or other rights); MAP 4.1 (approaches for mapping technology and legal risks of components, including IP infringement, in place and documented)."
 
 nist-ai-600-1:
   title: "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile"
@@ -809,8 +809,8 @@ nist-ai-600-1:
   org: "NIST, NIST AI 600-1"
   date: "2024-07"
   url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
-  accessed: "2026-09-25"
-  note: "Lists Human-AI Configuration among the risks of generative AI, including automation bias and over-reliance."
+  accessed: "2026-11-28"
+  note: "Lists Human-AI Configuration among the risks of generative AI, including automation bias and over-reliance. Lists twelve risks, including Data Privacy (leakage, unauthorised use or disclosure of personal and sensitive data), Intellectual Property (eased production or replication of copyrighted or licensed content without authorisation) and Value Chain and Component Integration (non-transparent or untraceable integration of upstream third-party components) (pp. 5-6). Suggested actions: GV-6.1-007 (inventory third-party entities with access to organisational content; approved lists of GAI providers), GV-6.1-009 (extend procurement due diligence to IP, privacy and security), GV-6.1-010 (update GAI acceptable use policies for proprietary and open-source technologies and data, including contractors and other third-party staff), MP-4.1-003 (connect GAI policies to existing software development, legal, compliance and risk processes)."
 
 parasuraman-manzey-2010:
   title: "Complacency and Bias in Human Use of Automation: An Attentional Integration"
@@ -1079,8 +1079,8 @@ safe-glossary:
   org: "Scaled Agile, Inc."
   date: "not printed"
   url: "https://framework.scaledagile.com/glossary/"
-  accessed: "2026-11-20"
-  note: "Glossary of SAFe terms; prints no date. Entries relied on: System Demo ('provides stakeholders an integrated view of new features for the most recent iteration delivered by all the teams on the ART'), Iteration Goals ('a high-level summary of the business and technical goals that an Agile Team agrees to accomplish in an Iteration'), Definition of Done ('specifies the requirements for completeness of a work product or increment of value'), ART Planning Board and Lean Budgets. The glossary has no entry for 'Definition of Ready' or 'Program Board'."
+  accessed: "2026-11-28"
+  note: "Glossary of SAFe terms; prints no date. Entries relied on: System Demo ('provides stakeholders an integrated view of new features for the most recent iteration delivered by all the teams on the ART'), Iteration Goals ('a high-level summary of the business and technical goals that an Agile Team agrees to accomplish in an Iteration'), Definition of Done ('specifies the requirements for completeness of a work product or increment of value'), ART Planning Board and Lean Budgets. The glossary has no entry for 'Definition of Ready' or 'Program Board'. Flow entry: 'a smooth, linear, and fast movement of work product from step to step' within a value stream. Flow entries: Flow Distribution ('a measure of the proportion of work items by type in a system'), Flow Velocity ('measures the number of completed work items over a time period'), Flow Time ('a measure of the time elapsed from start to completion for a given work item'), Flow Load ('a measure of the number of work items currently in progress (active or waiting)'), Flow Efficiency ('the ratio of the total time spent in value-added work activities divided by the total flow time'), Flow Predictability (how consistently teams, ARTs and portfolios meet their commitments). No entry for 'Flow Metrics'; no units or originator credit given."
 
 safe-inspect-and-adapt:
   title: "Inspect and Adapt"
@@ -1520,8 +1520,8 @@ istqb-ctfl-4:
   org: "ISTQB"
   date: "2024-09-15 (v4.0.1, errata release of v4.0 of 2023-04-21)"
   url: "https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf"
-  accessed: "2026-11-20"
-  note: "Section 2.2.1 describes five test levels: component (unit), component integration, system, system integration and acceptance; section 2.2.3 says confirmation testing confirms that an original defect has been successfully fixed and regression testing confirms that no adverse consequences have been caused by a change. Section 1.5.3 (read 2026-11-28) says work products can be tested by their author (no independence) and that for most projects it is usually best to carry out testing with multiple levels of independence; chapter 5 was not read and is not relied on. The certification overview page is https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/ ('Certified Tester Foundation Level (CTFL) v4.0'); the claims rest on the syllabus, not on the overview page."
+  accessed: "2026-11-28"
+  note: "Section 2.2.1 describes five test levels: component (unit), component integration, system, system integration and acceptance; section 2.2.3 says confirmation testing confirms that an original defect has been successfully fixed and regression testing confirms that no adverse consequences have been caused by a change. Section 1.5.3 (read 2026-11-28) says work products can be tested by their author (no independence) and that for most projects it is usually best to carry out testing with multiple levels of independence; chapter 5 was not read and is not relied on. The certification overview page is https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/ ('Certified Tester Foundation Level (CTFL) v4.0'); the claims rest on the syllabus, not on the overview page. Section 1.3, principle 3 (read 2026-11-28): early testing saves time and money; defects removed early will not cause subsequent defects in derived work products, and the cost of quality is reduced since fewer failures occur later in the SDLC (the syllabus cites Boehm 1981)."
 
 fowler-test-pyramid:
   title: "Test Pyramid"
@@ -1664,8 +1664,8 @@ dora-streamlining-change-approval:
   org: "Google, published on dora.dev (capability page; tab title 'DORA | Capabilities: Streamlining change approval')"
   date: "2025-10-30 (last updated, as printed)"
   url: "https://dora.dev/capabilities/streamlining-change-approval/"
-  accessed: "2026-11-27"
-  note: "Says change approvals are best implemented through peer review during the development process, supplemented by automation to detect, prevent and correct bad changes early, and that heavyweight external approval processes have a negative impact on software delivery performance. Treats segregation of duties, a common regulatory requirement, as satisfiable by peer review and gives the change advisory board a strategic role. Does not discuss an external control that mandates approval by an outside party. Carries the 'core' tag; cites the 2019 State of DevOps Report. Quotes segregation of duties as 'changes must be approved by someone other than the author'. Names as a pitfall responding to problems by adding more process, which drives up lead times and batch sizes, and advises investing in making it quicker and safer to make changes. Suggests measures including the percentage of changes that do (or do not) require a manual change to be promoted to production (also by risk profile), and the time changes spend waiting for approval from external bodies, then from local approval bodies or reviewers as approvals move closer to the work."
+  accessed: "2026-11-28"
+  note: "Says change approvals are best implemented through peer review during the development process, supplemented by automation to detect, prevent and correct bad changes early, and that heavyweight external approval processes have a negative impact on software delivery performance. Treats segregation of duties, a common regulatory requirement, as satisfiable by peer review and gives the change advisory board a strategic role. Does not discuss an external control that mandates approval by an outside party. Carries the 'core' tag; cites the 2019 State of DevOps Report. Quotes segregation of duties as 'changes must be approved by someone other than the author'. Names as a pitfall responding to problems by adding more process, which drives up lead times and batch sizes, and advises investing in making it quicker and safer to make changes. Suggests measures including the percentage of changes that do (or do not) require a manual change to be promoted to production (also by risk profile), and the time changes spend waiting for approval from external bodies, then from local approval bodies or reviewers as approvals move closer to the work. Also says compliance and security managers rely on change management to validate compliance requirements, which typically require evidence that all changes are appropriately authorised, and that DORA found no evidence that a more formal, external review process lowers failures (read 2026-11-28)."
 
 keep-a-changelog:
   title: "Keep a Changelog 1.1.0"
@@ -1994,3 +1994,101 @@ istqb-risk-level:
   url: "https://glossary.istqb.org/en_US/term/risk-level"
   accessed: "2026-11-28"
   note: "Text read from the glossary's own API (https://api.glossary.istqb.org/v1/terms/risk-level) because the term page is JavaScript-rendered. Defines risk level as the measure of a risk defined by risk impact and risk likelihood; synonym risk exposure. The record names no source standard."
+
+owasp-llm06-2025:
+  title: "LLM06:2025 Excessive Agency"
+  author: "OWASP Gen AI Security Project"
+  org: "OWASP Foundation (genai.owasp.org), OWASP Top 10 for LLM Applications 2025"
+  date: "2025 (page shows last modified 2025-05-05)"
+  url: "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+  accessed: "2026-11-28"
+  note: "Defines Excessive Agency as the vulnerability that enables damaging actions to be performed in response to unexpected, ambiguous or manipulated outputs from an LLM. Names its root cause as typically one or more of excessive functionality, excessive permissions and excessive autonomy (named without separate definitions; illustrated by examples). Prevention and mitigation, in order: minimize extensions; minimize extension functionality; avoid open-ended extensions; minimize extension permissions; execute extensions in user's context; require user approval; complete mediation (authorization enforced in downstream systems, not decided by the LLM); sanitise LLM inputs and outputs. Lists logging and monitoring and rate-limiting as measures that limit damage but do not prevent Excessive Agency."
+
+spdx-overview:
+  title: "Overview"
+  author: "SPDX project"
+  org: "SPDX, an open source project hosted by the Linux Foundation (spdx.dev; tab title 'Overview – SPDX')"
+  date: "not printed"
+  url: "https://spdx.dev/about/"
+  accessed: "2026-11-28"
+  note: "Describes SPDX as an open standard for communicating software bill of material information, including provenance, license, security and other related information, recognised as ISO/IEC 5962:2021."
+
+spdx-ids:
+  title: "Handling License Info"
+  author: "SPDX project"
+  org: "SPDX, hosted by the Linux Foundation (spdx.dev; tab title 'Handling License Info – SPDX')"
+  date: "not printed"
+  url: "https://spdx.dev/ids"
+  accessed: "2026-11-28"
+  note: "Explains SPDX short-form identifiers: one SPDX-License-Identifier line per file naming a licence from the SPDX License List, or an expression combining several with AND and OR, readable by people and machines."
+
+lf-generative-ai:
+  title: "Guidance Regarding Use of Generative AI Tools for Open Source Software Development"
+  author: "The Linux Foundation"
+  org: "The Linux Foundation, Legal (tab title 'Generative AI Policy | Linux Foundation')"
+  date: "not printed"
+  url: "https://www.linuxfoundation.org/legal/generative-ai"
+  accessed: "2026-11-28"
+  note: "Says code generated in whole or part with AI tools can be contributed to Linux Foundation projects and should be developed and reviewed no differently from other code; asks contributors to confirm the tool's terms do not restrict use of output inconsistently with the project's open source licence or IP policies, and, where output contains third-party copyrighted material, to have permission and give notice, attribution and licence terms; says projects may set their own guidance and employers may set stricter rules. Does not require marking AI-generated content. Gives no legal conclusion the site relies on."
+
+nist-800-128:
+  title: "Guide for Security-Focused Configuration Management of Information Systems"
+  author: "L. Johnson; Kelley Dempsey; Ron Ross; Sarbari Gupta; Dennis Bailey"
+  org: "National Institute of Standards and Technology (NIST), Special Publication 800-128"
+  date: "2011-08 (includes updates as of 2019-10-10)"
+  url: "https://csrc.nist.gov/pubs/sp/800/128/upd1/final"
+  accessed: "2026-11-28"
+  note: "Defines configuration change control as the documented process for managing and controlling changes to the configuration, involving the systematic proposal, justification, implementation, test/evaluation, review and disposition of changes (§2.3.8). Says changes are analysed for security impact, tested and approved before implementation (§2.2.3), lists documentation of approved and implemented changes among its activities (§2.1.3), and places approval with a body that has the collective responsibility and authority to review and approve changes (§2.3.3). Read pp. i–17 only; §3.3 not read."
+
+nist-glossary-configuration-control:
+  title: "configuration control - Glossary"
+  author: "NIST Computer Security Resource Center"
+  org: "National Institute of Standards and Technology (NIST)"
+  url: "https://csrc.nist.gov/glossary/term/configuration_control"
+  accessed: "2026-11-28"
+  note: "Gives the NIST SP 800-53 Rev. 5 definition, taken from SP 800-128: the process for controlling modifications to hardware, firmware, software and documentation to protect the system against improper modifications before, during and after system implementation."
+
+nist-glossary-separation-of-duty:
+  title: "Separation of Duty (SOD) - Glossary"
+  author: "NIST Computer Security Resource Center"
+  org: "National Institute of Standards and Technology (NIST)"
+  url: "https://csrc.nist.gov/glossary/term/separation_of_duty"
+  accessed: "2026-11-28"
+  note: "Definition sourced to NIST SP 800-192: the principle that no user should be given enough privileges to misuse the system on their own. Separation can be static or dynamic; the two-person rule is an example of dynamic separation."
+
+nist-800-53b:
+  title: "Control Baselines for Information Systems and Organizations (NIST SP 800-53B)"
+  author: "Joint Task Force"
+  org: "National Institute of Standards and Technology (NIST)"
+  date: "2020-09 (includes updates as of 2020-12-10; Release 5.2.0, 2025-08-27, no changes to the baselines)"
+  url: "https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final"
+  accessed: "2026-11-28"
+  note: "Abstract read: provides low, moderate and high security control baselines and a privacy baseline, tailoring guidance and working assumptions that guide control selection, and guidance on developing overlays that customise baselines for specific communities of interest, technologies and environments of operation."
+
+nist-oscal-profile:
+  title: "OSCAL Control Layer: Profile Model"
+  author: "NIST"
+  org: "National Institute of Standards and Technology (NIST), OSCAL project site (pages.nist.gov)"
+  date: "last updated 2025-03-03 (as printed)"
+  url: "https://pages.nist.gov/OSCAL/learn/concepts/layer/control/profile/"
+  accessed: "2026-11-28"
+  note: "Describes a profile as a baseline of selected controls from one or more control catalogs, stating which controls are in scope and whether and where they are configured or modified, including parameter values; system owners can use it to set a baseline of tailored controls for a specific system."
+
+json-schema-object:
+  title: "object"
+  author: "JSON Schema"
+  org: "json-schema.org, Understanding JSON Schema (reference section)"
+  date: "not printed"
+  url: "https://json-schema.org/understanding-json-schema/reference/object"
+  accessed: "2026-11-28"
+  note: "Reference page for the object type. Says that by default the properties defined by the properties keyword are not required; that the required keyword takes an array of zero or more unique strings, and a document missing a required property is invalid; that by default any additional properties are allowed, and setting additionalProperties to false means no additional properties are allowed. Also describes unevaluatedProperties (new in draft 2019-09) as similar to additionalProperties but able to recognise properties declared in subschemas. The series name is inferred from the page path and edit link, not printed on the page."
+
+slsa-source-requirements:
+  title: "Source: Requirements for producing source"
+  author: "SLSA (Supply-chain Levels for Software Artifacts)"
+  org: "OpenSSF, published on slsa.dev"
+  date: "SLSA v1.2, Status: Approved"
+  url: "https://slsa.dev/spec/v1.2/source-requirements"
+  accessed: "2026-11-28"
+  note: "Source-track requirements. Two-party review (Level 4): changes in protected branches must be agreed to by two or more trusted persons prior to submission; 'Final revision approved': the requirement applies to the final revision submitted, and changes made during review must be reviewed as well. Level 2: branch history is continuous, immutable and retained, and the source control system issues source provenance attestations for each new source revision, contemporaneously, as a credible, auditable record of changes. At Level 4 the uploader and reviewer must be two different trusted persons. Defines a trusted person as a human authorised by the organisation to propose and approve changes to the source. Lets an organisation grant a trusted robot a perpetual exception. Does not mention AI."
+

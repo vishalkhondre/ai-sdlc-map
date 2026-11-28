@@ -7,7 +7,7 @@ title: Validators
 summary: A validator is a deterministic check, written as code and tied to rule identifiers, that runs the same way locally and in CI, reports passed, failed, skipped or could_not_run, and can block a merge once it is made a required check.
 key_terms: [validator, gate, rule-registry, could-not-run, two-kinds-of-machinery, guides-and-sensors, review-skill, deterministic-gate, evidence-record, engineering-kit, export-example, fitness-function, mechanism-vs-meaning]
 sources: [bockeler-harness, bockeler-sensors, openai-harness, fowler-ci, sarif-2-1-0, github-protected-branches, github-checks-api, gatekeeper-violations, k8s-validating-admission-policy, gitlab-ci-yaml, pytest-timeout, pytest-flaky, fowler-nondeterminism, google-flaky-tests, luo-flaky-2014, ford-evolutionary-architectures, thoughtworks-radar-fitness, fitness-function]
-related: [rule-registry, engineering-kit, evidence-schema, skills-and-evals, adapters, harness-engineering, workflows]
+related: [rule-registry, engineering-kit, evidence-schema, skills-and-evals, adapters, harness-engineering, workflows, check-results-and-decisions]
 review_record: content/reviews/1.4.0-core.md
 ---
 
@@ -50,7 +50,7 @@ SARIF draws the same line between "did the tool run" and "what did it find". Eac
 
 A validator detects that it cannot run by checking its prerequisites before it evaluates anything: the tool is present at the expected version, the environment answers, and the test data exists. It reads the tool's actual output rather than trusting the exit code alone, since SARIF notes that not every program exits with 0 on success and non-zero on failure.[^sarif-2-1-0] When the validator never starts at all, it cannot report anything, and SARIF expects the component that launched the tool to write the record instead.[^sarif-2-1-0] In practice, the runner treats a required validator that produced no result as could_not_run.
 
-Could_not_run must never be reported as skipped. At least one change host counts a skipped required status check as satisfied,[^github-protected-branches] so a missing environment reported as "skipped" lets the change through unchecked. In the export example, R-017, the volume-limit rule, states a row limit for a single export, and its check runs the 50k-row load scenario. On the first export pull request the load-test tool is missing from the runner image, so the check reports could_not_run and names the missing tool. It does not report failed, because the change is not at fault, and it does not report skipped, because the rule applies. The validator only reports. What each result means for a merge or release decision is set in the assurance band of the map, and the kit-wide definition of could_not_run is on the [Engineering Kit](engineering-kit.html) page.
+Could_not_run must never be reported as skipped. At least one change host counts a skipped required status check as satisfied,[^github-protected-branches] so a missing environment reported as "skipped" lets the change through unchecked. In the export example, R-017, the volume-limit rule, states a row limit for a single export, and its check runs the 50k-row load scenario. On the first export pull request the load-test tool is missing from the runner image, so the check reports could_not_run and names the missing tool. It does not report failed, because the change is not at fault, and it does not report skipped, because the rule applies. The validator only reports. What each result means for a merge or release decision is set in [the assurance band of the map](check-results-and-decisions.html), and the kit-wide definition of could_not_run is on the [Engineering Kit](engineering-kit.html) page.
 
 ### From report-only to required
 
@@ -88,7 +88,7 @@ That trust rests on evidence the validator carries with it. It ships with a smal
 
 ## Where it sits on the map
 
-Validators sit in the core band, band 3 of the map ("what does the work"), as one of the five parts inside the Engineering Kit box. Before a validator comes its rule: a rule whose [Rule registry](rule-registry.html) entry calls for a check becomes a validator here. Alongside are skills, which guide what an agent tries to do rather than checking the result, and so meet a different acceptance bar (see [Skills with evals](skills-and-evals.html)). After the validator, each result lands in the evidence record, whose fields are fixed on the [Evidence schema](evidence-schema.html) page. [Adapters](adapters.html) bind validators to a particular CI runner and change host without making them depend on either. In the vocabulary of [Harness engineering](harness-engineering.html), validators are the computational sensors, while skills and instructions are guides.[^bockeler-harness] Every workflow calls validators at its checks step (see [Workflows](workflows.html)). The assurance band of the map decides what their results mean for merge and release.
+Validators sit in the core band, band 3 of the map ("what does the work"), as one of the five parts inside the Engineering Kit box. Before a validator comes its rule: a rule whose [Rule registry](rule-registry.html) entry calls for a check becomes a validator here. Alongside are skills, which guide what an agent tries to do rather than checking the result, and so meet a different acceptance bar (see [Skills with evals](skills-and-evals.html)). After the validator, each result lands in the evidence record, whose fields are fixed on the [Evidence schema](evidence-schema.html) page. [Adapters](adapters.html) bind validators to a particular CI runner and change host without making them depend on either. In the vocabulary of [Harness engineering](harness-engineering.html), validators are the computational sensors, while skills and instructions are guides.[^bockeler-harness] Every workflow calls validators at its checks step (see [Workflows](workflows.html)). The [assurance band of the map](check-results-and-decisions.html) decides what their results mean for merge and release.
 
 ## Pitfalls
 
@@ -106,6 +106,7 @@ Validators sit in the core band, band 3 of the map ("what does the work"), as on
 - [Rule registry](rule-registry.html): where each rule gets its identifier, its enforcing checks or decider, and its owner.
 - [Engineering Kit](engineering-kit.html): the package validators ship in, its verify command and the kit-wide could_not_run result.
 - [Evidence schema](evidence-schema.html): the fields that record each validator's result.
+- [Check results and decisions](check-results-and-decisions.html): what each result means for a merge or release decision.
 - [Skills with evals](skills-and-evals.html): the probabilistic counterpart to validators, and why its bar differs.
 - [Adapters](adapters.html): how validators bind to a CI runner and change host.
 - [Harness engineering](harness-engineering.html): the discipline in which validators are the computational sensors.

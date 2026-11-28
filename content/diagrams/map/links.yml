@@ -50,6 +50,17 @@ incident feedback: "incident-feedback.html"
 Spike / research: "workflow-catalog.html#W07"
 Dependency / CVE fix: "workflow-catalog.html#W15"
 
+# Band 5 · assurance (1.7.0): each bullet opens its page; boxes that share a page open their own
+# anchor (D-029).
+Evidence record on every run, fixed schema: "evidence-record.html"
+"Rule IDs link rule → check → decision": "evidence-record.html#rule-ids-from-rule-to-check-to-decision"
+"passed · failed · skipped · could_not_run": "check-results-and-decisions.html"
+"Valid for one revision; a new push expires it": "evidence-record.html#valid-for-one-revision"
+"Templates: spec, plan, ADR, release notes": "delivery-templates.html"
+"SOC 2 change controls; domain standards as they apply": "change-controls-and-standards.html"
+"AI use policy: data sent to models, IP of generated code": "ai-use-policy.html"
+Agent permissions reviewed as privileged access: "agent-permissions.html"
+
 # Adoption path. "3  Feedback path proven" opens the harness engineering page's steering-loop
 # section, where the feedback path is defined (D-018, confirmed by the author).
 0  Deterministic floor: "#adoption"
